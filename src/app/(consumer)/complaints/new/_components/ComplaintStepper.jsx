@@ -7,10 +7,7 @@ import { cn } from "@/lib/utils";
 
 export function ComplaintStepper({ step, onStepChange }) {
   return (
-    <nav
-      aria-label="Progress"
-      className="border-hairline bg-surface-1 mb-6 rounded-xl border p-3 shadow-2xs sm:p-4"
-    >
+    <nav aria-label="Progress" className="py-5">
       <ol className="flex items-center justify-between">
         {STEPS.map((s, idx) => {
           const isCompleted = step > s.num;

@@ -194,7 +194,7 @@ export function Step1SelectIssue({
         />
       </div>
 
-      <div className="border-hairline-soft flex justify-end border-t pt-4">
+      <div className="flex justify-end pt-4">
         <Button
           type="button"
           onClick={onNext}

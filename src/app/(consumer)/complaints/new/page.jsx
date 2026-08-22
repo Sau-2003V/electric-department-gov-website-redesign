@@ -175,7 +175,7 @@ export default function NewComplaintPage() {
       <ComplaintStepper step={step} onStepChange={setStep} />
 
       {/* Form Container Card */}
-      <div className="border-hairline bg-surface-1 rounded-xl border p-6 shadow-2xs sm:p-8">
+      <div className="pt-6">
         {step === 1 && (
           <Step1SelectIssue
             selectedIssueId={selectedIssueId}

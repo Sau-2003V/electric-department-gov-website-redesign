@@ -293,7 +293,7 @@ export function Step2LocationDetails({
       </div>
 
       {/* Navigation actions */}
-      <div className="border-hairline-soft flex items-center justify-between border-t pt-4">
+      <div className="flex items-center justify-between pt-4">
         <Button
           type="button"
           onClick={onBack}
