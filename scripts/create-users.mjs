@@ -9,8 +9,16 @@ const meterData = [
   { name: "Kavya Nair", meterNumber: "000100006", phoneNumber: "9000000006" },
   { name: "Aditya Gupta", meterNumber: "000100007", phoneNumber: "9000000007" },
   { name: "Neha Singh", meterNumber: "000100008", phoneNumber: "9000000008" },
-  { name: "Siddharth Joshi", meterNumber: "000100009", phoneNumber: "9000000009" },
-  { name: "Diya Chatterjee", meterNumber: "000100010", phoneNumber: "9000000010" },
+  {
+    name: "Siddharth Joshi",
+    meterNumber: "000100009",
+    phoneNumber: "9000000009",
+  },
+  {
+    name: "Diya Chatterjee",
+    meterNumber: "000100010",
+    phoneNumber: "9000000010",
+  },
 ];
 
 async function seedUsers() {
@@ -61,4 +69,3 @@ async function seedUsers() {
 }
 
 seedUsers().catch(console.error);
-

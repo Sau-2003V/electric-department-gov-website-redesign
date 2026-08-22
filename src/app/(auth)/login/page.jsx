@@ -19,7 +19,11 @@ import { loginSchema } from "@/app/types/schema";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-function LoginForm({ initialMeter = "", initialPhone = "", nextUrl = "/dashboard" }) {
+function LoginForm({
+  initialMeter = "",
+  initialPhone = "",
+  nextUrl = "/dashboard",
+}) {
   const [serverError, setServerError] = useState("");
 
   const form = useForm({
@@ -85,7 +89,11 @@ function LoginForm({ initialMeter = "", initialPhone = "", nextUrl = "/dashboard
       </div>
 
       {/* Form */}
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4" noValidate>
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-4"
+        noValidate
+      >
         {/* Meter Number */}
         <Controller
           name="meterNumber"
@@ -156,14 +164,14 @@ function LoginForm({ initialMeter = "", initialPhone = "", nextUrl = "/dashboard
       {/* Demo Credentials Link Card */}
       <Link
         href="/credentials"
-        className="group border-hairline bg-surface-2/40 hover:bg-surface-2/80 hover:border-hairline mt-6 flex items-center justify-between gap-3 rounded-xl border p-3.5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fin-orange"
+        className="group border-hairline bg-surface-2/40 hover:bg-surface-2/80 hover:border-hairline focus-visible:ring-fin-orange mt-6 flex items-center justify-between gap-3 rounded-xl border p-3.5 transition-all focus-visible:ring-2 focus-visible:outline-none"
       >
         <div className="flex min-w-0 flex-1 items-center gap-3">
           <div className="border-hairline bg-surface-1 text-fin-orange flex size-9 shrink-0 items-center justify-center rounded-lg border shadow-2xs transition-transform group-hover:scale-105">
             <KeyRound className="size-4" />
           </div>
           <div className="min-w-0 flex-1">
-            <p className="text-ink text-xs font-semibold group-hover:text-fin-orange transition-colors">
+            <p className="text-ink group-hover:text-fin-orange text-xs font-semibold transition-colors">
               Use Demo Credentials
             </p>
             <p className="text-ink-muted text-[11px] leading-tight">

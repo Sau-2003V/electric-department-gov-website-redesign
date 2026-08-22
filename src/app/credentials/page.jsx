@@ -47,7 +47,7 @@ export default function CredentialsPage() {
 
         {/* Title */}
         <div className="mb-6 space-y-1">
-          <div className="text-ink-subtle mb-1 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider">
+          <div className="text-ink-subtle mb-1 flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase">
             <KeyRound className="size-3.5" />
             <span>Test Accounts</span>
           </div>
@@ -68,18 +68,22 @@ export default function CredentialsPage() {
               onClick={() => handleSelect(cred.meter, cred.phone)}
               className="group border-hairline-soft bg-canvas hover:bg-surface-2/70 hover:border-hairline flex w-full cursor-pointer items-center justify-between rounded-xl border px-4 py-3.5 text-left transition-all active:scale-[0.99]"
             >
-              <div className="flex flex-col gap-1 min-w-0 flex-1">
+              <div className="flex min-w-0 flex-1 flex-col gap-1">
                 <div className="font-mono text-xs">
                   <span className="text-ink-subtle">Meter: </span>
-                  <strong className="text-ink font-semibold">{cred.meter}</strong>
+                  <strong className="text-ink font-semibold">
+                    {cred.meter}
+                  </strong>
                 </div>
                 <div className="font-mono text-xs">
                   <span className="text-ink-subtle">Phone: </span>
-                  <strong className="text-ink font-semibold">{cred.phone}</strong>
+                  <strong className="text-ink font-semibold">
+                    {cred.phone}
+                  </strong>
                 </div>
               </div>
 
-              <div className="text-ink-muted group-hover:text-fin-orange flex shrink-0 items-center gap-1.5 text-xs font-medium transition-colors pl-2">
+              <div className="text-ink-muted group-hover:text-fin-orange flex shrink-0 items-center gap-1.5 pl-2 text-xs font-medium transition-colors">
                 <span>Use</span>
                 <ArrowRight className="size-3.5 transition-transform group-hover:translate-x-0.5" />
               </div>

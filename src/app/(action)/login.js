@@ -38,4 +38,3 @@ export default async function login(data) {
 
   redirect(data?.next || "/dashboard");
 }
-
