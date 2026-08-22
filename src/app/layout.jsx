@@ -1,5 +1,9 @@
-import { Inter } from "next/font/google";
+import { Inter, Geist } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
 
 const inter = Inter({
   variable: "--font-inter",
@@ -13,8 +17,30 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${inter.variable} h-full antialiased`}>
-      <body className="flex min-h-full flex-col">{children}</body>
+    <html
+      lang="en"
+      className={cn(
+        "h-full",
+        "antialiased",
+        inter.variable,
+        "font-sans",
+        geist.variable
+      )}
+    >
+      <body className="flex min-h-full flex-col">
+        <NextTopLoader
+          color="#ff5600"
+          initialPosition={0.08}
+          crawlSpeed={200}
+          height={3}
+          crawl={true}
+          showSpinner={false}
+          easing="ease"
+          speed={200}
+          shadow="0 0 10px #ff5600,0 0 5px #ff5600"
+        />
+        {children}
+      </body>
     </html>
   );
 }
