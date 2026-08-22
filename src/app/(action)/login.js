@@ -36,5 +36,6 @@ export default async function login(data) {
     };
   }
 
-  redirect("/");
+  redirect(data?.next || "/dashboard");
 }
+

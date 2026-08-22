@@ -19,7 +19,7 @@ import { loginSchema } from "@/app/types/schema";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-function LoginForm({ initialMeter = "", initialPhone = "" }) {
+function LoginForm({ initialMeter = "", initialPhone = "", nextUrl = "/dashboard" }) {
   const [serverError, setServerError] = useState("");
 
   const form = useForm({
@@ -32,7 +32,7 @@ function LoginForm({ initialMeter = "", initialPhone = "" }) {
 
   const onSubmit = async (values) => {
     setServerError("");
-    const res = await login(values);
+    const res = await login({ ...values, next: nextUrl });
     if (res && !res.success) {
       if (res.errors) {
         Object.entries(res.errors).forEach(([field, messages]) => {
@@ -185,12 +185,14 @@ function LoginFormContainer() {
   const searchParams = useSearchParams();
   const meter = searchParams.get("meter") || "";
   const phone = searchParams.get("phone") || "";
+  const next = searchParams.get("next") || "/dashboard";
 
   return (
     <LoginForm
-      key={`${meter}-${phone}`}
+      key={`${meter}-${phone}-${next}`}
       initialMeter={meter}
       initialPhone={phone}
+      nextUrl={next}
     />
   );
 }
