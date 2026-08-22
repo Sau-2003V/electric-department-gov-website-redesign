@@ -2,6 +2,7 @@
   "name": "electric-department-gov-website-redesign",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,11 +10,14 @@
     "lint": "eslint",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
+    "seed:users": "node --env-file=.env scripts/create-users.mjs",
     "changeset": "changeset",
     "version-packages": "changeset version"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
+    "@supabase/ssr": "^0.12.4",
+    "@supabase/supabase-js": "^2.112.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-react": "^8.6.0",
