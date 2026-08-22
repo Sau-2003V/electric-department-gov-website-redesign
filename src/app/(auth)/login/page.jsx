@@ -1,16 +1,15 @@
+
+
+
+
 "use client";
 
-import { useState } from "react";
+import { useActionState } from "react";
 import Link from "next/link";
+import login from "@/app/(action)/login";
 
 export default function LoginPage() {
-  const [meterNumber, setMeterNumber] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Meter :", meterNumber, "Phone :", phoneNumber);
-  };
+  const [state, formAction, pending] = useActionState(login, null);
 
   return (
     <div className="min-h-screen bg-[#f5f2ec] text-black">
@@ -70,7 +69,7 @@ export default function LoginPage() {
           </p>
 
           {/* Form */}
-          <form onSubmit={handleSubmit}>
+          <form action={formAction}>
 
             {/* Meter Number */}
             <div className="mb-[24px]">
@@ -80,11 +79,16 @@ export default function LoginPage() {
 
               <input
                 type="text"
-                value={meterNumber}
-                onChange={(e) => setMeterNumber(e.target.value)}
+                name="meterNumber"
                 placeholder="Enter your meter number"
                 className="w-full h-[52px] bg-[#f5f3ef] border border-[#d9d7d2] rounded-[16px] px-[13px] text-[14px] text-black placeholder:text-[#777] outline-none shadow-[0_2px_4px_rgba(0,0,0,0.04)] focus:border-[#ff4308] focus:ring-1 focus:ring-[#ff4308]"
               />
+
+              {state?.errors?.meterNumber?.[0] && (
+                <p className="text-[12px] text-red-500 mt-[5px]">
+                  {state.errors.meterNumber[0]}
+                </p>
+              )}
             </div>
 
             {/* Phone Number */}
@@ -95,20 +99,33 @@ export default function LoginPage() {
 
               <input
                 type="tel"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
+                name="phoneNumber"
                 placeholder="10-digit mobile number"
                 maxLength={10}
                 className="w-full h-[52px] bg-[#f5f3ef] border border-[#d9d7d2] rounded-[16px] px-[13px] text-[14px] text-black placeholder:text-[#777] outline-none shadow-[0_2px_4px_rgba(0,0,0,0.04)] focus:border-[#ff4308] focus:ring-1 focus:ring-[#ff4308]"
               />
+
+              {state?.errors?.phoneNumber?.[0] && (
+                <p className="text-[12px] text-red-500 mt-[5px]">
+                  {state.errors.phoneNumber[0]}
+                </p>
+              )}
             </div>
+
+            {/* General Error */}
+            {state?.message && (
+              <p className="text-[13px] text-red-500 mb-[12px]">
+                {state.message}
+              </p>
+            )}
 
             {/* Login Button */}
             <button
               type="submit"
-              className="w-full h-[51px] bg-[#ff4308] hover:bg-[#ed3d05] text-white text-[16px] font-bold rounded-[16px] transition duration-200 shadow-[0_3px_5px_rgba(0,0,0,0.12)]"
+              disabled={pending}
+              className="w-full h-[51px] bg-[#ff4308] hover:bg-[#ed3d05] text-white text-[16px] font-bold rounded-[16px] transition duration-200 shadow-[0_3px_5px_rgba(0,0,0,0.12)] disabled:opacity-70"
             >
-              Login to Portal
+              {pending ? "Logging in..." : "Login to Portal"}
             </button>
           </form>
 
