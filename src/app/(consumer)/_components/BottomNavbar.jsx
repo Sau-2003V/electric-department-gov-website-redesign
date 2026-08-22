@@ -27,7 +27,7 @@ export default function BottomNavbar() {
   return (
     <nav
       aria-label="Bottom Navigation"
-      className="border-hairline bg-surface-1/95 fixed inset-x-0 bottom-0 z-40 border-t backdrop-blur-md md:hidden"
+      className="bg-surface-1/95 fixed inset-x-0 bottom-0 z-40 backdrop-blur-md md:hidden"
     >
       <div className="mx-auto flex h-16 w-full items-center justify-between px-2 py-1.5">
         {CONSUMER_BOTTOM_NAV_LINKS.map((item) => {
@@ -65,9 +65,7 @@ export default function BottomNavbar() {
               <span
                 className={cn(
                   "mt-1 block w-full truncate px-0.5 text-center text-[11px] leading-tight tracking-tight transition-colors duration-150",
-                  isActive
-                    ? "text-ink font-semibold"
-                    : "text-ink-muted group-hover:text-ink font-normal"
+                  isActive ? "text-ink" : "text-ink-muted group-hover:text-ink"
                 )}
               >
                 {item.shortLabel || item.label}
