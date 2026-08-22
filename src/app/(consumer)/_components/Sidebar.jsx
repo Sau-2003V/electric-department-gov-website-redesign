@@ -2,45 +2,15 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  Bell,
-  Grid2X2,
-  HelpCircle,
-  LogOut,
-  Plus,
-  Ticket,
-  Zap,
-} from "lucide-react";
+import { LogOut, Plus, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-const navItems = [
-  {
-    label: "Dashboard",
-    href: "/dashboard",
-    icon: Grid2X2,
-  },
-  {
-    label: "My complaints",
-    href: "/complaints",
-    icon: Ticket,
-  },
-  {
-    label: "Notices",
-    href: "/notices",
-    icon: Bell,
-  },
-  {
-    label: "Help",
-    href: "/help",
-    icon: HelpCircle,
-  },
-];
+import { CONSUMER_SIDEBAR_LINKS } from "@/constants/nav-links";
 
 export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="border-hairline bg-surface-1 fixed inset-y-0 left-0 z-40 flex w-64 flex-col border-r">
+    <aside className="border-hairline bg-surface-1 fixed inset-y-0 left-0 z-40 hidden w-64 flex-col border-r md:flex">
       {/* Brand Header */}
       <div className="border-hairline-soft flex h-14 items-center gap-3 border-b px-4">
         <div className="bg-ink text-on-primary flex size-8 shrink-0 items-center justify-center rounded-full">
@@ -59,7 +29,7 @@ export default function Sidebar() {
       </div>
 
       {/* Action CTA & Navigation Links */}
-      <div className="flex-1 overflow-y-auto px-3 py-4 space-y-4">
+      <div className="flex-1 space-y-4 overflow-y-auto px-3 py-4">
         {/* New Complaint CTA Button */}
         <div>
           <Button
@@ -67,7 +37,7 @@ export default function Sidebar() {
             variant="primary"
             size="default"
             shape="default"
-            className="w-full justify-center gap-2 font-medium shadow-xs hover:shadow-sm transition-all active:scale-[0.99]"
+            className="w-full justify-center gap-2 font-medium shadow-xs transition-all hover:shadow-sm active:scale-[0.99]"
           >
             <Link href="/complaints/new" aria-label="Register a new complaint">
               <Plus size={16} strokeWidth={2.5} className="shrink-0" />
@@ -78,7 +48,7 @@ export default function Sidebar() {
 
         {/* Navigation Menu */}
         <nav className="space-y-1">
-          {navItems.map((item) => {
+          {CONSUMER_SIDEBAR_LINKS.map((item) => {
             const Icon = item.icon;
             const isExactMatch = pathname === item.href;
             const isChildMatch =

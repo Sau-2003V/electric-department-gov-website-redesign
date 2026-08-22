@@ -1,45 +1,46 @@
 ﻿import React from "react";
 
 export default function Boxes({ sections }) {
-  const items =
-    sections ||
-    [
-      {
-        title: "Bill generation and payment",
-        description:
-         <ul>
-            <li>NEFTS/RTGS Forms</li>
-            <li>Bill Payments (Urban)</li>
-            <li>Multi-Story Recharge (Radius)</li>
-            <li>Multi-Story Recharge (Capital)</li>
-          </ul>,
-        href: "#",
-      },
-      {
-        title: "Connection Services",
-        description:
-          <ul>
-            <li>Apply for New Electricity Connection (Jhatpat)</li>
-            <li>Ready Reckoner for Line Charges Beyond 40 meter</li>
-            <li>Apply for New Electricity Connection for Private Tube Well</li>
-            <li>Change in Ownership Through Property Registration</li>
-            <li>Commercial, Industrial and Institutional Connections</li>
-          </ul>,
-        href: "#",
-      },
-      {
-        title: "Service Requests",
-        description:
-          <ul>
-            <li>Bill Correction Requests</li>
-            <li>Name Correction Requests</li>
-            <li>Address Correction Requests</li>
-            <li>Mobile Number And E-mail Updation</li>
-            <li>Load Change Requests</li>
-          </ul>,
-        href: "#",
-      },
-    ];
+  const items = sections || [
+    {
+      title: "Bill generation and payment",
+      description: (
+        <ul>
+          <li>NEFTS/RTGS Forms</li>
+          <li>Bill Payments (Urban)</li>
+          <li>Multi-Story Recharge (Radius)</li>
+          <li>Multi-Story Recharge (Capital)</li>
+        </ul>
+      ),
+      href: "#",
+    },
+    {
+      title: "Connection Services",
+      description: (
+        <ul>
+          <li>Apply for New Electricity Connection (Jhatpat)</li>
+          <li>Ready Reckoner for Line Charges Beyond 40 meter</li>
+          <li>Apply for New Electricity Connection for Private Tube Well</li>
+          <li>Change in Ownership Through Property Registration</li>
+          <li>Commercial, Industrial and Institutional Connections</li>
+        </ul>
+      ),
+      href: "#",
+    },
+    {
+      title: "Service Requests",
+      description: (
+        <ul>
+          <li>Bill Correction Requests</li>
+          <li>Name Correction Requests</li>
+          <li>Address Correction Requests</li>
+          <li>Mobile Number And E-mail Updation</li>
+          <li>Load Change Requests</li>
+        </ul>
+      ),
+      href: "#",
+    },
+  ];
 
   return (
     <section className="bg-canvas py-12">
@@ -48,17 +49,17 @@ export default function Boxes({ sections }) {
           {items.map((it, idx) => (
             <article
               key={idx}
-              className="flex h-full flex-col rounded-xl border border-hairline bg-surface-1 p-6 shadow-xs"
+              className="border-hairline bg-surface-1 flex h-full flex-col rounded-xl border p-6 shadow-xs"
             >
-              <h3 className="mb-2 text-card-title font-semibold text-ink">
+              <h3 className="text-card-title text-ink mb-2 font-semibold">
                 {it.title}
               </h3>
-              <p className="mb-4 text-body text-ink-muted">{it.description}</p>
+              <p className="text-body text-ink-muted mb-4">{it.description}</p>
 
               <div className="mt-auto pt-2">
                 <a
                   href={it.href}
-                  className="inline-flex items-center text-sm font-medium text-fin-orange hover:underline"
+                  className="text-fin-orange inline-flex items-center text-sm font-medium hover:underline"
                 >
                   Learn more
                 </a>

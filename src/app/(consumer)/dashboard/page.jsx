@@ -65,109 +65,123 @@ const complaints = [
 
 export default function DashboardPage() {
   return (
-    <div className="min-h-[calc(100vh-61px)] px-[32px] pt-[34px] pb-[40px]">
+    <div className="min-h-[calc(100vh-61px)] px-4 pt-5 pb-10 sm:px-[32px] sm:pt-[34px]">
       {/* Dashboard Heading */}
-      <section className="mb-[30px] flex items-start justify-between">
+      <section className="mb-6 flex items-start justify-between sm:mb-[30px]">
         <div>
-          <h1 className="text-[30px] leading-[34px] font-bold tracking-[-0.8px] text-[#111]">
+          <h1 className="text-2xl leading-tight font-bold tracking-[-0.8px] text-[#111] sm:text-[30px] sm:leading-[34px]">
             Namaste, Ramesh Kumar
           </h1>
 
-          <p className="mt-[5px] text-[14px] text-[#777]">
+          <p className="mt-1 text-[13px] text-[#777] sm:text-[14px]">
             12/3 Gomti Nagar, Lucknow 226010
           </p>
         </div>
       </section>
 
       {/* Statistics */}
-      <section className="mb-[32px] grid grid-cols-3 gap-[16px]">
+      <section className="mb-6 grid grid-cols-3 gap-2.5 sm:mb-[32px] sm:gap-[16px]">
         {/* Open */}
-        <div className="h-[128px] rounded-[20px] border border-[#d9d6d0] bg-white px-[21px] py-[19px]">
-          <Ticket size={20} className="mb-[11px] text-[#ff4308]" />
+        <div className="min-h-[110px] rounded-2xl border border-[#d9d6d0] bg-white p-3 sm:h-[128px] sm:rounded-[20px] sm:px-[21px] sm:py-[19px]">
+          <Ticket size={18} className="mb-2 text-[#ff4308] sm:mb-[11px]" />
 
-          <p className="text-[31px] leading-[30px] font-bold text-[#111]">3</p>
+          <p className="text-2xl leading-none font-bold text-[#111] sm:text-[31px] sm:leading-[30px]">
+            3
+          </p>
 
-          <p className="mt-[5px] text-[14px] text-[#777]">Open complaints</p>
+          <p className="mt-1 text-xs leading-tight text-[#777] sm:mt-[5px] sm:text-[14px]">
+            Open complaints
+          </p>
         </div>
 
         {/* Resolved */}
-        <div className="h-[128px] rounded-[20px] border border-[#d9d6d0] bg-white px-[21px] py-[19px]">
-          <CheckCircle2 size={20} className="mb-[11px] text-[#ff4308]" />
+        <div className="min-h-[110px] rounded-2xl border border-[#d9d6d0] bg-white p-3 sm:h-[128px] sm:rounded-[20px] sm:px-[21px] sm:py-[19px]">
+          <CheckCircle2
+            size={18}
+            className="mb-2 text-[#ff4308] sm:mb-[11px]"
+          />
 
-          <p className="text-[31px] leading-[30px] font-bold text-[#111]">1</p>
+          <p className="text-2xl leading-none font-bold text-[#111] sm:text-[31px] sm:leading-[30px]">
+            1
+          </p>
 
-          <p className="mt-[5px] text-[14px] text-[#777]">Resolved / closed</p>
+          <p className="mt-1 text-xs leading-tight text-[#777] sm:mt-[5px] sm:text-[14px]">
+            Resolved / closed
+          </p>
         </div>
 
         {/* Outages */}
-        <div className="h-[128px] rounded-[20px] border border-[#d9d6d0] bg-white px-[21px] py-[19px]">
-          <Zap size={20} className="mb-[11px] text-[#ff4308]" />
+        <div className="min-h-[110px] rounded-2xl border border-[#d9d6d0] bg-white p-3 sm:h-[128px] sm:rounded-[20px] sm:px-[21px] sm:py-[19px]">
+          <Zap size={18} className="mb-2 text-[#ff4308] sm:mb-[11px]" />
 
-          <p className="text-[31px] leading-[30px] font-bold text-[#111]">1</p>
+          <p className="text-2xl leading-none font-bold text-[#111] sm:text-[31px] sm:leading-[30px]">
+            1
+          </p>
 
-          <p className="mt-[5px] text-[14px] text-[#777]">
-            Active outages in your area
+          <p className="mt-1 text-xs leading-tight text-[#777] sm:mt-[5px] sm:text-[14px]">
+            Active outages
           </p>
         </div>
       </section>
 
       {/* Your Subdivision */}
-      <section className="mb-[30px] overflow-hidden rounded-[20px] border border-[#d9d6d0] bg-white">
+      <section className="mb-6 overflow-hidden rounded-2xl border border-[#d9d6d0] bg-white sm:mb-[30px] sm:rounded-[20px]">
         {/* Subdivision Header */}
-        <div className="flex items-center justify-between border-b border-[#ddd9d2] px-[21px] py-[17px]">
+        <div className="flex flex-col items-start justify-between gap-3 border-b border-[#ddd9d2] p-4 sm:flex-row sm:items-center sm:px-[21px] sm:py-[17px]">
           <div>
             <div className="flex items-center gap-[8px]">
-              <MapPin size={19} className="text-[#ff4308]" />
+              <MapPin size={18} className="text-[#ff4308]" />
 
-              <p className="text-[14px] font-bold tracking-[0.3px]">
+              <p className="text-[13px] font-bold tracking-[0.3px] sm:text-[14px]">
                 YOUR SUBDIVISION
               </p>
             </div>
 
-            <p className="mt-[5px] text-[13px] text-[#777]">
+            <p className="mt-1 text-xs text-[#777] sm:text-[13px]">
               Lucknow Central · Lucknow · PIN 226001, 226010
             </p>
           </div>
 
           <button
             type="button"
-            className="flex h-[40px] items-center gap-[8px] rounded-full border border-[#ffbda9] bg-[#fff1eb] px-[16px] text-[14px] font-semibold text-[#222]"
+            className="flex h-9 items-center gap-[8px] self-start rounded-full border border-[#ffbda9] bg-[#fff1eb] px-3.5 text-xs font-semibold text-[#222] sm:h-[40px] sm:self-auto sm:px-[16px] sm:text-[14px]"
           >
-            <Phone size={17} className="text-[#ff4308]" />
+            <Phone size={15} className="text-[#ff4308]" />
             Emergency helpline 1912
           </button>
         </div>
 
         {/* Contact Cards */}
-        <div className="grid grid-cols-2 gap-[12px] p-[20px]">
+        <div className="grid grid-cols-1 gap-2.5 p-3 sm:grid-cols-2 sm:gap-[12px] sm:p-[20px]">
           {contacts.map((contact) => (
             <div
               key={contact.phone}
-              className="flex h-[72px] items-center justify-between rounded-[17px] border border-[#ddd9d2] px-[17px]"
+              className="flex min-h-[64px] items-center justify-between gap-2 rounded-xl border border-[#ddd9d2] p-3 sm:rounded-[17px] sm:px-[17px]"
             >
-              <div>
-                <p className="text-[14px] font-semibold">{contact.name}</p>
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-[13px] font-semibold sm:text-[14px]">
+                  {contact.name}
+                </p>
 
-                <p className="mt-[3px] text-[12px] text-[#777]">
+                <p className="mt-0.5 truncate text-xs text-[#777]">
                   {contact.role}
                 </p>
               </div>
 
-              <button
-                type="button"
-                className="flex h-[35px] items-center gap-[8px] rounded-[12px] bg-[#ff4308] px-[15px] text-[13px] font-bold text-white"
+              <a
+                href={`tel:${contact.phone}`}
+                className="flex h-[32px] shrink-0 items-center gap-1.5 rounded-lg bg-[#ff4308] px-2.5 text-xs font-bold text-white transition-opacity hover:opacity-90 active:scale-95 sm:h-[35px] sm:rounded-[12px] sm:px-[15px] sm:text-[13px]"
               >
-                <Phone size={15} />
-
-                {contact.phone}
-              </button>
+                <Phone size={13} />
+                <span>{contact.phone}</span>
+              </a>
             </div>
           ))}
         </div>
       </section>
 
       {/* Outage Alert */}
-      <section className="mb-[30px] rounded-[19px] border border-[#f4c5b3] bg-[#fff0e9] px-[21px] py-[18px]">
+      <section className="mb-6 rounded-2xl border border-[#f4c5b3] bg-[#fff0e9] p-4 sm:mb-[30px] sm:rounded-[19px] sm:px-[21px] sm:py-[18px]">
         <div className="mb-[10px] flex items-center gap-[8px]">
           <AlertTriangle size={18} className="text-[#ff4308]" />
 

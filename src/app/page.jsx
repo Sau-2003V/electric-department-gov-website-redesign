@@ -11,7 +11,7 @@ export default function Home() {
       <>
         <Navbar />
         <Carousel />
-        <Boxes/>
+        <Boxes />
         <Content />
         <Footer />
       </>

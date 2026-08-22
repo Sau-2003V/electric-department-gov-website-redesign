@@ -9,7 +9,7 @@ const NAV_LINKS = [
   { label: "Register Complaint", href: "/about" },
   { label: "Track complaints", href: "/services" },
   { label: "Outages", href: "/contact" },
-  { label: "Help", href: "/contact" }
+  { label: "Help", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -17,16 +17,15 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 bg-white shadow-md">
       <div className="mx-auto ml-1 max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-
           <div className="flex shrink-0">
-             <Link href="/" className="flex">
-      <img
-        src="image/logo_transparent.png"
-        alt="Company Logo"
-        width={400}           
-        height={100}                     
-      />
-    </Link>
+            <Link href="/" className="flex">
+              <img
+                src="image/logo_transparent.png"
+                alt="Company Logo"
+                width={400}
+                height={100}
+              />
+            </Link>
           </div>
 
           {/* Desktop links */}
@@ -40,7 +39,10 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <Link href="/login" className="rounded-lg px-4 py-2 font-medium text-black transition-colors">
+            <Link
+              href="/login"
+              className="rounded-lg px-4 py-2 font-medium text-black transition-colors"
+            >
               Sign Up
             </Link>
           </div>
@@ -64,7 +66,10 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          <Link href="/login" className="mt-2 inline-block w-full rounded-lg px-4 py-2 font-medium text-white text-center">
+          <Link
+            href="/login"
+            className="mt-2 inline-block w-full rounded-lg px-4 py-2 text-center font-medium text-white"
+          >
             Sign Up
           </Link>
         </div>
