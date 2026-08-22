@@ -2,28 +2,35 @@
 
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import image from "next/image";
 
 const NAV_LINKS = [
   { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Contact", href: "/contact" },
+  { label: "Register Complaint", href: "/about" },
+  { label: "Track complaints", href: "/services" },
+  { label: "Outages", href: "/contact" },
+  { label: "Help", href: "/contact" }
 ];
 
 export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 bg-white shadow-md">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto ml-1 max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
-          <div className="flex shrink-0 items-center">
-            <Link href="/" className="text-xl font-bold text-gray-800">
-              Vidhyut Portal
-            </Link>
+
+          <div className="flex shrink-0">
+             <Link href="/" className="flex">
+      <img
+        src="image/logo_transparent.png"
+        alt="Company Logo"
+        width={400}           
+        height={100}                     
+      />
+    </Link>
           </div>
 
           {/* Desktop links */}
-          <div className="hidden md:flex md:items-center md:space-x-8">
+          <div className="hidden md:flex md:items-center md:space-x-5">
             {NAV_LINKS.map((link) => (
               <Link
                 key={link.label}
@@ -33,9 +40,9 @@ export default function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <button className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-700">
+            <Link href="/login" className="rounded-lg px-4 py-2 font-medium text-black transition-colors">
               Sign Up
-            </button>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -57,9 +64,9 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          <button className="mt-2 w-full rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700">
+          <Link href="/login" className="mt-2 inline-block w-full rounded-lg px-4 py-2 font-medium text-white text-center">
             Sign Up
-          </button>
+          </Link>
         </div>
       </div>
     </nav>

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 
-const IMAGES = ["/images/img3.jpg", "/images/img2.jpg", "/images/img1.jpg"];
+const IMAGES = ["/image/img3.jpg", "/image/img2.jpg", "/image/img1.jpg"];
 
 const INTERVAL_MS = 4000;
 
