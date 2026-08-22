@@ -69,14 +69,6 @@ export default function DashboardPage() {
       {/* Dashboard Heading */}
       <section className="mb-[30px] flex items-start justify-between">
         <div>
-          <div className="mb-[8px] flex items-center gap-[8px]">
-            <span className="h-[6px] w-[30px] rounded-full bg-[#ff4308]" />
-
-            <span className="text-[13px] font-bold tracking-[0.5px] text-[#f4511e]">
-              CONSUMER DASHBOARD
-            </span>
-          </div>
-
           <h1 className="text-[30px] leading-[34px] font-bold tracking-[-0.8px] text-[#111]">
             Namaste, Ramesh Kumar
           </h1>
@@ -85,14 +77,6 @@ export default function DashboardPage() {
             12/3 Gomti Nagar, Lucknow 226010
           </p>
         </div>
-
-        <button
-          type="button"
-          className="mt-[35px] flex h-[45px] items-center gap-[9px] rounded-[14px] bg-[#ff4308] px-[20px] text-[14px] font-bold text-white shadow-[0_3px_7px_rgba(0,0,0,0.12)] transition hover:bg-[#ed3d05]"
-        >
-          <FileText size={17} />
-          Register a complaint
-        </button>
       </section>
 
       {/* Statistics */}
