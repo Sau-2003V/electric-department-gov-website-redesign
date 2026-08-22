@@ -15,9 +15,7 @@
 //     .regex('/^\d{10}$/','Phone number ka format galat h ..')
 // });
 
-
-
-// export default async function login(prevState,formData) 
+// export default async function login(prevState,formData)
 // {
 //     const meterData=formData.get('meterNumber');
 //     const phoneData=formData.get('phoneNumber');

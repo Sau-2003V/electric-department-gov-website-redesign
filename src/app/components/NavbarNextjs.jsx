@@ -12,11 +12,11 @@ const NAV_LINKS = [
 
 export default function Navbar() {
   return (
-    <nav className="bg-white shadow-md sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+    <nav className="sticky top-0 z-50 bg-white shadow-md">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="flex h-16 items-center justify-between">
           {/* Logo */}
-          <div className="shrink-0 flex items-center">
+          <div className="flex shrink-0 items-center">
             <Link href="/" className="text-xl font-bold text-gray-800">
               Vidhyut Portal
             </Link>
@@ -28,43 +28,40 @@ export default function Navbar() {
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-gray-600 hover:text-gray-900 font-medium transition-colors"
+                className="font-medium text-gray-600 transition-colors hover:text-gray-900"
               >
                 {link.label}
               </Link>
             ))}
-            <button className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors">
+            <button className="rounded-lg bg-blue-600 px-4 py-2 font-medium text-white transition-colors hover:bg-blue-700">
               Sign Up
             </button>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
-            <button
-              className="text-gray-700 hover:text-gray-900 focus:outline-none"
-            >
-            </button>
+          <div className="flex items-center md:hidden">
+            <button className="text-gray-700 hover:text-gray-900 focus:outline-none"></button>
           </div>
         </div>
       </div>
 
       {/* Mobile dropdown */}
-        <div className="md:hidden border-t border-gray-100">
-          <div className="px-4 pt-2 pb-4 space-y-1">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="block px-2 py-2 text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-md font-medium"
-              >
-                {link.label}
-              </Link>
-            ))}
-            <button className="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium">
-              Sign Up
-            </button>
-          </div>
+      <div className="border-t border-gray-100 md:hidden">
+        <div className="space-y-1 px-4 pt-2 pb-4">
+          {NAV_LINKS.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className="block rounded-md px-2 py-2 font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-900"
+            >
+              {link.label}
+            </Link>
+          ))}
+          <button className="mt-2 w-full rounded-lg bg-blue-600 px-4 py-2 font-medium text-white hover:bg-blue-700">
+            Sign Up
+          </button>
         </div>
+      </div>
     </nav>
   );
 }
