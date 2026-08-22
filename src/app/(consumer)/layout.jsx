@@ -47,10 +47,8 @@ const navItems = [
 export default function ConsumerLayout({ children }) {
   return (
     <div className="min-h-screen bg-[#f5f2ec] text-[#171717]">
-
       {/* Sidebar */}
-      <aside className="fixed left-0 top-0 z-40 flex h-screen w-[255px] flex-col border-r border-[#d9d6d0] bg-[#f8f6f1]">
-
+      <aside className="fixed top-0 left-0 z-40 flex h-screen w-[255px] flex-col border-r border-[#d9d6d0] bg-[#f8f6f1]">
         {/* Logo */}
         <div className="flex h-[61px] items-center gap-[10px] px-[17px]">
           <div className="flex h-[36px] w-[36px] items-center justify-center rounded-full bg-[#151515]">
@@ -67,17 +65,13 @@ export default function ConsumerLayout({ children }) {
               Vidhyut Vitran Nigam
             </p>
 
-            <p className="mt-[1px] text-[11px] text-[#777]">
-              Consumer portal
-            </p>
+            <p className="mt-[1px] text-[11px] text-[#777]">Consumer portal</p>
           </div>
         </div>
 
         {/* Navigation */}
         <div className="px-[12px] pt-[18px]">
-          <p className="mb-[8px] px-[9px] text-[12px] text-[#666]">
-            Services
-          </p>
+          <p className="mb-[8px] px-[9px] text-[12px] text-[#666]">Services</p>
 
           <nav className="space-y-[3px]">
             {navItems.map((item) => {
@@ -104,16 +98,12 @@ export default function ConsumerLayout({ children }) {
 
         {/* Bottom User Section */}
         <div className="mt-auto px-[12px] pb-[12px]">
-
           {/* Sign Out */}
           <button
             type="button"
             className="mb-[8px] flex h-[36px] w-full items-center gap-[10px] rounded-[10px] px-[9px] text-[13px] text-[#333] transition hover:bg-[#eeeae4]"
           >
-            <LogOut
-              size={17}
-              strokeWidth={1.8}
-            />
+            <LogOut size={17} strokeWidth={1.8} />
 
             <span>Sign out</span>
           </button>
@@ -124,30 +114,22 @@ export default function ConsumerLayout({ children }) {
               Ramesh Kumar
             </p>
 
-            <p className="mt-[2px] text-[12px] text-[#777]">
-              Meter 1234567890
-            </p>
+            <p className="mt-[2px] text-[12px] text-[#777]">Meter 1234567890</p>
           </div>
 
           {/* Emergency */}
           <div className="flex items-center gap-[6px] px-[9px] text-[12px] text-[#555]">
             <Phone size={14} />
 
-            <span className="font-semibold">
-              1912
-            </span>
+            <span className="font-semibold">1912</span>
 
-            <span>
-              24×7 emergency
-            </span>
+            <span>24×7 emergency</span>
           </div>
-
         </div>
       </aside>
 
       {/* Main Area */}
       <div className="ml-[255px] min-h-screen">
-
         {/* Top Header */}
         {/* <header className="flex h-[61px] items-center justify-between border-b border-[#d9d6d0] bg-white px-[22px]">
 
@@ -165,10 +147,7 @@ export default function ConsumerLayout({ children }) {
         </header> */}
 
         {/* Page Content */}
-        <main>
-          {children}
-        </main>
-
+        <main>{children}</main>
       </div>
     </div>
   );

@@ -11,7 +11,8 @@ const customRulesPlugin = {
       meta: {
         type: "problem",
         docs: {
-          description: "Enforce hook files start with 'use' followed by PascalCase naming",
+          description:
+            "Enforce hook files start with 'use' followed by PascalCase naming",
         },
         messages: {
           invalidHookName:
@@ -24,7 +25,9 @@ const customRulesPlugin = {
           Program(node) {
             const rawFilename =
               context.filename ??
-              (typeof context.getFilename === "function" ? context.getFilename() : "");
+              (typeof context.getFilename === "function"
+                ? context.getFilename()
+                : "");
             if (!rawFilename) return;
 
             const normalized = rawFilename.replace(/\\/g, "/");
@@ -33,7 +36,10 @@ const customRulesPlugin = {
             const basename = normalized.split("/").pop();
             if (!basename) return;
 
-            const stem = basename.replace(/(\.(test|spec|stories|d))?\.[a-zA-Z0-9]+$/, "");
+            const stem = basename.replace(
+              /(\.(test|spec|stories|d))?\.[a-zA-Z0-9]+$/,
+              ""
+            );
             const hookNameRegex = /^use[A-Z][a-zA-Z0-9]*$/;
 
             if (!hookNameRegex.test(stem)) {
@@ -67,7 +73,9 @@ const customRulesPlugin = {
           Program(node) {
             const rawFilename =
               context.filename ??
-              (typeof context.getFilename === "function" ? context.getFilename() : "");
+              (typeof context.getFilename === "function"
+                ? context.getFilename()
+                : "");
             if (!rawFilename) return;
 
             const normalized = rawFilename.replace(/\\/g, "/");
@@ -76,11 +84,15 @@ const customRulesPlugin = {
             const basename = normalized.split("/").pop();
             if (!basename) return;
 
-            const stem = basename.replace(/(\.(test|spec|stories|d))?\.[a-zA-Z0-9]+$/, "");
+            const stem = basename.replace(
+              /(\.(test|spec|stories|d))?\.[a-zA-Z0-9]+$/,
+              ""
+            );
             const kebabCaseRegex = /^[a-z0-9]+(-[a-z0-9]+)*$/;
             const camelOrPascalCaseRegex = /^[A-Za-z][a-zA-Z0-9]*$/;
 
-            const isValid = kebabCaseRegex.test(stem) || camelOrPascalCaseRegex.test(stem);
+            const isValid =
+              kebabCaseRegex.test(stem) || camelOrPascalCaseRegex.test(stem);
 
             if (!isValid) {
               context.report({
@@ -124,4 +136,3 @@ const eslintConfig = defineConfig([
 ]);
 
 export default eslintConfig;
-
