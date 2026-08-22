@@ -1,148 +1,166 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Zap } from "lucide-react";
+import {
+  ArrowLeft,
+  Zap,
+  Hash,
+  Phone,
+  AlertCircle,
+  KeyRound,
+} from "lucide-react";
 import login from "@/app/(action)/login";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 export default function LoginPage() {
   const [state, formAction, pending] = useActionState(login, null);
+  const [meterNumber, setMeterNumber] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+
+  const fillCredentials = (meter, phone) => {
+    setMeterNumber(meter);
+    setPhoneNumber(phone);
+  };
 
   return (
-    <div className="bg-canvas text-ink min-h-screen">
-      {/* Main */}
-      <main className="flex min-h-screen justify-center px-5 py-6 sm:items-center sm:py-12">
-        {/* Login Card */}
-        <div className="border-hairline bg-surface-1 w-full max-w-120 rounded-3xl border px-5 py-6 shadow-[0_12px_30px_rgba(0,0,0,0.08)] sm:px-[25px] sm:py-[27px]">
-          {/* Portal Header */}
-          <div className="mb-8 flex items-center justify-between pb-5">
-            <Link
-              href="/"
-              aria-label="Vidhyut Portal home"
-              className="text-ink focus-visible:outline-fin-orange flex items-center gap-2 focus-visible:outline-2 focus-visible:outline-offset-4"
-            >
-              <span className="bg-fin-orange text-on-primary flex h-9 w-9 items-center justify-center rounded-xl">
-                <Zap size={19} fill="currentColor" aria-hidden="true" />
-              </span>
-              <span className="text-[17px] font-bold tracking-[-0.3px]">
-                Vidhyut Portal
-              </span>
-            </Link>
-            <Link
-              href="/"
-              aria-label="Back to home"
-              className="border-hairline text-ink hover:bg-surface-2 focus-visible:outline-fin-orange inline-flex h-10 w-10 items-center justify-center rounded-full border transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
-            >
-              <ArrowLeft size={20} aria-hidden="true" />
-            </Link>
-          </div>
+    <div className="bg-canvas text-ink flex min-h-screen w-full items-center justify-center p-4 sm:p-6 lg:p-8">
+      {/* Login Card */}
+      <div className="border-hairline bg-surface-1 w-full max-w-[460px] rounded-2xl border p-6 shadow-xs sm:p-8">
+        {/* Portal Header */}
+        <div className="border-hairline-soft mb-6 flex items-center justify-between pb-5">
+          <Link
+            href="/"
+            aria-label="Vidhyut Portal home"
+            className="text-ink focus-visible:ring-fin-orange flex items-center gap-2.5 rounded-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+          >
+            <span className="bg-fin-orange text-on-primary flex size-9 items-center justify-center rounded-xl shadow-2xs">
+              <Zap size={18} fill="currentColor" aria-hidden="true" />
+            </span>
+            <span className="text-base font-semibold tracking-tight">
+              Vidhyut Portal
+            </span>
+          </Link>
 
-          {/* Title */}
-          <h1 className="mb-[6px] text-[30px] leading-[36px] font-bold text-[#080808]">
+          <Button
+            asChild
+            variant="ghost"
+            size="compact"
+            shape="md"
+            leadingIcon={ArrowLeft}
+          >
+            <Link href="/">Back to home</Link>
+          </Button>
+        </div>
+
+        {/* Title */}
+        <div className="mb-6 space-y-1.5">
+          <h1 className="text-headline text-ink font-semibold tracking-tight">
             Consumer Login
           </h1>
-
-          <p className="mb-[29px] text-[15px] leading-[23px] text-[#666]">
-            Enter your meter number and registered phone number to
-            <br />
-            access your account.
+          <p className="text-body-sm text-ink-muted leading-relaxed">
+            Enter your meter number and registered phone number to access your
+            account.
           </p>
+        </div>
 
-          {/* Form */}
-          <form action={formAction}>
-            {/* Meter Number */}
-            <div className="mb-[24px]">
-              <label
-                htmlFor="meter-number"
-                className="mb-[5px] block text-[14px] font-medium text-[#222]"
-              >
-                Meter Number
-              </label>
+        {/* Form */}
+        <form action={formAction} className="space-y-4">
+          {/* Meter Number */}
+          <Input
+            id="meter-number"
+            type="text"
+            name="meterNumber"
+            label="Meter Number"
+            placeholder="Enter 10-digit meter number"
+            autoComplete="username"
+            value={meterNumber}
+            onChange={(e) => setMeterNumber(e.target.value)}
+            required
+            leadingIcon={Hash}
+            variant="canvas"
+            size="default"
+            shape="md"
+            error={state?.errors?.meterNumber?.[0]}
+          />
 
-              <input
-                id="meter-number"
-                type="text"
-                name="meterNumber"
-                placeholder="Enter your meter number"
-                autoComplete="username"
-                required
-                className="h-[52px] w-full rounded-[16px] border border-[#d9d7d2] bg-[#f5f3ef] px-[13px] text-[14px] text-black shadow-[0_2px_4px_rgba(0,0,0,0.04)] outline-none placeholder:text-[#777] focus:border-[#ff4308] focus:ring-1 focus:ring-[#ff4308]"
-              />
+          {/* Phone Number */}
+          <Input
+            id="phone-number"
+            type="tel"
+            name="phoneNumber"
+            label="Registered Phone Number"
+            placeholder="10-digit mobile number"
+            maxLength={10}
+            inputMode="numeric"
+            autoComplete="tel"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            required
+            leadingIcon={Phone}
+            variant="canvas"
+            size="default"
+            shape="md"
+            error={state?.errors?.phoneNumber?.[0]}
+          />
 
-              {state?.errors?.meterNumber?.[0] && (
-                <p className="mt-[5px] text-[12px] text-red-500">
-                  {state.errors.meterNumber[0]}
-                </p>
-              )}
+          {/* General Error Alert */}
+          {state?.message && (
+            <div className="border-semantic-error/20 bg-semantic-error/10 text-semantic-error flex items-center gap-2 rounded-lg border p-3 text-xs font-medium">
+              <AlertCircle className="size-4 shrink-0" />
+              <span>{state.message}</span>
             </div>
+          )}
 
-            {/* Phone Number */}
-            <div className="mb-[19px]">
-              <label
-                htmlFor="phone-number"
-                className="mb-[5px] block text-[14px] font-medium text-[#222]"
-              >
-                Registered Phone Number
-              </label>
-
-              <input
-                id="phone-number"
-                type="tel"
-                name="phoneNumber"
-                placeholder="10-digit mobile number"
-                maxLength={10}
-                inputMode="numeric"
-                autoComplete="tel"
-                required
-                className="h-[52px] w-full rounded-[16px] border border-[#d9d7d2] bg-[#f5f3ef] px-[13px] text-[14px] text-black shadow-[0_2px_4px_rgba(0,0,0,0.04)] outline-none placeholder:text-[#777] focus:border-[#ff4308] focus:ring-1 focus:ring-[#ff4308]"
-              />
-
-              {state?.errors?.phoneNumber?.[0] && (
-                <p className="mt-[5px] text-[12px] text-red-500">
-                  {state.errors.phoneNumber[0]}
-                </p>
-              )}
-            </div>
-
-            {/* General Error */}
-            {state?.message && (
-              <p className="mb-[12px] text-[13px] text-red-500">
-                {state.message}
-              </p>
-            )}
-
-            {/* Login Button */}
-            <button
+          {/* Login Button */}
+          <div className="pt-2">
+            <Button
               type="submit"
-              disabled={pending}
-              className="h-[51px] w-full rounded-[16px] bg-[#ff4308] text-[16px] font-bold text-white shadow-[0_3px_5px_rgba(0,0,0,0.12)] transition duration-200 hover:bg-[#ed3d05] disabled:opacity-70"
+              variant="accent"
+              size="default"
+              shape="md"
+              loading={pending}
+              className="w-full text-base font-semibold"
             >
               {pending ? "Logging in..." : "Login to Portal"}
-            </button>
-          </form>
+            </Button>
+          </div>
+        </form>
 
-          {/* Demo Credentials */}
-          <div className="mt-[24px] h-[128px] rounded-[16px] border border-[#d9d7d2] bg-[#f5f3ef] px-[17px] py-[16px]">
-            <p className="mb-[8px] text-[12px] font-bold tracking-[0.6px] text-[#666]">
-              DEMO CREDENTIALS
-            </p>
+        {/* Demo Credentials */}
+        <div className="border-hairline bg-canvas mt-6 rounded-xl border p-4">
+          <div className="text-ink-subtle mb-2.5 flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase">
+            <KeyRound className="size-3.5" />
+            <span>Demo Credentials (Click to fill)</span>
+          </div>
 
-            <div className="grid grid-cols-2 gap-y-[7px] text-[12px] text-[#666]">
-              <div>Meter: 1234567890</div>
-
-              <div>Phone: 9876543210</div>
-
-              <div>Meter: 0987654321</div>
-
-              <div>Phone: 9123456789</div>
-
-              <div>Meter: 1122334455</div>
-
-              <div>Phone: 9988776655</div>
-            </div>
+          <div className="space-y-1.5 text-xs">
+            {[
+              { meter: "1234567890", phone: "9876543210" },
+              { meter: "0987654321", phone: "9123456789" },
+              { meter: "1122334455", phone: "9988776655" },
+            ].map((cred, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => fillCredentials(cred.meter, cred.phone)}
+                className="border-hairline-soft bg-surface-1 text-ink-muted hover:text-ink hover:border-hairline hover:bg-surface-2/60 flex w-full cursor-pointer items-center justify-between rounded-lg border px-3 py-2 text-left transition-all"
+                title="Click to auto-fill"
+              >
+                <span className="font-mono text-xs">
+                  <span className="text-ink-subtle">Meter: </span>
+                  <strong className="text-ink font-medium">{cred.meter}</strong>
+                </span>
+                <span className="font-mono text-xs">
+                  <span className="text-ink-subtle">Phone: </span>
+                  <strong className="text-ink font-medium">{cred.phone}</strong>
+                </span>
+              </button>
+            ))}
           </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
