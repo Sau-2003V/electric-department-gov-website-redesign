@@ -167,26 +167,48 @@ export default function ButtonDocsPage() {
                 setLoadingState(true);
                 setTimeout(() => setLoadingState(false), 2000);
               }}
-              leadingIcon={Send}
+              icon={Send}
             >
               {loadingState ? "Sending..." : "Click for Loading"}
             </Button>
           </div>
 
           <div className="flex items-center gap-3">
-            <Button variant="secondary" size="icon" aria-label="Download">
-              <Download className="size-4" />
+            <Button variant="secondary" icon={Download}>
+              Left Icon
             </Button>
-            <Button variant="outline" size="icon-compact" aria-label="Add">
-              <Plus className="size-3.5" />
+            <Button variant="primary" icon={ArrowRight} iconPosition="right">
+              Right Icon
             </Button>
-            <Button variant="accent" size="icon-lg" aria-label="Sparkles">
-              <Sparkles className="size-5" />
+            <Button variant="outline">
+              <Sparkles className="size-4" />
+              <span>Inline Children</span>
             </Button>
           </div>
 
           <div className="flex items-center gap-3">
-            <Button variant="primary" disabled leadingIcon={Trash2}>
+            <Button
+              variant="secondary"
+              size="icon"
+              icon={Download}
+              aria-label="Download"
+            />
+            <Button
+              variant="outline"
+              size="icon-compact"
+              icon={Plus}
+              aria-label="Add"
+            />
+            <Button
+              variant="accent"
+              size="icon-lg"
+              icon={Sparkles}
+              aria-label="Sparkles"
+            />
+          </div>
+
+          <div className="flex items-center gap-3">
+            <Button variant="primary" disabled icon={Trash2}>
               Disabled
             </Button>
           </div>

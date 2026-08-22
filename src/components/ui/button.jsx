@@ -7,12 +7,12 @@ import { useSizeVariant } from "@/lib/size-context";
 
 const buttonVariants = cva(
   [
-    "group relative isolate inline-flex items-center justify-center font-medium whitespace-nowrap cursor-pointer select-none rounded-md",
+    "group relative isolate inline-flex flex-row items-center justify-center font-medium whitespace-nowrap cursor-pointer select-none rounded-md",
     "transition-all duration-150 ease-out",
     "disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-1 dark:focus-visible:ring-ring/40",
     "active:scale-[0.98]",
-    "[&>svg]:pointer-events-none [&>svg]:shrink-0",
+    "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg]:align-middle",
   ],
   {
     variants: {
@@ -85,9 +85,10 @@ const buttonVariants = cva(
       },
       size: {
         default:
-          "px-[18px] py-[10px] text-[15px] leading-[1.2] gap-2 [&_svg]:size-4",
-        compact: "px-3 py-1.5 text-[12px] gap-1.5 [&_svg]:size-3.5",
-        lg: "px-6 py-3 text-[16px] gap-2.5 [&_svg]:size-4.5",
+          "px-[18px] py-[10px] text-[15px] leading-none gap-2 [&_svg]:size-4",
+        compact:
+          "px-3 py-1.5 text-[12px] leading-none gap-1.5 [&_svg]:size-3.5",
+        lg: "px-6 py-3 text-[16px] leading-none gap-2.5 [&_svg]:size-4.5",
         icon: "size-9 p-0 [&_svg]:size-4",
         "icon-compact": "size-7 p-0 [&_svg]:size-3.5",
         "icon-lg": "size-11 p-0 [&_svg]:size-5",
@@ -159,6 +160,38 @@ const activeVariantClasses = {
   inverse: "bg-inverse-surface-1 ring-2 ring-inverse-surface-1/40",
 };
 
+function renderIcon(Icon, { size, className }) {
+  if (!Icon) return null;
+  if (isValidElement(Icon)) {
+    return cloneElement(Icon, {
+      className: cn(
+        "shrink-0 pointer-events-none align-middle",
+        Icon.props.className
+      ),
+      ...(Icon.props.size || Icon.props.width || Icon.props.height
+        ? {}
+        : { size }),
+      ...(Icon.props.strokeWidth ? {} : { strokeWidth: 2 }),
+      "aria-hidden": true,
+    });
+  }
+  if (typeof Icon === "function" || typeof Icon === "object") {
+    const Component = Icon;
+    return (
+      <Component
+        size={size}
+        strokeWidth={2}
+        className={cn(
+          "pointer-events-none shrink-0 transition-transform duration-100 group-hover:scale-105",
+          className
+        )}
+        aria-hidden="true"
+      />
+    );
+  }
+  return Icon;
+}
+
 const Button = forwardRef(
   (
     {
@@ -168,8 +201,13 @@ const Button = forwardRef(
       shape = "default",
       asChild = false,
       loading = false,
-      leadingIcon: LeadingIcon,
-      trailingIcon: TrailingIcon,
+      icon,
+      iconPosition = "left",
+      iconPlacement,
+      leftIcon,
+      rightIcon,
+      leadingIcon,
+      trailingIcon,
       active = false,
       disabled,
       children,
@@ -190,10 +228,23 @@ const Button = forwardRef(
         ? "compact"
         : "default";
 
+    const placement = iconPlacement || iconPosition || "left";
+    const resolvedLeftIcon =
+      leadingIcon || leftIcon || (icon && placement !== "right" ? icon : null);
+    const resolvedRightIcon =
+      trailingIcon ||
+      rightIcon ||
+      (icon && placement === "right" ? icon : null);
+
+    const hasLeftIcon = Boolean(resolvedLeftIcon);
+    const hasRightIcon = Boolean(resolvedRightIcon);
+    const hasLabel = label !== null && label !== undefined && label !== "";
+
     const isIconOnly =
       resolvedSize === "icon" ||
       resolvedSize === "icon-compact" ||
-      resolvedSize === "icon-lg";
+      resolvedSize === "icon-lg" ||
+      (!hasLabel && (hasLeftIcon || hasRightIcon));
     const isCompact =
       resolvedSize === "compact" || resolvedSize === "icon-compact";
     const isLg = resolvedSize === "lg" || resolvedSize === "icon-lg";
@@ -207,18 +258,32 @@ const Button = forwardRef(
 
     const activeClass = active ? activeVariantClasses[variant] || "" : "";
 
+    const renderedLeftIcon = hasLeftIcon
+      ? renderIcon(resolvedLeftIcon, {
+          size: iconSize,
+          className: "transition-transform duration-100 group-hover:scale-105",
+        })
+      : null;
+
+    const renderedRightIcon = hasRightIcon
+      ? renderIcon(resolvedRightIcon, {
+          size: iconSize,
+          className: "transition-transform duration-100 group-hover:scale-105",
+        })
+      : null;
+
     const content = (
       <>
         {loading ? (
           <>
-            <span className="pointer-events-none flex items-center justify-center gap-[inherit] opacity-0">
-              {LeadingIcon && !isIconOnly && (
-                <LeadingIcon size={iconSize} strokeWidth={2} />
+            <span className="pointer-events-none inline-flex flex-row items-center justify-center gap-[inherit] whitespace-nowrap opacity-0">
+              {!isIconOnly && renderedLeftIcon}
+              {hasLabel && (
+                <span className="inline-flex items-center leading-none whitespace-nowrap">
+                  {label}
+                </span>
               )}
-              {label}
-              {TrailingIcon && !isIconOnly && (
-                <TrailingIcon size={iconSize} strokeWidth={2} />
-              )}
+              {!isIconOnly && renderedRightIcon}
             </span>
             <span className="absolute inset-0 flex items-center justify-center">
               <svg
@@ -243,30 +308,20 @@ const Button = forwardRef(
             </span>
           </>
         ) : isIconOnly ? (
-          <>
-            {LeadingIcon ? (
-              <LeadingIcon size={iconSize} strokeWidth={2} />
-            ) : (
-              label
-            )}
-          </>
+          renderedLeftIcon ||
+          renderedRightIcon ||
+          (isValidElement(label)
+            ? renderIcon(label, { size: iconSize })
+            : label)
         ) : (
           <>
-            {LeadingIcon && (
-              <LeadingIcon
-                size={iconSize}
-                strokeWidth={2}
-                className="transition-transform duration-100 group-hover:scale-105"
-              />
+            {renderedLeftIcon}
+            {hasLabel && (
+              <span className="inline-flex flex-row items-center justify-center gap-2 leading-none whitespace-nowrap">
+                {label}
+              </span>
             )}
-            <span>{label}</span>
-            {TrailingIcon && (
-              <TrailingIcon
-                size={iconSize}
-                strokeWidth={2}
-                className="transition-transform duration-100 group-hover:scale-105"
-              />
-            )}
+            {renderedRightIcon}
           </>
         )}
       </>
@@ -277,8 +332,8 @@ const Button = forwardRef(
         variant,
         size: resolvedSize,
         shape,
-        iconLeft: !isIconOnly && !!LeadingIcon,
-        iconRight: !isIconOnly && !!TrailingIcon,
+        iconLeft: !isIconOnly && hasLeftIcon,
+        iconRight: !isIconOnly && hasRightIcon,
       }),
       activeClass,
       className
