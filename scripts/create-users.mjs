@@ -66,7 +66,9 @@ async function deleteAllExistingUsers(supabase) {
       });
 
     if (listError) {
-      console.error(`❌ Failed to list users for cleanup: ${listError.message}`);
+      console.error(
+        `❌ Failed to list users for cleanup: ${listError.message}`
+      );
       break;
     }
 
