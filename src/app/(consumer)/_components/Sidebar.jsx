@@ -1,13 +1,40 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { LogOut, Plus, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CONSUMER_SIDEBAR_LINKS } from "@/constants/nav-links";
+import { useGetUser, useInvalidateUser } from "@/database/query/getUser";
+import { supabase } from "@/database/supabase/supabase";
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
+  const { data: user, isLoading } = useGetUser();
+  const invalidateUser = useInvalidateUser();
+
+  const appMetadata = user?.app_metadata || user?.raw_app_meta_data || {};
+
+  const name =
+    appMetadata.name ||
+    user?.user_metadata?.name ||
+    user?.email?.split("@")[0] ||
+    "Consumer";
+
+  const meterNumber =
+    appMetadata.meter_number || user?.user_metadata?.meter_number || null;
+
+  const handleSignOut = async () => {
+    try {
+      await supabase.auth.signOut();
+      invalidateUser();
+      router.push("/login");
+      router.refresh();
+    } catch (error) {
+      console.error("Sign out error:", error);
+    }
+  };
 
   return (
     <aside className="border-hairline bg-surface-1 fixed inset-y-0 left-0 z-40 hidden w-64 flex-col border-r md:flex">
@@ -80,6 +107,7 @@ export default function Sidebar() {
         {/* Sign Out Button */}
         <button
           type="button"
+          onClick={handleSignOut}
           className="text-ink-muted hover:bg-surface-2 hover:text-ink flex h-9 w-full cursor-pointer items-center gap-2.5 rounded-md px-3 text-sm transition-colors"
         >
           <LogOut size={16} strokeWidth={1.8} className="shrink-0" />
@@ -87,10 +115,19 @@ export default function Sidebar() {
         </button>
         {/* User Card */}
         <div className="border-hairline-soft bg-surface-2 rounded-lg border p-3">
-          <p className="text-ink truncate text-xs font-medium">Ramesh Kumar</p>
-          <p className="text-ink-subtle mt-0.5 truncate text-xs">
-            Meter 1234567890
-          </p>
+          {isLoading ? (
+            <div className="animate-pulse space-y-1.5">
+              <div className="bg-surface-3 h-3.5 w-24 rounded" />
+              <div className="bg-surface-3 h-3 w-32 rounded" />
+            </div>
+          ) : (
+            <>
+              <p className="text-ink truncate text-xs font-medium">{name}</p>
+              <p className="text-ink-subtle mt-0.5 truncate text-xs">
+                {meterNumber ? `${meterNumber}` : "No meter registered"}
+              </p>
+            </>
+          )}
         </div>
       </div>
     </aside>
