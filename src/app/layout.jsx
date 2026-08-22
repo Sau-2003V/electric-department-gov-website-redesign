@@ -1,6 +1,7 @@
 import { Inter, Geist } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import QueryProvider from "@/components/providers/query-provider";
+import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -40,7 +41,10 @@ export default function RootLayout({ children }) {
           speed={200}
           shadow="0 0 10px #ff5600,0 0 5px #ff5600"
         />
-        <QueryProvider>{children}</QueryProvider>
+        <QueryProvider>
+          {children}
+          <Toaster />
+        </QueryProvider>
       </body>
     </html>
   );

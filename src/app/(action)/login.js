@@ -1,51 +1,40 @@
 "use server";
 
-import { z } from "zod";
+import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { createClient } from "@/database/supabase/server";
+import { loginSchema } from "@/app/types/schema";
 
-const lschema = z.object({
-  meterNumber: z
-    .string()
-    .min(1, "Meter Number is required.")
-    .regex(/^\d+$/, "Meter number me sirf digits allow h"),
-
-  phoneNumber: z
-    .string()
-    .min(10, "Phone number bhi 10 digits ka hona chahiye.")
-    .max(10, "Phone number bhi 10 digits ka hona chahiye.")
-    .regex(/^\d{10}$/, "Phone number ka format galat h"),
-});
-
-export default async function login(prevState, formData) {
-  const meterData = formData.get("meterNumber");
-  const phoneData = formData.get("phoneNumber");
-
-  const checkFields = lschema.safeParse({
-    meterNumber: meterData,
-    phoneNumber: phoneData,
-  });
+export default async function login(data) {
+  const checkFields = loginSchema.safeParse(data);
 
   if (!checkFields.success) {
     return {
       success: false,
       errors: checkFields.error.flatten().fieldErrors,
+      message: "Please provide a valid Meter Number and Phone Number.",
     };
   }
 
   const { meterNumber, phoneNumber } = checkFields.data;
+  const cookieStore = await cookies();
+  const supabase = createClient(cookieStore);
 
-  const isValidUser =
-    (meterNumber === "1234567890" && phoneNumber === "9876543210") ||
-    (meterNumber === "0987654321" && phoneNumber === "9123456789") ||
-    (meterNumber === "1122334455" && phoneNumber === "9988776655");
+  // Ponytail: Map phone number to email and meter number to password for Supabase Auth
+  const email = `${phoneNumber}@mail.com`;
+  const password = meterNumber;
 
-  if (isValidUser) {
-    redirect("/");
-  } else {
+  const { error } = await supabase.auth.signInWithPassword({
+    email,
+    password,
+  });
+
+  if (error) {
     return {
       success: false,
-      errors: {},
       message: "Invalid Meter Number or Phone Number.",
     };
   }
+
+  redirect("/");
 }
