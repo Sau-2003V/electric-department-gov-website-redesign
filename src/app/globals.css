@@ -1,26 +1,85 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Surface Tokens */
+  --canvas: #f5f1ec;
+  --surface-1: #ffffff;
+  --surface-2: #ebe5df;
+  --hairline: #d3cec6;
+  --hairline-soft: #e6e2dc;
+  --inverse-canvas: #000000;
+  --inverse-surface-1: #1a1a1a;
+
+  /* Brand & Accent Tokens */
+  --ink: #111111;
+  --on-primary: #ffffff;
+  --fin-orange: #ff5600;
+  --brand-blue: #0007cb;
+
+  /* Text / Ink Tokens */
+  --ink-muted: #626260;
+  --ink-subtle: #7b7b78;
+  --ink-tertiary: #9c9fa5;
+  --inverse-ink: #ffffff;
+  --inverse-ink-muted: #9c9fa5;
+
+  /* Semantic & Report Palette */
+  --semantic-error: #df1b41;
+  --semantic-success: #00875a;
+  --report-orange: #ff7a00;
+  --report-blue: #0052cc;
+  --report-green: #00875a;
+  --report-pink: #e056fd;
+  --report-lime: #84cc16;
+  --report-cyan: #00b8d9;
+
+  /* System Default Fallbacks */
+  --background: var(--canvas);
+  --foreground: var(--ink);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  /* Surfaces */
+  --color-canvas: var(--canvas);
+  --color-surface-1: var(--surface-1);
+  --color-surface-2: var(--surface-2);
+  --color-hairline: var(--hairline);
+  --color-hairline-soft: var(--hairline-soft);
+  --color-inverse-canvas: var(--inverse-canvas);
+  --color-inverse-surface-1: var(--inverse-surface-1);
+
+  /* Brand & Accent */
+  --color-ink: var(--ink);
+  --color-on-primary: var(--on-primary);
+  --color-fin-orange: var(--fin-orange);
+  --color-brand-blue: var(--brand-blue);
+
+  /* Text */
+  --color-ink-muted: var(--ink-muted);
+  --color-ink-subtle: var(--ink-subtle);
+  --color-ink-tertiary: var(--ink-tertiary);
+  --color-inverse-ink: var(--inverse-ink);
+  --color-inverse-ink-muted: var(--inverse-ink-muted);
+
+  /* Semantic & Report */
+  --color-semantic-error: var(--semantic-error);
+  --color-semantic-success: var(--semantic-success);
+  --color-report-orange: var(--report-orange);
+  --color-report-blue: var(--report-blue);
+  --color-report-green: var(--report-green);
+  --color-report-pink: var(--report-pink);
+  --color-report-lime: var(--report-lime);
+  --color-report-cyan: var(--report-cyan);
+
+  /* Fonts */
+  --font-sans: var(--font-inter);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
