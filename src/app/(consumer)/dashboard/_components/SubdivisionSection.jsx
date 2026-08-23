@@ -1,4 +1,6 @@
 import { MapPin, Phone } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 const DEFAULT_CONTACTS = [
   {
@@ -27,39 +29,49 @@ export default function SubdivisionSection({
   location = "Lucknow Central · Lucknow · PIN 226001, 226010",
   helpline = "1912",
   contacts = DEFAULT_CONTACTS,
+  className,
 }) {
   return (
-    <section className="mb-6 overflow-hidden rounded-2xl border border-[#e0dbd3] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.05)] sm:mb-8">
+    <section
+      aria-label="Subdivision Contacts"
+      className={cn(
+        "mb-lg sm:mb-xl bg-surface-1 overflow-hidden rounded-2xl",
+        className
+      )}
+    >
       {/* Subdivision Header */}
-      <div className="flex flex-col items-start justify-between gap-3 border-b border-[#eae7e2] p-4 sm:flex-row sm:items-center sm:px-5 sm:py-4">
+      <div className="gap-sm border-hairline-soft p-md sm:px-lg sm:py-md flex flex-col items-start justify-between border-b sm:flex-row sm:items-center">
         <div>
-          <div className="flex items-center gap-2">
-            <MapPin size={15} className="text-[#ff5600]" strokeWidth={2.5} />
-            <p className="text-[11px] font-bold tracking-[0.6px] text-[#888] uppercase">
+          <div className="gap-xs flex items-center">
+            <MapPin
+              className="text-fin-orange size-4"
+              strokeWidth={2.2}
+              aria-hidden="true"
+            />
+            <p className="text-eyebrow text-ink-subtle font-medium uppercase">
               Your Subdivision
             </p>
           </div>
-          <p className="mt-1 text-[13px] font-medium text-[#333]">{location}</p>
+          <p className="mt-xxs text-body-sm text-ink font-medium">{location}</p>
         </div>
 
-        <a
-          href={`tel:${helpline}`}
-          className="flex h-9 items-center gap-2 self-start rounded-full border border-[#fed7aa] bg-[#fff7ed] px-4 text-[13px] font-semibold text-[#ea580c] transition-all duration-150 hover:bg-[#ffedd5] hover:shadow-sm active:scale-[0.97] sm:self-auto"
-        >
-          <Phone size={13} strokeWidth={2.5} />
-          Helpline {helpline}
+        <a href={`tel:${helpline}`} className="self-start sm:self-auto">
+          <Button type="button" variant="accent-subtle" size="compact">
+            <Phone className="size-3.5" strokeWidth={2.2} aria-hidden="true" />
+            <span>Helpline {helpline}</span>
+          </Button>
         </a>
       </div>
 
       {/* Contact Cards */}
-      <div className="grid grid-cols-1 gap-2 p-3 sm:grid-cols-2 sm:gap-3 sm:p-4">
+      <div className="gap-xs p-sm sm:gap-sm sm:p-md grid grid-cols-1 sm:grid-cols-2">
         {contacts.map((contact) => (
           <div
             key={contact.phone}
-            className="flex items-center justify-between gap-3 rounded-xl border border-[#eae7e2] bg-[#fdfcfb] p-3 transition-colors duration-100 hover:bg-[#faf7f4] sm:p-3.5"
+            className="gap-sm border-hairline-soft bg-surface-1 p-sm hover:bg-surface-2/40 flex items-center justify-between rounded-xl border transition-colors"
           >
             {/* Avatar initial */}
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#f0ede8] text-[13px] font-bold text-[#555]">
+            <div className="bg-surface-2 text-caption text-ink flex h-9 w-9 shrink-0 items-center justify-center rounded-full font-medium">
               {contact.name
                 .split(" ")
                 .map((n) => n[0])
@@ -68,10 +80,10 @@ export default function SubdivisionSection({
             </div>
 
             <div className="min-w-0 flex-1">
-              <p className="truncate text-[13px] font-semibold text-[#111]">
+              <p className="text-body-sm text-ink truncate font-medium">
                 {contact.name}
               </p>
-              <p className="mt-0.5 truncate text-[11px] text-[#999]">
+              <p className="mt-xxs text-caption text-ink-muted truncate">
                 {contact.role}
               </p>
             </div>
@@ -79,9 +91,20 @@ export default function SubdivisionSection({
             <a
               href={`tel:${contact.phone}`}
               aria-label={`Call ${contact.name}`}
-              className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#ff5600] text-white shadow-[0_2px_6px_rgba(255,86,0,0.25)] transition-all duration-150 hover:bg-[#e64d00] hover:shadow-[0_3px_8px_rgba(255,86,0,0.3)] active:scale-[0.96]"
+              className="shrink-0"
             >
-              <Phone size={13} strokeWidth={2.5} />
+              <Button
+                type="button"
+                variant="accent"
+                size="icon-compact"
+                aria-label={`Call ${contact.name}`}
+              >
+                <Phone
+                  className="size-3.5"
+                  strokeWidth={2.2}
+                  aria-hidden="true"
+                />
+              </Button>
             </a>
           </div>
         ))}

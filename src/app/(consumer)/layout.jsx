@@ -3,7 +3,7 @@ import BottomNavbar from "./_components/BottomNavbar";
 
 export default function ConsumerLayout({ children }) {
   return (
-    <div className="bg-canvas text-ink min-h-screen">
+    <div className="text-ink min-h-screen">
       <Sidebar />
       {/* Main Content Surface */}
       <div className="relative flex min-h-screen flex-col pb-20 md:pb-0 md:pl-64">

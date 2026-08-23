@@ -40,21 +40,23 @@ export default function DashboardHeader() {
       {/* Greeting row */}
       <div className="mb-md flex items-start justify-between">
         <div>
-          <p className="text-eyebrow text-ink-subtle uppercase">Namaste</p>
+          <p className="text-body sm:text-body-lg text-ink-subtle font-medium tracking-wider uppercase">
+            Namaste,
+          </p>
 
           {isLoading ? (
             <div className="mt-xs space-y-xs animate-pulse">
-              <div className="bg-surface-2 h-8 w-48 rounded-lg" />
-              <div className="bg-surface-2 h-4 w-36 rounded-md" />
+              <div className="bg-surface-2 h-10 w-64 rounded-xl sm:h-14 sm:w-80" />
+              <div className="bg-surface-2 h-5 w-44 rounded-lg" />
             </div>
           ) : (
             <>
-              <h1 className="mt-xxs text-headline text-ink sm:text-display-md font-medium">
+              <h1 className="mt-xxs text-display-md text-ink sm:text-display-lg font-medium">
                 {name}
               </h1>
-              <div className="mt-xs gap-xs text-body-sm text-ink-muted flex items-center">
+              <div className="mt-xs gap-xs text-body text-ink-muted sm:mt-sm sm:gap-sm sm:text-body-lg flex items-center font-normal">
                 <span>Meter No.</span>
-                <span className="text-ink font-medium">
+                <span className="text-ink font-semibold">
                   {meterNumber ?? "—"}
                 </span>
                 {meterNumber && (
@@ -76,7 +78,7 @@ export default function DashboardHeader() {
                           : "absolute scale-0 opacity-0"
                       }`}
                     >
-                      <Check className="size-3.5" strokeWidth={2.5} />
+                      <Check className="size-4" strokeWidth={2.5} />
                     </span>
                     <span
                       className={`inline-flex items-center justify-center transition-all duration-150 ${
@@ -85,7 +87,7 @@ export default function DashboardHeader() {
                           : "text-ink-muted group-hover:text-ink scale-100 opacity-100"
                       }`}
                     >
-                      <Copy className="size-3.5" strokeWidth={2} />
+                      <Copy className="size-4" strokeWidth={2} />
                     </span>
                   </Button>
                 )}

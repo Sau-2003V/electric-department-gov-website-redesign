@@ -6,6 +6,8 @@ import {
   CheckCircle2,
   Loader2,
 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
 const DEFAULT_COMPLAINTS = [
   {
@@ -47,107 +49,110 @@ const DEFAULT_COMPLAINTS = [
 const STATUS_CONFIG = {
   Assigned: {
     icon: Clock,
-    badgeBg: "bg-[#f0f4ff]",
-    badgeText: "text-[#2563eb]",
-    dot: "bg-[#2563eb]",
+    badgeVariant: "info",
+    dot: "bg-report-blue",
   },
   "In progress": {
     icon: Loader2,
-    badgeBg: "bg-[#fff7ed]",
-    badgeText: "text-[#ea580c]",
-    dot: "bg-[#ea580c]",
+    badgeVariant: "warning",
+    dot: "bg-report-orange",
   },
   Closed: {
     icon: CheckCircle2,
-    badgeBg: "bg-[#f0fdf4]",
-    badgeText: "text-[#16a34a]",
-    dot: "bg-[#16a34a]",
+    badgeVariant: "success",
+    dot: "bg-semantic-success",
   },
 };
 
 const PRIORITY_CONFIG = {
-  "SLA breached": "text-[#dc2626] font-semibold",
-  "Due soon": "text-[#d97706] font-semibold",
-  "SLA met": "text-[#16a34a]",
+  "SLA breached": "text-semantic-error font-medium",
+  "Due soon": "text-report-orange font-medium",
+  "SLA met": "text-semantic-success font-medium",
 };
 
 /* ─── Single row ─────────────────────────────────────────────────────── */
 function ComplaintRow({ complaint }) {
   const sc = STATUS_CONFIG[complaint.status] ?? STATUS_CONFIG["Assigned"];
-  const pc = PRIORITY_CONFIG[complaint.priority] ?? "text-[#888]";
+  const pc = PRIORITY_CONFIG[complaint.priority] ?? "text-ink-muted";
   const Icon = sc.icon;
 
   return (
     <Link
       href={`/complaints/${complaint.id}`}
-      className="group flex items-start gap-4 border-b border-[#eae7e2] px-5 py-4 transition-colors duration-100 last:border-b-0 hover:bg-[#faf8f6]"
+      className="group gap-md border-hairline-soft px-lg py-md hover:bg-surface-2/40 flex items-start border-b transition-colors last:border-b-0"
     >
       {/* Status dot */}
       <span
-        className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${sc.dot}`}
+        className={cn("mt-2 h-2 w-2 shrink-0 rounded-full", sc.dot)}
         aria-hidden="true"
       />
 
       {/* Main content */}
       <div className="min-w-0 flex-1">
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-          <p className="text-[13px] font-medium text-[#111]">
-            {complaint.title}
-          </p>
-          <span
-            className={`inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-semibold ${sc.badgeBg} ${sc.badgeText}`}
-          >
-            <Icon size={10} strokeWidth={2.5} />
+        <div className="gap-xs flex flex-wrap items-center">
+          <p className="text-body-sm text-ink font-medium">{complaint.title}</p>
+          <Badge variant={sc.badgeVariant} size="sm">
+            <Icon className="size-2.5" strokeWidth={2.2} />
             {complaint.status}
-          </span>
+          </Badge>
         </div>
-        <p className="mt-1 line-clamp-1 text-[12px] leading-snug text-[#888]">
+        <p className="mt-xxs text-caption text-ink-muted line-clamp-1 leading-relaxed">
           {complaint.description}
         </p>
-        <div className="mt-1.5 flex items-center gap-2">
-          <span className="text-[11px] text-[#bbb]">{complaint.id}</span>
-          <span className="text-[#ddd]">·</span>
-          <span className="text-[11px] text-[#bbb]">{complaint.date}</span>
-          <span className="text-[#ddd]">·</span>
-          <span className={`text-[11px] ${pc}`}>{complaint.priority}</span>
+        <div className="mt-xs gap-xs text-caption text-ink-subtle flex flex-wrap items-center">
+          <span>{complaint.id}</span>
+          <span className="text-hairline">·</span>
+          <span>{complaint.date}</span>
+          <span className="text-hairline">·</span>
+          <span className={pc}>{complaint.priority}</span>
         </div>
       </div>
 
       {/* Chevron */}
       <ChevronRight
-        size={15}
-        className="mt-1 shrink-0 text-[#ccc] transition-transform duration-150 group-hover:translate-x-0.5 group-hover:text-[#999]"
+        className="text-ink-tertiary group-hover:text-ink mt-1 size-4 shrink-0 transition-transform group-hover:translate-x-0.5"
+        aria-hidden="true"
       />
     </Link>
   );
 }
 
 /* ─── Section ────────────────────────────────────────────────────────── */
-export default function RecentComplaints({ complaints = DEFAULT_COMPLAINTS }) {
+export default function RecentComplaints({
+  complaints = DEFAULT_COMPLAINTS,
+  className,
+}) {
   return (
-    <section className="overflow-hidden rounded-2xl border border-[#e0dbd3] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.05)]">
+    <section
+      aria-label="Recent Complaints"
+      className={cn("bg-surface-1 overflow-hidden rounded-2xl", className)}
+    >
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-[#eae7e2] px-5 py-4">
-        <div className="flex items-center gap-2">
-          <AlertCircle size={15} className="text-[#ff5600]" strokeWidth={2.5} />
-          <p className="text-[13px] font-bold tracking-[0.4px] text-[#111] uppercase">
+      <div className="border-hairline-soft px-lg py-md flex items-center justify-between border-b">
+        <div className="gap-xs flex items-center">
+          <AlertCircle
+            className="text-fin-orange size-4"
+            strokeWidth={2.2}
+            aria-hidden="true"
+          />
+          <p className="text-eyebrow text-ink font-medium uppercase">
             Recent Complaints
           </p>
         </div>
         <Link
           href="/complaints"
-          className="flex items-center gap-1 text-[13px] font-semibold text-[#ff5600] transition-colors hover:text-[#cc4400]"
+          className="gap-xxs text-body-sm text-fin-orange hover:text-fin-orange/80 flex items-center font-medium transition-colors"
         >
-          View all
-          <ChevronRight size={14} />
+          <span>View all</span>
+          <ChevronRight className="size-3.5" aria-hidden="true" />
         </Link>
       </div>
 
       {/* Rows */}
       {complaints.length === 0 ? (
-        <div className="flex flex-col items-center justify-center gap-2 py-10 text-[#bbb]">
-          <CheckCircle2 size={28} strokeWidth={1.5} />
-          <p className="text-[13px]">No complaints filed</p>
+        <div className="gap-xs py-xl text-ink-subtle flex flex-col items-center justify-center">
+          <CheckCircle2 className="size-7" strokeWidth={1.5} />
+          <p className="text-body-sm">No complaints filed</p>
         </div>
       ) : (
         complaints.map((c) => <ComplaintRow key={c.id} complaint={c} />)

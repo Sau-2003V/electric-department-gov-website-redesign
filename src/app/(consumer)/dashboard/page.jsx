@@ -35,7 +35,7 @@ export async function generateMetadata() {
 
 export default function DashboardPage() {
   return (
-    <div className="min-h-[calc(100vh-61px)] px-4 pt-6 pb-12 sm:px-8 sm:pt-8">
+    <div className="px-md pt-lg pb-xxl sm:px-xl sm:pt-xl min-h-[calc(100vh-61px)]">
       {/* Greeting + quick stats (client component — fetches user itself) */}
       <DashboardHeader />
 
@@ -46,7 +46,7 @@ export default function DashboardPage() {
       <SubdivisionSection />
 
       {/* Complaints + Notices — side-by-side on large screens */}
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div className="gap-lg grid grid-cols-1 lg:grid-cols-2">
         <RecentComplaints />
         <RecentNotices />
       </div>
