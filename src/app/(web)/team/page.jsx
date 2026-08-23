@@ -41,16 +41,17 @@ const teamMembers = [
 export default function TeamsPage() {
   return (
     <main className="min-h-screen bg-[#f5f2ec] text-[#171717]">
-      <section className="mx-auto max-w-[1315px] px-5 pb-14 pt-10">
+      <section className="mx-auto max-w-[1315px] px-5 pt-10 pb-14">
         <div className="mb-8">
-          <p className="mb-1 text-[13px] font-bold uppercase tracking-[0.3px] text-[#ef5b28]">
+          <p className="mb-1 text-[13px] font-bold tracking-[0.3px] text-[#ef5b28] uppercase">
             Our Team
           </p>
-          <h1 className="text-[30px] font-bold leading-[1.15] tracking-[-0.8px] text-[#111]">
+          <h1 className="text-[30px] leading-[1.15] font-bold tracking-[-0.8px] text-[#111]">
             Meet the team
           </h1>
           <p className="mt-2 max-w-[650px] text-[14px] leading-6 text-[#686868]">
-            The people working together to build and maintain the electricity service portal.
+            The people working together to build and maintain the electricity
+            service portal.
           </p>
         </div>
 
@@ -72,21 +73,53 @@ function TeamCard({ member }) {
           <UserRound size={27} strokeWidth={1.8} />
         </div>
         <div>
-          <h2 className="text-[17px] font-semibold text-[#171717]">{member.name}</h2>
-          <p className="mt-1 text-[13px] font-medium text-[#ef5b28]">{member.role}</p>
+          <h2 className="text-[17px] font-semibold text-[#171717]">
+            {member.name}
+          </h2>
+          <p className="mt-1 text-[13px] font-medium text-[#ef5b28]">
+            {member.role}
+          </p>
         </div>
       </div>
 
-      <p className="mt-6 min-h-[72px] text-[14px] leading-6 text-[#626262]">{member.description}</p>
+      <p className="mt-6 min-h-[72px] text-[14px] leading-6 text-[#626262]">
+        {member.description}
+      </p>
 
       <div className="my-5 border-t border-[#e3dfd8]" />
 
       <div className="space-y-4">
-        <ContactItem icon={<Mail size={17} strokeWidth={1.8} className="text-[#ef5b28]" />} text={member.email} />
-        <ContactItem icon={<GitBranch size={17} strokeWidth={1.8} className="text-[#171717]" />} text={member.github} link />
-        <ContactItem icon={<Globe size={17} strokeWidth={1.8} className="text-[#0077b5]" />} text={member.linkedIn} link />
-        <ContactItem icon={<Globe size={17} strokeWidth={1.8} className="text-[#ef5b28]" />} text={member.portfolio} link />
-        <ContactItem icon={<MapPin size={17} strokeWidth={1.8} className="text-[#ef5b28]" />} text={member.location} />
+        <ContactItem
+          icon={<Mail size={17} strokeWidth={1.8} className="text-[#ef5b28]" />}
+          text={member.email}
+        />
+        <ContactItem
+          icon={
+            <GitBranch size={17} strokeWidth={1.8} className="text-[#171717]" />
+          }
+          text={member.github}
+          link
+        />
+        <ContactItem
+          icon={
+            <Globe size={17} strokeWidth={1.8} className="text-[#0077b5]" />
+          }
+          text={member.linkedIn}
+          link
+        />
+        <ContactItem
+          icon={
+            <Globe size={17} strokeWidth={1.8} className="text-[#ef5b28]" />
+          }
+          text={member.portfolio}
+          link
+        />
+        <ContactItem
+          icon={
+            <MapPin size={17} strokeWidth={1.8} className="text-[#ef5b28]" />
+          }
+          text={member.location}
+        />
       </div>
 
       <div className="mt-auto pt-6">
@@ -104,10 +137,15 @@ function TeamCard({ member }) {
 
 function ContactItem({ icon, text, link }) {
   return (
-    <div className="flex items-center gap-3 text-[13px] text-[#5f5f5f] truncate">
+    <div className="flex items-center gap-3 truncate text-[13px] text-[#5f5f5f]">
       {icon}
       {link ? (
-        <a href={text} target="_blank" rel="noopener noreferrer" className="truncate hover:text-[#ef5b28]">
+        <a
+          href={text}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="truncate hover:text-[#ef5b28]"
+        >
           {text}
         </a>
       ) : (

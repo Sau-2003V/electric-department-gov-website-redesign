@@ -47,10 +47,6 @@ export default function CredentialsPage() {
 
         {/* Title */}
         <div className="mb-6 space-y-1">
-          <div className="text-ink-subtle mb-1 flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase">
-            <KeyRound className="size-3.5" />
-            <span>Test Accounts</span>
-          </div>
           <h1 className="text-headline text-ink font-semibold tracking-tight">
             Demo Credentials
           </h1>
@@ -69,17 +65,13 @@ export default function CredentialsPage() {
               className="group border-hairline-soft bg-canvas hover:bg-surface-2/70 hover:border-hairline flex w-full cursor-pointer items-center justify-between rounded-xl border px-4 py-3.5 text-left transition-all active:scale-[0.99]"
             >
               <div className="flex min-w-0 flex-1 flex-col gap-1">
-                <div className="font-mono text-xs">
+                <div>
                   <span className="text-ink-subtle">Meter: </span>
-                  <strong className="text-ink font-semibold">
-                    {cred.meter}
-                  </strong>
+                  <strong className="text-ink font-medium">{cred.meter}</strong>
                 </div>
-                <div className="font-mono text-xs">
+                <div>
                   <span className="text-ink-subtle">Phone: </span>
-                  <strong className="text-ink font-semibold">
-                    {cred.phone}
-                  </strong>
+                  <strong className="text-ink font-medium">{cred.phone}</strong>
                 </div>
               </div>
 
