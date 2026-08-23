@@ -5,29 +5,35 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Surface Tokens */
+  /* Surface Tokens (from design.md) */
   --canvas: #f5f1ec;
   --surface-1: #ffffff;
   --surface-2: #ebe5df;
+  --surface-3: #e4ded7;
+  --surface-4: #ddd6ce;
+  --surface-5: #d5cdc4;
+  --surface-6: #cdc4ba;
+  --surface-7: #c5bbb0;
+  --surface-8: #bcb2a6;
   --hairline: #d3cec6;
   --hairline-soft: #e6e2dc;
   --inverse-canvas: #000000;
   --inverse-surface-1: #1a1a1a;
 
-  /* Brand & Accent Tokens */
+  /* Brand & Accent Tokens (from design.md) */
   --ink: #111111;
   --on-primary: #ffffff;
   --fin-orange: #ff5600;
   --brand-blue: #0007cb;
 
-  /* Text / Ink Tokens */
+  /* Text / Ink Tokens (from design.md) */
   --ink-muted: #626260;
   --ink-subtle: #7b7b78;
   --ink-tertiary: #9c9fa5;
   --inverse-ink: #ffffff;
   --inverse-ink-muted: #9c9fa5;
 
-  /* Semantic & Report Palette */
+  /* Semantic & Report Palette (from design.md) */
   --semantic-error: #df1b41;
   --semantic-success: #00875a;
   --report-orange: #ff7a00;
@@ -37,10 +43,44 @@
   --report-lime: #84cc16;
   --report-cyan: #00b8d9;
 
-  --background: #f3f3f3;
-  --surface-1: #dbdbdb;
-  --surface-2: #c4c4c4;
-  --surface-3: #acacac;
+  /* Semantic Base / Shadcn UI Mappings */
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  --card: var(--surface-1);
+  --card-foreground: var(--ink);
+  --popover: var(--surface-1);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--on-primary);
+  --secondary: var(--surface-2);
+  --secondary-foreground: var(--ink);
+  --muted: var(--surface-2);
+  --muted-foreground: var(--ink-muted);
+  --accent: var(--surface-2);
+  --accent-foreground: var(--ink);
+  --destructive: var(--semantic-error);
+  --destructive-foreground: #ffffff;
+  --border: var(--hairline);
+  --input: var(--hairline);
+  --ring: var(--ink);
+  --radius: 0.5rem;
+
+  /* Sidebar Tokens */
+  --sidebar: var(--canvas);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--ink);
+  --sidebar-primary-foreground: var(--on-primary);
+  --sidebar-accent: var(--surface-2);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--hairline);
+  --sidebar-ring: var(--ink);
+
+  /* Chart Tokens */
+  --chart-1: var(--report-blue);
+  --chart-2: var(--report-green);
+  --chart-3: var(--report-orange);
+  --chart-4: var(--report-pink);
+  --chart-5: var(--report-cyan);
 
   /* Scrollbar Tokens */
   --scrollbar-track: transparent;
@@ -56,6 +96,12 @@
   --color-canvas: var(--canvas);
   --color-surface-1: var(--surface-1);
   --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-surface-4: var(--surface-4);
+  --color-surface-5: var(--surface-5);
+  --color-surface-6: var(--surface-6);
+  --color-surface-7: var(--surface-7);
+  --color-surface-8: var(--surface-8);
   --color-hairline: var(--hairline);
   --color-hairline-soft: var(--hairline-soft);
   --color-inverse-canvas: var(--inverse-canvas);
@@ -162,12 +208,6 @@
       stroke-dasharray: 40 60;
     }
   }
-  --color-surface-3: var(--surface-3);
-  --color-surface-4: var(--surface-4);
-  --color-surface-5: var(--surface-5);
-  --color-surface-6: var(--surface-6);
-  --color-surface-7: var(--surface-7);
-  --color-surface-8: var(--surface-8);
   /* Shadows */
   --shadow-color: rgb(0 0 0 / 0.06);
   --color-shadow-color: var(--shadow-color);
@@ -219,37 +259,8 @@
   --color-dm-hi-base: var(--dm-hi-base);
 }
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* Surface Tokens (Dark) */
+  --canvas: #0d0d0d;
   --surface-1: #171717;
   --surface-2: #1e1e1e;
   --surface-3: #252525;
@@ -258,6 +269,73 @@
   --surface-6: #3a3a3a;
   --surface-7: #414141;
   --surface-8: #484848;
+  --hairline: rgba(255, 255, 255, 0.1);
+  --hairline-soft: rgba(255, 255, 255, 0.06);
+  --inverse-canvas: #ffffff;
+  --inverse-surface-1: #f5f1ec;
+
+  /* Brand & Accent Tokens (Dark) */
+  --ink: #ffffff;
+  --on-primary: #111111;
+  --fin-orange: #ff6a1a;
+  --brand-blue: #4d5fff;
+
+  /* Text / Ink Tokens (Dark) */
+  --ink-muted: #9c9fa5;
+  --ink-subtle: #7b7b78;
+  --ink-tertiary: #626260;
+  --inverse-ink: #111111;
+  --inverse-ink-muted: #626260;
+
+  /* Semantic & Report Palette (Dark - calibrated for dark surfaces) */
+  --semantic-error: #f87171;
+  --semantic-success: #34d399;
+  --report-orange: #fb923c;
+  --report-blue: #60a5fa;
+  --report-green: #34d399;
+  --report-pink: #f472b6;
+  --report-lime: #a3e635;
+  --report-cyan: #22d3ee;
+
+  /* Semantic Base / Shadcn UI Mappings (Dark) */
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  --card: var(--surface-1);
+  --card-foreground: var(--ink);
+  --popover: var(--surface-1);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: var(--on-primary);
+  --secondary: var(--surface-2);
+  --secondary-foreground: var(--ink);
+  --muted: var(--surface-2);
+  --muted-foreground: var(--ink-muted);
+  --accent: var(--surface-2);
+  --accent-foreground: var(--ink);
+  --destructive: var(--semantic-error);
+  --destructive-foreground: #111111;
+  --border: var(--hairline);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: var(--ink);
+
+  /* Sidebar Tokens (Dark) */
+  --sidebar: var(--surface-1);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--ink);
+  --sidebar-primary-foreground: var(--on-primary);
+  --sidebar-accent: var(--surface-2);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--hairline);
+  --sidebar-ring: var(--ink);
+
+  /* Chart Tokens (Dark) */
+  --chart-1: var(--report-blue);
+  --chart-2: var(--report-green);
+  --chart-3: var(--report-orange);
+  --chart-4: var(--report-pink);
+  --chart-5: var(--report-cyan);
+
+  /* Dark Mode Elevation Highlights & Shadows */
   --dm-hi-base: rgba(255, 255, 255, 0.01);
   --dm-hi-mid: rgba(255, 255, 255, 0.02);
   --dm-hi-high: rgba(255, 255, 255, 0.04);
@@ -266,6 +344,8 @@
   --dm-ring-mid: rgba(255, 255, 255, 0.04);
   --dm-ring-high: rgba(255, 255, 255, 0.06);
   --dm-drop: rgba(0, 0, 0, 0.18);
+  --shadow-color: rgba(0, 0, 0, 0.4);
+
   --shadow-1: inset 0 0 0 1px var(--dm-ring-base);
   --shadow-2:
     inset 0 1px 0 0 var(--dm-hi-base), inset 0 0 0 1px var(--dm-ring-base),

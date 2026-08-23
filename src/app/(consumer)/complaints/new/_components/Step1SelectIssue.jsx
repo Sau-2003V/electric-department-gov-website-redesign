@@ -1,8 +1,9 @@
 "use client";
 
-import { ArrowRight, Check, AlertTriangle } from "lucide-react";
+import { ArrowRight, Check, AlertTriangle, Clock } from "lucide-react";
 import { ISSUES } from "./constants";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
 export function Step1SelectIssue({
@@ -22,16 +23,16 @@ export function Step1SelectIssue({
           What problem are you facing?
         </h2>
         <p className="text-body-sm text-ink-muted mt-1">
-          Select your issue to proceed with lodging your complaint.
+          Select your issue category to proceed with lodging your complaint.
         </p>
       </div>
 
       {/* Hazardous & Emergency Section */}
       {emergencyIssues.length > 0 && (
         <div className="space-y-2.5">
-          <div className="text-semantic-error flex items-center gap-1.5 text-xs font-medium">
+          <div className="text-semantic-error flex items-center gap-1.5 text-xs font-semibold">
             <AlertTriangle className="size-3.5 shrink-0" />
-            <span>Hazard & Emergency</span>
+            <span>Hazard & Emergency (Highest Priority)</span>
           </div>
 
           <div className="grid grid-cols-1 gap-3" role="radiogroup">
@@ -51,33 +52,54 @@ export function Step1SelectIssue({
                     }
                   }}
                   className={cn(
-                    "group focus-visible:ring-ink relative flex cursor-pointer flex-col justify-between rounded-lg border p-4 text-left transition-all duration-150 select-none focus-visible:ring-2 focus-visible:outline-none",
+                    "group focus-visible:ring-ink relative flex cursor-pointer flex-col justify-between rounded-xl border p-4 text-left transition-all duration-150 select-none focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]",
                     isSelected
                       ? "border-ink bg-ink text-on-primary shadow-xs"
                       : "border-semantic-error/30 bg-semantic-error/5 text-ink hover:border-semantic-error/50 hover:bg-semantic-error/10"
                   )}
                 >
-                  <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-2">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="flex items-start gap-2.5">
                       <AlertTriangle
                         className={cn(
-                          "size-4 shrink-0",
+                          "mt-0.5 size-4 shrink-0",
                           isSelected ? "text-fin-orange" : "text-semantic-error"
                         )}
                       />
-                      <h3
-                        className={cn(
-                          "text-sm font-medium tracking-tight",
-                          isSelected ? "text-on-primary" : "text-ink"
-                        )}
-                      >
-                        {item.title}
-                      </h3>
+                      <div>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <h3
+                            className={cn(
+                              "text-sm font-semibold tracking-tight",
+                              isSelected ? "text-on-primary" : "text-ink"
+                            )}
+                          >
+                            {item.title}
+                          </h3>
+                          <Badge
+                            variant={isSelected ? "accent" : "destructive"}
+                            size="sm"
+                            shape="tag"
+                          >
+                            {item.sla}
+                          </Badge>
+                        </div>
+                        <p
+                          className={cn(
+                            "mt-1 text-xs leading-relaxed",
+                            isSelected
+                              ? "text-inverse-ink/80"
+                              : "text-ink-muted"
+                          )}
+                        >
+                          {item.desc}
+                        </p>
+                      </div>
                     </div>
 
                     <span
                       className={cn(
-                        "flex size-4 shrink-0 items-center justify-center rounded-full border transition-all",
+                        "flex size-4 shrink-0 items-center justify-center rounded-full border transition-all duration-150",
                         isSelected
                           ? "border-fin-orange bg-fin-orange text-white"
                           : "border-semantic-error/40 bg-surface-1 group-hover:border-semantic-error"
@@ -88,15 +110,6 @@ export function Step1SelectIssue({
                       )}
                     </span>
                   </div>
-
-                  <p
-                    className={cn(
-                      "mt-1.5 text-xs leading-relaxed",
-                      isSelected ? "text-inverse-ink/80" : "text-ink-muted"
-                    )}
-                  >
-                    {item.desc}
-                  </p>
                 </div>
               );
             })}
@@ -106,7 +119,7 @@ export function Step1SelectIssue({
 
       {/* General Service Issues Section */}
       <div className="space-y-2.5">
-        <div className="text-ink-muted text-xs font-medium">
+        <div className="text-caption text-ink-muted font-medium">
           General Service Issues
         </div>
 
@@ -130,17 +143,17 @@ export function Step1SelectIssue({
                   }
                 }}
                 className={cn(
-                  "group focus-visible:ring-ink relative flex cursor-pointer flex-col justify-between rounded-lg border p-4 text-left transition-all duration-150 select-none focus-visible:ring-2 focus-visible:outline-none",
+                  "group focus-visible:ring-ink relative flex cursor-pointer flex-col justify-between rounded-xl border p-4 text-left transition-all duration-150 select-none focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]",
                   isSelected
                     ? "border-ink bg-ink text-on-primary shadow-xs"
                     : "border-hairline bg-surface-1 text-ink hover:border-ink/30 hover:bg-surface-2/40"
                 )}
               >
                 <div>
-                  <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-start justify-between gap-2">
                     <h3
                       className={cn(
-                        "text-sm font-medium tracking-tight",
+                        "text-sm font-semibold tracking-tight",
                         isSelected ? "text-on-primary" : "text-ink"
                       )}
                     >
@@ -149,7 +162,7 @@ export function Step1SelectIssue({
 
                     <span
                       className={cn(
-                        "flex size-4 shrink-0 items-center justify-center rounded-full border transition-all",
+                        "flex size-4 shrink-0 items-center justify-center rounded-full border transition-all duration-150",
                         isSelected
                           ? "border-fin-orange bg-fin-orange text-white"
                           : "border-hairline bg-surface-1 group-hover:border-ink/40"
@@ -163,12 +176,24 @@ export function Step1SelectIssue({
 
                   <p
                     className={cn(
-                      "mt-1.5 text-xs leading-relaxed",
+                      "mt-1 text-xs leading-relaxed",
                       isSelected ? "text-inverse-ink/80" : "text-ink-muted"
                     )}
                   >
                     {item.desc}
                   </p>
+                </div>
+
+                <div className="mt-3 flex items-center gap-1.5">
+                  <Badge
+                    variant={isSelected ? "accent" : "surface"}
+                    size="sm"
+                    shape="tag"
+                    className="text-[10px]"
+                  >
+                    <Clock className="size-2.5" />
+                    <span>{item.sla}</span>
+                  </Badge>
                 </div>
               </div>
             );
@@ -202,6 +227,7 @@ export function Step1SelectIssue({
           size="default"
           shape="md"
           rightIcon={<ArrowRight />}
+          className="transition-transform active:scale-[0.96]"
         >
           <span>Next: Location Details</span>
         </Button>

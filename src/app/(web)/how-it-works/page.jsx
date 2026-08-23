@@ -2,12 +2,36 @@ import { UserRound, LayoutDashboard, FileText, Clock, CreditCard, HelpCircle } f
 
 export default function HowItWorksPage() {
   const steps = [
-    { title: "Sign Up / Login", description: "Create your account or log in with your meter number.", icon: <UserRound size={28} className="text-[#ef5b28]" /> },
-    { title: "Dashboard Access", description: "View your meter details, bills, and shortcuts in one place.", icon: <LayoutDashboard size={28} className="text-[#ef5b28]" /> },
-    { title: "Raise Complaint", description: "Submit a complaint if you face issues like power cut or wrong bill.", icon: <FileText size={28} className="text-[#ef5b28]" /> },
-    { title: "Track Status", description: "Check the progress of your complaint and see when it will be fixed.", icon: <Clock size={28} className="text-[#ef5b28]" /> },
-    { title: "Make Payment", description: "Pay your bills online safely using Razorpay.", icon: <CreditCard size={28} className="text-[#ef5b28]" /> },
-    { title: "Get Support", description: "Read FAQs or contact our support team for help.", icon: <HelpCircle size={28} className="text-[#ef5b28]" /> },
+    {
+      title: "Sign Up / Login",
+      description: "Create your account or log in with your meter number.",
+      icon: <UserRound size={28} className="text-[#ef5b28]" />,
+    },
+    {
+      title: "Dashboard Access",
+      description: "View your meter details, bills, and shortcuts in one place.",
+      icon: <LayoutDashboard size={28} className="text-[#ef5b28]" />,
+    },
+    {
+      title: "Raise Complaint",
+      description: "Submit a complaint if you face issues like power cut or wrong bill.",
+      icon: <FileText size={28} className="text-[#ef5b28]" />,
+    },
+    {
+      title: "Track Status",
+      description: "Check the progress of your complaint and see when it will be fixed.",
+      icon: <Clock size={28} className="text-[#ef5b28]" />,
+    },
+    {
+      title: "Make Payment",
+      description: "Pay your bills online safely using Razorpay.",
+      icon: <CreditCard size={28} className="text-[#ef5b28]" />,
+    },
+    {
+      title: "Get Support",
+      description: "Read FAQs or contact our support team for help.",
+      icon: <HelpCircle size={28} className="text-[#ef5b28]" />,
+    },
   ];
 
   return (

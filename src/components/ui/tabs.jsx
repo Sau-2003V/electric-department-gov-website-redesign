@@ -11,20 +11,19 @@ import {
   Children,
   cloneElement,
   isValidElement,
+  useMemo,
 } from "react";
 import { Tabs as TabsPrimitive } from "@base-ui/react/tabs";
 import { motion, AnimatePresence } from "framer-motion";
+import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { spring } from "@/lib/springs";
 import { fontWeights } from "@/lib/font-weight";
 import { useShape } from "@/lib/shape-context";
 import { SizeProvider, useSize } from "@/lib/size-context";
-import { useSurface } from "@/lib/surface-context";
-import { surfaceClasses } from "@/lib/surface-classes";
 import { useProximityHover } from "@/hooks/use-proximity-hover";
 
 const TabsValueOrderContext = createContext(null);
-
 const TabsListContext = createContext(null);
 
 function useTabsList() {
@@ -43,12 +42,14 @@ const Tabs = forwardRef(
       defaultValue,
       size,
       children,
+      className,
       ...props
     },
     ref
   ) => {
     const [valueOrder, setValueOrder] = useState([]);
     const [uncontrolledValue, setUncontrolledValue] = useState(defaultValue);
+
     const updateValueOrder = useCallback((order) => {
       setValueOrder((current) => {
         if (
@@ -61,16 +62,14 @@ const Tabs = forwardRef(
       });
     }, []);
 
-    // Resolve value: explicit value > selectedIndex lookup > uncontrolled state.
-    // Uncontrolled with no defaultValue falls back to the first tab so the
-    // FF layer's selectedValue matches what the primitive shows.
+    // Resolve value: explicit value > selectedIndex lookup > uncontrolled state
     const resolvedValue =
       value ??
       (selectedIndex != null
         ? valueOrder[selectedIndex]
         : (uncontrolledValue ?? valueOrder[0]));
 
-    // Base UI passes (value, eventDetails); we only need value.
+    // Base UI passes (value, eventDetails); we handle both value and selected index
     const handleValueChange = useCallback(
       (newValue) => {
         const v = newValue;
@@ -94,17 +93,11 @@ const Tabs = forwardRef(
           selectedValue: resolvedValue,
         }}
       >
-        {/*
-        Always controlled: Base UI's useControlled logs a dev warning when
-        value flips undefined → defined. valueOrder is empty on the first
-        commit, so fall back to an empty-string sentinel — TabsList's
-        layout effect populates valueOrder pre-paint, so the corrected
-        value lands before anything is visible.
-      */}
         <TabsPrimitive.Root
           ref={ref}
           value={resolvedValue ?? ""}
           onValueChange={handleValueChange}
+          className={cn("w-full", className)}
           {...props}
         >
           {children}
@@ -112,247 +105,335 @@ const Tabs = forwardRef(
       </TabsValueOrderContext.Provider>
     );
 
-    // A size prop pins the whole compound (list + items) to one ladder step.
     return size ? <SizeProvider size={size}>{root}</SizeProvider> : root;
   }
 );
 
 Tabs.displayName = "Tabs";
 
-const TabsList = forwardRef(({ children, className, ...props }, ref) => {
-  const containerRef = useRef(null);
-  const isMouseInside = useRef(false);
-  const shape = useShape();
-  const sizeClasses = useSize();
-  const substrate = useSurface();
-  const indicatorLevel = Math.min(substrate + 3, 8);
-  const valueOrderCtx = useContext(TabsValueOrderContext);
-  const [optimisticIdx, setOptimisticIdx] = useState(null);
-
-  const values = Children.toArray(children)
-    .filter(isValidElement)
-    .map((child) => child.props.value)
-    .filter((v) => typeof v === "string");
-  const valueOrderKey = values.join(",");
-  const setValueOrder = valueOrderCtx?.setValueOrder;
-
-  useLayoutEffect(() => {
-    setValueOrder?.(values);
-  }, [setValueOrder, valueOrderKey]);
-
-  const {
-    activeIndex: hoveredIndex,
-    setActiveIndex: setHoveredIndex,
-    itemRects,
-    handlers,
-    registerItem,
-    measureItems,
-  } = useProximityHover(containerRef, { axis: "x" });
-
-  const registerTab = useCallback(
-    (index, _value, el) => {
-      registerItem(index, el);
+const tabsListVariants = cva(
+  "relative inline-flex items-center select-none transition-colors",
+  {
+    variants: {
+      variant: {
+        // Pill toggle according to design system (default)
+        default:
+          "border-hairline bg-surface-2 text-ink-muted border p-1 rounded-full shadow-2xs dark:border-hairline dark:bg-surface-2/60 dark:text-muted-foreground",
+        pill: "border-hairline bg-surface-2 text-ink-muted border p-1 rounded-full shadow-2xs dark:border-hairline dark:bg-surface-2/60 dark:text-muted-foreground",
+        segmented:
+          "border-hairline bg-surface-2 text-ink-muted border p-1 rounded-xl shadow-2xs dark:border-hairline dark:bg-surface-2/60 dark:text-muted-foreground",
+        surface:
+          "border-hairline bg-surface-1 text-ink-muted border p-1 rounded-full shadow-2xs dark:border-hairline dark:bg-card dark:text-muted-foreground",
+        canvas:
+          "border-hairline bg-canvas text-ink-muted border p-1 rounded-full dark:border-hairline dark:bg-canvas dark:text-muted-foreground",
+        ghost: "bg-transparent text-ink-muted dark:text-muted-foreground p-1",
+      },
+      size: {
+        default: "gap-0.5",
+        sm: "gap-0.5 p-0.5",
+        compact: "gap-0.5 p-0.5",
+        lg: "gap-1 p-1.5",
+      },
     },
-    [registerItem]
-  );
-
-  useEffect(() => {
-    measureItems();
-  }, [measureItems, children]);
-
-  const handleMouseMove = useCallback(
-    (e) => {
-      isMouseInside.current = true;
-      handlers.onMouseMove(e);
+    defaultVariants: {
+      variant: "default",
+      size: "default",
     },
-    [handlers]
-  );
+  }
+);
 
-  const handleMouseLeave = useCallback(() => {
-    isMouseInside.current = false;
-    handlers.onMouseLeave();
-  }, [handlers]);
+const TabsList = forwardRef(
+  (
+    {
+      children,
+      className,
+      variant = "default",
+      shape = "pill",
+      size = "default",
+      ...props
+    },
+    ref
+  ) => {
+    const containerRef = useRef(null);
+    const [isMouseInside, setIsMouseInside] = useState(false);
+    const contextShape = useShape();
+    const effectiveShape =
+      shape ||
+      (contextShape?.container?.includes("rounded-full") ? "pill" : "rounded");
+    const sizeClasses = useSize(size);
+    const valueOrderCtx = useContext(TabsValueOrderContext);
+    const [optimisticIdx, setOptimisticIdx] = useState(null);
 
-  const [focusedIndex, setFocusedIndex] = useState(null);
-  const selectedValue = valueOrderCtx?.selectedValue;
-  const selectedIdx =
-    selectedValue !== undefined ? values.indexOf(selectedValue) : -1;
+    const isPill =
+      effectiveShape === "pill" || variant === "default" || variant === "pill";
 
-  useEffect(() => {
-    setOptimisticIdx(selectedIdx >= 0 ? selectedIdx : null);
-  }, [selectedIdx]);
+    const values = useMemo(() => {
+      return Children.toArray(children)
+        .filter(isValidElement)
+        .map((child) => child.props.value)
+        .filter((v) => typeof v === "string");
+    }, [children]);
 
-  const activeSelectedIdx = optimisticIdx;
-  const selectedRect =
-    activeSelectedIdx !== null ? itemRects[activeSelectedIdx] : null;
-  const hoverRect = hoveredIndex !== null ? itemRects[hoveredIndex] : null;
-  const focusRect = focusedIndex !== null ? itemRects[focusedIndex] : null;
-  const isHoveringSelected = hoveredIndex === activeSelectedIdx;
-  const isHovering = hoveredIndex !== null && !isHoveringSelected;
+    const valueOrderKey = values.join(",");
+    const setValueOrder = valueOrderCtx?.setValueOrder;
 
-  const indexedChildren = Children.map(children, (child, i) => {
-    // Skip plain DOM elements — injecting _index into e.g. a <div>
-    // triggers React's unknown-prop warning.
-    if (isValidElement(child) && typeof child.type !== "string") {
-      return cloneElement(child, {
-        _index: i,
-      });
-    }
-    return child;
-  });
+    useLayoutEffect(() => {
+      setValueOrder?.(values);
+    }, [setValueOrder, valueOrderKey, values]);
 
-  return (
-    <TabsListContext.Provider
-      value={{
-        registerTab,
-        hoveredIndex,
-        selectedValue,
-        setOptimisticIdx,
-      }}
-    >
-      <TabsPrimitive.List
-        // Match Radix's `activationMode="automatic"` — arrow keys move + activate.
-        activateOnFocus
-        ref={(node) => {
-          containerRef.current = node;
-          if (typeof ref === "function") ref(node);
-          else if (ref) ref.current = node;
+    const {
+      activeIndex: hoveredIndex,
+      setActiveIndex: setHoveredIndex,
+      itemRects,
+      handlers,
+      registerItem,
+      measureItems,
+    } = useProximityHover(containerRef, { axis: "x" });
+
+    const registerTab = useCallback(
+      (index, _value, el) => {
+        registerItem(index, el);
+      },
+      [registerItem]
+    );
+
+    useEffect(() => {
+      measureItems();
+    }, [measureItems, children]);
+
+    const handleMouseMove = useCallback(
+      (e) => {
+        setIsMouseInside(true);
+        handlers.onMouseMove(e);
+      },
+      [handlers]
+    );
+
+    const handleMouseLeave = useCallback(() => {
+      setIsMouseInside(false);
+      handlers.onMouseLeave();
+    }, [handlers]);
+
+    const [focusedIndex, setFocusedIndex] = useState(null);
+    const selectedValue = valueOrderCtx?.selectedValue;
+    const selectedIdx =
+      selectedValue !== undefined ? values.indexOf(selectedValue) : -1;
+
+    const activeSelectedIdx =
+      optimisticIdx !== null
+        ? optimisticIdx
+        : selectedIdx >= 0
+          ? selectedIdx
+          : null;
+    const selectedRect =
+      activeSelectedIdx !== null ? itemRects[activeSelectedIdx] : null;
+    const hoverRect = hoveredIndex !== null ? itemRects[hoveredIndex] : null;
+    const focusRect = focusedIndex !== null ? itemRects[focusedIndex] : null;
+    const isHoveringSelected = hoveredIndex === activeSelectedIdx;
+    const isHovering = hoveredIndex !== null && !isHoveringSelected;
+
+    const indexedChildren = Children.map(children, (child, i) => {
+      if (isValidElement(child) && typeof child.type !== "string") {
+        return cloneElement(child, {
+          _index: i,
+          size: child.props.size ?? size,
+          shape: child.props.shape ?? (isPill ? "pill" : "rounded"),
+        });
+      }
+      return child;
+    });
+
+    return (
+      <TabsListContext.Provider
+        value={{
+          registerTab,
+          hoveredIndex,
+          selectedValue,
+          setOptimisticIdx,
+          size,
+          shape: isPill ? "pill" : "rounded",
         }}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        onFocus={(e) => {
-          const trigger = e.target.closest('[role="tab"]');
-          if (!trigger) return;
-          const indexAttr = trigger.getAttribute("data-proximity-index");
-          if (indexAttr != null) {
-            const idx = Number(indexAttr);
-            setHoveredIndex(idx);
-            setFocusedIndex(e.target.matches(":focus-visible") ? idx : null);
-          }
-        }}
-        onBlur={(e) => {
-          if (containerRef.current?.contains(e.relatedTarget)) return;
-          setFocusedIndex(null);
-          if (isMouseInside.current) return;
-          setHoveredIndex(null);
-        }}
-        className={cn(
-          // segmentPad + segmentItem add up to the ladder's control height
-          // (36px default, 28px compact) so the segmented control's outer
-          // box lines up with buttons, selects, and inputs beside it.
-          "bg-muted relative inline-flex items-center gap-0.5 select-none",
-          sizeClasses.segmentPad,
-          shape.container,
-          className
-        )}
-        {...props}
       >
-        {/* Active segment indicator */}
-        {selectedRect && (
-          <motion.div
-            className={cn(
-              "pointer-events-none absolute",
-              surfaceClasses(indicatorLevel),
-              shape.bg
-            )}
-            initial={false}
-            animate={{
-              left: selectedRect.left,
-              width: selectedRect.width,
-              top: selectedRect.top,
-              height: selectedRect.height,
-              opacity: isHovering ? 0.85 : 1,
-            }}
-            transition={{
-              ...spring.moderate,
-              opacity: { duration: 0.08 },
-            }}
-          />
-        )}
-
-        {/* Hover indicator */}
-        <AnimatePresence>
-          {hoverRect && !isHoveringSelected && selectedRect && (
+        <TabsPrimitive.List
+          activateOnFocus
+          ref={(node) => {
+            containerRef.current = node;
+            if (typeof ref === "function") ref(node);
+            else if (ref) ref.current = node;
+          }}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
+          onFocus={(e) => {
+            const trigger = e.target.closest('[role="tab"]');
+            if (!trigger) return;
+            const indexAttr = trigger.getAttribute("data-proximity-index");
+            if (indexAttr != null) {
+              const idx = Number(indexAttr);
+              setHoveredIndex(idx);
+              setFocusedIndex(e.target.matches(":focus-visible") ? idx : null);
+            }
+          }}
+          onBlur={(e) => {
+            if (containerRef.current?.contains(e.relatedTarget)) return;
+            setFocusedIndex(null);
+            if (isMouseInside) return;
+            setHoveredIndex(null);
+          }}
+          className={cn(
+            tabsListVariants({ variant, size }),
+            isPill ? "rounded-full" : "rounded-xl",
+            className
+          )}
+          {...props}
+        >
+          {/* Active segment indicator: Crisp white pill lift with soft elevation */}
+          {selectedRect && (
             <motion.div
-              className={cn("bg-hover pointer-events-none absolute", shape.bg)}
-              initial={{
+              className={cn(
+                "border-hairline/50 bg-surface-1 text-ink dark:border-hairline/80 dark:bg-surface-2 dark:text-foreground pointer-events-none absolute border shadow-xs dark:shadow-none",
+                isPill ? "rounded-full" : "rounded-lg"
+              )}
+              initial={false}
+              animate={{
                 left: selectedRect.left,
                 width: selectedRect.width,
                 top: selectedRect.top,
                 height: selectedRect.height,
-                opacity: 0,
+                opacity: isHovering ? 0.95 : 1,
               }}
-              animate={{
-                left: hoverRect.left,
-                width: hoverRect.width,
-                top: hoverRect.top,
-                height: hoverRect.height,
-                opacity: 0.4,
-              }}
-              exit={
-                !isMouseInside.current && selectedRect
-                  ? {
-                      left: selectedRect.left,
-                      width: selectedRect.width,
-                      top: selectedRect.top,
-                      height: selectedRect.height,
-                      opacity: 0,
-                      transition: {
-                        ...spring.moderate,
-                        opacity: { duration: 0.06 },
-                      },
-                    }
-                  : { opacity: 0, transition: spring.fast.exit }
-              }
               transition={{
-                ...spring.fast,
+                ...spring.moderate,
                 opacity: { duration: 0.08 },
               }}
             />
           )}
-        </AnimatePresence>
 
-        {/* Focus ring */}
-        <AnimatePresence>
-          {focusRect && (
-            <motion.div
-              className={cn(
-                "pointer-events-none absolute z-20 border border-[color:var(--focus-ring,#6B97FF)]",
-                shape.focusRing
-              )}
-              initial={false}
-              animate={{
-                left: focusRect.left - 2,
-                top: focusRect.top - 2,
-                width: focusRect.width + 4,
-                height: focusRect.height + 4,
-              }}
-              exit={{ opacity: 0, transition: spring.fast.exit }}
-              transition={{
-                ...spring.fast,
-                opacity: { duration: 0.08 },
-              }}
-            />
-          )}
-        </AnimatePresence>
+          {/* Hover indicator: Soft proximity highlight */}
+          <AnimatePresence>
+            {hoverRect && !isHoveringSelected && selectedRect && (
+              <motion.div
+                className={cn(
+                  "bg-surface-3/50 dark:bg-surface-3/30 pointer-events-none absolute",
+                  isPill ? "rounded-full" : "rounded-lg"
+                )}
+                initial={{
+                  left: selectedRect.left,
+                  width: selectedRect.width,
+                  top: selectedRect.top,
+                  height: selectedRect.height,
+                  opacity: 0,
+                }}
+                animate={{
+                  left: hoverRect.left,
+                  width: hoverRect.width,
+                  top: hoverRect.top,
+                  height: hoverRect.height,
+                  opacity: 0.6,
+                }}
+                exit={
+                  !isMouseInside && selectedRect
+                    ? {
+                        left: selectedRect.left,
+                        width: selectedRect.width,
+                        top: selectedRect.top,
+                        height: selectedRect.height,
+                        opacity: 0,
+                        transition: {
+                          ...spring.moderate,
+                          opacity: { duration: 0.06 },
+                        },
+                      }
+                    : { opacity: 0, transition: spring.fast.exit }
+                }
+                transition={{
+                  ...spring.fast,
+                  opacity: { duration: 0.08 },
+                }}
+              />
+            )}
+          </AnimatePresence>
 
-        {indexedChildren}
-      </TabsPrimitive.List>
-    </TabsListContext.Provider>
-  );
-});
+          {/* Focus ring: Adheres to design system ring token */}
+          <AnimatePresence>
+            {focusRect && (
+              <motion.div
+                className={cn(
+                  "border-ring/60 ring-ring/25 dark:border-ring dark:ring-ring/40 pointer-events-none absolute z-20 border ring-2",
+                  isPill ? "rounded-full" : "rounded-[10px]"
+                )}
+                initial={false}
+                animate={{
+                  left: focusRect.left - 2,
+                  top: focusRect.top - 2,
+                  width: focusRect.width + 4,
+                  height: focusRect.height + 4,
+                }}
+                exit={{ opacity: 0, transition: spring.fast.exit }}
+                transition={{
+                  ...spring.fast,
+                  opacity: { duration: 0.08 },
+                }}
+              />
+            )}
+          </AnimatePresence>
+
+          {indexedChildren}
+        </TabsPrimitive.List>
+      </TabsListContext.Provider>
+    );
+  }
+);
 
 TabsList.displayName = "TabsList";
 
+const tabItemVariants = cva(
+  "relative z-10 flex cursor-pointer items-center justify-center border-none bg-transparent outline-none select-none transition-all duration-100 disabled:opacity-40 disabled:cursor-not-allowed disabled:pointer-events-none active:scale-[0.98]",
+  {
+    variants: {
+      size: {
+        default: "h-9 px-4 sm:px-5 text-[14px] sm:text-[15px] gap-2",
+        sm: "h-7 px-3 text-[12px] gap-1.5",
+        compact: "h-7.5 px-3 text-[13px] gap-1.5",
+        lg: "h-11 px-6 text-[16px] gap-2.5",
+      },
+      shape: {
+        pill: "rounded-full",
+        rounded: "rounded-lg",
+        md: "rounded-md",
+      },
+    },
+    defaultVariants: {
+      size: "default",
+      shape: "pill",
+    },
+  }
+);
+
 const TabItem = forwardRef(
   (
-    { value, icon: Icon, label, _index = 0, className, onClick, ...props },
+    {
+      value,
+      icon,
+      badge,
+      label,
+      children,
+      size,
+      shape,
+      _index = 0,
+      className,
+      onClick,
+      disabled = false,
+      ...props
+    },
     ref
   ) => {
     const internalRef = useRef(null);
-    const sizeClasses = useSize();
+    const listCtx = useTabsList();
     const { registerTab, hoveredIndex, selectedValue, setOptimisticIdx } =
-      useTabsList();
+      listCtx;
+
+    const effectiveSize = size || listCtx.size || "default";
+    const effectiveShape = shape || listCtx.shape || "pill";
 
     useEffect(() => {
       registerTab(_index, value, internalRef.current);
@@ -362,11 +443,52 @@ const TabItem = forwardRef(
     const isSelected = selectedValue === value;
     const isActive = hoveredIndex === _index || isSelected;
 
+    const displayLabel =
+      label ??
+      (typeof children === "string" || typeof children === "number"
+        ? children
+        : null);
+
+    const renderIcon = () => {
+      if (!icon) return null;
+      const strokeWidth = isActive ? 2 : 1.5;
+
+      if (isValidElement(icon)) {
+        return cloneElement(icon, {
+          className: cn(
+            "transition-[color,stroke-width] duration-100 shrink-0",
+            isActive
+              ? "text-ink dark:text-foreground"
+              : "text-ink-muted dark:text-muted-foreground",
+            icon.props.className
+          ),
+          strokeWidth: icon.props.strokeWidth ?? strokeWidth,
+        });
+      }
+
+      if (typeof icon === "function" || typeof icon === "object") {
+        const IconComponent = icon;
+        return (
+          <IconComponent
+            size={effectiveSize === "sm" ? 14 : 16}
+            strokeWidth={strokeWidth}
+            className={cn(
+              "shrink-0 transition-[color,stroke-width] duration-100",
+              isActive
+                ? "text-ink dark:text-foreground"
+                : "text-ink-muted dark:text-muted-foreground"
+            )}
+          />
+        );
+      }
+
+      return null;
+    };
+
     return (
       <TabsPrimitive.Tab
-        // Composed (not spread-overridable): a consumer onClick must not
-        // replace the optimistic indicator jump.
         onClick={(e) => {
+          if (disabled) return;
           setOptimisticIdx(_index);
           onClick?.(e);
         }}
@@ -376,51 +498,66 @@ const TabItem = forwardRef(
           else if (ref) ref.current = node;
         }}
         value={value}
+        disabled={disabled}
         data-proximity-index={_index}
         className={cn(
-          // Fixed height (not py) so the text-box trim below doesn't shrink
-          // the tab — browsers without text-box support render identically.
-          "relative z-10 flex cursor-pointer items-center border-none bg-transparent px-3 outline-none",
-          sizeClasses.segmentItem,
-          sizeClasses.gap,
+          tabItemVariants({ size: effectiveSize, shape: effectiveShape }),
+          isActive
+            ? "text-ink dark:text-foreground font-medium"
+            : "text-ink-muted hover:text-ink dark:text-muted-foreground dark:hover:text-foreground font-normal",
           className
         )}
         {...props}
       >
-        {Icon && (
-          <Icon
-            size={sizeClasses.icon}
-            strokeWidth={isActive ? 2 : 1.5}
-            className={cn(
-              "transition-[color,stroke-width] duration-80",
-              isActive ? "text-foreground" : "text-muted-foreground"
-            )}
-          />
+        {renderIcon()}
+
+        {displayLabel ? (
+          <span className="inline-grid whitespace-nowrap text-inherit">
+            <span
+              className="invisible col-start-1 row-start-1 font-medium [text-box:trim-both_cap_alphabetic]"
+              style={{ fontVariationSettings: fontWeights.semibold }}
+              aria-hidden="true"
+            >
+              {displayLabel}
+            </span>
+            <span
+              className={cn(
+                "col-start-1 row-start-1 transition-[color,font-weight] duration-100 [text-box:trim-both_cap_alphabetic]",
+                isActive
+                  ? "text-ink dark:text-foreground font-medium"
+                  : "text-ink-muted hover:text-ink dark:text-muted-foreground dark:hover:text-foreground font-normal"
+              )}
+              style={{
+                fontVariationSettings: isSelected
+                  ? fontWeights.semibold
+                  : fontWeights.normal,
+              }}
+            >
+              {displayLabel}
+            </span>
+          </span>
+        ) : (
+          children
         )}
-        {/* Both stacked spans carry the text-box trim so the invisible bold
-            sizer and the visible label keep identical boxes. */}
-        <span className={cn("inline-grid whitespace-nowrap", sizeClasses.text)}>
-          <span
-            className="invisible col-start-1 row-start-1 [text-box:trim-both_cap_alphabetic]"
-            style={{ fontVariationSettings: fontWeights.semibold }}
-            aria-hidden="true"
-          >
-            {label}
-          </span>
-          <span
-            className={cn(
-              "col-start-1 row-start-1 transition-[color,font-variation-settings] duration-80 [text-box:trim-both_cap_alphabetic]",
-              isActive ? "text-foreground" : "text-muted-foreground"
+
+        {badge && (
+          <span className="shrink-0">
+            {typeof badge === "string" || typeof badge === "number" ? (
+              <span
+                className={cn(
+                  "border-hairline/60 py-0.2 inline-flex items-center justify-center rounded-full border px-1.5 text-[10px] font-medium transition-colors",
+                  isSelected
+                    ? "bg-surface-2 text-ink dark:bg-surface-3 dark:text-foreground"
+                    : "bg-surface-1/80 text-ink-muted dark:bg-surface-2 dark:text-muted-foreground"
+                )}
+              >
+                {badge}
+              </span>
+            ) : (
+              badge
             )}
-            style={{
-              fontVariationSettings: isSelected
-                ? fontWeights.semibold
-                : fontWeights.normal,
-            }}
-          >
-            {label}
           </span>
-        </span>
+        )}
       </TabsPrimitive.Tab>
     );
   }
@@ -432,7 +569,10 @@ const TabPanel = forwardRef(({ className, ...props }, ref) => {
   return (
     <TabsPrimitive.Panel
       ref={ref}
-      className={cn("outline-none", className)}
+      className={cn(
+        "focus-visible:ring-ring/50 mt-2 outline-none focus-visible:ring-2",
+        className
+      )}
       {...props}
     />
   );
@@ -440,4 +580,4 @@ const TabPanel = forwardRef(({ className, ...props }, ref) => {
 
 TabPanel.displayName = "TabPanel";
 
-export { Tabs, TabsList, TabItem, TabPanel };
+export { Tabs, TabsList, TabItem, TabPanel, tabsListVariants, tabItemVariants };

@@ -44,7 +44,7 @@ export default function SubdivisionSection({
         <div>
           <div className="gap-xs flex items-center">
             <MapPin
-              className="text-fin-orange size-4"
+              className="text-primary size-4"
               strokeWidth={2.2}
               aria-hidden="true"
             />
@@ -95,7 +95,6 @@ export default function SubdivisionSection({
             >
               <Button
                 type="button"
-                variant="accent"
                 size="icon-compact"
                 aria-label={`Call ${contact.name}`}
               >
