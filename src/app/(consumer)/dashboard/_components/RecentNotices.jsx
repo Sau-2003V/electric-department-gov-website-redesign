@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 const DEFAULT_NOTICES = [
   {
@@ -121,7 +122,7 @@ export default function RecentNotices({
       <div className="border-hairline-soft px-lg py-md flex items-center justify-between border-b">
         <div className="gap-xs flex items-center">
           <Bell
-            className="text-fin-orange size-4"
+            className="text-primary size-4"
             strokeWidth={2.2}
             aria-hidden="true"
           />
@@ -129,12 +130,11 @@ export default function RecentNotices({
             Notices &amp; Circulars
           </p>
         </div>
-        <Link
-          href="/notices"
-          className="gap-xxs text-body-sm text-fin-orange hover:text-fin-orange/80 flex items-center font-medium transition-colors"
-        >
-          <span>View all</span>
-          <ChevronRight className="size-3.5" aria-hidden="true" />
+        <Link href="/notices">
+          <Button variant="ghost" size="sm">
+            <span>View all</span>
+            <ChevronRight className="size-3.5" aria-hidden="true" />
+          </Button>
         </Link>
       </div>
 

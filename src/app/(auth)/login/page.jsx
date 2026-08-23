@@ -50,15 +50,15 @@ function LoginForm({
   };
 
   return (
-    <div className="border-hairline bg-surface-1 w-full max-w-[460px] rounded-2xl border p-6 shadow-xs sm:p-8">
+    <div className="border-hairline w-full max-w-115 rounded-2xl border bg-white p-6 sm:p-8">
       {/* Portal Header */}
       <div className="border-hairline-soft mb-6 flex items-center justify-between border-b pb-5">
         <Link
           href="/"
           aria-label="Vidhyut Portal home"
-          className="text-ink focus-visible:ring-fin-orange flex items-center gap-2.5 rounded-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+          className="text-ink focus-visible:ring-ring/50 flex items-center gap-2.5 rounded-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
         >
-          <span className="bg-fin-orange text-on-primary flex size-9 items-center justify-center rounded-xl shadow-2xs">
+          <span className="bg-ink text-on-primary flex size-9 items-center justify-center rounded-xl shadow-2xs">
             <Zap size={18} fill="currentColor" aria-hidden="true" />
           </span>
           <span className="text-base font-semibold tracking-tight">
@@ -150,11 +150,9 @@ function LoginForm({
         <div className="pt-2">
           <Button
             type="submit"
-            variant="accent"
-            size="default"
-            shape="md"
+            variant="primary"
             loading={form.formState.isSubmitting}
-            className="w-full text-base font-semibold"
+            className="w-full text-base"
           >
             {form.formState.isSubmitting ? "Logging in..." : "Login to Portal"}
           </Button>
@@ -164,14 +162,14 @@ function LoginForm({
       {/* Demo Credentials Link Card */}
       <Link
         href="/credentials"
-        className="group border-hairline bg-surface-2/40 hover:bg-surface-2/80 hover:border-hairline focus-visible:ring-fin-orange mt-6 flex items-center justify-between gap-3 rounded-xl border p-3.5 transition-all focus-visible:ring-2 focus-visible:outline-none"
+        className="group border-hairline bg-surface-2/40 hover:bg-surface-2/80 hover:border-hairline focus-visible:ring-ring/50 mt-6 flex items-center justify-between gap-3 rounded-xl border p-3.5 transition-all focus-visible:ring-2 focus-visible:outline-none"
       >
         <div className="flex min-w-0 flex-1 items-center gap-3">
-          <div className="border-hairline bg-surface-1 text-fin-orange flex size-9 shrink-0 items-center justify-center rounded-lg border shadow-2xs transition-transform group-hover:scale-105">
+          <div className="border-hairline bg-surface-1 text-ink flex size-9 shrink-0 items-center justify-center rounded-lg border shadow-2xs transition-transform group-hover:scale-105">
             <KeyRound className="size-4" />
           </div>
           <div className="min-w-0 flex-1">
-            <p className="text-ink group-hover:text-fin-orange text-xs font-semibold transition-colors">
+            <p className="text-ink text-xs font-semibold transition-colors">
               Use Demo Credentials
             </p>
             <p className="text-ink-muted text-[11px] leading-tight">
@@ -207,11 +205,11 @@ function LoginFormContainer() {
 
 export default function LoginPage() {
   return (
-    <div className="bg-canvas text-ink flex min-h-screen w-full items-center justify-center p-4 sm:p-6 lg:p-8">
+    <div className="text-ink flex min-h-screen w-full items-center justify-center p-4 sm:p-6 lg:p-8">
       <Suspense
         fallback={
           <div className="border-hairline bg-surface-1 w-full max-w-[460px] rounded-2xl border p-8 text-center shadow-xs">
-            <div className="bg-fin-orange text-on-primary mx-auto mb-4 flex size-10 items-center justify-center rounded-xl">
+            <div className="bg-ink text-on-primary mx-auto mb-4 flex size-10 items-center justify-center rounded-xl">
               <Zap size={20} />
             </div>
             <p className="text-ink-muted text-sm">Loading login portal...</p>

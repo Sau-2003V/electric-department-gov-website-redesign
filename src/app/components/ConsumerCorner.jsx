@@ -154,7 +154,8 @@ export default function ConsumerCorner() {
           </button>
           <Link
             href="/login"
-            className="rounded-full border border-neutral-200 bg-orange-400 px-4 py-2 text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-50">
+            className="rounded-full border border-neutral-200 bg-orange-400 px-4 py-2 text-sm font-medium text-neutral-700 transition-colors hover:bg-neutral-50"
+          >
             Login
           </Link>
         </div>

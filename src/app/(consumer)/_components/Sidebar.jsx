@@ -61,7 +61,7 @@ export default function Sidebar() {
         <div>
           <Button
             asChild
-            variant="primary"
+            variant="accent"
             size="default"
             shape="default"
             className="w-full justify-center gap-2 font-medium shadow-xs transition-all hover:shadow-sm active:scale-[0.99]"
