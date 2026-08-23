@@ -23,9 +23,9 @@ export function ComplaintStepper({ step, onStepChange }) {
                   }}
                   disabled={!isCompleted}
                   className={cn(
-                    "group flex items-center gap-2.5 text-left transition-colors",
+                    "group flex items-center gap-2.5 text-left transition-all duration-150 select-none",
                     isCompleted
-                      ? "cursor-pointer"
+                      ? "cursor-pointer active:scale-[0.96]"
                       : isCurrent
                         ? "cursor-default"
                         : "cursor-not-allowed opacity-60"
@@ -68,7 +68,7 @@ export function ComplaintStepper({ step, onStepChange }) {
                 <div
                   aria-hidden="true"
                   className={cn(
-                    "mx-2 h-px flex-1 transition-colors sm:mx-4",
+                    "mx-2 h-px flex-1 transition-colors duration-150 sm:mx-4",
                     step > idx + 1 ? "bg-ink/40" : "bg-hairline"
                   )}
                 />
@@ -80,3 +80,4 @@ export function ComplaintStepper({ step, onStepChange }) {
     </nav>
   );
 }
+

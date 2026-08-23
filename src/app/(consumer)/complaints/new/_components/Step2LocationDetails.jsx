@@ -78,7 +78,7 @@ export function Step2LocationDetails({
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-ink text-sm font-medium tracking-tight">
+                <h3 className="text-ink text-sm font-semibold tracking-tight">
                   Instant GPS auto-detection
                 </h3>
                 {formData.gpsCoords && (
@@ -147,7 +147,7 @@ export function Step2LocationDetails({
           />
         </div>
 
-        {/* Clean, Fluff-Free Proof & Evidence Section */}
+        {/* Proof & Evidence Section */}
         <div className="border-hairline bg-surface-2/30 space-y-3 rounded-xl border p-4 sm:p-5">
           <div className="flex items-center justify-between">
             <div>
@@ -173,7 +173,7 @@ export function Step2LocationDetails({
           {/* Simple Dropzone / Upload Area */}
           <div
             onClick={() => fileInputRef.current?.click()}
-            className="border-hairline bg-surface-1 hover:border-hairline/80 hover:bg-surface-2/50 flex cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed px-3 py-4 text-center transition-all"
+            className="border-hairline bg-surface-1 hover:border-hairline/80 hover:bg-surface-2/50 flex cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed px-3 py-4 text-center transition-all duration-150 active:scale-[0.99]"
           >
             <div className="bg-surface-2 text-ink-muted mb-1.5 flex size-9 items-center justify-center rounded-full">
               <Upload className="text-ink size-4" />
@@ -219,13 +219,15 @@ export function Step2LocationDetails({
                 size="sm"
                 shape="md"
                 leftIcon={<Plus className="size-3.5" />}
-                className="shrink-0"
+                className="shrink-0 transition-transform active:scale-[0.96]"
               >
                 <span>Add Link</span>
               </Button>
             </div>
             {linkError && (
-              <p className="text-semantic-error text-[11px]">{linkError}</p>
+              <p className="text-semantic-error text-[11px] font-medium">
+                {linkError}
+              </p>
             )}
           </div>
 
@@ -242,7 +244,7 @@ export function Step2LocationDetails({
                       <img
                         src={file.previewUrl}
                         alt={file.name}
-                        className="size-7 shrink-0 rounded object-cover ring-1 ring-black/10"
+                        className="size-7 shrink-0 rounded object-cover ring-1 ring-black/10 dark:ring-white/10"
                       />
                     ) : (
                       <FileText className="text-semantic-error size-4 shrink-0" />
@@ -322,3 +324,4 @@ export function Step2LocationDetails({
     </div>
   );
 }
+

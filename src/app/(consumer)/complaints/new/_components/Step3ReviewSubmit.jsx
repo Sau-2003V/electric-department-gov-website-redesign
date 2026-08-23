@@ -29,7 +29,8 @@ export function Step3ReviewSubmit({
           Review & confirm complaint
         </h2>
         <p className="text-body-sm text-ink-muted mt-1">
-          Verify your complaint summary before generating the grievance docket.
+          Verify your complaint summary before generating the official grievance
+          docket.
         </p>
       </div>
 
@@ -40,10 +41,10 @@ export function Step3ReviewSubmit({
             <span className="text-ink-subtle text-[11px] font-medium tracking-wider uppercase">
               Issue Category
             </span>
-            <div className="text-ink text-base font-medium tracking-tight">
+            <div className="text-ink text-base font-semibold tracking-tight">
               {currentIssue.title}
             </div>
-            <div className="text-ink-muted text-xs">
+            <div className="text-ink-muted mt-0.5 text-xs">
               Assigned Authority: {currentIssue.authority}
             </div>
           </div>
@@ -104,7 +105,7 @@ export function Step3ReviewSubmit({
           )}
         </div>
 
-        {/* Simple Attached Evidence Summary in Review */}
+        {/* Attached Evidence Summary in Review */}
         {totalProofs > 0 && (
           <div className="border-hairline/80 space-y-2 border-t pt-3">
             <span className="text-ink-subtle block text-xs font-medium">
@@ -120,7 +121,7 @@ export function Step3ReviewSubmit({
                     <img
                       src={file.previewUrl}
                       alt={file.name}
-                      className="size-5 shrink-0 rounded object-cover ring-1 ring-black/10"
+                      className="size-5 shrink-0 rounded object-cover ring-1 ring-black/10 dark:ring-white/10"
                     />
                   ) : (
                     <FileText className="text-semantic-error size-3.5 shrink-0" />
@@ -195,3 +196,4 @@ export function Step3ReviewSubmit({
     </form>
   );
 }
+

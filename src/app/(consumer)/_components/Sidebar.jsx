@@ -64,7 +64,7 @@ export default function Sidebar() {
             variant="accent"
             size="default"
             shape="default"
-            className="w-full justify-center gap-2 font-medium shadow-xs transition-all hover:shadow-sm active:scale-[0.99]"
+            className="w-full"
           >
             <Link href="/complaints/new" aria-label="Register a new complaint">
               <Plus size={16} strokeWidth={2.5} className="shrink-0" />

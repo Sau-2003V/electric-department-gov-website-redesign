@@ -14,7 +14,7 @@ export const CONSUMER_NAV_ITEMS = [
   },
   {
     id: "complaints",
-    label: "My complaints",
+    label: "Complaints",
     shortLabel: "Complaints",
     href: "/complaints",
     icon: Ticket,

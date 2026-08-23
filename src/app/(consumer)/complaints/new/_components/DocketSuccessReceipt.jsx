@@ -19,9 +19,9 @@ export function DocketSuccessReceipt({ docket, onReset }) {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6">
-      <div className="border-hairline bg-surface-1 rounded-xl border p-6 shadow-2xs sm:p-8">
+      <div className="border-hairline bg-surface-1 shadow-2xs rounded-2xl border p-6 sm:p-8">
         <div className="text-center">
-          <div className="border-semantic-success/20 bg-semantic-success/10 text-semantic-success mx-auto mb-3 flex size-12 items-center justify-center rounded-lg border">
+          <div className="border-semantic-success/20 bg-semantic-success/10 text-semantic-success mx-auto mb-3 flex size-12 items-center justify-center rounded-xl border">
             <CheckCircle2 className="size-6" />
           </div>
 
@@ -31,31 +31,31 @@ export function DocketSuccessReceipt({ docket, onReset }) {
             </Badge>
           </div>
 
-          <h1 className="text-headline text-ink mt-3 font-medium tracking-tight">
+          <h1 className="text-headline text-ink mt-3 font-semibold tracking-tight">
             Docket #{docket.id}
           </h1>
 
           <p className="text-body-sm text-ink-muted mt-1">
             Assigned directly to{" "}
-            <span className="text-ink font-medium">
+            <span className="text-ink font-semibold">
               {docket.issue.authority}
             </span>
           </p>
         </div>
 
         {/* Receipt table / card */}
-        <div className="border-hairline bg-surface-2/40 mt-6 space-y-3 rounded-lg border p-4 text-xs sm:p-5">
+        <div className="border-hairline bg-surface-2/40 mt-6 space-y-3 rounded-xl border p-4 text-xs sm:p-5">
           <div className="border-hairline/80 flex items-center justify-between border-b pb-2.5">
             <span className="text-ink-muted">Docket ID:</span>
             <div className="flex items-center gap-2">
-              <span className="text-ink font-mono font-medium">
+              <span className="text-ink font-mono font-semibold">
                 {docket.id}
               </span>
               <button
                 type="button"
                 onClick={handleCopy}
                 aria-label="Copy Docket Number"
-                className="text-ink-subtle hover:text-ink transition-colors"
+                className="text-ink-subtle hover:text-ink transition-colors active:scale-[0.96]"
               >
                 {copied ? (
                   <Check className="text-semantic-success size-3.5" />
@@ -102,6 +102,7 @@ export function DocketSuccessReceipt({ docket, onReset }) {
               size="default"
               shape="md"
               leftIcon={<FileCheck />}
+              className="transition-transform active:scale-[0.96]"
             >
               <span>Track in Complaints Dashboard</span>
             </Button>
@@ -114,6 +115,7 @@ export function DocketSuccessReceipt({ docket, onReset }) {
             size="default"
             shape="md"
             leftIcon={<RotateCcw />}
+            className="transition-transform active:scale-[0.96]"
           >
             <span>Register Another Issue</span>
           </Button>
@@ -122,3 +124,4 @@ export function DocketSuccessReceipt({ docket, onReset }) {
     </div>
   );
 }
+
