@@ -19,7 +19,7 @@ export function DocketSuccessReceipt({ docket, onReset }) {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6">
-      <div className="border-hairline bg-surface-1 shadow-2xs rounded-2xl border p-6 sm:p-8">
+      <div className="border-hairline bg-surface-1 rounded-2xl border p-6 shadow-2xs sm:p-8">
         <div className="text-center">
           <div className="border-semantic-success/20 bg-semantic-success/10 text-semantic-success mx-auto mb-3 flex size-12 items-center justify-center rounded-xl border">
             <CheckCircle2 className="size-6" />
@@ -124,4 +124,3 @@ export function DocketSuccessReceipt({ docket, onReset }) {
     </div>
   );
 }
-

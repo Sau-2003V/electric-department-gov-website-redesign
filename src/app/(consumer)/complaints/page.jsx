@@ -58,7 +58,8 @@ export default function ComplaintsPage() {
       progress: INITIAL_COMPLAINTS.filter(
         (c) => c.status === "Assigned" || c.status === "In progress"
       ).length,
-      resolved: INITIAL_COMPLAINTS.filter((c) => c.status === "Resolved").length,
+      resolved: INITIAL_COMPLAINTS.filter((c) => c.status === "Resolved")
+        .length,
       closed: INITIAL_COMPLAINTS.filter((c) => c.status === "Closed").length,
     };
   }, []);

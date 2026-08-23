@@ -1,9 +1,4 @@
-import {
-  Inbox,
-  Clock,
-  Loader2,
-  CheckCircle2,
-} from "lucide-react";
+import { Inbox, Clock, Loader2, CheckCircle2 } from "lucide-react";
 
 export const INITIAL_COMPLAINTS = [
   {

@@ -119,16 +119,14 @@ const tabsListVariants = cva(
         // Pill toggle according to design system (default)
         default:
           "border-hairline bg-surface-2 text-ink-muted border p-1 rounded-full shadow-2xs dark:border-hairline dark:bg-surface-2/60 dark:text-muted-foreground",
-        pill:
-          "border-hairline bg-surface-2 text-ink-muted border p-1 rounded-full shadow-2xs dark:border-hairline dark:bg-surface-2/60 dark:text-muted-foreground",
+        pill: "border-hairline bg-surface-2 text-ink-muted border p-1 rounded-full shadow-2xs dark:border-hairline dark:bg-surface-2/60 dark:text-muted-foreground",
         segmented:
           "border-hairline bg-surface-2 text-ink-muted border p-1 rounded-xl shadow-2xs dark:border-hairline dark:bg-surface-2/60 dark:text-muted-foreground",
         surface:
           "border-hairline bg-surface-1 text-ink-muted border p-1 rounded-full shadow-2xs dark:border-hairline dark:bg-card dark:text-muted-foreground",
         canvas:
           "border-hairline bg-canvas text-ink-muted border p-1 rounded-full dark:border-hairline dark:bg-canvas dark:text-muted-foreground",
-        ghost:
-          "bg-transparent text-ink-muted dark:text-muted-foreground p-1",
+        ghost: "bg-transparent text-ink-muted dark:text-muted-foreground p-1",
       },
       size: {
         default: "gap-0.5",
@@ -159,12 +157,15 @@ const TabsList = forwardRef(
     const containerRef = useRef(null);
     const [isMouseInside, setIsMouseInside] = useState(false);
     const contextShape = useShape();
-    const effectiveShape = shape || (contextShape?.container?.includes("rounded-full") ? "pill" : "rounded");
+    const effectiveShape =
+      shape ||
+      (contextShape?.container?.includes("rounded-full") ? "pill" : "rounded");
     const sizeClasses = useSize(size);
     const valueOrderCtx = useContext(TabsValueOrderContext);
     const [optimisticIdx, setOptimisticIdx] = useState(null);
 
-    const isPill = effectiveShape === "pill" || variant === "default" || variant === "pill";
+    const isPill =
+      effectiveShape === "pill" || variant === "default" || variant === "pill";
 
     const values = useMemo(() => {
       return Children.toArray(children)
@@ -289,7 +290,7 @@ const TabsList = forwardRef(
           {selectedRect && (
             <motion.div
               className={cn(
-                "border-hairline/50 bg-surface-1 text-ink shadow-xs pointer-events-none absolute border dark:border-hairline/80 dark:bg-surface-2 dark:text-foreground dark:shadow-none",
+                "border-hairline/50 bg-surface-1 text-ink dark:border-hairline/80 dark:bg-surface-2 dark:text-foreground pointer-events-none absolute border shadow-xs dark:shadow-none",
                 isPill ? "rounded-full" : "rounded-lg"
               )}
               initial={false}
@@ -312,7 +313,7 @@ const TabsList = forwardRef(
             {hoverRect && !isHoveringSelected && selectedRect && (
               <motion.div
                 className={cn(
-                  "bg-surface-3/50 pointer-events-none absolute dark:bg-surface-3/30",
+                  "bg-surface-3/50 dark:bg-surface-3/30 pointer-events-none absolute",
                   isPill ? "rounded-full" : "rounded-lg"
                 )}
                 initial={{
@@ -357,7 +358,7 @@ const TabsList = forwardRef(
             {focusRect && (
               <motion.div
                 className={cn(
-                  "border-ring/60 ring-ring/25 pointer-events-none absolute z-20 border ring-2 dark:border-ring dark:ring-ring/40",
+                  "border-ring/60 ring-ring/25 dark:border-ring dark:ring-ring/40 pointer-events-none absolute z-20 border ring-2",
                   isPill ? "rounded-full" : "rounded-[10px]"
                 )}
                 initial={false}
@@ -428,7 +429,8 @@ const TabItem = forwardRef(
   ) => {
     const internalRef = useRef(null);
     const listCtx = useTabsList();
-    const { registerTab, hoveredIndex, selectedValue, setOptimisticIdx } = listCtx;
+    const { registerTab, hoveredIndex, selectedValue, setOptimisticIdx } =
+      listCtx;
 
     const effectiveSize = size || listCtx.size || "default";
     const effectiveShape = shape || listCtx.shape || "pill";
@@ -471,7 +473,7 @@ const TabItem = forwardRef(
             size={effectiveSize === "sm" ? 14 : 16}
             strokeWidth={strokeWidth}
             className={cn(
-              "transition-[color,stroke-width] duration-100 shrink-0",
+              "shrink-0 transition-[color,stroke-width] duration-100",
               isActive
                 ? "text-ink dark:text-foreground"
                 : "text-ink-muted dark:text-muted-foreground"
@@ -522,8 +524,8 @@ const TabItem = forwardRef(
               className={cn(
                 "col-start-1 row-start-1 transition-[color,font-weight] duration-100 [text-box:trim-both_cap_alphabetic]",
                 isActive
-                  ? "text-ink font-medium dark:text-foreground"
-                  : "text-ink-muted font-normal hover:text-ink dark:text-muted-foreground dark:hover:text-foreground"
+                  ? "text-ink dark:text-foreground font-medium"
+                  : "text-ink-muted hover:text-ink dark:text-muted-foreground dark:hover:text-foreground font-normal"
               )}
               style={{
                 fontVariationSettings: isSelected
@@ -543,7 +545,7 @@ const TabItem = forwardRef(
             {typeof badge === "string" || typeof badge === "number" ? (
               <span
                 className={cn(
-                  "border-hairline/60 inline-flex items-center justify-center rounded-full border px-1.5 py-0.2 text-[10px] font-medium transition-colors",
+                  "border-hairline/60 py-0.2 inline-flex items-center justify-center rounded-full border px-1.5 text-[10px] font-medium transition-colors",
                   isSelected
                     ? "bg-surface-2 text-ink dark:bg-surface-3 dark:text-foreground"
                     : "bg-surface-1/80 text-ink-muted dark:bg-surface-2 dark:text-muted-foreground"

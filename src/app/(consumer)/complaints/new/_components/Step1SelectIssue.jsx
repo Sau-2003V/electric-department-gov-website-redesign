@@ -52,7 +52,7 @@ export function Step1SelectIssue({
                     }
                   }}
                   className={cn(
-                    "group focus-visible:ring-ink relative flex cursor-pointer flex-col justify-between rounded-xl border p-4 text-left transition-all duration-150 select-none active:scale-[0.98] focus-visible:ring-2 focus-visible:outline-none",
+                    "group focus-visible:ring-ink relative flex cursor-pointer flex-col justify-between rounded-xl border p-4 text-left transition-all duration-150 select-none focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]",
                     isSelected
                       ? "border-ink bg-ink text-on-primary shadow-xs"
                       : "border-semantic-error/30 bg-semantic-error/5 text-ink hover:border-semantic-error/50 hover:bg-semantic-error/10"
@@ -143,7 +143,7 @@ export function Step1SelectIssue({
                   }
                 }}
                 className={cn(
-                  "group focus-visible:ring-ink relative flex cursor-pointer flex-col justify-between rounded-xl border p-4 text-left transition-all duration-150 select-none active:scale-[0.98] focus-visible:ring-2 focus-visible:outline-none",
+                  "group focus-visible:ring-ink relative flex cursor-pointer flex-col justify-between rounded-xl border p-4 text-left transition-all duration-150 select-none focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]",
                   isSelected
                     ? "border-ink bg-ink text-on-primary shadow-xs"
                     : "border-hairline bg-surface-1 text-ink hover:border-ink/30 hover:bg-surface-2/40"
@@ -235,4 +235,3 @@ export function Step1SelectIssue({
     </div>
   );
 }
-

@@ -324,4 +324,3 @@ export function Step2LocationDetails({
     </div>
   );
 }
-

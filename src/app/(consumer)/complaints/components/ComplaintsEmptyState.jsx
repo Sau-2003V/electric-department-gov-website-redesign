@@ -12,9 +12,7 @@ export default function ComplaintsEmptyState({
       <div className="border-hairline bg-surface-2 text-ink-muted mb-3 flex size-12 items-center justify-center rounded-full border">
         <Inbox className="size-6" strokeWidth={1.5} />
       </div>
-      <p className="text-body-sm text-ink font-medium">
-        No complaints found
-      </p>
+      <p className="text-body-sm text-ink font-medium">No complaints found</p>
       <p className="text-caption text-ink-muted mt-0.5 max-w-xs">
         {searchQuery
           ? `No grievances matching "${searchQuery}". Try a different keyword or reset filters.`

@@ -80,4 +80,3 @@ export function ComplaintStepper({ step, onStepChange }) {
     </nav>
   );
 }
-
