@@ -7,7 +7,7 @@ const TYPE_CONFIG = {
     label: "Planned Outage",
     badgeVariant: "warning",
     containerBg: "bg-surface-1",
-    containerBorder: "border-report-orange/30",
+    containerBorder: "border-report-orange",
     iconBg: "bg-report-orange/10",
     iconRing: "ring-1 ring-report-orange/20",
     iconColor: "text-report-orange",
@@ -38,7 +38,7 @@ export default function OutageAlert({
     <section
       aria-label="Power outage alert"
       className={cn(
-        "mb-lg sm:mb-xl p-md sm:p-lg shadow-surface-1 overflow-hidden rounded-xl border transition-all",
+        "mb-lg sm:mb-xl p-md sm:p-lg shadow-surface-1 overflow-hidden rounded-2xl border transition-all",
         config.containerBorder,
         config.containerBg,
         className
@@ -48,7 +48,7 @@ export default function OutageAlert({
         {/* Leading Alert Icon */}
         <div
           className={cn(
-            "mt-xxs flex h-9 w-9 shrink-0 items-center justify-center rounded-lg",
+            "mt-xxs flex h-9 w-9 shrink-0 items-center justify-center rounded-xl",
             config.iconBg,
             config.iconRing
           )}

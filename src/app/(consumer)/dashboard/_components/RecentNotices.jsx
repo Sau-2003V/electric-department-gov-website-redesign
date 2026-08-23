@@ -6,6 +6,8 @@ import {
   Megaphone,
   ShieldAlert,
 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
 const DEFAULT_NOTICES = [
   {
@@ -41,18 +43,18 @@ const DEFAULT_NOTICES = [
 const TYPE_CONFIG = {
   tariff: {
     icon: FileText,
-    iconBg: "bg-[#eff6ff]",
-    iconColor: "text-[#2563eb]",
+    iconBg: "bg-report-blue/10",
+    iconColor: "text-report-blue",
   },
   maintenance: {
     icon: ShieldAlert,
-    iconBg: "bg-[#fff7ed]",
-    iconColor: "text-[#ea580c]",
+    iconBg: "bg-report-orange/10",
+    iconColor: "text-report-orange",
   },
   advisory: {
     icon: Megaphone,
-    iconBg: "bg-[#faf5ff]",
-    iconColor: "text-[#9333ea]",
+    iconBg: "bg-surface-2",
+    iconColor: "text-ink",
   },
 };
 
@@ -64,68 +66,83 @@ function NoticeRow({ notice }) {
   return (
     <Link
       href={`/notices/${notice.id}`}
-      className="group flex items-start gap-4 border-b border-[#eae7e2] px-5 py-4 transition-colors duration-100 last:border-b-0 hover:bg-[#faf8f6]"
+      className="group gap-md border-hairline-soft px-lg py-md hover:bg-surface-2/40 flex items-start border-b transition-colors last:border-b-0"
     >
       {/* Type icon */}
       <div
-        className={`mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl ${tc.iconBg}`}
+        className={cn(
+          "mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-xl",
+          tc.iconBg
+        )}
       >
-        <Icon size={15} className={tc.iconColor} strokeWidth={2} />
+        <Icon
+          className={cn("size-4", tc.iconColor)}
+          strokeWidth={2}
+          aria-hidden="true"
+        />
       </div>
 
       {/* Content */}
       <div className="min-w-0 flex-1">
-        <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-          <p className="text-[13px] font-semibold text-[#111]">
-            {notice.title}
-          </p>
+        <div className="gap-xs flex flex-wrap items-center">
+          <p className="text-body-sm text-ink font-medium">{notice.title}</p>
           {notice.isNew && (
-            <span className="rounded-full bg-[#ff5600] px-2 py-0.5 text-[10px] font-bold tracking-wide text-white uppercase">
+            <Badge variant="accent" size="sm">
               New
-            </span>
+            </Badge>
           )}
         </div>
-        <p className="mt-1 line-clamp-2 text-[12px] leading-snug text-[#888]">
+        <p className="mt-xxs text-caption text-ink-muted line-clamp-2 leading-relaxed">
           {notice.summary}
         </p>
-        <p className="mt-1.5 text-[11px] text-[#bbb]">{notice.date}</p>
+        <p className="mt-xs text-caption text-ink-subtle">{notice.date}</p>
       </div>
 
       {/* Chevron */}
       <ChevronRight
-        size={15}
-        className="mt-1 shrink-0 text-[#ccc] transition-transform duration-150 group-hover:translate-x-0.5 group-hover:text-[#999]"
+        className="text-ink-tertiary group-hover:text-ink mt-1 size-4 shrink-0 transition-transform group-hover:translate-x-0.5"
+        aria-hidden="true"
       />
     </Link>
   );
 }
 
 /* ─── Section ────────────────────────────────────────────────────────── */
-export default function RecentNotices({ notices = DEFAULT_NOTICES }) {
+export default function RecentNotices({
+  notices = DEFAULT_NOTICES,
+  className,
+}) {
   return (
-    <section className="overflow-hidden rounded-2xl border border-[#e0dbd3] bg-white shadow-[0_1px_4px_rgba(0,0,0,0.05)]">
+    <section
+      aria-label="Notices and Circulars"
+      className={cn("bg-surface-1 overflow-hidden rounded-2xl", className)}
+    >
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-[#eae7e2] px-5 py-4">
-        <div className="flex items-center gap-2">
-          <Bell size={15} className="text-[#ff5600]" strokeWidth={2.5} />
-          <p className="text-[13px] font-bold tracking-[0.4px] text-[#111] uppercase">
+      <div className="border-hairline-soft px-lg py-md flex items-center justify-between border-b">
+        <div className="gap-xs flex items-center">
+          <Bell
+            className="text-fin-orange size-4"
+            strokeWidth={2.2}
+            aria-hidden="true"
+          />
+          <p className="text-eyebrow text-ink font-medium uppercase">
             Notices &amp; Circulars
           </p>
         </div>
         <Link
           href="/notices"
-          className="flex items-center gap-1 text-[13px] font-semibold text-[#ff5600] transition-colors hover:text-[#cc4400]"
+          className="gap-xxs text-body-sm text-fin-orange hover:text-fin-orange/80 flex items-center font-medium transition-colors"
         >
-          View all
-          <ChevronRight size={14} />
+          <span>View all</span>
+          <ChevronRight className="size-3.5" aria-hidden="true" />
         </Link>
       </div>
 
       {/* Rows */}
       {notices.length === 0 ? (
-        <div className="flex flex-col items-center justify-center gap-2 py-10 text-[#bbb]">
-          <Bell size={28} strokeWidth={1.5} />
-          <p className="text-[13px]">No notices available</p>
+        <div className="gap-xs py-xl text-ink-subtle flex flex-col items-center justify-center">
+          <Bell className="size-7" strokeWidth={1.5} />
+          <p className="text-body-sm">No notices available</p>
         </div>
       ) : (
         notices.map((n) => <NoticeRow key={n.id} notice={n} />)

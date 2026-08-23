@@ -40,21 +40,21 @@ export default function DashboardHeader() {
       {/* Greeting row */}
       <div className="mb-md flex items-start justify-between">
         <div>
-          <p className="text-eyebrow text-ink-subtle uppercase">Namaste</p>
+          <p className="text-body sm:text-body-lg font-medium text-ink-subtle uppercase tracking-wider">Namaste,</p>
 
           {isLoading ? (
             <div className="mt-xs space-y-xs animate-pulse">
-              <div className="bg-surface-2 h-8 w-48 rounded-lg" />
-              <div className="bg-surface-2 h-4 w-36 rounded-md" />
+              <div className="bg-surface-2 h-10 w-64 rounded-xl sm:h-14 sm:w-80" />
+              <div className="bg-surface-2 h-5 w-44 rounded-lg" />
             </div>
           ) : (
             <>
-              <h1 className="mt-xxs text-headline text-ink sm:text-display-md font-medium">
+              <h1 className="mt-xxs text-display-md font-medium text-ink sm:text-display-lg">
                 {name}
               </h1>
-              <div className="mt-xs gap-xs text-body-sm text-ink-muted flex items-center">
+              <div className="mt-xs flex items-center gap-xs text-body font-normal text-ink-muted sm:mt-sm sm:gap-sm sm:text-body-lg">
                 <span>Meter No.</span>
-                <span className="text-ink font-medium">
+                <span className="font-semibold text-ink">
                   {meterNumber ?? "—"}
                 </span>
                 {meterNumber && (
@@ -63,7 +63,7 @@ export default function DashboardHeader() {
                     variant="ghost"
                     size="icon-compact"
                     onClick={handleCopy}
-                    className="text-ink-muted hover:bg-surface-2 hover:text-ink focus-visible:ring-ink/20 relative focus-visible:ring-1"
+                    className="relative text-ink-muted hover:bg-surface-2 hover:text-ink focus-visible:ring-1 focus-visible:ring-ink/20"
                     aria-label={
                       copied ? "Copied meter number" : "Copy meter number"
                     }
@@ -72,20 +72,20 @@ export default function DashboardHeader() {
                     <span
                       className={`inline-flex items-center justify-center transition-all duration-150 ${
                         copied
-                          ? "text-semantic-success scale-100 opacity-100"
+                          ? "scale-100 text-semantic-success opacity-100"
                           : "absolute scale-0 opacity-0"
                       }`}
                     >
-                      <Check className="size-3.5" strokeWidth={2.5} />
+                      <Check className="size-4" strokeWidth={2.5} />
                     </span>
                     <span
                       className={`inline-flex items-center justify-center transition-all duration-150 ${
                         copied
                           ? "absolute scale-0 opacity-0"
-                          : "text-ink-muted group-hover:text-ink scale-100 opacity-100"
+                          : "scale-100 text-ink-muted group-hover:text-ink opacity-100"
                       }`}
                     >
-                      <Copy className="size-3.5" strokeWidth={2} />
+                      <Copy className="size-4" strokeWidth={2} />
                     </span>
                   </Button>
                 )}
