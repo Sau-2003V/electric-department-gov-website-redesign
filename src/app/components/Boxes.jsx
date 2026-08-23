@@ -54,7 +54,10 @@ export default function Boxes({ sections }) {
               <h3 className="text-card-title text-ink mb-2 font-semibold">
                 {it.title}
               </h3>
-              <p className="text-body text-ink-muted mb-4">{it.description}</p>
+             <div className="text-body text-ink-muted mb-4">
+  {it.description}
+</div>
+
 
               <div className="mt-auto pt-2">
                 <a
