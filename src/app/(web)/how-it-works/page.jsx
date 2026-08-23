@@ -1,96 +1,221 @@
+import Link from "next/link";
 import {
   UserRound,
   LayoutDashboard,
   FileText,
   Clock,
-  CreditCard,
+  MessageSquare,
+  CheckCircle,
+  Star,
+  ArrowRight,
   HelpCircle,
+  ShieldCheck,
 } from "lucide-react";
+import TopHeader from "@/app/_components/TopHeader";
+import Footer from "@/app/_components/Footer";
+import { Button } from "@/components/ui/button";
+
+export const metadata = {
+  title: "How It Works · Vidhyut Electricity Portal",
+  description:
+    "Step-by-step guide to registering complaints, tracking lineman dispatch, confirming resolution, and accessing consumer services on Vidhyut Portal.",
+};
+
+const steps = [
+  {
+    title: "Sign in or register",
+    icon: UserRound,
+    heading: "Verify your consumer connection",
+    badge: "Step 01",
+    description:
+      "Enter your 10-digit consumer connection number (CA number) and registered mobile number to receive a one-time passcode (OTP).",
+    secondDescription:
+      "New consumers are registered automatically upon their first verified OTP login—no passwords or physical paperwork required.",
+  },
+  {
+    title: "Open your dashboard",
+    icon: LayoutDashboard,
+    heading: "View all active connections",
+    badge: "Step 02",
+    description:
+      "Access your unified consumer dashboard to view current connection status, recent electricity bills, and previous service history.",
+    secondDescription:
+      "Manage multiple domestic, commercial, or agricultural meters under a single registered phone number.",
+  },
+  {
+    title: "Lodge a complaint",
+    icon: FileText,
+    heading: "Select the issue category",
+    badge: "Step 03",
+    description:
+      "Choose your issue type—such as supply outage, transformer fault, burnt meter, or billing dispute—and add your location or landmark.",
+    secondDescription:
+      "Every submission generates an instant tracking docket number and automatically alerts your local distribution substation.",
+  },
+  {
+    title: "Track lineman dispatch",
+    icon: Clock,
+    heading: "Follow progress in real time",
+    badge: "Step 04",
+    description:
+      "Track your complaint docket on the portal. View assigned Junior Engineer (JE) contact details, lineman dispatch, and estimated restoration time.",
+    secondDescription:
+      "You will receive SMS notifications as field teams update the status directly from the inspection site.",
+  },
+  {
+    title: "Receive official updates",
+    icon: MessageSquare,
+    heading: "Get real-time SMS and portal alerts",
+    badge: "Step 05",
+    description:
+      "Receive live notifications as linemen diagnose and repair the issue. If additional site access is required, the team will contact you directly.",
+    secondDescription:
+      "All inspection notes, supervisor remarks, and communication history remain permanently recorded on your docket log.",
+  },
+  {
+    title: "Confirm resolution",
+    icon: CheckCircle,
+    heading: "Review and verify the repair",
+    badge: "Step 06",
+    description:
+      "Once field repairs are completed, review the technician's resolution summary and verify that your power supply or billing correction is fully restored.",
+    secondDescription:
+      "If you are not satisfied with the resolution, you can reopen the ticket or escalate it to the Executive Engineer within 72 hours.",
+  },
+  {
+    title: "Share service feedback",
+    icon: Star,
+    heading: "Submit your rating",
+    badge: "Step 07",
+    description:
+      "Rate the response speed, lineman conduct, and overall resolution quality to help maintain public service standards.",
+    secondDescription:
+      "Citizen ratings directly determine contractor performance evaluations and departmental service quality audits.",
+  },
+];
 
 export default function HowItWorksPage() {
-  const steps = [
-    {
-      title: "Sign Up / Login",
-      description: "Create your account or log in with your meter number.",
-      icon: <UserRound size={28} className="text-[#ef5b28]" />,
-    },
-    {
-      title: "Dashboard Access",
-      description:
-        "View your meter details, bills, and shortcuts in one place.",
-      icon: <LayoutDashboard size={28} className="text-[#ef5b28]" />,
-    },
-    {
-      title: "Raise Complaint",
-      description:
-        "Submit a complaint if you face issues like power cut or wrong bill.",
-      icon: <FileText size={28} className="text-[#ef5b28]" />,
-    },
-    {
-      title: "Track Status",
-      description:
-        "Check the progress of your complaint and see when it will be fixed.",
-      icon: <Clock size={28} className="text-[#ef5b28]" />,
-    },
-    {
-      title: "Make Payment",
-      description: "Pay your bills online safely using Razorpay.",
-      icon: <CreditCard size={28} className="text-[#ef5b28]" />,
-    },
-    {
-      title: "Get Support",
-      description: "Read FAQs or contact our support team for help.",
-      icon: <HelpCircle size={28} className="text-[#ef5b28]" />,
-    },
-  ];
-
   return (
-    <main className="min-h-screen bg-[#f5f2ec] text-[#171717]">
-      <section className="mx-auto max-w-[1315px] px-5 pt-10 pb-14">
-        <div className="mb-8 text-center">
-          <p className="mb-1 text-[13px] font-bold tracking-[0.3px] text-[#ef5b28] uppercase">
-            How It Works
-          </p>
-          <h1 className="text-[32px] leading-[1.2] font-bold tracking-[-0.8px] text-[#111]">
-            A Simple Flow
-          </h1>
-          <p className="mx-auto mt-2 max-w-[650px] text-[15px] leading-6 text-[#686868]">
-            Managing electricity services is now easy. Just follow these simple
-            steps.
-          </p>
-        </div>
+    <div className="bg-canvas text-ink selection:bg-fin-orange selection:text-on-primary flex min-h-screen flex-col">
+      {/* Accessibility header & main navigation */}
+      <TopHeader />
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {steps.map((step, index) => (
-            <div
-              key={step.title}
-              className="flex flex-col rounded-[19px] border border-[#ddd9d2] bg-gradient-to-br from-[#fffdfa] to-[#f9f7f3] p-6 shadow transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(0,0,0,0.06)]"
-            >
-              <div className="mb-4 flex items-center gap-3">
-                <div className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#ef5b28] font-bold text-white">
-                  {index + 1}
+      <main className="flex-1">
+        {/* Page Hero Header */}
+        <section className="border-hairline/60 bg-surface-1/50 border-b px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+          <div className="mx-auto max-w-4xl text-center">
+            <span className="text-eyebrow text-fin-orange font-medium">
+              Consumer guide
+            </span>
+
+            <h1 className="text-display-md text-ink sm:text-display-lg mt-3 font-medium tracking-tight">
+              How the grievance portal works
+            </h1>
+
+            <div className="bg-fin-orange mx-auto mt-4 h-0.5 w-16 rounded-full" />
+
+            <p className="text-body text-ink-muted mx-auto mt-6 max-w-2xl leading-relaxed">
+              From lodging an urgent outage to tracking field repairs and
+              verifying resolution, here is how your service request moves
+              through the electricity department.
+            </p>
+          </div>
+        </section>
+
+        {/* Workflow Steps Section */}
+        <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+          <div className="space-y-6 sm:space-y-8">
+            {steps.map((step) => {
+              const Icon = step.icon;
+
+              return (
+                <div
+                  key={step.title}
+                  className="border-hairline bg-surface-1 hover:border-hairline/80 rounded-2xl border p-6 shadow-2xs transition-all duration-200 sm:p-8 md:grid md:grid-cols-12 md:gap-8"
+                >
+                  {/* Left Column: Icon + Step Badge + Title */}
+                  <div className="md:border-hairline/60 flex flex-col items-start md:col-span-4 md:border-r md:pr-6">
+                    <div className="flex w-full items-center justify-between">
+                      <div className="border-hairline/60 bg-surface-2 text-ink flex size-12 items-center justify-center rounded-xl border">
+                        <Icon className="size-6" strokeWidth={1.8} />
+                      </div>
+                      <span className="border-fin-orange/20 bg-fin-orange/10 text-fin-orange text-caption rounded-full border px-2.5 py-0.5 font-medium">
+                        {step.badge}
+                      </span>
+                    </div>
+
+                    <h3 className="text-card-title text-ink mt-4 font-medium">
+                      {step.title}
+                    </h3>
+
+                    <div className="bg-fin-orange/40 mt-3 h-0.5 w-10 rounded-full" />
+
+                    <div className="text-caption text-ink-subtle mt-4 flex items-center gap-1.5">
+                      <ShieldCheck className="text-fin-orange size-3.5" />
+                      <span>Verified DISCOM protocol</span>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Detailed Headings & Description */}
+                  <div className="mt-6 flex flex-col justify-center md:col-span-8 md:mt-0 md:pl-2">
+                    <h2 className="text-headline text-ink font-medium">
+                      {step.heading}
+                    </h2>
+
+                    <p className="text-body text-ink-muted mt-3 leading-relaxed">
+                      {step.description}
+                    </p>
+
+                    <p className="text-body-sm text-ink-muted/90 mt-3 leading-relaxed">
+                      {step.secondDescription}
+                    </p>
+                  </div>
                 </div>
-                {step.icon}
-              </div>
-              <h2 className="text-[18px] font-semibold text-[#171717]">
-                {step.title}
-              </h2>
-              <p className="mt-2 text-[14px] leading-6 text-[#626262]">
-                {step.description}
-              </p>
-            </div>
-          ))}
-        </div>
+              );
+            })}
+          </div>
 
-        <div className="mt-12 text-center">
-          <a
-            href="/help"
-            className="inline-block rounded-[10px] bg-[#171717] px-6 py-3 text-[14px] font-semibold text-white transition-colors hover:bg-[#ef5b28]"
-          >
-            Get Started
-          </a>
-        </div>
-      </section>
-    </main>
+          {/* Bottom Action Card */}
+          <div className="border-hairline bg-surface-1 mt-12 rounded-2xl border p-8 text-center shadow-2xs sm:p-12">
+            <span className="text-eyebrow text-fin-orange font-medium">
+              Ready to get started?
+            </span>
+            <h2 className="text-headline text-ink mt-2 font-medium">
+              Register a complaint in under two minutes
+            </h2>
+            <p className="text-body text-ink-muted mx-auto mt-3 w-full max-w-2xl leading-relaxed">
+              Lodge emergency breakdowns, report faulty equipment, or sign in to
+              track existing tickets across your supply subdivision.
+            </p>
+
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <Link href="/complaints/new" className="w-full sm:w-auto">
+                <Button
+                  variant="accent"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                  rightIcon={<ArrowRight className="size-4" />}
+                >
+                  <span>Register a complaint</span>
+                </Button>
+              </Link>
+
+              <Link href="/login" className="w-full sm:w-auto">
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                >
+                  <span>Sign in to dashboard</span>
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* Global Portal Footer */}
+      <Footer />
+    </div>
   );
 }
