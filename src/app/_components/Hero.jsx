@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ArrowRight, PhoneCall, HelpCircle } from "lucide-react";
+import Autoplay from "embla-carousel-autoplay";
 import {
   Carousel,
   CarouselContent,
@@ -40,7 +41,15 @@ export default function Hero() {
       <div className="mx-auto max-w-7xl">
         {/* Advisory carousel */}
         <div className="mb-8">
-          <Carousel opts={{ loop: true }} className="w-full">
+          <Carousel
+            opts={{ loop: true }}
+            plugins={[
+              Autoplay({
+                delay: 3500,
+              }),
+            ]}
+            className="w-full"
+          >
             <div className="relative">
               <CarouselContent>
                 {urgentSlides.map((slide, i) => (
