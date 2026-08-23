@@ -1,4 +1,11 @@
-import { UserRound, LayoutDashboard, FileText, Clock, CreditCard, HelpCircle } from "lucide-react";
+import {
+  UserRound,
+  LayoutDashboard,
+  FileText,
+  Clock,
+  CreditCard,
+  HelpCircle,
+} from "lucide-react";
 
 export default function HowItWorksPage() {
   const steps = [
@@ -9,17 +16,20 @@ export default function HowItWorksPage() {
     },
     {
       title: "Dashboard Access",
-      description: "View your meter details, bills, and shortcuts in one place.",
+      description:
+        "View your meter details, bills, and shortcuts in one place.",
       icon: <LayoutDashboard size={28} className="text-[#ef5b28]" />,
     },
     {
       title: "Raise Complaint",
-      description: "Submit a complaint if you face issues like power cut or wrong bill.",
+      description:
+        "Submit a complaint if you face issues like power cut or wrong bill.",
       icon: <FileText size={28} className="text-[#ef5b28]" />,
     },
     {
       title: "Track Status",
-      description: "Check the progress of your complaint and see when it will be fixed.",
+      description:
+        "Check the progress of your complaint and see when it will be fixed.",
       icon: <Clock size={28} className="text-[#ef5b28]" />,
     },
     {
@@ -36,16 +46,17 @@ export default function HowItWorksPage() {
 
   return (
     <main className="min-h-screen bg-[#f5f2ec] text-[#171717]">
-      <section className="mx-auto max-w-[1315px] px-5 pb-14 pt-10">
+      <section className="mx-auto max-w-[1315px] px-5 pt-10 pb-14">
         <div className="mb-8 text-center">
-          <p className="mb-1 text-[13px] font-bold uppercase tracking-[0.3px] text-[#ef5b28]">
+          <p className="mb-1 text-[13px] font-bold tracking-[0.3px] text-[#ef5b28] uppercase">
             How It Works
           </p>
-          <h1 className="text-[32px] font-bold leading-[1.2] tracking-[-0.8px] text-[#111]">
+          <h1 className="text-[32px] leading-[1.2] font-bold tracking-[-0.8px] text-[#111]">
             A Simple Flow
           </h1>
-          <p className="mt-2 max-w-[650px] mx-auto text-[15px] leading-6 text-[#686868]">
-            Managing electricity services is now easy. Just follow these simple steps.
+          <p className="mx-auto mt-2 max-w-[650px] text-[15px] leading-6 text-[#686868]">
+            Managing electricity services is now easy. Just follow these simple
+            steps.
           </p>
         </div>
 
@@ -55,14 +66,18 @@ export default function HowItWorksPage() {
               key={step.title}
               className="flex flex-col rounded-[19px] border border-[#ddd9d2] bg-gradient-to-br from-[#fffdfa] to-[#f9f7f3] p-6 shadow transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(0,0,0,0.06)]"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#ef5b28] text-white font-bold">
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#ef5b28] font-bold text-white">
                   {index + 1}
                 </div>
                 {step.icon}
               </div>
-              <h2 className="text-[18px] font-semibold text-[#171717]">{step.title}</h2>
-              <p className="mt-2 text-[14px] leading-6 text-[#626262]">{step.description}</p>
+              <h2 className="text-[18px] font-semibold text-[#171717]">
+                {step.title}
+              </h2>
+              <p className="mt-2 text-[14px] leading-6 text-[#626262]">
+                {step.description}
+              </p>
             </div>
           ))}
         </div>

@@ -1,143 +1,166 @@
+"use client";
+
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  PhoneCall,
+  CheckCircle2,
+  Sparkles,
+  HelpCircle,
+  FileText,
+  Clock,
+  ShieldCheck,
+} from "lucide-react";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 
-const stats = [
+const urgentSlides = [
   {
-    value: "1.42 Cr",
-    label: "Registered Consumers",
-    sublabel: "Across 21 Districts",
-    watermark: "1.42",
-    dark: false,
+    tag: "Immediate redressal",
+    title: "Facing a power outage or transformer failure?",
+    desc: "Register your emergency breakdown online for rapid lineman dispatch.",
+    cta: "Lodge supply complaint",
+    href: "/complaints/new",
+    accentBorder: "border-fin-orange/30",
   },
   {
-    value: "21",
-    label: "Districts Covered",
-    sublabel: "Operational Circles",
-    watermark: "21",
-    dark: false,
+    tag: "Citizen advisory",
+    title: "Burnt meter, wire sparking, or a live safety hazard?",
+    desc: "Report life-threatening electrical faults immediately — portal or 24x7 toll-free 1912.",
+    cta: "Report hazard now",
+    href: "/complaints/new",
+    accentBorder: "border-semantic-error/30",
   },
   {
-    value: "1,860",
-    label: "Substations Active",
-    sublabel: "33/11 kV Grid Units",
-    watermark: "1.8k",
-    dark: false,
-  },
-  {
-    value: "1912",
-    label: "Toll Free Helpline",
-    sublabel: "24x7 Active Grievance",
-    watermark: "1912",
-    dark: true,
+    tag: "Consumer scheme",
+    title: "OTS 2026 — 100% surcharge waiver available",
+    desc: "Submit billing dispute or apply for the one-time settlement under OTS guidelines.",
+    cta: "File dispute online",
+    href: "/complaints/new",
+    accentBorder: "border-brand-blue/30",
   },
 ];
 
-function StatCard({ value, label, sublabel, watermark, dark }) {
-  return (
-    <div
-      className={cn(
-        "relative flex min-h-[140px] flex-col justify-between overflow-hidden rounded-xl p-6 transition-all duration-150",
-        dark
-          ? "bg-inverse-canvas text-inverse-ink border-inverse-surface-1 border shadow-xs"
-          : "border-hairline bg-surface-1 text-ink hover:border-hairline border shadow-2xs"
-      )}
-    >
-      {/* Faded Watermark in background */}
-      <span
-        className={cn(
-          "pointer-events-none absolute -right-2 -bottom-3 font-mono text-7xl leading-none font-bold select-none",
-          dark ? "text-inverse-ink/5" : "text-ink/5"
-        )}
-      >
-        {watermark}
-      </span>
-
-      <div className="relative z-10">
-        <p className="text-fin-orange font-mono text-3xl font-bold tracking-tight sm:text-4xl">
-          {value}
-        </p>
-      </div>
-
-      <div className="relative z-10 mt-3">
-        <p
-          className={cn(
-            "text-xs font-semibold tracking-wider uppercase",
-            dark ? "text-inverse-ink" : "text-ink"
-          )}
-        >
-          {label}
-        </p>
-        <p
-          className={cn(
-            "text-xs font-normal",
-            dark ? "text-inverse-ink-muted" : "text-ink-muted"
-          )}
-        >
-          {sublabel}
-        </p>
-        {dark && (
-          <span className="bg-fin-orange mt-2 block h-0.5 w-8 rounded-full" />
-        )}
-      </div>
-    </div>
-  );
-}
-
 export default function Hero() {
   return (
-    <section className="bg-canvas w-full px-4 py-12 sm:px-6 md:py-16 lg:px-8">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
-        {/* Left Column (Content & CTAs) */}
-        <div className="flex flex-col items-start pr-0 lg:col-span-7 lg:pr-8 xl:col-span-7">
-          {/* Eyebrow Badge */}
-          <div className="border-hairline bg-surface-2 text-ink mb-4 inline-flex items-center gap-2 rounded-xs border px-3 py-1 text-xs font-medium tracking-wide">
-            <span className="bg-fin-orange h-2 w-2 animate-pulse rounded-full" />
-            Official Portal
-          </div>
-
-          {/* Display Heading */}
-          <h1 className="text-ink mb-4 text-4xl leading-[1.08] font-medium tracking-tight sm:text-5xl lg:text-6xl">
-            Welcome to <span className="text-ink">VVNL</span>
-          </h1>
-
-          {/* Subhead / Paragraph */}
-          <p className="text-ink-muted mb-8 max-w-2xl text-sm leading-relaxed font-normal sm:text-base">
-            Vidyut Vitran Nigam Limited is a company incorporated under the
-            Companies Act, carrying out the business of distribution of
-            electricity within its licensed area of supply. The Nigam supplies
-            power in both rural and urban areas round twenty four hours with
-            state-of-the-art electrical infrastructure.
-          </p>
-
-          {/* CTAs */}
-          <div className="flex flex-wrap items-center gap-3.5">
-            <Link
-              href="/about"
-              className="bg-fin-orange text-on-primary inline-flex items-center justify-center gap-2 rounded-md px-6 py-2.5 text-sm font-medium shadow-xs transition-all hover:brightness-110 active:scale-[0.96]"
-            >
-              View More
-              <ArrowRight className="h-4 w-4" strokeWidth={2} />
-            </Link>
-            <Link
-              href="/login"
-              className="border-hairline bg-surface-1 text-ink hover:bg-surface-2 inline-flex items-center justify-center rounded-md border px-6 py-2.5 text-sm font-medium shadow-2xs transition-colors active:scale-[0.96]"
-            >
-              Consumer Login
-            </Link>
-          </div>
+    <section className="bg-canvas w-full px-4 py-8 sm:px-6 md:py-12 lg:px-8">
+      <div className="mx-auto max-w-7xl">
+        {/* Advisory carousel */}
+        <div className="mb-8">
+          <Carousel opts={{ loop: true }} className="w-full">
+            <div className="relative">
+              <CarouselContent>
+                {urgentSlides.map((slide, i) => (
+                  <CarouselItem key={i}>
+                    <div
+                      className={cn(
+                        "bg-surface-1 flex flex-col justify-between rounded-xl border p-5 shadow-2xs sm:flex-row sm:items-center sm:p-6",
+                        slide.accentBorder
+                      )}
+                    >
+                      <div className="mb-4 sm:mb-0 sm:pr-6">
+                        <h2 className="text-headline text-ink">
+                          {slide.title}
+                        </h2>
+                        <p className="text-body-sm text-ink-muted mt-1">
+                          {slide.desc}
+                        </p>
+                      </div>
+                      <Link
+                        href={slide.href}
+                        className="bg-fin-orange text-on-primary inline-flex shrink-0 items-center gap-1.5 rounded-md px-4 py-2 text-xs font-semibold shadow-xs transition-all hover:brightness-110 active:scale-[0.96]"
+                      >
+                        {slide.cta}
+                        <ArrowRight className="h-3.5 w-3.5" />
+                      </Link>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              {/* <div className="hidden sm:block">
+                <CarouselPrevious className="bg-surface-1 text-ink hover:bg-surface-2 top-1/2 -left-4 -translate-y-1/2 shadow-xs" />
+                <CarouselNext className="bg-surface-1 text-ink hover:bg-surface-2 top-1/2 -right-4 -translate-y-1/2 shadow-xs" />
+              </div> */}
+            </div>
+          </Carousel>
         </div>
 
-        {/* Right Column (2x2 Bento Stat Cards) */}
-        <div className="lg:col-span-5 xl:col-span-5">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div className="flex flex-col gap-4">
-              <StatCard {...stats[0]} />
-              <StatCard {...stats[2]} />
+        {/* Main action grid */}
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
+          {/* Left: Complaint Registration Hub */}
+          <div className="border-hairline bg-surface-1 flex flex-col justify-between rounded-2xl border p-6 shadow-2xs sm:p-8 lg:col-span-8">
+            <div>
+              {/* Welcome Header */}
+              <div>
+                <span className="text-eyebrow text-fin-orange font-semibold tracking-wide uppercase">
+                  Welcome to Vidhyut Portal
+                </span>
+                <h1 className="text-display-md text-ink mt-2">
+                  Register electricity complaints &amp; grievances
+                </h1>
+                <p className="text-body text-ink-muted mt-3 max-w-2xl leading-relaxed">
+                  Welcome to the state electricity grievance redresal portal.
+                  File complaints for power outages, low voltage, burnt
+                  transformers, meter defects, or billing issues. Every
+                  complaint is assigned an instant tracking docket and
+                  dispatched directly to local subdivision field engineers.
+                </p>
+
+                {/* Dual Action Buttons */}
+                <div className="mt-6 flex flex-wrap items-center gap-3">
+                  <Link
+                    href="/complaints/new"
+                    className="bg-fin-orange text-on-primary inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 text-sm font-semibold shadow-xs transition-all hover:brightness-110 active:scale-[0.96]"
+                  >
+                    <span>Register complaint</span>
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                  <Link
+                    href="#video-guides"
+                    className="border-hairline bg-surface-1 text-ink hover:bg-surface-2 inline-flex items-center justify-center gap-2 rounded-md border px-5 py-3 text-sm font-medium transition-colors active:scale-[0.96]"
+                  >
+                    <HelpCircle className="text-fin-orange h-4 w-4" />
+                    <span>Video guides &amp; help</span>
+                  </Link>
+                </div>
+              </div>
             </div>
-            <div className="flex flex-col gap-4 sm:pt-6">
-              <StatCard {...stats[1]} />
-              <StatCard {...stats[3]} />
+          </div>
+
+          {/* Right: Emergency contacts & Quick Links */}
+          <div className="flex flex-col gap-4 lg:col-span-4">
+            {/* 24x7 emergency */}
+            <div className="border-inverse-surface-1 bg-inverse-canvas text-inverse-ink flex flex-col justify-between rounded-2xl border p-6 shadow-xs">
+              <div>
+                <h3 className="text-headline text-inverse-ink mt-2">
+                  Call toll-free 1912
+                </h3>
+                <p className="text-body-sm text-inverse-ink-muted mt-1">
+                  Immediate emergency, sparking line, fuse-off, or transformer
+                  failure.
+                </p>
+              </div>
+              <div className="mt-6 flex flex-col gap-2.5">
+                <a
+                  href="tel:1912"
+                  className="bg-fin-orange text-on-primary inline-flex items-center justify-center gap-2 rounded-md px-4 py-2.5 text-xs font-bold shadow-xs transition-all hover:brightness-110 active:scale-[0.96]"
+                >
+                  <PhoneCall className="h-4 w-4" strokeWidth={2} />
+                  Call 1912 — toll free
+                </a>
+                <a
+                  href="tel:18001801912"
+                  className="border-inverse-surface-1 bg-inverse-surface-1 text-inverse-ink hover:bg-inverse-surface-1/80 inline-flex items-center justify-center gap-2 rounded-md border px-4 py-2 text-xs font-medium transition-colors active:scale-[0.96]"
+                >
+                  Alt: 1800-180-1912
+                </a>
+              </div>
             </div>
           </div>
         </div>

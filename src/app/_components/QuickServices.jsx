@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { CreditCard, Zap, Activity, ShieldAlert, ChevronRight } from "lucide-react";
+import {
+  CreditCard,
+  Zap,
+  Activity,
+  ShieldAlert,
+  ChevronRight,
+} from "lucide-react";
 
 const quickActions = [
   {
@@ -30,7 +36,7 @@ const quickActions = [
 
 export default function QuickServices() {
   return (
-    <section className="w-full bg-canvas px-4 pb-10 sm:px-6 lg:px-8">
+    <section className="bg-canvas w-full px-4 pb-10 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {quickActions.map((action) => {
@@ -39,23 +45,26 @@ export default function QuickServices() {
               <Link
                 key={action.title}
                 href={action.href}
-                className="group relative flex flex-col justify-between rounded-xl border border-hairline bg-surface-1 p-6 shadow-2xs transition-all duration-150 hover:border-hairline hover:bg-surface-1 active:scale-[0.96]"
+                className="group border-hairline bg-surface-1 hover:border-hairline hover:bg-surface-1 relative flex flex-col justify-between rounded-xl border p-6 shadow-2xs transition-all duration-150 active:scale-[0.96]"
               >
                 <div>
-                  <div className="mb-4 inline-flex h-11 w-11 items-center justify-center rounded-lg bg-surface-2 text-fin-orange transition-colors group-hover:bg-fin-orange group-hover:text-on-primary">
+                  <div className="bg-surface-2 text-fin-orange group-hover:bg-fin-orange group-hover:text-on-primary mb-4 inline-flex h-11 w-11 items-center justify-center rounded-lg transition-colors">
                     <Icon className="h-5 w-5" strokeWidth={2} />
                   </div>
-                  <h3 className="text-base font-medium text-ink transition-colors group-hover:text-fin-orange">
+                  <h3 className="text-ink group-hover:text-fin-orange text-base font-medium transition-colors">
                     {action.title}
                   </h3>
-                  <p className="mt-1 text-xs leading-relaxed text-ink-muted">
+                  <p className="text-ink-muted mt-1 text-xs leading-relaxed">
                     {action.description}
                   </p>
                 </div>
 
-                <div className="mt-6 flex items-center gap-1 text-xs font-medium text-fin-orange">
+                <div className="text-fin-orange mt-6 flex items-center gap-1 text-xs font-medium">
                   <span>Proceed</span>
-                  <ChevronRight className="h-3.5 w-3.5 transition-transform duration-150 group-hover:translate-x-1" strokeWidth={2} />
+                  <ChevronRight
+                    className="h-3.5 w-3.5 transition-transform duration-150 group-hover:translate-x-1"
+                    strokeWidth={2}
+                  />
                 </div>
               </Link>
             );

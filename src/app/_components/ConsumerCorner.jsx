@@ -17,8 +17,16 @@ const categories = [
     items: [
       { text: "View / Print Bill History", href: "/bill/history" },
       { text: "Bill Payment (BBPS / Online)", href: "/bill/pay" },
-      { text: "Update Mobile & Aadhaar (eKYC)", href: "/profile/ekyc", badge: "NEW" },
-      { text: "Update Bank Account Details", href: "/profile/bank", badge: "NEW" },
+      {
+        text: "Update Mobile & Aadhaar (eKYC)",
+        href: "/profile/ekyc",
+        badge: "NEW",
+      },
+      {
+        text: "Update Bank Account Details",
+        href: "/profile/bank",
+        badge: "NEW",
+      },
       { text: "Register for SMS Alert & e-Bill", href: "/services/sms" },
       { text: "Payment and Consumption History", href: "/bill/history" },
       { text: "Self Bill Generation (Smart Meter)", href: "/bill/self" },
@@ -30,10 +38,19 @@ const categories = [
     title: "Connection Services",
     items: [
       { text: "Apply for New Connection (Jhatpat)", href: "/connection/apply" },
-      { text: "Load Extension, Reduction & Category Change", href: "/connection/modify" },
-      { text: "Name Transfer / Ownership Transfer", href: "/connection/transfer" },
+      {
+        text: "Load Extension, Reduction & Category Change",
+        href: "/connection/modify",
+      },
+      {
+        text: "Name Transfer / Ownership Transfer",
+        href: "/connection/transfer",
+      },
       { text: "Change in Address (Premises)", href: "/connection/address" },
-      { text: "Commercial / Industrial & Institutional Load", href: "/connection/commercial" },
+      {
+        text: "Commercial / Industrial & Institutional Load",
+        href: "/connection/commercial",
+      },
     ],
   },
   {
@@ -47,19 +64,26 @@ const categories = [
       { text: "Bill & Disconnection Dispute", href: "/complaints" },
       { text: "Voltage / Phase Issue", href: "/complaints" },
       { text: "OTS / Rebate Related Query", href: "/complaints" },
-      { text: "Permanent Disconnection Request (PDOC)", href: "/requests/disconnection" },
+      {
+        text: "Permanent Disconnection Request (PDOC)",
+        href: "/requests/disconnection",
+      },
     ],
   },
   {
     icon: ShieldCheck,
     title: "Complaints & Redressal",
     items: [
-      { text: "Register Online Complaint", href: "/complaints" },
-      { text: "Track Complaint Registration", href: "/complaints/track" },
+      { text: "Register Online Complaint", href: "/complaints/new" },
+      { text: "Track Complaint Registration", href: "/complaints" },
       { text: "View Complaint History / Status", href: "/complaints" },
       { text: "Escalation to Grievance Forum (CGRF)", href: "/cgrf" },
       { text: "Electricity Theft Report", href: "/theft-report" },
-      { text: "Vigilance / Misconduct Report", href: "/theft-report", badge: "NEW" },
+      {
+        text: "Vigilance / Misconduct Report",
+        href: "/theft-report",
+        badge: "NEW",
+      },
     ],
   },
   {
@@ -83,7 +107,7 @@ const categories = [
       { text: "Schedule of Power Outages / Shutdowns", href: "/outages" },
       { text: "Electricity Safety & Precaution Manual", href: "/safety" },
       { text: "Regulatory Orders & Discom Policies", href: "/orders" },
-      { text: "Citizen's Charter & SLA Timelines", href: "/charter" },
+      { text: "Citizen's Charter & Service Guidelines", href: "/charter" },
     ],
   },
   {
@@ -102,34 +126,34 @@ const categories = [
 
 function CategoryCard({ icon: Icon, title, items }) {
   return (
-    <div className="flex flex-col overflow-hidden rounded-xl border border-hairline bg-surface-1 shadow-2xs transition-all duration-150 hover:border-hairline hover:shadow-xs">
+    <div className="border-hairline bg-surface-1 hover:border-hairline flex flex-col overflow-hidden rounded-xl border shadow-2xs transition-all duration-150 hover:shadow-xs">
       {/* Card Header */}
-      <div className="flex items-center justify-between border-b border-hairline-soft bg-surface-2/30 px-5 py-3.5">
+      <div className="border-hairline-soft bg-surface-2/30 flex items-center justify-between border-b px-5 py-3.5">
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-surface-2 text-fin-orange">
+          <div className="bg-surface-2 text-fin-orange flex h-9 w-9 shrink-0 items-center justify-center rounded-lg">
             <Icon className="h-4.5 w-4.5" strokeWidth={2} />
           </div>
-          <h3 className="text-sm font-medium text-ink leading-tight">
+          <h3 className="text-ink text-sm leading-tight font-medium">
             {title}
           </h3>
         </div>
-        <ChevronRight className="h-4 w-4 text-ink-tertiary" strokeWidth={1.5} />
+        <ChevronRight className="text-ink-tertiary h-4 w-4" strokeWidth={1.5} />
       </div>
 
       {/* Item list */}
-      <ul className="divide-y divide-hairline-soft">
+      <ul className="divide-hairline-soft divide-y">
         {items.map((item) => (
           <li key={item.text}>
             <Link
               href={item.href}
-              className="group flex items-start gap-2.5 px-5 py-3 text-xs transition-colors hover:bg-surface-2/50 active:scale-[0.98]"
+              className="group hover:bg-surface-2/50 flex items-start gap-2.5 px-5 py-3 text-xs transition-colors active:scale-[0.98]"
             >
-              <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-fin-orange/60 transition-transform group-hover:scale-125" />
-              <span className="flex-1 font-normal text-ink leading-snug transition-colors group-hover:text-fin-orange">
+              <span className="bg-fin-orange/60 mt-1 h-1.5 w-1.5 shrink-0 rounded-full transition-transform group-hover:scale-125" />
+              <span className="text-ink group-hover:text-fin-orange flex-1 leading-snug font-normal transition-colors">
                 {item.text}
               </span>
               {item.badge && (
-                <span className="shrink-0 rounded-xs bg-fin-orange px-1.5 py-0.5 text-[9px] font-medium uppercase tracking-wider text-on-primary">
+                <span className="bg-fin-orange text-on-primary shrink-0 rounded-xs px-1.5 py-0.5 text-[9px] font-medium tracking-wider uppercase">
                   {item.badge}
                 </span>
               )}
@@ -143,32 +167,20 @@ function CategoryCard({ icon: Icon, title, items }) {
 
 export default function ConsumerCorner() {
   return (
-    <section className="w-full border-t border-hairline bg-canvas px-4 py-12 sm:px-6 lg:px-8">
+    <section
+      id="consumer-services"
+      className="border-hairline bg-canvas w-full border-t px-4 py-12 sm:px-6 lg:px-8"
+    >
       <div className="mx-auto max-w-7xl">
         {/* Header */}
-        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+        <div className="mb-8 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <span className="text-xs font-medium tracking-wide text-fin-orange uppercase">
-              Services Directory
+            <span className="text-fin-orange text-xs font-semibold tracking-wide uppercase">
+              Consumer Services Directory
             </span>
-            <h2 className="mt-1 text-2xl font-medium tracking-tight text-ink sm:text-3xl">
+            <h2 className="text-ink mt-1 text-2xl font-bold tracking-tight sm:text-3xl">
               Consumer Corner
             </h2>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <Link
-              href="/register"
-              className="rounded-md border border-hairline bg-surface-1 px-4 py-1.5 text-xs font-medium text-ink shadow-2xs transition-colors hover:bg-surface-2 active:scale-[0.96]"
-            >
-              Register
-            </Link>
-            <Link
-              href="/login"
-              className="rounded-md bg-ink px-4 py-1.5 text-xs font-medium text-on-primary shadow-xs transition-colors hover:bg-inverse-surface-1 active:scale-[0.96]"
-            >
-              Login
-            </Link>
           </div>
         </div>
 
