@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Navbar from "./components/NavbarNextjs";
 import Carousel from "./components/Carousel";
+import StatCard from "./components/VVNL";
 import Content from "./components/Content";
 import Footer from "./components/Footer";
-import Boxes from "./components/Boxes";
+import ServiceCard from "./components/QuickServices";
+import CategoryCard from "./components/ConsumerCorner";
 
 export default function Home() {
   return (
@@ -11,8 +13,10 @@ export default function Home() {
       <>
         <Navbar />
         <Carousel />
-        <Boxes />
         <Content />
+        <StatCard />
+        <ServiceCard />
+        <CategoryCard />
         <Footer />
       </>
     </div>

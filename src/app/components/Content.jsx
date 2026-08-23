@@ -4,13 +4,10 @@ export default function Content() {
       <div>
         <div className="basis-3/5">
           <h2 className="mb-2 text-lg font-bold text-gray-900 sm:mb-4 sm:text-4xl">
-            Whats happeing today!
+            News!
           </h2>
           <p className="text-sm leading-relaxed text-gray-600 sm:text-lg">
-            This is the larger column, meant for your primary paragraph content.
-            Replace this text with whatever copy you need — it has more
-            horizontal room and a slightly bigger font size to give it visual
-            priority over the column beside it.
+            Power Outages are Becoming More and More Frequent Nowadays.
           </p>
         </div>
       </div>
