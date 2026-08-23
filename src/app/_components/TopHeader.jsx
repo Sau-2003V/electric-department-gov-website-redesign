@@ -158,9 +158,6 @@ export default function TopHeader() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
           {/* Logo & Org Title */}
           <Link href="/" className="group flex items-center gap-3">
-            <div className="border-fin-orange/20 bg-fin-orange/10 text-fin-orange relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border text-xl font-bold shadow-xs transition-transform group-hover:scale-105">
-              ⚡
-            </div>
             <div className="flex flex-col">
               <span className="text-ink group-hover:text-fin-orange text-lg font-bold tracking-tight transition-colors">
                 Vidhyut Portal

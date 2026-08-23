@@ -45,7 +45,7 @@ export default function QuickServices() {
               <Link
                 key={action.title}
                 href={action.href}
-                className="group border-hairline bg-surface-1 hover:border-hairline hover:bg-surface-1 relative flex flex-col justify-between rounded-xl border p-6 shadow-2xs transition-all duration-150 active:scale-[0.96]"
+                className="group bg-surface-1 hover:bg-surface-1 relative flex flex-col justify-between rounded-xl p-6 transition-all duration-150 active:scale-[0.96]"
               >
                 <div>
                   <div className="bg-surface-2 text-fin-orange group-hover:bg-fin-orange group-hover:text-on-primary mb-4 inline-flex h-11 w-11 items-center justify-center rounded-lg transition-colors">
