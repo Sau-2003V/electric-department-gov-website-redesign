@@ -37,7 +37,7 @@ export default function Sidebar() {
   };
 
   return (
-    <aside className="border-hairline bg-surface-1 fixed inset-y-0 left-0 z-40 hidden w-64 flex-col border-r md:flex">
+    <aside className="border-hairline bg-background fixed inset-y-0 left-0 z-40 hidden w-64 flex-col border-r md:flex">
       {/* Brand Header */}
       <div className="border-hairline-soft flex h-14 items-center gap-3 border-b px-4">
         <div className="bg-ink text-on-primary flex size-8 shrink-0 items-center justify-center rounded-full">
@@ -90,8 +90,8 @@ export default function Sidebar() {
                 href={item.href}
                 className={`flex h-9 items-center gap-2.5 rounded-md px-3 text-sm transition-colors ${
                   isActive
-                    ? "bg-surface-2 text-ink font-medium"
-                    : "text-ink-muted hover:bg-surface-2 hover:text-ink"
+                    ? "bg-surface-1 text-ink font-medium"
+                    : "text-ink-muted hover:bg-surface-1 hover:text-ink"
                 }`}
               >
                 <Icon size={16} strokeWidth={1.8} className="shrink-0" />

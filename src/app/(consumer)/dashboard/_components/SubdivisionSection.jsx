@@ -1,4 +1,5 @@
 import { MapPin, Phone } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const DEFAULT_CONTACTS = [
@@ -54,12 +55,11 @@ export default function SubdivisionSection({
           <p className="mt-xxs text-body-sm text-ink font-medium">{location}</p>
         </div>
 
-        <a
-          href={`tel:${helpline}`}
-          className="gap-xs border-fin-orange/20 bg-fin-orange/10 px-md py-xs text-body-sm text-fin-orange hover:bg-fin-orange/20 inline-flex items-center self-start rounded-full border font-medium transition-colors active:scale-[0.98] sm:self-auto"
-        >
-          <Phone className="size-3.5" strokeWidth={2.2} aria-hidden="true" />
-          <span>Helpline {helpline}</span>
+        <a href={`tel:${helpline}`} className="self-start sm:self-auto">
+          <Button type="button" variant="accent-subtle" size="compact">
+            <Phone className="size-3.5" strokeWidth={2.2} aria-hidden="true" />
+            <span>Helpline {helpline}</span>
+          </Button>
         </a>
       </div>
 
@@ -91,13 +91,20 @@ export default function SubdivisionSection({
             <a
               href={`tel:${contact.phone}`}
               aria-label={`Call ${contact.name}`}
-              className="bg-fin-orange shadow-surface-1 hover:bg-fin-orange/90 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-white transition-all active:scale-95"
+              className="shrink-0"
             >
-              <Phone
-                className="size-3.5"
-                strokeWidth={2.2}
-                aria-hidden="true"
-              />
+              <Button
+                type="button"
+                variant="accent"
+                size="icon-compact"
+                aria-label={`Call ${contact.name}`}
+              >
+                <Phone
+                  className="size-3.5"
+                  strokeWidth={2.2}
+                  aria-hidden="true"
+                />
+              </Button>
             </a>
           </div>
         ))}

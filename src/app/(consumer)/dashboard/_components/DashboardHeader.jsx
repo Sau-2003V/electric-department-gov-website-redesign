@@ -40,7 +40,9 @@ export default function DashboardHeader() {
       {/* Greeting row */}
       <div className="mb-md flex items-start justify-between">
         <div>
-          <p className="text-body sm:text-body-lg font-medium text-ink-subtle uppercase tracking-wider">Namaste,</p>
+          <p className="text-body sm:text-body-lg text-ink-subtle font-medium tracking-wider uppercase">
+            Namaste,
+          </p>
 
           {isLoading ? (
             <div className="mt-xs space-y-xs animate-pulse">
@@ -49,12 +51,12 @@ export default function DashboardHeader() {
             </div>
           ) : (
             <>
-              <h1 className="mt-xxs text-display-md font-medium text-ink sm:text-display-lg">
+              <h1 className="mt-xxs text-display-md text-ink sm:text-display-lg font-medium">
                 {name}
               </h1>
-              <div className="mt-xs flex items-center gap-xs text-body font-normal text-ink-muted sm:mt-sm sm:gap-sm sm:text-body-lg">
+              <div className="mt-xs gap-xs text-body text-ink-muted sm:mt-sm sm:gap-sm sm:text-body-lg flex items-center font-normal">
                 <span>Meter No.</span>
-                <span className="font-semibold text-ink">
+                <span className="text-ink font-semibold">
                   {meterNumber ?? "—"}
                 </span>
                 {meterNumber && (
@@ -63,7 +65,7 @@ export default function DashboardHeader() {
                     variant="ghost"
                     size="icon-compact"
                     onClick={handleCopy}
-                    className="relative text-ink-muted hover:bg-surface-2 hover:text-ink focus-visible:ring-1 focus-visible:ring-ink/20"
+                    className="text-ink-muted hover:bg-surface-2 hover:text-ink focus-visible:ring-ink/20 relative focus-visible:ring-1"
                     aria-label={
                       copied ? "Copied meter number" : "Copy meter number"
                     }
@@ -72,7 +74,7 @@ export default function DashboardHeader() {
                     <span
                       className={`inline-flex items-center justify-center transition-all duration-150 ${
                         copied
-                          ? "scale-100 text-semantic-success opacity-100"
+                          ? "text-semantic-success scale-100 opacity-100"
                           : "absolute scale-0 opacity-0"
                       }`}
                     >
@@ -82,7 +84,7 @@ export default function DashboardHeader() {
                       className={`inline-flex items-center justify-center transition-all duration-150 ${
                         copied
                           ? "absolute scale-0 opacity-0"
-                          : "scale-100 text-ink-muted group-hover:text-ink opacity-100"
+                          : "text-ink-muted group-hover:text-ink scale-100 opacity-100"
                       }`}
                     >
                       <Copy className="size-4" strokeWidth={2} />
