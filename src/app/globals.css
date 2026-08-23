@@ -37,92 +37,6 @@
   --report-lime: #84cc16;
   --report-cyan: #00b8d9;
 
-  /* Typography Tokens */
-  --font-size-display-xl: 72px;
-  --line-height-display-xl: 1.05;
-  --letter-spacing-display-xl: -2px;
-  --font-weight-display-xl: 500;
-
-  --font-size-display-lg: 56px;
-  --line-height-display-lg: 1.1;
-  --letter-spacing-display-lg: -1.4px;
-  --font-weight-display-lg: 500;
-
-  --font-size-display-md: 40px;
-  --line-height-display-md: 1.15;
-  --letter-spacing-display-md: -0.8px;
-  --font-weight-display-md: 500;
-
-  --font-size-headline: 28px;
-  --line-height-headline: 1.2;
-  --letter-spacing-headline: -0.5px;
-  --font-weight-headline: 500;
-
-  --font-size-card-title: 22px;
-  --line-height-card-title: 1.25;
-  --letter-spacing-card-title: -0.3px;
-  --font-weight-card-title: 500;
-
-  --font-size-subhead: 20px;
-  --line-height-subhead: 1.4;
-  --letter-spacing-subhead: -0.2px;
-  --font-weight-subhead: 400;
-
-  --font-size-body-lg: 18px;
-  --line-height-body-lg: 1.5;
-  --letter-spacing-body-lg: -0.1px;
-  --font-weight-body-lg: 400;
-
-  --font-size-body: 16px;
-  --line-height-body: 1.5;
-  --letter-spacing-body: 0;
-  --font-weight-body: 400;
-
-  --font-size-body-sm: 14px;
-  --line-height-body-sm: 1.5;
-  --letter-spacing-body-sm: 0;
-  --font-weight-body-sm: 400;
-
-  --font-size-caption: 12px;
-  --line-height-caption: 1.4;
-  --letter-spacing-caption: 0;
-  --font-weight-caption: 400;
-
-  --font-size-button: 15px;
-  --line-height-button: 1.2;
-  --letter-spacing-button: 0;
-  --font-weight-button: 500;
-
-  --font-size-eyebrow: 14px;
-  --line-height-eyebrow: 1.3;
-  --letter-spacing-eyebrow: 0;
-  --font-weight-eyebrow: 500;
-
-  --font-size-mono: 13px;
-  --line-height-mono: 1.5;
-  --letter-spacing-mono: 0;
-  --font-weight-mono: 400;
-
-  /* Spacing Tokens (from design.md) */
-  --spacing-xxs: 4px;
-  --spacing-xs: 8px;
-  --spacing-sm: 12px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-  --spacing-xxl: 48px;
-  --spacing-section: 96px;
-
-  /* Border Radius Scale (from design.md) */
-  --radius-xs: 4px;
-  --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-xxl: 24px;
-  --radius-pill: 9999px;
-  --radius-full: 9999px;
-
   /* System Default Fallbacks */
 
   --background: oklch(1 0 0);
@@ -201,43 +115,6 @@
 
   --surface-8: #ffffff;
 
-  --shadow-color: rgb(0 0 0 / 0.06);
-
-  --shadow-1: 0 0 0 1px var(--shadow-color);
-
-  --shadow-2:
-    0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color);
-
-  --shadow-3:
-    0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color),
-    0 3px 3px -1.5px var(--shadow-color);
-
-  --shadow-4:
-    0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color),
-    0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color);
-
-  --shadow-5:
-    0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color),
-    0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color),
-    0 12px 12px -6px var(--shadow-color);
-
-  --shadow-6:
-    0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color),
-    0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color),
-    0 12px 12px -6px var(--shadow-color), 0 24px 24px -12px var(--shadow-color);
-
-  --shadow-7:
-    0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color),
-    0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color),
-    0 12px 12px -6px var(--shadow-color), 0 24px 24px -12px var(--shadow-color),
-    0 48px 48px -24px var(--shadow-color);
-
-  --shadow-8:
-    0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color),
-    0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color),
-    0 12px 12px -6px var(--shadow-color), 0 24px 24px -12px var(--shadow-color),
-    0 48px 48px -24px var(--shadow-color), 0 96px 96px -48px var(--shadow-color);
-
   /* Scrollbar Tokens */
   --scrollbar-track: transparent;
   --scrollbar-thumb: rgba(0, 0, 0, 0.2);
@@ -292,72 +169,6 @@
     monospace
   );
 
-  /* Typography / Text Sizes */
-  --text-display-xl: 72px;
-  --text-display-xl--line-height: 1.05;
-  --text-display-xl--letter-spacing: -2px;
-  --text-display-xl--font-weight: 500;
-
-  --text-display-lg: 56px;
-  --text-display-lg--line-height: 1.1;
-  --text-display-lg--letter-spacing: -1.4px;
-  --text-display-lg--font-weight: 500;
-
-  --text-display-md: 40px;
-  --text-display-md--line-height: 1.15;
-  --text-display-md--letter-spacing: -0.8px;
-  --text-display-md--font-weight: 500;
-
-  --text-headline: 28px;
-  --text-headline--line-height: 1.2;
-  --text-headline--letter-spacing: -0.5px;
-  --text-headline--font-weight: 500;
-
-  --text-card-title: 22px;
-  --text-card-title--line-height: 1.25;
-  --text-card-title--letter-spacing: -0.3px;
-  --text-card-title--font-weight: 500;
-
-  --text-subhead: 20px;
-  --text-subhead--line-height: 1.4;
-  --text-subhead--letter-spacing: -0.2px;
-  --text-subhead--font-weight: 400;
-
-  --text-body-lg: 18px;
-  --text-body-lg--line-height: 1.5;
-  --text-body-lg--letter-spacing: -0.1px;
-  --text-body-lg--font-weight: 400;
-
-  --text-body: 16px;
-  --text-body--line-height: 1.5;
-  --text-body--letter-spacing: 0;
-  --text-body--font-weight: 400;
-
-  --text-body-sm: 14px;
-  --text-body-sm--line-height: 1.5;
-  --text-body-sm--letter-spacing: 0;
-  --text-body-sm--font-weight: 400;
-
-  --text-caption: 12px;
-  --text-caption--line-height: 1.4;
-  --text-caption--letter-spacing: 0;
-  --text-caption--font-weight: 400;
-
-  --text-button: 15px;
-  --text-button--line-height: 1.2;
-  --text-button--letter-spacing: 0;
-  --text-button--font-weight: 500;
-
-  --text-eyebrow: 14px;
-  --text-eyebrow--line-height: 1.3;
-  --text-eyebrow--letter-spacing: 0;
-  --text-eyebrow--font-weight: 500;
-
-  --text-mono: 13px;
-  --text-mono--line-height: 1.5;
-  --text-mono--letter-spacing: 0;
-  --text-mono--font-weight: 400;
-  --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -389,25 +200,25 @@
   --color-card: var(--card);
 
   /* Spacing Tokens (from design.md) */
-  --spacing-xxs: var(--spacing-xxs);
-  --spacing-xs: var(--spacing-xs);
-  --spacing-sm: var(--spacing-sm);
-  --spacing-md: var(--spacing-md);
-  --spacing-lg: var(--spacing-lg);
-  --spacing-xl: var(--spacing-xl);
-  --spacing-xxl: var(--spacing-xxl);
-  --spacing-section: var(--spacing-section);
+  --spacing-xxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-section: 96px;
 
   /* Border Radius Tokens (from design.md) */
-  --radius-xs: var(--radius-xs);
-  --radius-sm: var(--radius-sm);
-  --radius-md: var(--radius-md);
-  --radius-lg: var(--radius-lg);
-  --radius-xl: var(--radius-xl);
-  --radius-xxl: var(--radius-xxl);
-  --radius-2xl: var(--radius-xxl);
-  --radius-pill: var(--radius-pill);
-  --radius-full: var(--radius-full);
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-xxl: 24px;
+  --radius-2xl: 24px;
+  --radius-pill: 9999px;
+  --radius-full: 9999px;
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
   @keyframes spinner-move {
@@ -430,6 +241,38 @@
   --color-surface-6: var(--surface-6);
   --color-surface-7: var(--surface-7);
   --color-surface-8: var(--surface-8);
+  /* Shadows */
+  --shadow-color: rgb(0 0 0 / 0.06);
+  --color-shadow-color: var(--shadow-color);
+
+  --shadow-1: 0 0 0 1px var(--shadow-color);
+  --shadow-2:
+    0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color);
+  --shadow-3:
+    0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color),
+    0 3px 3px -1.5px var(--shadow-color);
+  --shadow-4:
+    0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color),
+    0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color);
+  --shadow-5:
+    0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color),
+    0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color),
+    0 12px 12px -6px var(--shadow-color);
+  --shadow-6:
+    0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color),
+    0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color),
+    0 12px 12px -6px var(--shadow-color), 0 24px 24px -12px var(--shadow-color);
+  --shadow-7:
+    0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color),
+    0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color),
+    0 12px 12px -6px var(--shadow-color), 0 24px 24px -12px var(--shadow-color),
+    0 48px 48px -24px var(--shadow-color);
+  --shadow-8:
+    0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color),
+    0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color),
+    0 12px 12px -6px var(--shadow-color), 0 24px 24px -12px var(--shadow-color),
+    0 48px 48px -24px var(--shadow-color), 0 96px 96px -48px var(--shadow-color);
+
   --shadow-surface-1: var(--shadow-1);
   --shadow-surface-2: var(--shadow-2);
   --shadow-surface-3: var(--shadow-3);
@@ -438,6 +281,7 @@
   --shadow-surface-6: var(--shadow-6);
   --shadow-surface-7: var(--shadow-7);
   --shadow-surface-8: var(--shadow-8);
+
   --color-dm-drop: var(--dm-drop);
   --color-dm-ring-high: var(--dm-ring-high);
   --color-dm-ring-mid: var(--dm-ring-mid);
@@ -446,258 +290,7 @@
   --color-dm-hi-high: var(--dm-hi-high);
   --color-dm-hi-mid: var(--dm-hi-mid);
   --color-dm-hi-base: var(--dm-hi-base);
-  --shadow-8: var(--shadow-8);
-  --shadow-7: var(--shadow-7);
-  --shadow-6: var(--shadow-6);
-  --shadow-5: var(--shadow-5);
-  --shadow-4: var(--shadow-4);
-  --shadow-3: var(--shadow-3);
-  --shadow-2: var(--shadow-2);
-  --shadow-1: var(--shadow-1);
-  --color-shadow-color: var(--shadow-color);
 }
-
-/* Typography Utility Classes */
-.text-display-xl {
-  font-size: 72px;
-  line-height: 1.05;
-  letter-spacing: -2px;
-  font-weight: 500;
-}
-
-.text-display-lg {
-  font-size: 56px;
-  line-height: 1.1;
-  letter-spacing: -1.4px;
-  font-weight: 500;
-}
-
-.text-display-md {
-  font-size: 40px;
-  line-height: 1.15;
-  letter-spacing: -0.8px;
-  font-weight: 500;
-}
-
-.text-headline {
-  font-size: 28px;
-  line-height: 1.2;
-  letter-spacing: -0.5px;
-  font-weight: 500;
-}
-
-.text-card-title {
-  font-size: 22px;
-  line-height: 1.25;
-  letter-spacing: -0.3px;
-  font-weight: 500;
-}
-
-.text-subhead {
-  font-size: 20px;
-  line-height: 1.4;
-  letter-spacing: -0.2px;
-  font-weight: 400;
-}
-
-.text-body-lg {
-  font-size: 18px;
-  line-height: 1.5;
-  letter-spacing: -0.1px;
-  font-weight: 400;
-}
-
-.text-body {
-  font-size: 16px;
-  line-height: 1.5;
-  letter-spacing: 0;
-  font-weight: 400;
-}
-
-.text-body-sm {
-  font-size: 14px;
-  line-height: 1.5;
-  letter-spacing: 0;
-  font-weight: 400;
-}
-
-.text-caption {
-  font-size: 12px;
-  line-height: 1.4;
-  letter-spacing: 0;
-  font-weight: 400;
-}
-
-.text-button {
-  font-size: 15px;
-  line-height: 1.2;
-  letter-spacing: 0;
-  font-weight: 500;
-}
-
-.text-eyebrow {
-  font-size: 14px;
-  line-height: 1.3;
-  letter-spacing: 0;
-  font-weight: 500;
-}
-
-.text-mono {
-  font-family: var(
-    --font-mono,
-    ui-monospace,
-    SFMono-Regular,
-    Menlo,
-    Monaco,
-    Consolas,
-    monospace
-  );
-  font-size: 13px;
-  line-height: 1.5;
-  letter-spacing: 0;
-  font-weight: 400;
-}
-
-/* Border Radius Utility Classes (from design.md) */
-.rounded-xs {
-  border-radius: var(--radius-xs, 4px);
-}
-.rounded-sm {
-  border-radius: var(--radius-sm, 6px);
-}
-.rounded-md {
-  border-radius: var(--radius-md, 8px);
-}
-.rounded-lg {
-  border-radius: var(--radius-lg, 12px);
-}
-.rounded-xl {
-  border-radius: var(--radius-xl, 16px);
-}
-.rounded-xxl {
-  border-radius: var(--radius-xxl, 24px);
-}
-.rounded-pill {
-  border-radius: var(--radius-pill, 9999px);
-}
-
-/* Spacing Utility Classes (from design.md) */
-.p-xxs {
-  padding: var(--spacing-xxs, 4px);
-}
-.p-xs {
-  padding: var(--spacing-xs, 8px);
-}
-.p-sm {
-  padding: var(--spacing-sm, 12px);
-}
-.p-md {
-  padding: var(--spacing-md, 16px);
-}
-.p-lg {
-  padding: var(--spacing-lg, 24px);
-}
-.p-xl {
-  padding: var(--spacing-xl, 32px);
-}
-.p-xxl {
-  padding: var(--spacing-xxl, 48px);
-}
-.p-section {
-  padding: var(--spacing-section, 96px);
-}
-
-.px-xxs {
-  padding-left: var(--spacing-xxs, 4px);
-  padding-right: var(--spacing-xxs, 4px);
-}
-.px-xs {
-  padding-left: var(--spacing-xs, 8px);
-  padding-right: var(--spacing-xs, 8px);
-}
-.px-sm {
-  padding-left: var(--spacing-sm, 12px);
-  padding-right: var(--spacing-sm, 12px);
-}
-.px-md {
-  padding-left: var(--spacing-md, 16px);
-  padding-right: var(--spacing-md, 16px);
-}
-.px-lg {
-  padding-left: var(--spacing-lg, 24px);
-  padding-right: var(--spacing-lg, 24px);
-}
-.px-xl {
-  padding-left: var(--spacing-xl, 32px);
-  padding-right: var(--spacing-xl, 32px);
-}
-.px-xxl {
-  padding-left: var(--spacing-xxl, 48px);
-  padding-right: var(--spacing-xxl, 48px);
-}
-
-.py-xxs {
-  padding-top: var(--spacing-xxs, 4px);
-  padding-bottom: var(--spacing-xxs, 4px);
-}
-.py-xs {
-  padding-top: var(--spacing-xs, 8px);
-  padding-bottom: var(--spacing-xs, 8px);
-}
-.py-sm {
-  padding-top: var(--spacing-sm, 12px);
-  padding-bottom: var(--spacing-sm, 12px);
-}
-.py-md {
-  padding-top: var(--spacing-md, 16px);
-  padding-bottom: var(--spacing-md, 16px);
-}
-.py-lg {
-  padding-top: var(--spacing-lg, 24px);
-  padding-bottom: var(--spacing-lg, 24px);
-}
-.py-xl {
-  padding-top: var(--spacing-xl, 32px);
-  padding-bottom: var(--spacing-xl, 32px);
-}
-.py-xxl {
-  padding-top: var(--spacing-xxl, 48px);
-  padding-bottom: var(--spacing-xxl, 48px);
-}
-.py-section {
-  padding-top: var(--spacing-section, 96px);
-  padding-bottom: var(--spacing-section, 96px);
-}
-
-.gap-xxs {
-  gap: var(--spacing-xxs, 4px);
-}
-.gap-xs {
-  gap: var(--spacing-xs, 8px);
-}
-.gap-sm {
-  gap: var(--spacing-sm, 12px);
-}
-.gap-md {
-  gap: var(--spacing-md, 16px);
-}
-.gap-lg {
-  gap: var(--spacing-lg, 24px);
-}
-.gap-xl {
-  gap: var(--spacing-xl, 32px);
-}
-.gap-xxl {
-  gap: var(--spacing-xxl, 48px);
-}
-.gap-section {
-  gap: var(--spacing-section, 96px);
-}
-
-body {
-  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
-}
-
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -787,6 +380,113 @@ body {
   --scrollbar-thumb-hover: rgba(255, 255, 255, 0.35);
 }
 
+/* ==========================================================================
+   Typography & Text Styling Utility Classes (Design System)
+   ========================================================================== */
+
+@layer utilities {
+  /* Typography Presets (Size, Line-Height, Tracking, and Weight Hierarchy) */
+  .text-display-xl {
+    font-size: 72px;
+    line-height: 1.05;
+    letter-spacing: -2px;
+    font-weight: 500;
+  }
+
+  .text-display-lg {
+    font-size: 56px;
+    line-height: 1.1;
+    letter-spacing: -1.4px;
+    font-weight: 500;
+  }
+
+  .text-display-md {
+    font-size: 40px;
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+    font-weight: 500;
+  }
+
+  .text-headline {
+    font-size: 28px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    font-weight: 500;
+  }
+
+  .text-card-title {
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.3px;
+    font-weight: 500;
+  }
+
+  .text-subhead {
+    font-size: 20px;
+    line-height: 1.4;
+    letter-spacing: -0.2px;
+    font-weight: 400;
+  }
+
+  .text-body-lg {
+    font-size: 18px;
+    line-height: 1.5;
+    letter-spacing: -0.1px;
+    font-weight: 400;
+  }
+
+  .text-body {
+    font-size: 16px;
+    line-height: 1.5;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+
+  .text-body-sm {
+    font-size: 14px;
+    line-height: 1.5;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+
+  .text-caption {
+    font-size: 12px;
+    line-height: 1.4;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+
+  .text-button {
+    font-size: 15px;
+    line-height: 1.2;
+    letter-spacing: 0;
+    font-weight: 500;
+  }
+
+  .text-eyebrow {
+    font-size: 14px;
+    line-height: 1.3;
+    letter-spacing: 0;
+    font-weight: 500;
+  }
+
+  .text-mono {
+    font-family: var(
+      --font-mono,
+      ui-monospace,
+      SFMono-Regular,
+      Menlo,
+      Monaco,
+      Consolas,
+      monospace
+    );
+    font-size: 13px;
+    line-height: 1.5;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -794,7 +494,7 @@ body {
     scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
   }
   html {
     @apply font-sans;
@@ -827,20 +527,22 @@ body {
 }
 
 /* Scrollbar Utility Classes */
-.no-scrollbar,
-.scrollbar-none {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.no-scrollbar::-webkit-scrollbar,
-.scrollbar-none::-webkit-scrollbar {
-  display: none;
-}
+@layer utilities {
+  .no-scrollbar,
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar,
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
 
-.scrollbar-thin {
-  scrollbar-width: thin;
-}
-.scrollbar-thin::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
 }

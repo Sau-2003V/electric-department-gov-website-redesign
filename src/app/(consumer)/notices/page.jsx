@@ -56,11 +56,11 @@ export default function NoticesPage() {
 
       <section className="mx-auto max-w-[1315px] px-5 py-8">
         <div className="mb-6">
-          <p className="mb-1 text-[13px] font-bold uppercase tracking-wide text-[#ef5b28]">
+          <p className="mb-1 text-[13px] font-bold tracking-wide text-[#ef5b28] uppercase">
             Supply Status
           </p>
 
-          <h1 className="text-[30px] font-bold leading-none tracking-tight">
+          <h1 className="text-[30px] leading-none font-bold tracking-tight">
             Outages
           </h1>
 
@@ -103,8 +103,8 @@ export default function NoticesPage() {
             </div>
 
             <p className="mt-3 text-[13px] leading-5 text-[#777]">
-              A live geographic map is planned once the outage management
-              system feed is connected.
+              A live geographic map is planned once the outage management system
+              feed is connected.
             </p>
           </div>
         </div>
@@ -123,9 +123,7 @@ function OutageCard({ outage }) {
   return (
     <div className="rounded-[18px] border border-[#ddd9d2] bg-[#fffdfa] px-5 py-4">
       <div className="flex items-center justify-between gap-4">
-        <h2 className="text-[15px] font-semibold text-[#222]">
-          {outage.area}
-        </h2>
+        <h2 className="text-[15px] font-semibold text-[#222]">{outage.area}</h2>
 
         <span
           className={`shrink-0 rounded-full px-3 py-1 text-[12px] font-medium ${statusStyles[outage.status]}`}
@@ -134,9 +132,7 @@ function OutageCard({ outage }) {
         </span>
       </div>
 
-      <p className="mt-3 text-[14px] text-[#666]">
-        {outage.description}
-      </p>
+      <p className="mt-3 text-[14px] text-[#666]">{outage.description}</p>
 
       <p className="mt-2 text-[12px] text-[#777]">
         {outage.location} · {outage.type} · {outage.start} → {outage.end}
@@ -153,9 +149,7 @@ function MapLocation({ name }) {
         <span className="text-[14px] font-medium text-[#444]">{name}</span>
       </div>
 
-      <span className="text-[12px] font-semibold text-[#d43c45]">
-        1 active
-      </span>
+      <span className="text-[12px] font-semibold text-[#d43c45]">1 active</span>
     </div>
   );
 }

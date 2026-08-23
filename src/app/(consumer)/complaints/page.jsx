@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import { useState } from "react";
@@ -38,8 +36,7 @@ const complaints = [
   {
     id: "VVNL-240007",
     title: "Voltage fluctuation",
-    description:
-      "Severe voltage fluctuation, appliances tripping repeatedly.",
+    description: "Severe voltage fluctuation, appliances tripping repeatedly.",
     date: "21 Aug 2026, 2:02 am",
     status: "Assigned",
     sla: "SLA breached",
@@ -76,11 +73,11 @@ export default function ComplaintsPage() {
 
       <section className="mx-auto max-w-[1315px] px-5 pt-8 pb-12">
         <div className="mb-6">
-          <p className="mb-1 text-[13px] font-bold uppercase tracking-wide text-[#ef5b28]">
+          <p className="mb-1 text-[13px] font-bold tracking-wide text-[#ef5b28] uppercase">
             Complaint History
           </p>
 
-          <h1 className="text-[30px] font-bold leading-tight tracking-tight text-[#111]">
+          <h1 className="text-[30px] leading-tight font-bold tracking-tight text-[#111]">
             My complaints
           </h1>
         </div>
@@ -126,7 +123,7 @@ export default function ComplaintsPage() {
                     )}
                   </div>
 
-                  <h2 className="text-[15px] font-semibold leading-5 text-[#171717]">
+                  <h2 className="text-[15px] leading-5 font-semibold text-[#171717]">
                     {complaint.title}
                   </h2>
 

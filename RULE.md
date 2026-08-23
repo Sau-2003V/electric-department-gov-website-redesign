@@ -3,8 +3,8 @@
 ## Tech Stack
 
 - **Runtime & PM**: Node.js + npm (`npm` only — never `bun`, `pnpm`, or `yarn`)
-- **Framework**: Next.js 16 (App Router) + React 19 + TypeScript
-- **Styling**: Tailwind CSS v4 (always prefer Tailwind; avoid standalone CSS)
+- **Framework**: Next.js 16 (App Router) + React 19 + TypeScript + Tailwindcss
+- **Styling**: Tailwind CSS v4 + Design Tokens (`design.md` & `src/app/globals.css`)
 - **UI & Icons**: Base UI, Lucide React (primary icon set), Sonner
 - **Animation**: Motion / Framer Motion
 - **Data & Auth**: Supabase (`@supabase/ssr`, `@supabase/supabase-js`), TanStack Query v5
@@ -22,13 +22,15 @@
 ## Core Rules
 
 1. **Always npm**: Run all project commands via `npm` (`npm run dev`, `npm install <pkg>`, `npm run build`). Do not use Bun, pnpm, or Yarn.
-2. **Tailwind Only**: Style strictly with Tailwind utility classes and `cn()` from `@/lib/utils`.
-3. **Data Fetching**: Use TanStack React Query for client-side queries and mutations.
-4. **Naming**: Use `PascalCase.tsx` for component files; `kebab-case.ts` or `camelCase.ts` for hooks/utilities.
-5. **UI & Feedback**: Use `sonner` (`toast.success` / `toast.error`) for action feedback; prefer `lucide-react` icons.
-6. **Strict Types**: Zero `any`. Validate all inputs and forms with Zod schemas.
-7. **Server First**: Default to Server Components; add `"use client"` only when client interactivity/hooks are required.
-8. **Imports**: Always import via `@/*` path alias.
+2. **Design System & Styling**: Always use `design.md` and `globals.css` for styling purposes. Style strictly with Tailwind utility classes, custom design tokens, and `cn()` from `@/lib/utils`.
+3. **No Hard-Coded Colors or Text Sizes**: Never use hard-coded colors (e.g. hex `#...`, rgb/hsl) or arbitrary text sizes. Always use the tokens and utility classes defined in `globals.css`.
+4. **Relative Typography**: Avoid `px`-based text sizes; use `rem` or `em` units (or Tailwind font size classes) according to need.
+5. **Data Fetching**: Use TanStack React Query for client-side queries and mutations.
+6. **Naming**: Use `PascalCase.tsx` for component files; `kebab-case.ts` or `camelCase.ts` for hooks/utilities.
+7. **UI & Feedback**: Use `sonner` (`toast.success` / `toast.error`) for action feedback; prefer `lucide-react` icons.
+8. **Strict Types**: Zero `any`. Validate all inputs and forms with Zod schemas.
+9. **Server First**: Default to Server Components; add `"use client"` only when client interactivity/hooks are required.
+10. **Imports**: Always import via `@/*` path alias.
 
 ## Component Reuse (MANDATORY)
 
