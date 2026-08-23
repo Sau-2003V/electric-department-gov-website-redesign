@@ -40,11 +40,66 @@ export default function Boxes({ sections }) {
       ),
       href: "#",
     },
+    {
+      title: "Service Requests",
+      description: (
+        <ul>
+          <li>Bill Correction Requests</li>
+          <li>Name Correction Requests</li>
+          <li>Address Correction Requests</li>
+          <li>Mobile Number And E-mail Updation</li>
+          <li>Load Change Requests</li>
+        </ul>
+      ),
+      href: "#",
+    },
+    {
+      title: "Service Requests",
+      description: (
+        <ul>
+          <li>Bill Correction Requests</li>
+          <li>Name Correction Requests</li>
+          <li>Address Correction Requests</li>
+          <li>Mobile Number And E-mail Updation</li>
+          <li>Load Change Requests</li>
+        </ul>
+      ),
+      href: "#",
+    },
+    {
+      title: "Service Requests",
+      description: (
+        <ul>
+          <li>Bill Correction Requests</li>
+          <li>Name Correction Requests</li>
+          <li>Address Correction Requests</li>
+          <li>Mobile Number And E-mail Updation</li>
+          <li>Load Change Requests</li>
+        </ul>
+      ),
+      href: "#",
+    },
+    {
+      title: "Service Requests",
+      description: (
+        <ul>
+          <li>Bill Correction Requests</li>
+          <li>Name Correction Requests</li>
+          <li>Address Correction Requests</li>
+          <li>Mobile Number And E-mail Updation</li>
+          <li>Load Change Requests</li>
+        </ul>
+      ),
+      href: "#",
+    },
   ];
 
   return (
     <section className="bg-canvas py-12">
       <div className="mx-auto max-w-6xl px-4">
+        <h1>Self Service</h1>
+        <h2 className="mb-3 text-2xl">Consumer Corner</h2>
+        <hr className="mb-3" />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((it, idx) => (
             <article
