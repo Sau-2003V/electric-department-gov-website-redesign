@@ -46,11 +46,14 @@ export default function DropdownDocsPage() {
           </Badge>
         </div>
         <p className="text-muted-text text-sm">
-          Floating action menus and select popups with proximity hover glow, spring micro-motion, keyboard roving focus, and design token surfaces.
+          Floating action menus and select popups with proximity hover glow,
+          spring micro-motion, keyboard roving focus, and design token surfaces.
         </p>
         <div className="pt-2">
           <code className="border-hairline bg-surface-card text-ink inline-block rounded-md border px-3 py-1.5 font-mono text-xs">
-            import &#123; DropdownMenu, DropdownTrigger, DropdownContent, DropdownLabel, DropdownSeparator &#125; from &quot;@/components/ui/dropdown&quot;;
+            import &#123; DropdownMenu, DropdownTrigger, DropdownContent,
+            DropdownLabel, DropdownSeparator &#125; from
+            &quot;@/components/ui/dropdown&quot;;
           </code>
         </div>
       </div>
@@ -58,18 +61,24 @@ export default function DropdownDocsPage() {
       {/* 1. Interactive Demos */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">1. Interactive Menus</h2>
+          <h2 className="text-ink text-lg font-semibold">
+            1. Interactive Menus
+          </h2>
           <p className="text-muted-text text-xs">
             Click any trigger below to preview popover menus.
           </p>
         </div>
 
-        <div className="border-hairline bg-surface-card grid grid-cols-1 gap-6 rounded-2xl border p-6 shadow-subtle sm:grid-cols-2 lg:grid-cols-3">
+        <div className="border-hairline bg-surface-card shadow-subtle grid grid-cols-1 gap-6 rounded-2xl border p-6 sm:grid-cols-2 lg:grid-cols-3">
           {/* User Account Menu */}
-          <div className="bg-canvas border-hairline flex flex-col justify-between gap-4 rounded-xl border p-5 shadow-subtle">
+          <div className="bg-canvas border-hairline shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="space-y-1">
-              <h3 className="text-ink text-sm font-semibold">Account & Navigation</h3>
-              <p className="text-muted-text text-xs">Standard profile dropdown with icons and shortcuts.</p>
+              <h3 className="text-ink text-sm font-semibold">
+                Account & Navigation
+              </h3>
+              <p className="text-muted-text text-xs">
+                Standard profile dropdown with icons and shortcuts.
+              </p>
             </div>
             <div>
               <DropdownMenu>
@@ -82,7 +91,11 @@ export default function DropdownDocsPage() {
                   <DropdownLabel>Signed in as alex@cal.com</DropdownLabel>
                   <DropdownSeparator />
                   <MenuItem icon={User} label="Profile & Bio" shortcut="⌘P" />
-                  <MenuItem icon={Calendar} label="Availability Schedules" badge="3" />
+                  <MenuItem
+                    icon={Calendar}
+                    label="Availability Schedules"
+                    badge="3"
+                  />
                   <MenuItem icon={Settings} label="Preferences" shortcut="⌘," />
                   <MenuItem icon={CreditCard} label="Billing & Invoices" />
                   <DropdownSeparator />
@@ -98,16 +111,24 @@ export default function DropdownDocsPage() {
           </div>
 
           {/* Radio Item Selection */}
-          <div className="bg-canvas border-hairline flex flex-col justify-between gap-4 rounded-xl border p-5 shadow-subtle">
+          <div className="bg-canvas border-hairline shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="space-y-1">
-              <h3 className="text-ink text-sm font-semibold">Radio Select Menu</h3>
-              <p className="text-muted-text text-xs">Single-choice selection with animated check indicator.</p>
+              <h3 className="text-ink text-sm font-semibold">
+                Radio Select Menu
+              </h3>
+              <p className="text-muted-text text-xs">
+                Single-choice selection with animated check indicator.
+              </p>
             </div>
             <div>
               <DropdownMenu>
                 <DropdownTrigger asChild>
                   <Button variant="primary" trailingIcon={ChevronDown}>
-                    {["Owner Role", "Admin Access", "Member Seat"][selectedRole]}
+                    {
+                      ["Owner Role", "Admin Access", "Member Seat"][
+                        selectedRole
+                      ]
+                    }
                   </Button>
                 </DropdownTrigger>
                 <DropdownContent checkedIndex={selectedRole} align="start">
@@ -140,15 +161,23 @@ export default function DropdownDocsPage() {
           </div>
 
           {/* Quick Actions Menu */}
-          <div className="bg-canvas border-hairline flex flex-col justify-between gap-4 rounded-xl border p-5 shadow-subtle">
+          <div className="bg-canvas border-hairline shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="space-y-1">
-              <h3 className="text-ink text-sm font-semibold">Row Actions Context</h3>
-              <p className="text-muted-text text-xs">Compact icon trigger for table rows and cards.</p>
+              <h3 className="text-ink text-sm font-semibold">
+                Row Actions Context
+              </h3>
+              <p className="text-muted-text text-xs">
+                Compact icon trigger for table rows and cards.
+              </p>
             </div>
             <div>
               <DropdownMenu>
                 <DropdownTrigger asChild>
-                  <Button variant="secondary" size="icon" aria-label="More actions">
+                  <Button
+                    variant="secondary"
+                    size="icon"
+                    aria-label="More actions"
+                  >
                     <MoreHorizontal className="size-4" />
                   </Button>
                 </DropdownTrigger>
@@ -157,7 +186,11 @@ export default function DropdownDocsPage() {
                   <MenuItem icon={Share2} label="Share Booking Page" />
                   <MenuItem icon={ExternalLink} label="Preview in New Tab" />
                   <DropdownSeparator />
-                  <MenuItem icon={Trash2} label="Delete Event Type" destructive />
+                  <MenuItem
+                    icon={Trash2}
+                    label="Delete Event Type"
+                    destructive
+                  />
                 </DropdownContent>
               </DropdownMenu>
             </div>

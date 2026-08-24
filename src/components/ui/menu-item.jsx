@@ -66,7 +66,8 @@ const MenuItem = forwardRef(
     }, []);
 
     const isActive = index !== undefined && activeIndex === index;
-    const isChecked = checked ?? (index !== undefined && checkedIndex === index);
+    const isChecked =
+      checked ?? (index !== undefined && checkedIndex === index);
     const sizeClasses = useSize();
 
     const mergeRef = (node) => {
@@ -98,7 +99,7 @@ const MenuItem = forwardRef(
         {Icon && (
           <span
             className={cn(
-              "shrink-0 pointer-events-none transition-colors",
+              "pointer-events-none shrink-0 transition-colors",
               destructive
                 ? "text-error dark:text-rose-400"
                 : isChecked || isActive
@@ -119,14 +120,16 @@ const MenuItem = forwardRef(
             <span
               className={cn(
                 "leading-none transition-colors",
-                isChecked ? "font-semibold text-ink dark:text-on-dark" : "font-medium"
+                isChecked
+                  ? "text-ink dark:text-on-dark font-semibold"
+                  : "font-medium"
               )}
             >
               {label}
             </span>
           )}
           {description && (
-            <span className="text-muted-soft dark:text-on-dark-soft/70 mt-0.5 text-[11px] font-normal leading-tight">
+            <span className="text-muted-soft dark:text-on-dark-soft/70 mt-0.5 text-[11px] leading-tight font-normal">
               {description}
             </span>
           )}
@@ -136,7 +139,7 @@ const MenuItem = forwardRef(
         {badge && <span className="shrink-0">{badge}</span>}
 
         {shortcut && (
-          <span className="text-muted-soft dark:text-on-dark-soft text-[10px] font-mono tracking-widest uppercase">
+          <span className="text-muted-soft dark:text-on-dark-soft font-mono text-[10px] tracking-widest uppercase">
             {shortcut}
           </span>
         )}

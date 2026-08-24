@@ -110,7 +110,7 @@ const Spinner = forwardRef(
         >
           <span
             className={cn(
-              "rounded-full bg-current animate-pulse",
+              "animate-pulse rounded-full bg-current",
               dSize,
               colorClass
             )}
@@ -118,7 +118,7 @@ const Spinner = forwardRef(
           />
           <span
             className={cn(
-              "rounded-full bg-current animate-pulse",
+              "animate-pulse rounded-full bg-current",
               dSize,
               colorClass
             )}
@@ -126,7 +126,7 @@ const Spinner = forwardRef(
           />
           <span
             className={cn(
-              "rounded-full bg-current animate-pulse",
+              "animate-pulse rounded-full bg-current",
               dSize,
               colorClass
             )}

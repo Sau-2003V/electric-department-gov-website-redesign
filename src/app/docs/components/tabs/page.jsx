@@ -45,11 +45,14 @@ export default function TabsDocsPage() {
           </Badge>
         </div>
         <p className="text-muted-text text-sm">
-          Cal.com&apos;s signature interactive switcher featuring fluid spring physics, proximity hover glow, pill-in-pill active lifts, and underline tab bars.
+          Cal.com&apos;s signature interactive switcher featuring fluid spring
+          physics, proximity hover glow, pill-in-pill active lifts, and
+          underline tab bars.
         </p>
         <div className="pt-2">
           <code className="border-hairline bg-surface-card text-ink inline-block rounded-md border px-3 py-1.5 font-mono text-xs">
-            import &#123; Tabs, TabsList, TabItem, TabPanel &#125; from &quot;@/components/ui/tabs&quot;;
+            import &#123; Tabs, TabsList, TabItem, TabPanel &#125; from
+            &quot;@/components/ui/tabs&quot;;
           </code>
         </div>
       </div>
@@ -61,11 +64,12 @@ export default function TabsDocsPage() {
             1. Signature Nav-Pill-Group (Product Switcher)
           </h2>
           <p className="text-muted-text text-xs">
-            The system&apos;s signature interactive pill wrapper ({`bg-surface-soft`} #f8f9fa with white canvas active pill).
+            The system&apos;s signature interactive pill wrapper (
+            {`bg-surface-soft`} #f8f9fa with white canvas active pill).
           </p>
         </div>
 
-        <div className="border-hairline bg-surface-card flex flex-col items-center justify-center gap-6 rounded-2xl border p-8 shadow-subtle">
+        <div className="border-hairline bg-surface-card shadow-subtle flex flex-col items-center justify-center gap-6 rounded-2xl border p-8">
           <Tabs
             value={activeSegment}
             onValueChange={setActiveSegment}
@@ -79,59 +83,76 @@ export default function TabsDocsPage() {
                 label="Teams"
                 badge="Popular"
               />
-              <TabItem
-                value="enterprise"
-                icon={Building2}
-                label="Enterprise"
-              />
+              <TabItem value="enterprise" icon={Building2} label="Enterprise" />
             </TabsList>
 
             {/* Tab Panels */}
             <div className="w-full max-w-lg pt-4">
               <TabPanel value="personal">
-                <div className="bg-canvas border-hairline rounded-xl border p-6 text-center shadow-subtle">
-                  <div className="mx-auto mb-2 flex size-10 items-center justify-center rounded-full bg-brand-accent/10 text-brand-accent">
+                <div className="bg-canvas border-hairline shadow-subtle rounded-xl border p-6 text-center">
+                  <div className="bg-brand-accent/10 text-brand-accent mx-auto mb-2 flex size-10 items-center justify-center rounded-full">
                     <User className="size-5" />
                   </div>
-                  <h3 className="text-ink text-base font-semibold">Personal Scheduling</h3>
+                  <h3 className="text-ink text-base font-semibold">
+                    Personal Scheduling
+                  </h3>
                   <p className="text-muted-text mt-1 text-xs">
-                    Free forever for individuals booking 1-on-1 meetings, calendar sync, and video calls.
+                    Free forever for individuals booking 1-on-1 meetings,
+                    calendar sync, and video calls.
                   </p>
                   <div className="mt-4 flex justify-center gap-2">
-                    <Button variant="primary" size="compact">Get Started Free</Button>
-                    <Button variant="secondary" size="compact">Learn More</Button>
+                    <Button variant="primary" size="compact">
+                      Get Started Free
+                    </Button>
+                    <Button variant="secondary" size="compact">
+                      Learn More
+                    </Button>
                   </div>
                 </div>
               </TabPanel>
 
               <TabPanel value="teams">
-                <div className="bg-canvas border-hairline rounded-xl border p-6 text-center shadow-subtle">
-                  <div className="mx-auto mb-2 flex size-10 items-center justify-center rounded-full bg-badge-orange/15 text-orange-600">
+                <div className="bg-canvas border-hairline shadow-subtle rounded-xl border p-6 text-center">
+                  <div className="bg-badge-orange/15 mx-auto mb-2 flex size-10 items-center justify-center rounded-full text-orange-600">
                     <Users className="size-5" />
                   </div>
-                  <h3 className="text-ink text-base font-semibold">Team Scheduling & Round-Robin</h3>
+                  <h3 className="text-ink text-base font-semibold">
+                    Team Scheduling & Round-Robin
+                  </h3>
                   <p className="text-muted-text mt-1 text-xs">
-                    Collective meetings, round-robin assignment, routing forms, and shared availability pools.
+                    Collective meetings, round-robin assignment, routing forms,
+                    and shared availability pools.
                   </p>
                   <div className="mt-4 flex justify-center gap-2">
-                    <Button variant="primary" size="compact">Start Team Trial</Button>
-                    <Button variant="secondary" size="compact">View Pricing</Button>
+                    <Button variant="primary" size="compact">
+                      Start Team Trial
+                    </Button>
+                    <Button variant="secondary" size="compact">
+                      View Pricing
+                    </Button>
                   </div>
                 </div>
               </TabPanel>
 
               <TabPanel value="enterprise">
-                <div className="bg-canvas border-hairline rounded-xl border p-6 text-center shadow-subtle">
-                  <div className="mx-auto mb-2 flex size-10 items-center justify-center rounded-full bg-badge-violet/15 text-violet-600">
+                <div className="bg-canvas border-hairline shadow-subtle rounded-xl border p-6 text-center">
+                  <div className="bg-badge-violet/15 mx-auto mb-2 flex size-10 items-center justify-center rounded-full text-violet-600">
                     <Building2 className="size-5" />
                   </div>
-                  <h3 className="text-ink text-base font-semibold">Enterprise Deployment</h3>
+                  <h3 className="text-ink text-base font-semibold">
+                    Enterprise Deployment
+                  </h3>
                   <p className="text-muted-text mt-1 text-xs">
-                    SSO/SAML, SCIM provisioning, custom domain white-labeling, audit logs, and 99.99% SLA.
+                    SSO/SAML, SCIM provisioning, custom domain white-labeling,
+                    audit logs, and 99.99% SLA.
                   </p>
                   <div className="mt-4 flex justify-center gap-2">
-                    <Button variant="primary" size="compact">Contact Enterprise Sales</Button>
-                    <Button variant="secondary" size="compact">Security Whitepaper</Button>
+                    <Button variant="primary" size="compact">
+                      Contact Enterprise Sales
+                    </Button>
+                    <Button variant="secondary" size="compact">
+                      Security Whitepaper
+                    </Button>
                   </div>
                 </div>
               </TabPanel>
@@ -151,10 +172,14 @@ export default function TabsDocsPage() {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {/* Segmented Squircle */}
-          <div className="border-hairline bg-surface-card flex flex-col justify-between gap-4 rounded-xl border p-5 shadow-subtle">
+          <div className="border-hairline bg-surface-card shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="flex items-center justify-between">
-              <span className="text-ink text-sm font-semibold">Segmented / Squircle</span>
-              <code className="text-muted-text font-mono text-[11px]">variant=&quot;segmented&quot;</code>
+              <span className="text-ink text-sm font-semibold">
+                Segmented / Squircle
+              </span>
+              <code className="text-muted-text font-mono text-[11px]">
+                variant=&quot;segmented&quot;
+              </code>
             </div>
             <Tabs defaultValue="month">
               <TabsList variant="segmented">
@@ -167,10 +192,14 @@ export default function TabsDocsPage() {
           </div>
 
           {/* Underline Line */}
-          <div className="border-hairline bg-surface-card flex flex-col justify-between gap-4 rounded-xl border p-5 shadow-subtle">
+          <div className="border-hairline bg-surface-card shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="flex items-center justify-between">
-              <span className="text-ink text-sm font-semibold">Underline Bar</span>
-              <code className="text-muted-text font-mono text-[11px]">variant=&quot;underline&quot;</code>
+              <span className="text-ink text-sm font-semibold">
+                Underline Bar
+              </span>
+              <code className="text-muted-text font-mono text-[11px]">
+                variant=&quot;underline&quot;
+              </code>
             </div>
             <Tabs defaultValue="overview">
               <TabsList variant="underline">
@@ -183,10 +212,14 @@ export default function TabsDocsPage() {
           </div>
 
           {/* Surface Card */}
-          <div className="border-hairline bg-surface-card flex flex-col justify-between gap-4 rounded-xl border p-5 shadow-subtle">
+          <div className="border-hairline bg-surface-card shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="flex items-center justify-between">
-              <span className="text-ink text-sm font-semibold">Surface Card Wrapper</span>
-              <code className="text-muted-text font-mono text-[11px]">variant=&quot;surface&quot;</code>
+              <span className="text-ink text-sm font-semibold">
+                Surface Card Wrapper
+              </span>
+              <code className="text-muted-text font-mono text-[11px]">
+                variant=&quot;surface&quot;
+              </code>
             </div>
             <Tabs defaultValue="incoming">
               <TabsList variant="surface">
@@ -198,10 +231,14 @@ export default function TabsDocsPage() {
           </div>
 
           {/* Ghost / Minimal */}
-          <div className="border-hairline bg-surface-card flex flex-col justify-between gap-4 rounded-xl border p-5 shadow-subtle">
+          <div className="border-hairline bg-surface-card shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="flex items-center justify-between">
-              <span className="text-ink text-sm font-semibold">Ghost Minimal</span>
-              <code className="text-muted-text font-mono text-[11px]">variant=&quot;ghost&quot;</code>
+              <span className="text-ink text-sm font-semibold">
+                Ghost Minimal
+              </span>
+              <code className="text-muted-text font-mono text-[11px]">
+                variant=&quot;ghost&quot;
+              </code>
             </div>
             <Tabs defaultValue="grid">
               <TabsList variant="ghost">
@@ -223,11 +260,15 @@ export default function TabsDocsPage() {
           </p>
         </div>
 
-        <div className="border-hairline bg-surface-card space-y-6 rounded-xl border p-6 shadow-subtle">
+        <div className="border-hairline bg-surface-card shadow-subtle space-y-6 rounded-xl border p-6">
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-ink text-xs font-semibold">Compact (28px height / text 12px)</span>
-              <code className="text-muted-text font-mono text-[11px]">size=&quot;compact&quot;</code>
+              <span className="text-ink text-xs font-semibold">
+                Compact (28px height / text 12px)
+              </span>
+              <code className="text-muted-text font-mono text-[11px]">
+                size=&quot;compact&quot;
+              </code>
             </div>
             <Tabs defaultValue="tab1">
               <TabsList size="compact" variant="pill">
@@ -240,8 +281,12 @@ export default function TabsDocsPage() {
 
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-ink text-xs font-semibold">Default (36px height / text 14px)</span>
-              <code className="text-muted-text font-mono text-[11px]">size=&quot;default&quot;</code>
+              <span className="text-ink text-xs font-semibold">
+                Default (36px height / text 14px)
+              </span>
+              <code className="text-muted-text font-mono text-[11px]">
+                size=&quot;default&quot;
+              </code>
             </div>
             <Tabs defaultValue="tab1">
               <TabsList size="default" variant="pill">
@@ -254,8 +299,12 @@ export default function TabsDocsPage() {
 
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-ink text-xs font-semibold">Large (44px height / text 15px)</span>
-              <code className="text-muted-text font-mono text-[11px]">size=&quot;lg&quot;</code>
+              <span className="text-ink text-xs font-semibold">
+                Large (44px height / text 15px)
+              </span>
+              <code className="text-muted-text font-mono text-[11px]">
+                size=&quot;lg&quot;
+              </code>
             </div>
             <Tabs defaultValue="tab1">
               <TabsList size="lg" variant="pill">
@@ -271,17 +320,16 @@ export default function TabsDocsPage() {
       {/* 4. Pricing / Billing Switcher Example */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">4. Billing Period Toggle Pattern</h2>
+          <h2 className="text-ink text-lg font-semibold">
+            4. Billing Period Toggle Pattern
+          </h2>
           <p className="text-muted-text text-xs">
             Standard SaaS pricing toggle with annual discount badge pill.
           </p>
         </div>
 
-        <div className="border-hairline bg-surface-card flex flex-col items-center justify-center gap-4 rounded-xl border p-6 shadow-subtle">
-          <Tabs
-            value={billingCycle}
-            onValueChange={setBillingCycle}
-          >
+        <div className="border-hairline bg-surface-card shadow-subtle flex flex-col items-center justify-center gap-4 rounded-xl border p-6">
+          <Tabs value={billingCycle} onValueChange={setBillingCycle}>
             <TabsList variant="nav-pill-group" size="default">
               <TabItem value="monthly" label="Monthly Billing" />
               <TabItem
@@ -296,7 +344,10 @@ export default function TabsDocsPage() {
             </TabsList>
           </Tabs>
           <p className="text-muted-text text-xs">
-            Selected cycle: <span className="text-ink font-semibold capitalize">{billingCycle}</span>
+            Selected cycle:{" "}
+            <span className="text-ink font-semibold capitalize">
+              {billingCycle}
+            </span>
           </p>
         </div>
       </section>

@@ -27,7 +27,8 @@ const TabsListContext = createContext(null);
 
 function useTabsList() {
   const ctx = useContext(TabsListContext);
-  if (!ctx) throw new Error("TabItem/TabsTrigger must be used within a TabsList");
+  if (!ctx)
+    throw new Error("TabItem/TabsTrigger must be used within a TabsList");
   return ctx;
 }
 
@@ -117,8 +118,7 @@ const tabsListVariants = cva(
         // 1. Signature nav-pill-group (from design.md §159: background surface-soft #f8f9fa, rounded.pill, 6px internal padding)
         default:
           "border border-hairline/80 bg-surface-soft text-muted-text p-1 rounded-full shadow-subtle dark:border-hairline dark:bg-surface-dark-elevated dark:text-on-dark-soft",
-        pill:
-          "border border-hairline/80 bg-surface-soft text-muted-text p-1 rounded-full shadow-subtle dark:border-hairline dark:bg-surface-dark-elevated dark:text-on-dark-soft",
+        pill: "border border-hairline/80 bg-surface-soft text-muted-text p-1 rounded-full shadow-subtle dark:border-hairline dark:bg-surface-dark-elevated dark:text-on-dark-soft",
         "nav-pill-group":
           "border border-hairline/80 bg-surface-soft text-muted-text p-1.5 rounded-full shadow-subtle dark:border-hairline dark:bg-surface-dark-elevated dark:text-on-dark-soft",
 
@@ -131,14 +131,12 @@ const tabsListVariants = cva(
         // 3. Surface Card & Canvas
         surface:
           "border border-hairline bg-surface-card text-muted-text p-1 rounded-full shadow-subtle dark:border-hairline dark:bg-surface-dark-elevated dark:text-on-dark-soft",
-        card:
-          "border border-hairline bg-surface-card text-muted-text p-1 rounded-xl shadow-subtle dark:border-hairline dark:bg-surface-dark-elevated dark:text-on-dark-soft",
+        card: "border border-hairline bg-surface-card text-muted-text p-1 rounded-xl shadow-subtle dark:border-hairline dark:bg-surface-dark-elevated dark:text-on-dark-soft",
         canvas:
           "border border-hairline bg-canvas text-muted-text p-1 rounded-full dark:border-hairline dark:bg-surface-dark dark:text-on-dark-soft",
 
         // 4. Line / Underline tab bar
-        line:
-          "border-b border-hairline bg-transparent text-muted-text gap-6 p-0 rounded-none dark:border-hairline dark:text-on-dark-soft",
+        line: "border-b border-hairline bg-transparent text-muted-text gap-6 p-0 rounded-none dark:border-hairline dark:text-on-dark-soft",
         underline:
           "border-b border-hairline bg-transparent text-muted-text gap-6 p-0 rounded-none dark:border-hairline dark:text-on-dark-soft",
 
@@ -334,7 +332,7 @@ const TabsList = forwardRef(
             ) : (
               <motion.div
                 className={cn(
-                  "bg-canvas text-ink border border-hairline/80 shadow-subtle dark:border-hairline dark:bg-canvas dark:text-ink pointer-events-none absolute",
+                  "bg-canvas text-ink border-hairline/80 shadow-subtle dark:border-hairline dark:bg-canvas dark:text-ink pointer-events-none absolute border",
                   isPill ? "rounded-full" : "rounded-lg"
                 )}
                 initial={false}
@@ -354,47 +352,50 @@ const TabsList = forwardRef(
 
           {/* Hover indicator: Soft proximity highlight */}
           <AnimatePresence>
-            {!isUnderline && hoverRect && !isHoveringSelected && selectedRect && (
-              <motion.div
-                className={cn(
-                  "bg-surface-card/70 dark:bg-surface-dark/40 pointer-events-none absolute",
-                  isPill ? "rounded-full" : "rounded-lg"
-                )}
-                initial={{
-                  left: selectedRect.left,
-                  width: selectedRect.width,
-                  top: selectedRect.top,
-                  height: selectedRect.height,
-                  opacity: 0,
-                }}
-                animate={{
-                  left: hoverRect.left,
-                  width: hoverRect.width,
-                  top: hoverRect.top,
-                  height: hoverRect.height,
-                  opacity: 0.7,
-                }}
-                exit={
-                  !isMouseInside && selectedRect
-                    ? {
-                        left: selectedRect.left,
-                        width: selectedRect.width,
-                        top: selectedRect.top,
-                        height: selectedRect.height,
-                        opacity: 0,
-                        transition: {
-                          ...spring.moderate,
-                          opacity: { duration: 0.06 },
-                        },
-                      }
-                    : { opacity: 0, transition: spring.fast.exit }
-                }
-                transition={{
-                  ...spring.fast,
-                  opacity: { duration: 0.08 },
-                }}
-              />
-            )}
+            {!isUnderline &&
+              hoverRect &&
+              !isHoveringSelected &&
+              selectedRect && (
+                <motion.div
+                  className={cn(
+                    "bg-surface-card/70 dark:bg-surface-dark/40 pointer-events-none absolute",
+                    isPill ? "rounded-full" : "rounded-lg"
+                  )}
+                  initial={{
+                    left: selectedRect.left,
+                    width: selectedRect.width,
+                    top: selectedRect.top,
+                    height: selectedRect.height,
+                    opacity: 0,
+                  }}
+                  animate={{
+                    left: hoverRect.left,
+                    width: hoverRect.width,
+                    top: hoverRect.top,
+                    height: hoverRect.height,
+                    opacity: 0.7,
+                  }}
+                  exit={
+                    !isMouseInside && selectedRect
+                      ? {
+                          left: selectedRect.left,
+                          width: selectedRect.width,
+                          top: selectedRect.top,
+                          height: selectedRect.height,
+                          opacity: 0,
+                          transition: {
+                            ...spring.moderate,
+                            opacity: { duration: 0.06 },
+                          },
+                        }
+                      : { opacity: 0, transition: spring.fast.exit }
+                  }
+                  transition={{
+                    ...spring.fast,
+                    opacity: { duration: 0.08 },
+                  }}
+                />
+              )}
           </AnimatePresence>
 
           {/* Focus ring: Adheres to design system ring token */}
@@ -483,7 +484,8 @@ const TabItem = forwardRef(
 
     const effectiveSize = size || listCtx.size || "default";
     const effectiveShape = shape || listCtx.shape || "pill";
-    const isUnderline = listCtx.variant === "line" || listCtx.variant === "underline";
+    const isUnderline =
+      listCtx.variant === "line" || listCtx.variant === "underline";
 
     useEffect(() => {
       registerTab(_index, value, internalRef.current);
@@ -523,7 +525,7 @@ const TabItem = forwardRef(
             size={effectiveSize === "sm" ? 14 : 16}
             strokeWidth={strokeWidth}
             className={cn(
-              "shrink-0 transition-colors duration-100 pointer-events-none",
+              "pointer-events-none shrink-0 transition-colors duration-100",
               isActive
                 ? "text-ink dark:text-on-dark"
                 : "text-muted-text dark:text-on-dark-soft"
@@ -551,10 +553,13 @@ const TabItem = forwardRef(
         disabled={disabled}
         data-proximity-index={_index}
         className={cn(
-          tabItemVariants({ size: effectiveSize, shape: isUnderline ? "line" : effectiveShape }),
+          tabItemVariants({
+            size: effectiveSize,
+            shape: isUnderline ? "line" : effectiveShape,
+          }),
           isActive
-            ? "text-ink font-semibold dark:text-on-dark"
-            : "text-muted-text hover:text-ink font-medium dark:text-on-dark-soft dark:hover:text-on-dark",
+            ? "text-ink dark:text-on-dark font-semibold"
+            : "text-muted-text hover:text-ink dark:text-on-dark-soft dark:hover:text-on-dark font-medium",
           className
         )}
         {...props}
@@ -572,7 +577,7 @@ const TabItem = forwardRef(
             {typeof badge === "string" || typeof badge === "number" ? (
               <span
                 className={cn(
-                  "border border-hairline py-0.5 inline-flex items-center justify-center rounded-full px-1.5 text-[10px] font-semibold transition-colors",
+                  "border-hairline inline-flex items-center justify-center rounded-full border px-1.5 py-0.5 text-[10px] font-semibold transition-colors",
                   isSelected
                     ? "bg-surface-card text-ink dark:bg-surface-dark-elevated dark:text-on-dark"
                     : "bg-surface-soft text-muted-text dark:bg-surface-dark dark:text-on-dark-soft"

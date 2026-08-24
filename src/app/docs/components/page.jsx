@@ -44,7 +44,8 @@ export default function ComponentsIndexPage() {
               Spinner
             </h2>
             <p className="text-body-sm text-muted-text mt-1">
-              Circular loaders, pulsing dot rhythms, 5-step sizing ladder, and status color tokens.
+              Circular loaders, pulsing dot rhythms, 5-step sizing ladder, and
+              status color tokens.
             </p>
           </div>
 
@@ -72,7 +73,8 @@ export default function ComponentsIndexPage() {
               Select
             </h2>
             <p className="text-body-sm text-muted-text mt-1">
-              Form dropdowns with proximity hover glow, spring physics, check indicators, and group labels.
+              Form dropdowns with proximity hover glow, spring physics, check
+              indicators, and group labels.
             </p>
           </div>
 

@@ -501,7 +501,7 @@ const DropdownLabel = forwardRef(({ className, ...props }, ref) => {
     <div
       ref={ref}
       className={cn(
-        "text-muted-text dark:text-on-dark-soft px-2.5 py-1.5 text-[11px] font-semibold tracking-wider uppercase shrink-0 select-none",
+        "text-muted-text dark:text-on-dark-soft shrink-0 px-2.5 py-1.5 text-[11px] font-semibold tracking-wider uppercase select-none",
         className
       )}
       {...props}
@@ -520,7 +520,7 @@ const DropdownSeparator = forwardRef(({ className, ...props }, ref) => (
     ref={ref}
     role="separator"
     className={cn(
-      "bg-hairline dark:bg-hairline my-1 h-px shrink-0 -mx-1",
+      "bg-hairline dark:bg-hairline -mx-1 my-1 h-px shrink-0",
       className
     )}
     {...props}

@@ -275,6 +275,7 @@ Avatar photos use `{rounded.full}` (perfect circles) at 36px or 40px. Product UI
 ### Tab / Filter
 
 **`tabs` / `nav-pill-group`** — The signature switcher and filter bar for toggling views, categories, and billing cycles.
+
 - **Visual Variants:**
   - `default` / `pill` / `nav-pill-group`: Background `{colors.surface-soft}` (#f8f9fa), internal padding 4–6px, rounded `{rounded.pill}`. Active segment renders as a `{colors.canvas}` (#ffffff) pill with a 1px `{colors.hairline}` border and `{shadow.subtle}` (`0 1px 2px rgba(0,0,0,0.05)`).
   - `segmented` / `rounded`: Background `{colors.surface-soft}` with rounded-xl (12px) container and rounded-lg (8px) active item.

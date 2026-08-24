@@ -40,14 +40,12 @@ const dialogVariants = cva(
         // 2. Surface Card (from design.md: surface-card #f5f5f5)
         surface:
           "border-hairline bg-surface-card text-ink dark:border-hairline dark:bg-surface-dark-elevated dark:text-on-dark",
-        card:
-          "border-hairline bg-surface-card text-ink dark:border-hairline dark:bg-surface-dark-elevated dark:text-on-dark",
+        card: "border-hairline bg-surface-card text-ink dark:border-hairline dark:bg-surface-dark-elevated dark:text-on-dark",
 
         // 3. Dark / Inverse Surface (from design.md: surface-dark #101010)
         inverse:
           "border-hairline bg-surface-dark text-on-dark shadow-card dark:bg-surface-dark-elevated",
-        dark:
-          "border-hairline bg-surface-dark text-on-dark shadow-card dark:bg-surface-dark-elevated",
+        dark: "border-hairline bg-surface-dark text-on-dark shadow-card dark:bg-surface-dark-elevated",
       },
       size: {
         sm: "w-[min(calc(100vw-2rem),380px)] p-5", // ~380px
@@ -208,7 +206,7 @@ const DialogTitle = forwardRef(({ className, ...props }, ref) => {
     <DialogPrimitive.Title
       ref={ref}
       className={cn(
-        "text-title-md text-ink dark:text-on-dark font-sans font-semibold tracking-tight leading-snug text-left",
+        "text-title-md text-ink dark:text-on-dark text-left font-sans leading-snug font-semibold tracking-tight",
         className
       )}
       {...props}
@@ -223,7 +221,7 @@ const DialogDescription = forwardRef(({ className, ...props }, ref) => {
     <DialogPrimitive.Description
       ref={ref}
       className={cn(
-        "text-body-sm text-muted-text dark:text-on-dark-soft leading-relaxed text-left",
+        "text-body-sm text-muted-text dark:text-on-dark-soft text-left leading-relaxed",
         className
       )}
       {...props}
