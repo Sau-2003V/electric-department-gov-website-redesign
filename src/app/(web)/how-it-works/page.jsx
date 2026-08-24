@@ -97,9 +97,6 @@ const steps = [
 export default function HowItWorksPage() {
   return (
     <div className="bg-canvas text-ink selection:bg-fin-orange selection:text-on-primary flex min-h-screen flex-col">
-      {/* Accessibility header & main navigation */}
-      <TopHeader />
-
       <main className="flex-1">
         {/* Page Hero Header */}
         <section className="border-hairline/60 bg-surface-1/50 border-b px-4 py-12 sm:px-6 sm:py-16 lg:px-8">

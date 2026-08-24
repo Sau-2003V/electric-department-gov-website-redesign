@@ -16,10 +16,9 @@ export default function TopHeader() {
     { label: "Register Complaint", href: "/complaints/new" },
     { label: "Track Complaint", href: "/complaints" },
     { label: "Consumer Services", href: "#consumer-services" },
-    { label: "Pay Bill", href: "/bill/pay" },
     { label: "Video Guides", href: "#video-guides" },
     { label: "Updates", href: "#notices" },
-    { label: "Contact", href: "/contact" },
+    { label: "Support", href: "/support" },
   ];
 
   // Close mobile menu on Escape key press
