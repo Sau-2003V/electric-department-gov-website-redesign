@@ -43,16 +43,21 @@ const STATUS_DISTRIBUTION = [
   {
     label: "Resolved",
     value: 88.4,
-    color: "bg-semantic-success",
-    stroke: "#00875a",
+    color: "bg-ink",
+    stroke: "#111111",
   },
   {
     label: "In progress",
     value: 7.8,
-    color: "bg-report-orange",
-    stroke: "#ff7a00",
+    color: "bg-muted-text",
+    stroke: "#6b7280",
   },
-  { label: "Assigned", value: 3.8, color: "bg-report-blue", stroke: "#0052cc" },
+  {
+    label: "Assigned",
+    value: 3.8,
+    color: "bg-surface-strong",
+    stroke: "#e5e7eb",
+  },
 ];
 
 // Category breakdown data
@@ -111,8 +116,10 @@ function DonutChart({ data }) {
       </svg>
       {/* Center label */}
       <div className="absolute flex flex-col items-center">
-        <span className="text-ink font-mono text-xl font-bold">88.4%</span>
-        <span className="text-caption text-ink-muted">Resolved</span>
+        <span className="text-ink text-title-lg font-mono font-bold">
+          88.4%
+        </span>
+        <span className="text-caption text-muted-text">Resolved</span>
       </div>
     </div>
   );
@@ -123,10 +130,12 @@ function CategoryBar({ label, count, max }) {
   const pct = Math.round((count / max) * 100);
   return (
     <div className="flex items-center gap-3">
-      <span className="text-caption text-ink-muted w-28 shrink-0">{label}</span>
-      <div className="bg-surface-2 flex-1 overflow-hidden rounded-full">
+      <span className="text-caption text-muted-text w-28 shrink-0">
+        {label}
+      </span>
+      <div className="bg-surface-soft flex-1 overflow-hidden rounded-full">
         <div
-          className="bg-fin-orange/80 h-2 rounded-full transition-all"
+          className="bg-primary h-2 rounded-full transition-all"
           style={{ width: `${pct}%` }}
         />
       </div>
@@ -163,11 +172,11 @@ function Sparkline() {
       preserveAspectRatio="none"
       className="w-full"
     >
-      <polyline points={area} fill="rgba(255,86,0,0.08)" stroke="none" />
+      <polyline points={area} fill="rgba(17,17,17,0.04)" stroke="none" />
       <polyline
         points={polyline}
         fill="none"
-        stroke="#ff5600"
+        stroke="#111111"
         strokeWidth="2"
         strokeLinejoin="round"
         strokeLinecap="round"
@@ -177,7 +186,7 @@ function Sparkline() {
         cx={w}
         cy={parseFloat(pts[pts.length - 1].split(",")[1])}
         r="3"
-        fill="#ff5600"
+        fill="#111111"
       />
     </svg>
   );
@@ -190,16 +199,16 @@ export default function ComplaintAnalytics() {
   return (
     <section
       id="analytics"
-      className="border-hairline bg-surface-1 w-full border-t px-4 py-12 sm:px-6 lg:px-8"
+      className="border-hairline bg-surface-card w-full border-t px-4 py-12 sm:px-6 lg:px-8 lg:py-20"
     >
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-8 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <span className="text-eyebrow text-fin-orange font-semibold tracking-wide uppercase">
+            <span className="text-caption text-muted-text font-medium tracking-wide uppercase">
               Live dashboard
             </span>
-            <h2 className="text-display-md text-ink mt-1">
+            <h2 className="text-display-sm sm:text-display-md text-ink mt-1">
               Complaint status at a glance
             </h2>
           </div>
@@ -215,25 +224,20 @@ export default function ComplaintAnalytics() {
                 onMouseEnter={() => setHoveredStat(s.label)}
                 onMouseLeave={() => setHoveredStat(null)}
                 className={cn(
-                  "border-hairline bg-canvas flex flex-col rounded-xl border p-5 shadow-2xs transition-shadow",
-                  hoveredStat === s.label && "shadow-xs"
+                  "border-hairline bg-canvas shadow-subtle flex flex-col rounded-lg border p-5 transition-shadow",
+                  hoveredStat === s.label && "shadow-card"
                 )}
               >
                 <div className="mb-3 flex items-center justify-between">
-                  <span className="text-eyebrow text-ink-muted font-medium uppercase">
+                  <span className="text-caption text-muted-text font-medium uppercase">
                     {s.label}
                   </span>
-                  <Icon className="text-fin-orange h-4 w-4" strokeWidth={1.5} />
+                  <Icon className="text-ink h-4 w-4" strokeWidth={1.5} />
                 </div>
-                <span className="text-ink font-mono text-2xl font-bold">
+                <span className="text-ink text-display-sm font-mono font-semibold">
                   {s.value}
                 </span>
-                <span
-                  className={cn(
-                    "text-caption mt-1",
-                    s.positive ? "text-semantic-success" : "text-ink-muted"
-                  )}
-                >
+                <span className="text-caption text-muted-text mt-1">
                   {s.delta}
                 </span>
               </div>
@@ -244,8 +248,8 @@ export default function ComplaintAnalytics() {
         {/* Charts row */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {/* Donut — resolution status */}
-          <div className="border-hairline bg-canvas rounded-xl border p-6 shadow-2xs">
-            <h3 className="text-eyebrow text-ink mb-4 font-semibold uppercase">
+          <div className="border-hairline bg-canvas shadow-subtle rounded-lg border p-6">
+            <h3 className="text-caption text-ink mb-4 font-semibold uppercase">
               Status distribution
             </h3>
             <DonutChart data={STATUS_DISTRIBUTION} />
@@ -258,7 +262,7 @@ export default function ComplaintAnalytics() {
                 >
                   <div className="flex items-center gap-2">
                     <span className={`h-2.5 w-2.5 rounded-full ${d.color}`} />
-                    <span className="text-body-sm text-ink-muted">
+                    <span className="text-body-sm text-muted-text">
                       {d.label}
                     </span>
                   </div>
@@ -271,8 +275,8 @@ export default function ComplaintAnalytics() {
           </div>
 
           {/* Category bars */}
-          <div className="border-hairline bg-canvas rounded-xl border p-6 shadow-2xs">
-            <h3 className="text-eyebrow text-ink mb-4 font-semibold uppercase">
+          <div className="border-hairline bg-canvas shadow-subtle rounded-lg border p-6">
+            <h3 className="text-caption text-ink mb-4 font-semibold uppercase">
               By category (today)
             </h3>
             <div className="space-y-4">
@@ -283,11 +287,11 @@ export default function ComplaintAnalytics() {
           </div>
 
           {/* 7-day trend sparkline */}
-          <div className="border-hairline bg-canvas flex flex-col rounded-xl border p-6 shadow-2xs">
-            <h3 className="text-eyebrow text-ink mb-1 font-semibold uppercase">
+          <div className="border-hairline bg-canvas shadow-subtle flex flex-col rounded-lg border p-6">
+            <h3 className="text-caption text-ink mb-1 font-semibold uppercase">
               7-day complaint trend
             </h3>
-            <p className="text-caption text-ink-muted mb-4">
+            <p className="text-caption text-muted-text mb-4">
               Mon – Sun • All categories
             </p>
             <div className="flex-1">
@@ -295,13 +299,13 @@ export default function ComplaintAnalytics() {
             </div>
             <div className="mt-4 flex items-end justify-between">
               <div>
-                <span className="text-ink font-mono text-xl font-bold">
+                <span className="text-ink text-title-lg font-mono font-semibold">
                   1,284
                 </span>
-                <p className="text-caption text-ink-muted">Today</p>
+                <p className="text-caption text-muted-text">Today</p>
               </div>
-              <div className="text-caption text-semantic-success flex items-center gap-1">
-                <TrendingUp className="h-3.5 w-3.5" strokeWidth={2} />
+              <div className="text-caption text-ink flex items-center gap-1 font-medium">
+                <TrendingUp className="h-3.5 w-3.5" strokeWidth={1.5} />
                 <span>+12% vs yesterday</span>
               </div>
             </div>

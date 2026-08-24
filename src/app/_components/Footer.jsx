@@ -76,49 +76,46 @@ const legalLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-inverse-canvas text-inverse-ink-muted w-full font-sans text-xs">
+    <footer className="bg-surface-dark text-on-dark-soft text-body-sm w-full font-sans">
       {/* Top Footer with Logo and Corporate Info */}
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="border-inverse-surface-1 grid grid-cols-1 gap-8 border-b pb-10 lg:grid-cols-12 lg:gap-8">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+        <div className="border-surface-dark-elevated grid grid-cols-1 gap-8 border-b pb-10 lg:grid-cols-12 lg:gap-8">
           {/* Logo & Office Details */}
           <div className="flex flex-col items-start pr-4 lg:col-span-4">
             <div className="mb-4 flex items-center gap-3">
-              <div className="bg-fin-orange text-on-primary flex h-10 w-10 items-center justify-center rounded-xl text-lg font-bold">
+              <div className="border-surface-dark-elevated bg-surface-dark-elevated text-on-dark flex h-10 w-10 items-center justify-center rounded-lg border text-lg font-semibold">
                 ⚡
               </div>
               <div>
-                <p className="text-fin-orange text-[10px] font-semibold tracking-wider uppercase">
+                <p className="text-on-dark-soft text-caption font-medium tracking-wider uppercase">
                   Electric Department
                 </p>
-                <p className="text-inverse-ink text-base font-bold">
+                <p className="text-on-dark text-title-md font-semibold">
                   Vidhyut Portal
                 </p>
               </div>
             </div>
 
-            <p className="text-inverse-ink-muted mb-4 text-xs leading-relaxed">
+            <p className="text-on-dark-soft text-body-sm mb-4 leading-relaxed">
               Official centralized grievance redressal and electricity consumer
               services portal.
             </p>
 
-            <div className="text-inverse-ink-muted space-y-1.5 text-xs">
+            <div className="text-on-dark-soft text-body-sm space-y-1.5">
               <p className="flex items-center gap-2">
                 <PhoneCall
-                  className="text-fin-orange h-3.5 w-3.5"
-                  strokeWidth={2}
+                  className="text-on-dark h-3.5 w-3.5"
+                  strokeWidth={1.5}
                 />
                 <span>24x7 Toll Free: 1800-180-1912 / 1912</span>
               </p>
               <p className="flex items-center gap-2">
-                <Mail
-                  className="text-fin-orange h-3.5 w-3.5"
-                  strokeWidth={1.5}
-                />
+                <Mail className="text-on-dark h-3.5 w-3.5" strokeWidth={1.5} />
                 <span>Email: grievance@vidhyutportal.gov.in</span>
               </p>
               <p className="flex items-center gap-2">
                 <MapPin
-                  className="text-fin-orange h-3.5 w-3.5"
+                  className="text-on-dark h-3.5 w-3.5"
                   strokeWidth={1.5}
                 />
                 <span>Reg. Office: Vidyut Bhawan, Lucknow - 226001</span>
@@ -130,15 +127,15 @@ export default function Footer() {
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5 lg:col-span-8">
             {footerColumns.map((col) => (
               <div key={col.title} className="flex flex-col">
-                <h4 className="text-inverse-ink mb-3 text-xs font-semibold tracking-wider uppercase">
+                <h4 className="text-on-dark text-caption mb-3 font-semibold tracking-wider uppercase">
                   {col.title}
                 </h4>
-                <ul className="space-y-2 text-xs">
+                <ul className="text-body-sm space-y-2">
                   {col.links.map((link) => (
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="text-inverse-ink-muted hover:text-fin-orange block leading-tight transition-colors"
+                        className="text-on-dark-soft hover:text-on-dark block leading-tight transition-colors"
                       >
                         {link.label}
                       </Link>
@@ -151,38 +148,38 @@ export default function Footer() {
         </div>
 
         {/* Related Portals Row */}
-        <div className="border-inverse-surface-1 border-b py-6">
-          <p className="text-inverse-ink mb-2.5 text-xs font-semibold tracking-wider uppercase">
+        <div className="border-surface-dark-elevated border-b py-6">
+          <p className="text-on-dark text-caption mb-2.5 font-semibold tracking-wider uppercase">
             Related Portals:
           </p>
-          <div className="flex flex-wrap gap-2 text-xs">
+          <div className="text-body-sm flex flex-wrap gap-2">
             <Link
               href="https://up.gov.in"
-              className="border-inverse-surface-1 bg-inverse-surface-1/50 text-inverse-ink-muted hover:text-fin-orange rounded-md border px-3 py-1 transition-colors active:scale-[0.96]"
+              className="border-surface-dark-elevated bg-surface-dark-elevated text-on-dark-soft hover:text-on-dark text-button rounded-md border px-3 py-1 font-medium transition-colors active:scale-[0.98]"
             >
               Uttar Pradesh State Portal
             </Link>
             <Link
               href="https://india.gov.in"
-              className="border-inverse-surface-1 bg-inverse-surface-1/50 text-inverse-ink-muted hover:text-fin-orange rounded-md border px-3 py-1 transition-colors active:scale-[0.96]"
+              className="border-surface-dark-elevated bg-surface-dark-elevated text-on-dark-soft hover:text-on-dark text-button rounded-md border px-3 py-1 font-medium transition-colors active:scale-[0.98]"
             >
               National Portal of India
             </Link>
             <Link
               href="https://digitalindia.gov.in"
-              className="border-inverse-surface-1 bg-inverse-surface-1/50 text-inverse-ink-muted hover:text-fin-orange rounded-md border px-3 py-1 transition-colors active:scale-[0.96]"
+              className="border-surface-dark-elevated bg-surface-dark-elevated text-on-dark-soft hover:text-on-dark text-button rounded-md border px-3 py-1 font-medium transition-colors active:scale-[0.98]"
             >
               Digital India
             </Link>
             <Link
               href="https://pmsuryaghar.gov.in"
-              className="border-inverse-surface-1 bg-inverse-surface-1/50 text-inverse-ink-muted hover:text-fin-orange rounded-md border px-3 py-1 transition-colors active:scale-[0.96]"
+              className="border-surface-dark-elevated bg-surface-dark-elevated text-on-dark-soft hover:text-on-dark text-button rounded-md border px-3 py-1 font-medium transition-colors active:scale-[0.98]"
             >
               PM Surya Ghar
             </Link>
             <Link
               href="https://urjamitra.in"
-              className="border-inverse-surface-1 bg-inverse-surface-1/50 text-inverse-ink-muted hover:text-fin-orange rounded-md border px-3 py-1 transition-colors active:scale-[0.96]"
+              className="border-surface-dark-elevated bg-surface-dark-elevated text-on-dark-soft hover:text-on-dark text-button rounded-md border px-3 py-1 font-medium transition-colors active:scale-[0.98]"
             >
               Urja Mitra
             </Link>
@@ -191,19 +188,19 @@ export default function Footer() {
 
         {/* Legal Links & Disclaimer */}
         <div className="flex flex-col gap-4 pt-6">
-          <div className="border-inverse-surface-1 text-inverse-ink-muted flex flex-wrap items-center gap-x-4 gap-y-2 border-b pb-4 text-xs">
+          <div className="border-surface-dark-elevated text-on-dark-soft text-caption flex flex-wrap items-center gap-x-4 gap-y-2 border-b pb-4">
             {legalLinks.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className="hover:text-fin-orange transition-colors"
+                className="hover:text-on-dark transition-colors"
               >
                 {item.label}
               </Link>
             ))}
           </div>
 
-          <div className="text-inverse-ink-muted flex flex-col justify-between gap-2 text-xs sm:flex-row sm:items-center">
+          <div className="text-on-dark-soft text-caption flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
             <p>
               © {new Date().getFullYear()} Vidhyut Portal. All rights reserved.
               Government of Uttar Pradesh.
@@ -211,7 +208,7 @@ export default function Footer() {
             <p>Designed & Developed for DISCOM Consumer & Grievance Services</p>
           </div>
 
-          <p className="text-inverse-ink-muted/70 text-[10px] leading-relaxed">
+          <p className="text-on-dark-soft/70 text-caption leading-relaxed">
             Disclaimer: This is the official portal of Vidhyut Portal, an
             undertaking of the Department of Energy, Government of Uttar
             Pradesh. Content on this website is published and managed by the

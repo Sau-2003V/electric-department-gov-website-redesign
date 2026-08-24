@@ -102,8 +102,8 @@ const STATUS_CONFIG = {
 };
 
 const SLA_CLASS = {
-  "SLA breached": "text-semantic-error",
-  "SLA met": "text-semantic-success",
+  "SLA breached": "text-error",
+  "SLA met": "text-success",
 };
 
 /* ── Single complaint row ─────────────────────────────────────────────── */
@@ -113,16 +113,16 @@ function ComplaintRow({ complaint, copiedId, onCopy }) {
   const isCopied = copiedId === complaint.id;
 
   return (
-    <div className="border-hairline-soft hover:bg-surface-2/30 flex items-start gap-3 border-b px-5 py-4 transition-colors last:border-b-0">
+    <div className="border-hairline-soft hover:bg-surface-soft flex items-start gap-3 border-b px-5 py-4 transition-colors last:border-b-0">
       {/* Status dot */}
       <span
         className={cn(
           "mt-1.5 h-2 w-2 shrink-0 rounded-full",
           complaint.status === "Resolved" || complaint.status === "Closed"
-            ? "bg-semantic-success"
+            ? "bg-primary"
             : complaint.status === "In progress"
-              ? "bg-report-orange"
-              : "bg-report-blue"
+              ? "bg-muted-text"
+              : "bg-surface-strong"
         )}
         aria-hidden="true"
       />
@@ -130,32 +130,32 @@ function ComplaintRow({ complaint, copiedId, onCopy }) {
       {/* Content */}
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2">
-          <span className="text-body-sm text-ink font-medium">
+          <span className="text-title-sm text-ink font-medium">
             {complaint.title}
           </span>
           <Badge variant={sc.variant} size="sm">
-            <Icon className="size-2.5" strokeWidth={2.2} />
+            <Icon className="size-2.5" strokeWidth={1.5} />
             {complaint.status}
           </Badge>
           {complaint.priority === "Safety critical" && (
             <Badge variant="destructive" size="sm">
-              <AlertTriangle className="size-2.5" strokeWidth={2.2} />
+              <AlertTriangle className="size-2.5" strokeWidth={1.5} />
               Critical
             </Badge>
           )}
         </div>
-        <p className="text-caption text-ink-muted mt-0.5 line-clamp-1">
+        <p className="text-caption text-muted-text mt-0.5 line-clamp-1">
           {complaint.description}
         </p>
-        <div className="text-caption text-ink-subtle mt-1 flex flex-wrap items-center gap-2">
+        <div className="text-caption text-muted-soft mt-1 flex flex-wrap items-center gap-2">
           <button
             type="button"
             onClick={() => onCopy(complaint.id)}
-            className="hover:text-fin-orange flex items-center gap-1 font-mono"
+            className="hover:text-ink text-muted-text flex items-center gap-1 font-mono transition-colors"
             title="Copy docket ID"
           >
             {isCopied ? (
-              <Check className="text-semantic-success h-3 w-3" />
+              <Check className="text-ink h-3 w-3" />
             ) : (
               <Copy className="h-3 w-3" />
             )}
@@ -172,7 +172,7 @@ function ComplaintRow({ complaint, copiedId, onCopy }) {
 
       <Link
         href={`/complaints?search=${complaint.id}`}
-        className="text-ink-tertiary hover:text-fin-orange shrink-0"
+        className="text-muted-soft hover:text-ink shrink-0 transition-colors"
         aria-label={`View complaint ${complaint.id}`}
       >
         <ChevronRight className="h-4 w-4" />
@@ -219,29 +219,31 @@ export default function LiveComplaintsSection() {
   return (
     <section
       id="live-complaints"
-      className="border-hairline bg-canvas w-full border-t px-4 py-12 sm:px-6 lg:px-8"
+      className="border-hairline bg-canvas w-full border-t px-4 py-12 sm:px-6 lg:px-8 lg:py-20"
     >
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <span className="text-eyebrow text-fin-orange font-semibold tracking-wide uppercase">
+            <span className="text-caption text-muted-text font-medium tracking-wide uppercase">
               Live registry
             </span>
-            <h2 className="text-display-md text-ink mt-1">Recent complaints</h2>
+            <h2 className="text-display-sm sm:text-display-md text-ink mt-1">
+              Recent complaints
+            </h2>
           </div>
           <Link
             href="/complaints"
-            className="text-body-sm text-fin-orange inline-flex items-center gap-1.5 font-medium hover:underline"
+            className="text-body-sm text-ink inline-flex items-center gap-1.5 font-medium hover:opacity-80"
           >
             View all complaints
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
 
-        <div className="border-hairline bg-surface-1 overflow-hidden rounded-xl border shadow-2xs">
+        <div className="border-hairline bg-canvas shadow-subtle overflow-hidden rounded-lg border">
           {/* Toolbar */}
-          <div className="border-hairline-soft bg-surface-2/30 flex flex-col gap-3 border-b px-5 py-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="border-hairline-soft bg-surface-soft flex flex-col gap-3 border-b px-5 py-3 sm:flex-row sm:items-center sm:justify-between">
             {/* Tab pills */}
             <div className="flex flex-wrap items-center gap-1.5">
               {TABS.map((t) => (
@@ -250,10 +252,10 @@ export default function LiveComplaintsSection() {
                   type="button"
                   onClick={() => setActiveTab(t.id)}
                   className={cn(
-                    "rounded-md px-3 py-1.5 text-xs font-medium transition-all active:scale-[0.96]",
+                    "text-button cursor-pointer rounded-md px-3 py-1.5 font-medium transition-all active:scale-[0.98]",
                     activeTab === t.id
-                      ? "bg-ink text-on-primary shadow-2xs"
-                      : "border-hairline bg-surface-1 text-ink-muted hover:bg-surface-2 hover:text-ink border"
+                      ? "bg-primary text-on-primary"
+                      : "border-hairline bg-canvas text-muted-text hover:bg-surface-soft hover:text-ink border"
                   )}
                 >
                   {t.label}
@@ -264,7 +266,7 @@ export default function LiveComplaintsSection() {
             {/* Search */}
             <div className="relative w-full sm:w-56">
               <Search
-                className="text-ink-muted absolute top-1/2 left-3 h-3.5 w-3.5 -translate-y-1/2"
+                className="text-muted-text absolute top-1/2 left-3 h-3.5 w-3.5 -translate-y-1/2"
                 strokeWidth={1.5}
               />
               <input
@@ -272,18 +274,18 @@ export default function LiveComplaintsSection() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search docket or area…"
-                className="border-hairline bg-surface-1 text-ink placeholder-ink-tertiary focus:border-ink w-full rounded-md border py-2 pr-3 pl-9 text-xs focus:outline-none"
+                className="border-hairline bg-canvas text-ink placeholder:text-muted-soft focus:border-ink text-body-sm w-full rounded-md border py-2 pr-3 pl-9 focus:outline-none"
               />
             </div>
           </div>
 
           {/* Rows */}
           {filtered.length === 0 ? (
-            <div className="text-body-sm text-ink-muted py-12 text-center">
+            <div className="text-body-sm text-muted-text py-12 text-center">
               No complaints match your search.{" "}
               <button
                 type="button"
-                className="text-fin-orange hover:underline"
+                className="text-ink cursor-pointer underline hover:opacity-80"
                 onClick={() => {
                   setSearchQuery("");
                   setActiveTab("all");
@@ -304,13 +306,13 @@ export default function LiveComplaintsSection() {
           )}
 
           {/* Footer CTA */}
-          <div className="border-hairline-soft bg-surface-2/20 flex items-center justify-between border-t px-5 py-3">
-            <span className="text-caption text-ink-muted">
+          <div className="border-hairline-soft bg-surface-soft/60 flex items-center justify-between border-t px-5 py-3">
+            <span className="text-caption text-muted-text">
               Showing {filtered.length} of {COMPLAINTS.length} complaints
             </span>
             <Link
               href="/complaints/new"
-              className="bg-fin-orange text-on-primary inline-flex items-center gap-1.5 rounded-md px-4 py-2 text-xs font-semibold shadow-xs transition-all hover:brightness-110 active:scale-[0.96]"
+              className="bg-primary text-on-primary text-button hover:bg-primary-active inline-flex items-center gap-1.5 rounded-md px-4 py-2 font-semibold transition-all active:scale-[0.98]"
             >
               Register new complaint
               <ArrowRight className="h-3.5 w-3.5" />

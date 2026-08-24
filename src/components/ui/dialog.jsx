@@ -1,21 +1,16 @@
 "use client";
+
 import { forwardRef } from "react";
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
 import { motion } from "framer-motion";
+import { cva } from "class-variance-authority";
+import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useIcon } from "@/lib/icon-context";
 import { spring } from "@/lib/springs";
-import { useShape } from "@/lib/shape-context";
-import { useSize, useSizeVariant } from "@/lib/size-context";
-import { SurfaceProvider, useSurface } from "@/lib/surface-context";
-import { surfaceClasses } from "@/lib/surface-classes";
+import { useSizeVariant } from "@/lib/size-context";
 import { Button } from "@/components/ui/button";
 
-const DIALOG_OFFSET = 4;
-
-function Dialog({ children, open, defaultOpen, onOpenChange, modal }) {
-  // Base UI's Root handles controlled/uncontrolled state internally. We only
-  // narrow the (open, eventDetails) callback to (open) for our public prop.
+function Dialog({ children, open, defaultOpen, onOpenChange, modal = true }) {
   return (
     <DialogPrimitive.Root
       open={open}
@@ -31,20 +26,69 @@ function Dialog({ children, open, defaultOpen, onOpenChange, modal }) {
 const DialogTrigger = DialogPrimitive.Trigger;
 const DialogClose = DialogPrimitive.Close;
 
-const DialogContent = forwardRef(
-  ({ className, children, size = "sm", container, ...props }, ref) => {
-    const XIcon = useIcon("x");
-    const shape = useShape();
-    const substrate = useSurface();
-    const dialogLevel = Math.min(substrate + DIALOG_OFFSET, 8);
-    // The size ladder narrows the dialog one notch in compact regions —
-    // width only, the padding stays put (see /docs/sizes).
-    const compact = useSize().variant === "compact";
+const dialogVariants = cva(
+  "fixed top-1/2 left-1/2 z-50 border shadow-card focus:outline-none flex flex-col box-border",
+  {
+    variants: {
+      variant: {
+        // 1. Default Canvas (from design.md: background canvas #ffffff with hairline border)
+        default:
+          "border-hairline bg-canvas text-ink dark:border-hairline dark:bg-surface-dark dark:text-on-dark",
+        canvas:
+          "border-hairline bg-canvas text-ink dark:border-hairline dark:bg-surface-dark dark:text-on-dark",
 
-    // No `if (!open) return null` here — Base UI's `<DialogPrimitive.Popup>`
-    // handles mount/unmount itself, and waits for the framer-motion opacity
-    // tween below to finish (via `element.getAnimations()`) before unmounting.
-    // Returning null early would short-circuit the closing animation.
+        // 2. Surface Card (from design.md: surface-card #f5f5f5)
+        surface:
+          "border-hairline bg-surface-card text-ink dark:border-hairline dark:bg-surface-dark-elevated dark:text-on-dark",
+        card: "border-hairline bg-surface-card text-ink dark:border-hairline dark:bg-surface-dark-elevated dark:text-on-dark",
+
+        // 3. Dark / Inverse Surface (from design.md: surface-dark #101010)
+        inverse:
+          "border-hairline bg-surface-dark text-on-dark shadow-card dark:bg-surface-dark-elevated",
+        dark: "border-hairline bg-surface-dark text-on-dark shadow-card dark:bg-surface-dark-elevated",
+      },
+      size: {
+        sm: "w-[min(calc(100vw-2rem),380px)] p-5", // ~380px
+        default: "w-[min(calc(100vw-2rem),480px)] p-6", // ~480px standard modal
+        md: "w-[min(calc(100vw-2rem),520px)] p-6", // ~520px
+        lg: "w-[min(calc(100vw-2rem),640px)] p-7", // ~640px
+        xl: "w-[min(calc(100vw-2rem),800px)] p-8", // ~800px
+        full: "w-[calc(100vw-2rem)] max-h-[calc(100vh-2rem)] p-6 overflow-y-auto",
+      },
+      shape: {
+        default: "rounded-xl", // 16px from design.md: rounded.xl
+        lg: "rounded-lg", // 12px
+        xl: "rounded-xl", // 16px
+        md: "rounded-md", // 8px
+        full: "rounded-2xl",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+      shape: "default",
+    },
+  }
+);
+
+const DialogContent = forwardRef(
+  (
+    {
+      className,
+      children,
+      variant = "default",
+      size = "default",
+      shape = "default",
+      showCloseButton = true,
+      container,
+      ...props
+    },
+    ref
+  ) => {
+    const contextSize = useSizeVariant();
+    const resolvedSize =
+      size === "default" && contextSize === "compact" ? "sm" : size;
+
     return (
       <DialogPrimitive.Portal container={container ?? undefined}>
         <DialogPrimitive.Backdrop
@@ -65,7 +109,7 @@ const DialogContent = forwardRef(
                 {...rest}
                 className={cn(
                   container ? "absolute" : "fixed",
-                  "inset-0 z-50 bg-black/40 dark:bg-black/80"
+                  "inset-0 z-50 bg-black/45 backdrop-blur-[2px] dark:bg-black/75"
                 )}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: exiting ? 0 : 1 }}
@@ -90,51 +134,41 @@ const DialogContent = forwardRef(
             } = popupProps;
             return (
               <motion.div
-                // Base UI's props first (data attrs, refs, role, etc.)…
                 {...rest}
-                // …then the consumer's `<DialogContent>` props (className,
-                // event handlers, data-*, etc.) land on the visible motion.div.
                 {...props}
                 className={cn(
-                  container ? "absolute" : "fixed",
-                  "top-1/2 left-1/2 z-50 w-[calc(100%-2rem)]",
-                  surfaceClasses(dialogLevel),
-                  "p-6 focus:outline-none",
-                  size === "sm" &&
-                    (compact ? "max-w-[360px]" : "max-w-[400px]"),
-                  size === "lg" &&
-                    (compact ? "max-w-[480px]" : "max-w-[540px]"),
-                  shape.container,
+                  dialogVariants({ variant, size: resolvedSize, shape }),
                   className
                 )}
                 style={{
                   ...baseStyle,
                   ...props.style,
                 }}
-                initial={{ opacity: 0, scale: 0.97, x: "-50%", y: "-50%" }}
+                initial={{ opacity: 0, scale: 0.96, x: "-50%", y: "-50%" }}
                 animate={{
                   opacity: exiting ? 0 : 1,
-                  scale: exiting ? 0.97 : 1,
+                  scale: exiting ? 0.96 : 1,
                   x: "-50%",
                   y: "-50%",
                 }}
-                transition={exiting ? spring.slow.exit : spring.slow}
+                transition={exiting ? spring.moderate.exit : spring.moderate}
               >
-                <SurfaceProvider value={dialogLevel}>
-                  {children}
+                {children}
+
+                {showCloseButton && (
                   <DialogPrimitive.Close
                     render={
                       <Button
                         variant="ghost"
                         size="icon-sm"
-                        className="absolute top-3 right-3"
+                        className="text-muted-text hover:text-ink dark:text-on-dark-soft dark:hover:text-on-dark absolute top-3.5 right-3.5 cursor-pointer"
+                        aria-label="Close dialog"
                       >
-                        <XIcon />
-                        <span className="sr-only">Close</span>
+                        <X className="size-4" />
                       </Button>
                     }
                   />
-                </SurfaceProvider>
+                )}
               </motion.div>
             );
           }}
@@ -143,52 +177,58 @@ const DialogContent = forwardRef(
     );
   }
 );
+
 DialogContent.displayName = "DialogContent";
 
 function DialogHeader({ className, ...props }) {
   return (
-    <div className={cn("mb-4 flex flex-col gap-1.5", className)} {...props} />
+    <div
+      className={cn("mb-4 flex w-full flex-col gap-1.5 text-left", className)}
+      {...props}
+    />
   );
 }
 
 function DialogFooter({ className, ...props }) {
   return (
-    <div className={cn("mt-6 flex justify-end gap-2", className)} {...props} />
+    <div
+      className={cn(
+        "border-hairline mt-6 flex w-full flex-row items-center justify-end gap-2.5 pt-4",
+        className
+      )}
+      {...props}
+    />
   );
 }
 
 const DialogTitle = forwardRef(({ className, ...props }, ref) => {
-  // The title role of the type scale — see /docs/sizes.
-  const compact = useSizeVariant() === "compact";
   return (
     <DialogPrimitive.Title
       ref={ref}
       className={cn(
-        compact ? "text-[15px]" : "text-[16px]",
-        "text-foreground leading-tight",
+        "text-title-md text-ink dark:text-on-dark text-left font-sans leading-snug font-semibold tracking-tight",
         className
       )}
-      style={{ fontVariationSettings: "'wght' 700" }}
       {...props}
     />
   );
 });
+
 DialogTitle.displayName = "DialogTitle";
 
 const DialogDescription = forwardRef(({ className, ...props }, ref) => {
-  const compact = useSizeVariant() === "compact";
   return (
     <DialogPrimitive.Description
       ref={ref}
       className={cn(
-        compact ? "text-[12px]" : "text-[13px]",
-        "text-muted-foreground",
+        "text-body-sm text-muted-text dark:text-on-dark-soft text-left leading-relaxed",
         className
       )}
       {...props}
     />
   );
 });
+
 DialogDescription.displayName = "DialogDescription";
 
 export {
@@ -200,4 +240,5 @@ export {
   DialogTitle,
   DialogDescription,
   DialogClose,
+  dialogVariants,
 };

@@ -19,25 +19,32 @@ export default function ButtonDocsPage() {
 
   const allVariants = [
     // Core & Surface
-    { name: "primary", label: "Primary (Default)", icon: ArrowRight },
-    { name: "secondary", label: "Secondary", icon: Plus },
-    { name: "tertiary", label: "Tertiary", icon: null },
+    { name: "primary", label: "Primary CTA", icon: ArrowRight },
+    { name: "secondary", label: "Secondary (Canvas)", icon: Plus },
+    { name: "tertiary", label: "Tertiary (Soft Card)", icon: null },
     { name: "outline", label: "Outline", icon: Share2 },
+    { name: "outline-muted", label: "Outline Muted", icon: Share2 },
     { name: "ghost", label: "Ghost", icon: null },
     { name: "link", label: "Link Style", icon: ArrowRight },
-    { name: "inverse", label: "Inverse", icon: null },
+    { name: "inverse", label: "Inverse / Dark", icon: null },
 
-    // Accent & Brand
-    { name: "accent", label: "Accent (Fin)", icon: Sparkles },
+    // Accent & Brand (Blue)
+    { name: "accent", label: "Accent Blue", icon: Sparkles },
     { name: "accent-subtle", label: "Accent Subtle", icon: Sparkles },
-    { name: "brand", label: "Brand Blue", icon: Zap },
-    { name: "brand-subtle", label: "Brand Subtle", icon: Zap },
 
     // Semantic Statuses
     { name: "success", label: "Success", icon: Check },
     { name: "success-subtle", label: "Success Subtle", icon: Check },
+    { name: "warning", label: "Warning", icon: Zap },
+    { name: "warning-subtle", label: "Warning Subtle", icon: Zap },
     { name: "destructive", label: "Destructive", icon: Trash2 },
     { name: "destructive-subtle", label: "Destructive Subtle", icon: Trash2 },
+
+    // Badge Pastels (from design.md)
+    { name: "badge-orange", label: "Pastel Orange", icon: Sparkles },
+    { name: "badge-pink", label: "Pastel Pink", icon: Sparkles },
+    { name: "badge-violet", label: "Pastel Violet", icon: Sparkles },
+    { name: "badge-emerald", label: "Pastel Emerald", icon: Sparkles },
   ];
 
   return (
@@ -47,12 +54,12 @@ export default function ButtonDocsPage() {
         <h1 className="text-ink text-3xl font-semibold tracking-tight">
           Button
         </h1>
-        <p className="text-ink-muted text-sm">
+        <p className="text-muted-text text-sm">
           Interactive action buttons with all design system variants, size
           ladder, shapes, icon slots, and loading states.
         </p>
         <div className="pt-2">
-          <code className="border-hairline bg-surface-1 text-ink inline-block rounded-md border px-3 py-1.5 font-mono text-xs">
+          <code className="border-hairline bg-surface-card text-ink inline-block rounded-md border px-3 py-1.5 font-mono text-xs">
             import &#123; Button &#125; from &quot;@/components/ui/button&quot;;
           </code>
         </div>
@@ -65,9 +72,9 @@ export default function ButtonDocsPage() {
           {allVariants.map(({ name, label, icon: Icon }) => (
             <div
               key={name}
-              className="border-hairline bg-surface-1 flex items-center justify-between rounded-xl border p-3.5 shadow-xs"
+              className="border-hairline bg-surface-card shadow-subtle flex items-center justify-between rounded-xl border p-3.5"
             >
-              <code className="text-ink-muted font-mono text-xs font-medium">
+              <code className="text-muted-text font-mono text-xs font-medium">
                 variant=&quot;{name}&quot;
               </code>
               <Button variant={name} trailingIcon={Icon} size="default">
@@ -81,10 +88,10 @@ export default function ButtonDocsPage() {
       {/* Sizes */}
       <section className="space-y-4">
         <h2 className="text-ink text-lg font-semibold">Size Ladder</h2>
-        <div className="border-hairline bg-surface-1 flex flex-wrap items-center gap-6 rounded-xl border p-6 shadow-xs">
+        <div className="border-hairline bg-surface-card shadow-subtle flex flex-wrap items-center gap-6 rounded-xl border p-6">
           <div className="flex items-center gap-3">
-            <code className="text-ink-muted font-mono text-xs">
-              size=&quot;compact&quot; (28px)
+            <code className="text-muted-text font-mono text-xs">
+              size=&quot;compact&quot; (32px)
             </code>
             <Button variant="primary" size="compact" leadingIcon={Sparkles}>
               Compact
@@ -92,8 +99,8 @@ export default function ButtonDocsPage() {
           </div>
 
           <div className="flex items-center gap-3">
-            <code className="text-ink-muted font-mono text-xs">
-              size=&quot;default&quot; (36px)
+            <code className="text-muted-text font-mono text-xs">
+              size=&quot;default&quot; (40px)
             </code>
             <Button variant="primary" size="default" leadingIcon={Sparkles}>
               Default
@@ -101,8 +108,8 @@ export default function ButtonDocsPage() {
           </div>
 
           <div className="flex items-center gap-3">
-            <code className="text-ink-muted font-mono text-xs">
-              size=&quot;lg&quot; (44px)
+            <code className="text-muted-text font-mono text-xs">
+              size=&quot;lg&quot; (48px)
             </code>
             <Button variant="primary" size="lg" leadingIcon={Sparkles}>
               Large
@@ -114,9 +121,9 @@ export default function ButtonDocsPage() {
       {/* Shapes (Border Radii) */}
       <section className="space-y-4">
         <h2 className="text-ink text-lg font-semibold">Shapes</h2>
-        <div className="border-hairline bg-surface-1 flex flex-wrap items-center gap-6 rounded-xl border p-6 shadow-xs">
+        <div className="border-hairline bg-surface-card shadow-subtle flex flex-wrap items-center gap-6 rounded-xl border p-6">
           <div className="flex items-center gap-3">
-            <code className="text-ink-muted font-mono text-xs">
+            <code className="text-muted-text font-mono text-xs">
               shape=&quot;rounded&quot; (8px / md)
             </code>
             <Button variant="secondary" shape="rounded">
@@ -125,7 +132,7 @@ export default function ButtonDocsPage() {
           </div>
 
           <div className="flex items-center gap-3">
-            <code className="text-ink-muted font-mono text-xs">
+            <code className="text-muted-text font-mono text-xs">
               shape=&quot;pill&quot;
             </code>
             <Button variant="secondary" shape="pill">
@@ -134,7 +141,7 @@ export default function ButtonDocsPage() {
           </div>
 
           <div className="flex items-center gap-3">
-            <code className="text-ink-muted font-mono text-xs">
+            <code className="text-muted-text font-mono text-xs">
               shape=&quot;tag&quot; (6px)
             </code>
             <Button variant="secondary" shape="tag">
@@ -143,7 +150,7 @@ export default function ButtonDocsPage() {
           </div>
 
           <div className="flex items-center gap-3">
-            <code className="text-ink-muted font-mono text-xs">
+            <code className="text-muted-text font-mono text-xs">
               shape=&quot;xs&quot; (4px)
             </code>
             <Button variant="secondary" shape="xs">
@@ -158,7 +165,7 @@ export default function ButtonDocsPage() {
         <h2 className="text-ink text-lg font-semibold">
           Icons & Interactive States
         </h2>
-        <div className="border-hairline bg-surface-1 flex flex-wrap items-center gap-6 rounded-xl border p-6 shadow-xs">
+        <div className="border-hairline bg-surface-card shadow-subtle flex flex-wrap items-center gap-6 rounded-xl border p-6">
           <div className="flex items-center gap-3">
             <Button
               variant="accent"

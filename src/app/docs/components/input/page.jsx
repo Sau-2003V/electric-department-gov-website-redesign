@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
+import { Badge } from "@/components/ui/badge";
 import {
   Search,
   Mail,
@@ -14,54 +15,104 @@ import {
   EyeOff,
   Phone,
   Hash,
-  Send,
   Building,
+  CheckCircle2,
 } from "lucide-react";
 
 export default function InputDocsPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
-  const allVariants = [
+  const coreVariants = [
     {
       name: "default",
-      label: "Default / Surface",
+      label: "Default / Canvas",
+      desc: "White canvas with hairline border",
       placeholder: "e.g. consumer@vidhyut.gov.in",
     },
     {
-      name: "canvas",
-      label: "Canvas (Cream)",
+      name: "surface",
+      label: "Surface (Card)",
+      desc: "Light-gray card surface background",
       placeholder: "e.g. MTR-9823412",
     },
     {
       name: "secondary",
-      label: "Secondary / Filled",
+      label: "Secondary / Soft",
+      desc: "Soft surface with transparent border",
       placeholder: "e.g. Jaipur North Zone",
     },
     {
       name: "outline",
       label: "Outline",
+      desc: "Transparent background with hairline border",
       placeholder: "Search accounts...",
     },
     {
       name: "ghost",
       label: "Ghost",
+      desc: "Minimal borderless field",
       placeholder: "Click to enter value...",
     },
     {
+      name: "inverse",
+      label: "Inverse / Dark",
+      desc: "Dark surface elevated background",
+      placeholder: "Dark theme input...",
+    },
+  ];
+
+  const brandSemanticVariants = [
+    {
       name: "accent",
-      label: "Accent (Fin AI)",
-      placeholder: "Ask Fin AI assistant...",
+      label: "Brand Accent (Blue)",
+      desc: "#3b82f6 brand accent focus",
+      placeholder: "Search documentation...",
     },
     {
-      name: "brand",
-      label: "Brand Blue",
-      placeholder: "Gov service reference...",
+      name: "success",
+      label: "Semantic Success",
+      desc: "#10b981 emerald verified state",
+      placeholder: "Verified account ID...",
+    },
+    {
+      name: "warning",
+      label: "Semantic Warning",
+      desc: "#f59e0b warning notification state",
+      placeholder: "Pending review field...",
     },
     {
       name: "destructive",
       label: "Destructive / Error",
-      placeholder: "Invalid input...",
+      desc: "#ef4444 validation error state",
+      placeholder: "Invalid consumer ID...",
+    },
+  ];
+
+  const pastelVariants = [
+    {
+      name: "badge-orange",
+      label: "Pastel Orange",
+      desc: "#fb923c pastel accent focus",
+      placeholder: "Category tag value...",
+    },
+    {
+      name: "badge-pink",
+      label: "Pastel Pink",
+      desc: "#ec4899 pastel accent focus",
+      placeholder: "Project label...",
+    },
+    {
+      name: "badge-violet",
+      label: "Pastel Violet",
+      desc: "#8b5cf6 pastel accent focus",
+      placeholder: "Workflow trigger...",
+    },
+    {
+      name: "badge-emerald",
+      label: "Pastel Emerald",
+      desc: "#34d399 pastel accent focus",
+      placeholder: "Automation status...",
     },
   ];
 
@@ -69,33 +120,49 @@ export default function InputDocsPage() {
     <div className="mx-auto max-w-5xl space-y-10 py-6">
       {/* Header */}
       <div className="border-hairline space-y-2 border-b pb-6">
-        <h1 className="text-ink text-3xl font-semibold tracking-tight">
-          Input
-        </h1>
-        <p className="text-ink-muted text-sm">
-          Form input field crafted with Intercom&apos;s editorial design system
-          specifications — featuring surface tokens, hairline borders, size
-          ladder, shape radiuses, icon slots, and validation states.
+        <div className="flex items-center gap-3">
+          <h1 className="text-ink text-3xl font-semibold tracking-tight">
+            Input
+          </h1>
+          <Badge variant="accent" size="sm" shape="tag">
+            Updated v2.0
+          </Badge>
+        </div>
+        <p className="text-muted-text text-sm">
+          Form text fields crafted to Cal.com design system specifications —
+          featuring canvas and surface card backgrounds, hairline borders, size
+          ladders, and validation feedback.
         </p>
         <div className="pt-2">
-          <code className="border-hairline bg-surface-1 text-ink inline-block rounded-md border px-3 py-1.5 font-mono text-xs">
+          <code className="border-hairline bg-surface-card text-ink inline-block rounded-md border px-3 py-1.5 font-mono text-xs">
             import &#123; Input &#125; from &quot;@/components/ui/input&quot;;
           </code>
         </div>
       </div>
 
-      {/* All Available Variants */}
+      {/* 1. Core Surfaces */}
       <section className="space-y-4">
-        <h2 className="text-ink text-lg font-semibold">All Variants</h2>
+        <div>
+          <h2 className="text-ink text-lg font-semibold">
+            1. Core Surfaces & Monochrome
+          </h2>
+          <p className="text-muted-text text-xs">
+            Canvas (#ffffff), surface card (#f5f5f5), soft backgrounds, and dark
+            inverse variants.
+          </p>
+        </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-          {allVariants.map(({ name, label, placeholder }) => (
+          {coreVariants.map(({ name, label, desc, placeholder }) => (
             <div
               key={name}
-              className="border-hairline bg-surface-1 flex flex-col justify-between gap-3 rounded-xl border p-4 shadow-xs"
+              className="border-hairline bg-surface-card shadow-subtle flex flex-col justify-between gap-3 rounded-xl border p-4"
             >
               <div className="flex items-center justify-between">
-                <span className="text-ink text-sm font-medium">{label}</span>
-                <code className="text-ink-muted font-mono text-xs">
+                <div>
+                  <span className="text-ink text-sm font-medium">{label}</span>
+                  <div className="text-muted-text text-[11px]">{desc}</div>
+                </div>
+                <code className="text-muted-text font-mono text-xs">
                   variant=&quot;{name}&quot;
                 </code>
               </div>
@@ -105,20 +172,84 @@ export default function InputDocsPage() {
         </div>
       </section>
 
-      {/* Sizes Ladder */}
+      {/* 2. Brand & Semantic */}
       <section className="space-y-4">
-        <h2 className="text-ink text-lg font-semibold">Size Ladder</h2>
-        <div className="border-hairline bg-surface-1 space-y-4 rounded-xl border p-6 shadow-xs">
+        <div>
+          <h2 className="text-ink text-lg font-semibold">
+            2. Brand Accent & Semantic Statuses
+          </h2>
+          <p className="text-muted-text text-xs">
+            Cal brand blue and semantic feedback indicators.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {brandSemanticVariants.map(({ name, label, desc, placeholder }) => (
+            <div
+              key={name}
+              className="border-hairline bg-surface-card shadow-subtle flex flex-col justify-between gap-3 rounded-xl border p-4"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <span className="text-ink text-sm font-medium">{label}</span>
+                  <div className="text-muted-text text-[11px]">{desc}</div>
+                </div>
+                <code className="text-muted-text font-mono text-xs">
+                  variant=&quot;{name}&quot;
+                </code>
+              </div>
+              <Input variant={name} placeholder={placeholder} />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 3. Badge Pastel Ramps */}
+      <section className="space-y-4">
+        <div>
+          <h2 className="text-ink text-lg font-semibold">
+            3. Badge Pastel Themed Focus Ramps
+          </h2>
+          <p className="text-muted-text text-xs">
+            Inputs featuring pastel accent borders aligned to category tags (
+            {`--badge-orange`}, {`--badge-pink`}, {`--badge-violet`},{" "}
+            {`--badge-emerald`}).
+          </p>
+        </div>
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {pastelVariants.map(({ name, label, desc, placeholder }) => (
+            <div
+              key={name}
+              className="border-hairline bg-surface-card shadow-subtle flex flex-col justify-between gap-3 rounded-xl border p-4"
+            >
+              <div className="flex items-center justify-between">
+                <div>
+                  <span className="text-ink text-sm font-medium">{label}</span>
+                  <div className="text-muted-text text-[11px]">{desc}</div>
+                </div>
+                <code className="text-muted-text font-mono text-xs">
+                  variant=&quot;{name}&quot;
+                </code>
+              </div>
+              <Input variant={name} placeholder={placeholder} />
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 4. Sizes Ladder */}
+      <section className="space-y-4">
+        <h2 className="text-ink text-lg font-semibold">4. Size Ladder</h2>
+        <div className="border-hairline bg-surface-card shadow-subtle space-y-5 rounded-xl border p-6">
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
               <span className="text-ink text-sm font-medium">Compact</span>
-              <code className="text-ink-muted font-mono text-xs">
+              <code className="text-muted-text font-mono text-xs">
                 size=&quot;compact&quot; (32px / h-8)
               </code>
             </div>
             <Input
               size="compact"
-              placeholder="Compact input for toolbars and filters"
+              placeholder="Compact input for dense toolbars and filter tables"
               leadingIcon={Search}
             />
           </div>
@@ -126,15 +257,15 @@ export default function InputDocsPage() {
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
               <span className="text-ink text-sm font-medium">
-                Default (Touch Target &ge;44px)
+                Default (Standard Touch Target)
               </span>
-              <code className="text-ink-muted font-mono text-xs">
-                size=&quot;default&quot; (40px–44px / h-10–h-11)
+              <code className="text-muted-text font-mono text-xs">
+                size=&quot;default&quot; (40px / h-10)
               </code>
             </div>
             <Input
               size="default"
-              placeholder="Standard form input"
+              placeholder="Standard 40px height form control"
               leadingIcon={Mail}
             />
           </div>
@@ -142,59 +273,61 @@ export default function InputDocsPage() {
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
               <span className="text-ink text-sm font-medium">Large</span>
-              <code className="text-ink-muted font-mono text-xs">
+              <code className="text-muted-text font-mono text-xs">
                 size=&quot;lg&quot; (48px / h-12)
               </code>
             </div>
             <Input
               size="lg"
-              placeholder="Prominent hero search or auth input"
+              placeholder="Prominent hero search or authentication input"
               leadingIcon={Search}
             />
           </div>
         </div>
       </section>
 
-      {/* Shapes (Border Radii) */}
+      {/* 5. Shapes (Border Radii) */}
       <section className="space-y-4">
-        <h2 className="text-ink text-lg font-semibold">Shapes</h2>
-        <div className="border-hairline bg-surface-1 grid grid-cols-1 gap-4 rounded-xl border p-6 shadow-xs sm:grid-cols-2">
+        <h2 className="text-ink text-lg font-semibold">
+          5. Shapes & Border Radii
+        </h2>
+        <div className="border-hairline bg-surface-card shadow-subtle grid grid-cols-1 gap-4 rounded-xl border p-6 sm:grid-cols-2">
           <div className="space-y-1.5">
-            <code className="text-ink-muted font-mono text-xs">
+            <code className="text-muted-text font-mono text-xs">
               shape=&quot;default&quot; / &quot;md&quot; (8px)
             </code>
-            <Input shape="default" placeholder="Default rounded-md (8px)" />
+            <Input shape="default" placeholder="Default control radius (8px)" />
           </div>
 
           <div className="space-y-1.5">
-            <code className="text-ink-muted font-mono text-xs">
+            <code className="text-muted-text font-mono text-xs">
+              shape=&quot;sm&quot; / &quot;tag&quot; (6px)
+            </code>
+            <Input shape="sm" placeholder="Compact tag radius (6px)" />
+          </div>
+
+          <div className="space-y-1.5">
+            <code className="text-muted-text font-mono text-xs">
               shape=&quot;lg&quot; (12px)
             </code>
-            <Input shape="lg" placeholder="Card match rounded-lg (12px)" />
+            <Input shape="lg" placeholder="Card match radius (12px)" />
           </div>
 
           <div className="space-y-1.5">
-            <code className="text-ink-muted font-mono text-xs">
-              shape=&quot;xl&quot; (16px)
+            <code className="text-muted-text font-mono text-xs">
+              shape=&quot;pill&quot; (9999px)
             </code>
-            <Input shape="xl" placeholder="Mockup tile rounded-xl (16px)" />
-          </div>
-
-          <div className="space-y-1.5">
-            <code className="text-ink-muted font-mono text-xs">
-              shape=&quot;pill&quot;
-            </code>
-            <Input shape="pill" placeholder="Pill rounded-full" />
+            <Input shape="pill" placeholder="Pill search bar (rounded-full)" />
           </div>
         </div>
       </section>
 
-      {/* Icons, Prefixes, Suffixes & Labels */}
+      {/* 6. Icons, Prefixes, Suffixes & Labels */}
       <section className="space-y-4">
         <h2 className="text-ink text-lg font-semibold">
-          Icons, Prefixes, Suffixes & Labels
+          6. Icons, Prefixes, Suffixes & Labels
         </h2>
-        <div className="border-hairline bg-surface-1 grid grid-cols-1 gap-5 rounded-xl border p-6 shadow-xs sm:grid-cols-2">
+        <div className="border-hairline bg-surface-card shadow-subtle grid grid-cols-1 gap-5 rounded-xl border p-6 sm:grid-cols-2">
           <Input
             label="Consumer Phone Number"
             type="tel"
@@ -228,7 +361,7 @@ export default function InputDocsPage() {
               type="button"
               onClick={() => setShowPassword(!showPassword)}
               aria-label={showPassword ? "Hide password" : "Show password"}
-              className="text-ink-subtle hover:text-ink absolute top-8.5 right-3 flex items-center justify-center transition-colors"
+              className="text-muted-soft hover:text-ink absolute top-8.5 right-3 flex cursor-pointer items-center justify-center transition-colors"
             >
               {showPassword ? (
                 <EyeOff className="size-4" />
@@ -240,12 +373,12 @@ export default function InputDocsPage() {
         </div>
       </section>
 
-      {/* Validation & Error States */}
+      {/* 7. Validation & Disabled States */}
       <section className="space-y-4">
         <h2 className="text-ink text-lg font-semibold">
-          Validation & Disabled States
+          7. Validation & Disabled States
         </h2>
-        <div className="border-hairline bg-surface-1 grid grid-cols-1 gap-5 rounded-xl border p-6 shadow-xs sm:grid-cols-2">
+        <div className="border-hairline bg-surface-card shadow-subtle grid grid-cols-1 gap-5 rounded-xl border p-6 sm:grid-cols-2">
           <Input
             label="Meter Number (Validation Error)"
             defaultValue="ABC-123"
