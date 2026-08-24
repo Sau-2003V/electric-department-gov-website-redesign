@@ -6,6 +6,7 @@ import {
   ArrowRight,
   Sliders,
   ToggleLeft,
+  Layers,
 } from "lucide-react";
 
 export default function ComponentsIndexPage() {
@@ -21,6 +22,34 @@ export default function ComponentsIndexPage() {
       </div>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Tabs Card */}
+        <Link
+          href="/docs/components/tabs"
+          className="group border-hairline bg-surface-card hover:border-ink shadow-subtle relative flex flex-col justify-between overflow-hidden rounded-2xl border p-6 transition-all hover:shadow-md"
+        >
+          <div>
+            <div className="flex items-center justify-between">
+              <div className="bg-canvas border-hairline flex size-10 items-center justify-center rounded-xl border">
+                <Layers className="text-brand-accent size-5" />
+              </div>
+              <Badge variant="accent" size="sm" shape="tag">
+                Signature
+              </Badge>
+            </div>
+            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-semibold transition-colors">
+              Tabs & Nav-Pill-Group
+            </h2>
+            <p className="text-body-sm text-muted-text mt-1">
+              Cal.com&apos;s signature interactive pill switcher with proximity hover glow, spring physics, and underline bars.
+            </p>
+          </div>
+
+          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-semibold">
+            <span>Explore 5+ variants</span>
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+          </div>
+        </Link>
+
         {/* Switch Card */}
         <Link
           href="/docs/components/switch"
@@ -32,7 +61,7 @@ export default function ComponentsIndexPage() {
                 <ToggleLeft className="text-brand-accent size-5" />
               </div>
               <Badge variant="accent" size="sm" shape="tag">
-                New v2.0
+                Updated
               </Badge>
             </div>
             <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-semibold transition-colors">
@@ -119,7 +148,7 @@ export default function ComponentsIndexPage() {
                 <SquareSquare className="text-ink size-5" />
               </div>
               <Badge variant="secondary" size="sm" shape="tag">
-                Ready
+                Updated
               </Badge>
             </div>
             <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-semibold transition-colors">

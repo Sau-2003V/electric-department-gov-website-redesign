@@ -7,6 +7,7 @@ import {
   SquareSquare,
   ArrowRight,
   ToggleLeft,
+  Layers,
   BookOpen,
 } from "lucide-react";
 
@@ -18,9 +19,9 @@ export const metadata = {
 const componentsList = [
   { name: "Badge", href: "/docs/components/badge", status: "Updated" },
   { name: "Button", href: "/docs/components/button", status: "Ready" },
-  { name: "Input", href: "/docs/components/input", status: "Ready" },
+  { name: "Input", href: "/docs/components/input", status: "Updated" },
   { name: "Switch", href: "/docs/components/switch", status: "Updated" },
-  { name: "Tabs", href: "/docs/components/tabs", status: "Ready" },
+  { name: "Tabs", href: "/docs/components/tabs", status: "Updated" },
   { name: "Dialog", href: "/docs/components/dialog", status: "Ready" },
   { name: "Dropdown", href: "/docs/components/dropdown", status: "Ready" },
   { name: "Select", href: "/docs/components/select", status: "Ready" },
@@ -109,6 +110,8 @@ export default function DocsLayout({ children }) {
                           <Tag className="text-badge-orange size-3" />
                         ) : item.name === "Switch" ? (
                           <ToggleLeft className="text-brand-accent size-3" />
+                        ) : item.name === "Tabs" ? (
+                          <Layers className="text-brand-accent size-3" />
                         ) : (
                           <SquareSquare className="text-muted-text group-hover:text-ink size-3" />
                         )}

@@ -274,7 +274,20 @@ Avatar photos use `{rounded.full}` (perfect circles) at 36px or 40px. Product UI
 
 ### Tab / Filter
 
-**`category-tab`** + **`category-tab-active`** — Used inside the nav-pill-group. Inactive: transparent background, `{colors.muted}` text. Active: `{colors.canvas}` background, `{colors.ink}` text, subtle drop shadow inside the pill-group wrapper. Padding 8px × 14px, rounded `{rounded.md}`.
+**`tabs` / `nav-pill-group`** — The signature switcher and filter bar for toggling views, categories, and billing cycles.
+- **Visual Variants:**
+  - `default` / `pill` / `nav-pill-group`: Background `{colors.surface-soft}` (#f8f9fa), internal padding 4–6px, rounded `{rounded.pill}`. Active segment renders as a `{colors.canvas}` (#ffffff) pill with a 1px `{colors.hairline}` border and `{shadow.subtle}` (`0 1px 2px rgba(0,0,0,0.05)`).
+  - `segmented` / `rounded`: Background `{colors.surface-soft}` with rounded-xl (12px) container and rounded-lg (8px) active item.
+  - `surface` / `card`: Background `{colors.surface-card}` (#f5f5f5) with hairline border.
+  - `canvas`: Background `{colors.canvas}` with hairline border.
+  - `line` / `underline`: Underline tab bar with a bottom 2px sliding indicator in `{colors.primary}` (#111111).
+  - `ghost`: Transparent minimal tab bar.
+- **Sizes:**
+  - `compact` (sm): 28px control height, 12px font (`text-xs`), 12px horizontal padding.
+  - `default` (md): 36px control height, 14px font (`text-sm`), 16px horizontal padding.
+  - `lg`: 44px control height, 15–16px font (`text-base`), 22px horizontal padding.
+- **Micro-Motion & Physics:** Damped spring sliding transition (`spring.moderate` ~160ms) for the active selection lift and proximity hover highlight with spring damping.
+- **Item Badges & Icons:** Supports inline leading icons and category badge counters (`<Badge>` or string counts).
 
 ### CTA / Footer
 
