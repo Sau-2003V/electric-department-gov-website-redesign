@@ -1,10 +1,10 @@
-import { mergeProps } from "@base-ui/react/merge-props";
+import { cloneElement, isValidElement } from "react";
 import { useRender } from "@base-ui/react/use-render";
 import { cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const badgeVariants = cva(
-  "group/badge inline-flex w-fit shrink-0 items-center justify-center font-sans font-medium whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 select-none [&>svg]:pointer-events-none [&>svg]:shrink-0",
+  "group/badge inline-flex w-fit shrink-0 items-center justify-center border font-sans font-medium whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 select-none [&>svg]:pointer-events-none [&>svg]:shrink-0 [&_svg]:pointer-events-none [&_svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -107,10 +107,10 @@ const badgeVariants = cva(
           "border-badge-emerald/30 bg-badge-emerald/15 text-[#047857] [a]:hover:bg-badge-emerald/25 dark:border-badge-emerald/35 dark:bg-badge-emerald/25 dark:text-emerald-300",
       },
       size: {
-        default: "h-5 px-2.5 py-0.5 text-xs gap-1.5 [&>svg]:size-3",
-        sm: "h-4 px-1.5 py-0 text-[10px] gap-1 [&>svg]:size-2.5",
-        lg: "h-6 px-3 py-0.5 text-xs font-semibold gap-1.5 [&>svg]:size-3.5",
-        pill: "h-6 px-3 py-1 text-caption gap-1.5 [&>svg]:size-3.5", // design.md: 4px x 12px / caption 13px
+        default: "h-5 px-2.5 py-0.5 text-xs gap-1.5 [&>svg]:size-3 [&_svg]:size-3",
+        sm: "h-4 px-1.5 py-0 text-[10px] gap-1 [&>svg]:size-2.5 [&_svg]:size-2.5",
+        lg: "h-6 px-3 py-0.5 text-xs font-semibold gap-1.5 [&>svg]:size-3.5 [&_svg]:size-3.5",
+        pill: "h-6 px-3 py-1 text-caption gap-1.5 [&>svg]:size-3.5 [&_svg]:size-3.5", // design.md: 4px x 12px / caption 13px
       },
       shape: {
         pill: "rounded-full", // design.md: rounded.pill (9999px)
@@ -132,18 +132,40 @@ const badgeVariants = cva(
   }
 );
 
+function renderBadgeIcon(Icon) {
+  if (!Icon) return null;
+  if (isValidElement(Icon)) {
+    return cloneElement(Icon, {
+      className: cn("shrink-0 pointer-events-none align-middle", Icon.props.className),
+      "aria-hidden": true,
+    });
+  }
+  if (typeof Icon === "function" || typeof Icon === "object") {
+    const Component = Icon;
+    return <Component className="shrink-0 pointer-events-none align-middle" aria-hidden="true" />;
+  }
+  return Icon;
+}
+
 function Badge({
   className,
   variant = "default",
   size = "default",
   shape = "pill",
+  text,
+  label,
   dot = false,
   dotClassName,
   icon: Icon,
+  leadingIcon: LeadingIcon,
+  trailingIcon: TrailingIcon,
   children,
   render,
   ...props
 }) {
+  const badgeText = text ?? label ?? children;
+  const resolvedLeading = LeadingIcon || Icon;
+
   const content = (
     <>
       {dot && (
@@ -155,27 +177,24 @@ function Badge({
           aria-hidden="true"
         />
       )}
-      {Icon && (
-        <Icon className="pointer-events-none shrink-0" aria-hidden="true" />
+      {resolvedLeading && renderBadgeIcon(resolvedLeading)}
+      {badgeText !== undefined && badgeText !== null && badgeText !== "" && (
+        <span>{badgeText}</span>
       )}
-      {children}
+      {TrailingIcon && renderBadgeIcon(TrailingIcon)}
     </>
   );
 
+  const rootClassName = cn(badgeVariants({ variant, size, shape }), className);
+
   return useRender({
     defaultTagName: "span",
-    props: mergeProps(
-      {
-        className: cn(
-          "border",
-          badgeVariants({ variant, size, shape }),
-          className
-        ),
-      },
-      props
-    ),
+    props: {
+      ...props,
+      className: rootClassName,
+      children: content,
+    },
     render,
-    children: content,
     state: {
       slot: "badge",
       variant,
