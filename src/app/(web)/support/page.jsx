@@ -1,4 +1,4 @@
-import SupportPage from "../../support page/Support";
+import SupportPage from "./_components/Support";
 
 export const metadata = {
   title: "Support · Electricity Department",
