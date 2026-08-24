@@ -126,18 +126,18 @@ const categories = [
 
 function CategoryCard({ icon: Icon, title, items }) {
   return (
-    <div className="border-hairline bg-surface-1 hover:border-hairline flex flex-col overflow-hidden rounded-xl border shadow-2xs transition-all duration-150 hover:shadow-xs">
+    <div className="border-hairline bg-canvas hover:border-hairline flex flex-col overflow-hidden rounded-lg border shadow-subtle transition-all duration-150">
       {/* Card Header */}
-      <div className="border-hairline-soft bg-surface-2/30 flex items-center justify-between border-b px-5 py-3.5">
+      <div className="border-hairline-soft bg-surface-soft flex items-center justify-between border-b px-5 py-3.5">
         <div className="flex items-center gap-3">
-          <div className="bg-surface-2 text-fin-orange flex h-9 w-9 shrink-0 items-center justify-center rounded-lg">
-            <Icon className="h-4.5 w-4.5" strokeWidth={2} />
+          <div className="border-hairline bg-canvas text-ink flex h-9 w-9 shrink-0 items-center justify-center rounded-md border">
+            <Icon className="h-4.5 w-4.5" strokeWidth={1.5} />
           </div>
-          <h3 className="text-ink text-sm leading-tight font-medium">
+          <h3 className="text-ink text-title-sm leading-tight font-semibold">
             {title}
           </h3>
         </div>
-        <ChevronRight className="text-ink-tertiary h-4 w-4" strokeWidth={1.5} />
+        <ChevronRight className="text-muted-soft h-4 w-4" strokeWidth={1.5} />
       </div>
 
       {/* Item list */}
@@ -146,14 +146,14 @@ function CategoryCard({ icon: Icon, title, items }) {
           <li key={item.text}>
             <Link
               href={item.href}
-              className="group hover:bg-surface-2/50 flex items-start gap-2.5 px-5 py-3 text-xs transition-colors active:scale-[0.98]"
+              className="group hover:bg-surface-soft flex items-start gap-2.5 px-5 py-3 text-body-sm transition-colors active:scale-[0.98]"
             >
-              <span className="bg-fin-orange/60 mt-1 h-1.5 w-1.5 shrink-0 rounded-full transition-transform group-hover:scale-125" />
-              <span className="text-ink group-hover:text-fin-orange flex-1 leading-snug font-normal transition-colors">
+              <span className="bg-muted-soft mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full transition-transform group-hover:scale-125" />
+              <span className="text-ink group-hover:underline flex-1 leading-snug font-normal transition-colors">
                 {item.text}
               </span>
               {item.badge && (
-                <span className="bg-fin-orange text-on-primary shrink-0 rounded-xs px-1.5 py-0.5 text-[9px] font-medium tracking-wider uppercase">
+                <span className="bg-primary text-on-primary shrink-0 rounded-xs px-1.5 py-0.5 text-[10px] font-semibold tracking-wider uppercase">
                   {item.badge}
                 </span>
               )}
@@ -169,16 +169,16 @@ export default function ConsumerCorner() {
   return (
     <section
       id="consumer-services"
-      className="border-hairline bg-canvas w-full border-t px-4 py-12 sm:px-6 lg:px-8"
+      className="border-hairline bg-surface-card w-full border-t px-4 py-12 sm:px-6 lg:px-8 lg:py-20"
     >
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-8 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <span className="text-fin-orange text-xs font-semibold tracking-wide uppercase">
+            <span className="text-caption text-muted-text font-medium tracking-wide uppercase">
               Consumer Services Directory
             </span>
-            <h2 className="text-ink mt-1 text-2xl font-bold tracking-tight sm:text-3xl">
+            <h2 className="text-display-sm sm:text-display-md text-ink mt-1">
               Consumer Corner
             </h2>
           </div>

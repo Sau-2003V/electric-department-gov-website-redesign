@@ -18,7 +18,7 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <div className="bg-canvas text-ink selection:bg-fin-orange selection:text-on-primary flex min-h-screen flex-col">
+    <div className="bg-canvas text-ink selection:bg-primary selection:text-on-primary flex min-h-screen flex-col">
       {/* Accessibility bar + sticky nav */}
       <TopHeader />
 

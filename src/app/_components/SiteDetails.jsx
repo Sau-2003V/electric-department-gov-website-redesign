@@ -81,14 +81,14 @@ const quickPills = [
 
 export default function SiteDetails() {
   return (
-    <section className="border-hairline bg-canvas w-full border-t px-4 py-12 sm:px-6 lg:px-8">
+    <section className="border-hairline bg-canvas w-full border-t px-4 py-12 sm:px-6 lg:px-8 lg:py-20">
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-8">
-          <h2 className="text-ink text-xl font-medium tracking-tight sm:text-2xl">
+          <h2 className="text-display-sm sm:text-display-md text-ink">
             Site Details & Statutory Information
           </h2>
-          <p className="text-ink-muted mt-1 max-w-3xl text-xs">
+          <p className="text-body-sm text-muted-text mt-1 max-w-3xl">
             Statutory notifications, directives, regulatory links, grievance
             cells and state electricity undertakings.
           </p>
@@ -98,15 +98,15 @@ export default function SiteDetails() {
         <div className="mb-10 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
           {statutoryColumns.map((col) => (
             <div key={col.title} className="flex flex-col">
-              <h3 className="border-hairline text-ink mb-3 border-b pb-1.5 text-xs font-semibold tracking-wider uppercase">
+              <h3 className="border-hairline text-ink mb-3 border-b pb-1.5 text-caption font-semibold tracking-wider uppercase">
                 {col.title}
               </h3>
-              <ul className="space-y-1.5 text-xs">
+              <ul className="space-y-1.5 text-body-sm">
                 {col.links.map((link) => (
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-ink-muted hover:text-fin-orange block py-0.5 leading-tight transition-colors"
+                      className="text-muted-text hover:text-ink block py-0.5 leading-tight transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -123,17 +123,17 @@ export default function SiteDetails() {
             <Link
               key={pill.label}
               href={pill.href}
-              className="group border-hairline bg-surface-1 hover:bg-surface-2 flex items-center justify-between rounded-xl border px-4 py-2.5 shadow-2xs transition-all active:scale-[0.98]"
+              className="group border-hairline bg-surface-card hover:bg-surface-soft flex items-center justify-between rounded-lg border px-4 py-2.5 shadow-subtle transition-all active:scale-[0.98]"
             >
-              <span className="text-ink group-hover:text-fin-orange flex items-center gap-2 truncate text-xs font-medium transition-colors">
+              <span className="text-ink group-hover:opacity-80 flex items-center gap-2 truncate text-button font-medium transition-opacity">
                 <Zap
-                  className="text-fin-orange h-3.5 w-3.5 shrink-0"
-                  strokeWidth={2}
+                  className="text-ink h-3.5 w-3.5 shrink-0"
+                  strokeWidth={1.5}
                 />
                 <span className="truncate">{pill.label}</span>
               </span>
               <ExternalLink
-                className="text-ink-tertiary group-hover:text-fin-orange ml-2 h-3.5 w-3.5 shrink-0 transition-colors"
+                className="text-muted-soft group-hover:text-ink ml-2 h-3.5 w-3.5 shrink-0 transition-colors"
                 strokeWidth={1.5}
               />
             </Link>

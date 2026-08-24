@@ -56,20 +56,20 @@ export default function Hero() {
                   <CarouselItem key={i}>
                     <div
                       className={cn(
-                        "bg-surface-1/70 flex flex-col justify-between rounded-xl p-5 shadow-2xs sm:flex-row sm:items-center sm:p-6"
+                        "flex flex-col justify-between rounded-lg border border-hairline bg-surface-card p-5 shadow-subtle sm:flex-row sm:items-center sm:p-6"
                       )}
                     >
                       <div className="mb-4 sm:mb-0 sm:pr-6">
-                        <h2 className="text-headline text-ink">
+                        <h2 className="text-title-sm text-ink font-semibold">
                           {slide.title}
                         </h2>
-                        <p className="text-body-sm text-ink-muted mt-1">
+                        <p className="text-body-sm text-muted-text mt-1">
                           {slide.desc}
                         </p>
                       </div>
                       <Link href={slide.href} className="inline-flex shrink-0">
                         <Button
-                          variant="accent-subtle"
+                          variant="secondary"
                           rightIcon={<ArrowRight className="h-3.5 w-3.5" />}
                         >
                           <span>{slide.cta}</span>
@@ -86,18 +86,18 @@ export default function Hero() {
         {/* Main action grid */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
           {/* Left: Complaint Registration Hub */}
-          <div className="border-hairline bg-surface-1 flex flex-col justify-between rounded-2xl border p-6 shadow-2xs sm:p-8 lg:col-span-8">
+          <div className="border-hairline bg-canvas flex flex-col justify-between rounded-xl border p-6 shadow-subtle sm:p-8 lg:col-span-8">
             <div>
               {/* Welcome Header */}
               <div>
-                <span className="text-eyebrow text-fin-orange font-semibold tracking-wide uppercase">
+                <span className="text-caption text-muted-text font-medium tracking-wide uppercase">
                   Welcome to Vidhyut Portal
                 </span>
-                <h1 className="text-display-md text-ink mt-2">
+                <h1 className="text-display-md sm:text-display-lg lg:text-display-xl text-ink mt-2">
                   Register electricity complaints &amp; grievances
                 </h1>
-                <p className="text-body text-ink-muted mt-3 max-w-2xl leading-relaxed">
-                  Welcome to the state electricity grievance redresal portal.
+                <p className="text-body-md text-muted-text mt-3 max-w-2xl leading-relaxed">
+                  Welcome to the state electricity grievance redressal portal.
                   File complaints for power outages, low voltage, burnt
                   transformers, meter defects, or billing issues. Every
                   complaint is assigned an instant tracking docket and
@@ -108,7 +108,7 @@ export default function Hero() {
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
                   <Link href="/complaints/new" className="w-full sm:w-auto">
                     <Button
-                      variant="accent"
+                      variant="primary"
                       size="lg"
                       className="w-full sm:w-auto"
                       rightIcon={<ArrowRight className="h-4 w-4" />}
@@ -122,7 +122,10 @@ export default function Hero() {
                       size="lg"
                       className="w-full sm:w-auto"
                       leftIcon={
-                        <HelpCircle className="text-fin-orange h-4 w-4" />
+                        <HelpCircle
+                          className="text-ink h-4 w-4"
+                          strokeWidth={1.5}
+                        />
                       }
                     >
                       <span>How It Works</span>
@@ -136,12 +139,12 @@ export default function Hero() {
           {/* Right: Emergency contacts & Quick Links */}
           <div className="flex flex-col gap-4 lg:col-span-4">
             {/* 24x7 emergency */}
-            <div className="border-inverse-surface-1 bg-inverse-canvas text-inverse-ink flex flex-col justify-between rounded-2xl border p-6 shadow-xs">
+            <div className="border-surface-dark-elevated bg-surface-dark text-on-dark flex flex-col justify-between rounded-xl border p-6 shadow-subtle">
               <div>
-                <h3 className="text-headline text-inverse-ink mt-2">
+                <h3 className="text-title-lg text-on-dark mt-2">
                   Call toll-free 1912
                 </h3>
-                <p className="text-body-sm text-inverse-ink-muted mt-1">
+                <p className="text-body-sm text-on-dark-soft mt-1">
                   Immediate emergency, sparking line, fuse-off, or transformer
                   failure.
                 </p>
@@ -149,10 +152,12 @@ export default function Hero() {
               <div className="mt-6 flex flex-col gap-2.5">
                 <a href="tel:1912" className="inline-flex w-full">
                   <Button
-                    variant="accent"
+                    variant="primary"
                     size="default"
-                    className="w-full justify-center"
-                    leftIcon={<PhoneCall className="h-4 w-4" strokeWidth={2} />}
+                    className="w-full justify-center bg-on-dark text-surface-dark hover:bg-on-dark/90"
+                    leftIcon={
+                      <PhoneCall className="h-4 w-4" strokeWidth={1.5} />
+                    }
                   >
                     <span>Call 1912 — toll free</span>
                   </Button>
@@ -161,7 +166,7 @@ export default function Hero() {
                   <Button
                     variant="secondary"
                     size="default"
-                    className="border-inverse-surface-1 bg-inverse-surface-1 text-inverse-ink hover:bg-inverse-surface-1/80 w-full justify-center"
+                    className="border-surface-dark-elevated bg-surface-dark-elevated text-on-dark hover:bg-surface-dark-elevated/80 w-full justify-center"
                   >
                     <span>1800-180-1912</span>
                   </Button>

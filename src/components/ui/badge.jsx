@@ -32,12 +32,12 @@ const badgeVariants = cva(
 
         // Accent & Brand Variants
         accent:
-          "border-transparent bg-fin-orange text-white [a]:hover:bg-fin-orange/90",
+          "border-transparent bg-primary text-primary-foreground shadow-button-inset [a]:hover:opacity-90",
         "accent-subtle":
-          "border-fin-orange/20 bg-fin-orange/10 text-fin-orange [a]:hover:bg-fin-orange/20",
-        fin: "border-transparent bg-fin-orange text-white [a]:hover:bg-fin-orange/90",
+          "border-hairline bg-surface-2 text-ink [a]:hover:bg-surface-2/80",
+        fin: "border-transparent bg-primary text-primary-foreground shadow-button-inset [a]:hover:opacity-90",
         "fin-subtle":
-          "border-fin-orange/20 bg-fin-orange/10 text-fin-orange [a]:hover:bg-fin-orange/20",
+          "border-hairline bg-surface-2 text-ink [a]:hover:bg-surface-2/80",
         brand:
           "border-transparent bg-brand-blue text-white [a]:hover:bg-brand-blue/90",
         "brand-subtle":

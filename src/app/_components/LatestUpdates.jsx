@@ -38,26 +38,26 @@ export default function LatestUpdates() {
   return (
     <section
       id="notices"
-      className="border-hairline bg-canvas w-full border-t px-4 py-12 sm:px-6 lg:px-8"
+      className="border-hairline bg-surface-card w-full border-t px-4 py-12 sm:px-6 lg:px-8 lg:py-20"
     >
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-6 flex items-end justify-between">
           <div>
-            <span className="text-fin-orange text-xs font-medium tracking-wide uppercase">
+            <span className="text-caption text-muted-text font-medium tracking-wide uppercase">
               Latest Notices
             </span>
-            <h2 className="text-ink mt-1 text-2xl font-medium tracking-tight sm:text-3xl">
+            <h2 className="text-display-sm sm:text-display-md text-ink mt-1">
               Updates
             </h2>
           </div>
 
           <Link
             href="/notices"
-            className="text-fin-orange flex items-center gap-1 text-xs font-medium transition-colors hover:underline active:scale-[0.96]"
+            className="text-body-sm text-ink hover:opacity-80 flex items-center gap-1 font-medium active:scale-[0.98]"
           >
             <span>View all notices</span>
-            <ChevronRight className="h-4 w-4" strokeWidth={2} />
+            <ChevronRight className="h-4 w-4" strokeWidth={1.5} />
           </Link>
         </div>
 
@@ -67,13 +67,13 @@ export default function LatestUpdates() {
             <Link
               key={idx}
               href={item.href}
-              className="group border-hairline bg-surface-1 hover:border-hairline flex items-center justify-between gap-4 rounded-xl border p-4 shadow-2xs transition-all duration-150 hover:shadow-xs active:scale-[0.99]"
+              className="group border-hairline bg-canvas hover:border-hairline hover:bg-surface-soft flex items-center justify-between gap-4 rounded-lg border p-4 shadow-subtle transition-all duration-150 active:scale-[0.99]"
             >
               {/* Date Box + Title */}
               <div className="flex items-center gap-4">
                 {/* Date Pill Box */}
-                <div className="border-hairline bg-surface-2 text-ink group-hover:border-fin-orange group-hover:bg-fin-orange group-hover:text-on-primary flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-lg border transition-colors">
-                  <span className="font-mono text-sm leading-none font-bold">
+                <div className="border-hairline bg-surface-soft text-ink group-hover:bg-primary group-hover:text-on-primary flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-md border transition-colors">
+                  <span className="font-mono text-body-sm leading-none font-bold">
                     {item.day}
                   </span>
                   <span className="text-[10px] font-medium tracking-wider uppercase">
@@ -82,10 +82,10 @@ export default function LatestUpdates() {
                 </div>
 
                 <div>
-                  <h3 className="text-ink group-hover:text-fin-orange text-xs leading-snug font-medium transition-colors sm:text-sm">
+                  <h3 className="text-ink text-title-sm leading-snug font-semibold transition-opacity group-hover:opacity-80">
                     {item.title}
                   </h3>
-                  <span className="text-ink-muted mt-1 inline-block text-xs font-normal">
+                  <span className="text-muted-text mt-1 inline-block text-caption font-normal">
                     Category: {item.category}
                   </span>
                 </div>
@@ -94,14 +94,14 @@ export default function LatestUpdates() {
               {/* Badges & Chevron */}
               <div className="flex shrink-0 items-center gap-3">
                 {item.count && (
-                  <span className="bg-fin-orange text-on-primary flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-medium">
+                  <span className="bg-primary text-on-primary flex h-5 w-5 items-center justify-center rounded-full text-caption font-medium">
                     {item.count}
                   </span>
                 )}
-                <div className="bg-surface-2 text-ink-tertiary group-hover:bg-fin-orange/10 group-hover:text-fin-orange flex h-7 w-7 items-center justify-center rounded-full transition-colors">
+                <div className="bg-surface-soft text-muted-soft group-hover:bg-surface-strong group-hover:text-ink flex h-7 w-7 items-center justify-center rounded-full transition-colors">
                   <ChevronRight
                     className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                    strokeWidth={2}
+                    strokeWidth={1.5}
                   />
                 </div>
               </div>

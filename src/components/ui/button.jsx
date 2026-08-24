@@ -19,9 +19,9 @@ const buttonVariants = cva(
       variant: {
         // Primary / Charcoal (Brand default)
         primary:
-          "bg-ink text-on-primary shadow-xs hover:bg-ink/90 active:bg-ink/80 dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/90",
+          "bg-primary text-primary-foreground shadow-button-inset hover:opacity-90 active:opacity-80 dark:bg-primary dark:text-primary-foreground",
         default:
-          "bg-ink text-on-primary shadow-xs hover:bg-ink/90 active:bg-ink/80 dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/90",
+          "bg-primary text-primary-foreground shadow-button-inset hover:opacity-90 active:opacity-80 dark:bg-primary dark:text-primary-foreground",
 
         // Secondary / White on cream surface with hairline border
         secondary:
@@ -42,16 +42,16 @@ const buttonVariants = cva(
         // Link / Inline text underline
         link: "text-ink underline-offset-4 hover:underline active:opacity-75 dark:text-primary !h-auto !p-0 font-medium",
 
-        // Accent / Fin AI Orange CTA
+        // Accent / Brand CTA
         accent:
-          "bg-fin-orange text-white shadow-xs hover:bg-fin-orange/90 active:bg-fin-orange/80 focus-visible:ring-fin-orange/50",
-        fin: "bg-fin-orange text-white shadow-xs hover:bg-fin-orange/90 active:bg-fin-orange/80 focus-visible:ring-fin-orange/50",
+          "bg-primary text-primary-foreground shadow-button-inset hover:opacity-90 active:opacity-80 focus-visible:ring-ring/50",
+        fin: "bg-primary text-primary-foreground shadow-button-inset hover:opacity-90 active:opacity-80 focus-visible:ring-ring/50",
 
-        // Accent Subtle / Tinted Orange
+        // Accent Subtle / Surface 2
         "accent-subtle":
-          "border-fin-orange/20 bg-fin-orange/10 text-fin-orange border hover:bg-fin-orange/20 active:bg-fin-orange/25 focus-visible:ring-fin-orange/40",
+          "border-hairline bg-surface-2 text-ink border hover:bg-surface-2/80 active:bg-surface-2/60 focus-visible:ring-ring/40",
         "fin-subtle":
-          "border-fin-orange/20 bg-fin-orange/10 text-fin-orange border hover:bg-fin-orange/20 active:bg-fin-orange/25 focus-visible:ring-fin-orange/40",
+          "border-hairline bg-surface-2 text-ink border hover:bg-surface-2/80 active:bg-surface-2/60 focus-visible:ring-ring/40",
 
         // Brand Blue CTA
         brand:
@@ -137,17 +137,17 @@ const legacySizeAliases = {
 };
 
 const activeVariantClasses = {
-  primary: "bg-ink/80 dark:bg-primary/80 ring-2 ring-ink/20",
-  default: "bg-ink/80 dark:bg-primary/80 ring-2 ring-ink/20",
+  primary: "bg-ink/80 dark:bg-primary/80 ring-2 ring-hairline-interactive",
+  default: "bg-ink/80 dark:bg-primary/80 ring-2 ring-hairline-interactive",
   secondary: "bg-surface-2 border-hairline ring-2 ring-hairline/40",
   tertiary: "bg-surface-2 ring-2 ring-hairline/40",
   outline: "bg-surface-2/80 ring-2 ring-hairline/40",
   ghost: "bg-surface-2 text-ink dark:bg-muted",
   link: "underline",
-  accent: "bg-fin-orange/85 ring-2 ring-fin-orange/30",
-  fin: "bg-fin-orange/85 ring-2 ring-fin-orange/30",
-  "accent-subtle": "bg-fin-orange/25 ring-2 ring-fin-orange/30",
-  "fin-subtle": "bg-fin-orange/25 ring-2 ring-fin-orange/30",
+  accent: "bg-ink/80 ring-2 ring-hairline-interactive",
+  fin: "bg-ink/80 ring-2 ring-hairline-interactive",
+  "accent-subtle": "bg-surface-2/80 ring-2 ring-hairline/40",
+  "fin-subtle": "bg-surface-2/80 ring-2 ring-hairline/40",
   brand: "bg-brand-blue/85 ring-2 ring-brand-blue/30",
   "brand-subtle": "bg-brand-blue/25 ring-2 ring-brand-blue/30",
   destructive: "bg-semantic-error/85 ring-2 ring-semantic-error/30",

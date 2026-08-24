@@ -5,127 +5,113 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* 1. Primary Palette (from design.md Section 2) */
-  --cream: #f7f4ed;
-  --charcoal: #1c1c1c;
-  --off-white: #fcfbf8;
+  /* 1. Brand & Accent (from design.md) */
+  --primary: #111111;
+  --primary-active: #242424;
+  --brand-accent: #3b82f6;
+  --badge-orange: #fb923c;
+  --badge-pink: #ec4899;
+  --badge-violet: #8b5cf6;
+  --badge-emerald: #34d399;
 
-  /* 2. Neutral Scale - Opacity-Based (from design.md Section 2) */
-  --charcoal-100: #1c1c1c;
-  --charcoal-83: rgba(28, 28, 28, 0.83);
-  --charcoal-82: rgba(28, 28, 28, 0.82);
-  --muted-gray: #5f5f5d;
-  --charcoal-40: rgba(28, 28, 28, 0.4);
-  --charcoal-4: rgba(28, 28, 28, 0.04);
-  --charcoal-3: rgba(28, 28, 28, 0.03);
+  /* 2. Surface & Borders (from design.md) */
+  --canvas: #ffffff;
+  --surface-soft: #f8f9fa;
+  --surface-card: #f5f5f5;
+  --surface-strong: #e5e7eb;
+  --surface-dark: #101010;
+  --surface-dark-elevated: #1a1a1a;
+  --hairline: #e5e7eb;
+  --hairline-soft: #f3f4f6;
 
-  /* 3. Surface & Border (from design.md Section 2) */
-  --light-cream: #eceae4;
-  --cream-surface: #f7f4ed;
-  --canvas: var(--cream);
-  --surface-1: var(--cream);
-  --surface-2: var(--light-cream);
-  --hairline: var(--light-cream);
-  --hairline-soft: var(--light-cream);
-  --hairline-interactive: var(--charcoal-40);
-  --inverse-canvas: var(--charcoal);
-  --inverse-surface-1: var(--charcoal);
+  /* 3. Text (from design.md) */
+  --ink: #111111;
+  --body: #374151;
+  --muted: #6b7280;
+  --muted-soft: #898989;
+  --on-primary: #ffffff;
+  --on-dark: #ffffff;
+  --on-dark-soft: #a1a1aa;
 
-  /* 4. Text & Ink Tokens (from design.md Section 2) */
-  --ink: var(--charcoal);
-  --ink-muted: var(--muted-gray);
-  --ink-subtle: var(--charcoal-82);
-  --ink-strong: var(--charcoal-83);
-  --ink-tertiary: var(--charcoal-40);
-  --on-primary: var(--off-white);
-  --inverse-ink: var(--off-white);
-  --inverse-ink-muted: rgba(252, 251, 248, 0.7);
+  /* 4. Semantic (from design.md) */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
 
-  /* 5. Interactive & Focus (from design.md Section 2 & 6) */
-  --ring-blue: #3b82f6;
-  --focus-ring: rgba(59, 130, 246, 0.5);
+  /* 5. Semantic Base / Shadcn UI Mappings */
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  --card: var(--surface-card);
+  --card-foreground: var(--ink);
+  --popover: var(--canvas);
+  --popover-foreground: var(--ink);
+  --primary-foreground: var(--on-primary);
+  --secondary: var(--surface-soft);
+  --secondary-foreground: var(--ink);
+  --muted-foreground: var(--muted);
+  --accent: var(--surface-soft);
+  --accent-foreground: var(--ink);
+  --destructive: var(--error);
+  --destructive-foreground: var(--on-primary);
+  --border: var(--hairline);
+  --input: var(--hairline);
+  --ring: var(--brand-accent);
+  --radius: 8px;
 
-  /* 6. Semantic Base / Shadcn UI Mappings */
-  --background: var(--cream);
-  --foreground: var(--charcoal);
-  --card: var(--cream);
-  --card-foreground: var(--charcoal);
-  --popover: var(--cream);
-  --popover-foreground: var(--charcoal);
-  --primary: var(--charcoal);
-  --primary-foreground: var(--off-white);
-  --secondary: var(--light-cream);
-  --secondary-foreground: var(--charcoal);
-  --muted: var(--light-cream);
-  --muted-foreground: var(--muted-gray);
-  --accent: var(--charcoal-4);
-  --accent-foreground: var(--charcoal);
-  --destructive: var(--charcoal);
-  --destructive-foreground: var(--off-white);
-  --border: var(--light-cream);
-  --input: var(--light-cream);
-  --ring: var(--ring-blue);
-  --radius: 6px;
+  /* 6. Sidebar Tokens */
+  --sidebar: var(--canvas);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--on-primary);
+  --sidebar-accent: var(--surface-card);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--hairline);
+  --sidebar-ring: var(--brand-accent);
 
-  /* 7. Sidebar Tokens */
-  --sidebar: var(--cream);
-  --sidebar-foreground: var(--charcoal);
-  --sidebar-primary: var(--charcoal);
-  --sidebar-primary-foreground: var(--off-white);
-  --sidebar-accent: var(--light-cream);
-  --sidebar-accent-foreground: var(--charcoal);
-  --sidebar-border: var(--light-cream);
-  --sidebar-ring: var(--ring-blue);
-
-  /* 8. Scrollbar Tokens */
+  /* 7. Scrollbar Tokens */
   --scrollbar-track: transparent;
-  --scrollbar-thumb: var(--charcoal-40);
-  --scrollbar-thumb-hover: var(--charcoal-82);
+  --scrollbar-thumb: #d1d5db;
+  --scrollbar-thumb-hover: #9ca3af;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* Primary Design System Colors */
-  --color-cream: var(--cream);
-  --color-charcoal: var(--charcoal);
-  --color-off-white: var(--off-white);
-  --color-muted-gray: var(--muted-gray);
-  --color-light-cream: var(--light-cream);
-  --color-cream-surface: var(--cream-surface);
-  --color-ring-blue: var(--ring-blue);
-
-  /* Neutral Opacity Scale */
-  --color-charcoal-100: var(--charcoal-100);
-  --color-charcoal-83: var(--charcoal-83);
-  --color-charcoal-82: var(--charcoal-82);
-  --color-charcoal-40: var(--charcoal-40);
-  --color-charcoal-4: var(--charcoal-4);
-  --color-charcoal-3: var(--charcoal-3);
+  /* Brand & Accent Colors */
+  --color-primary: var(--primary);
+  --color-primary-active: var(--primary-active);
+  --color-brand-accent: var(--brand-accent);
+  --color-badge-orange: var(--badge-orange);
+  --color-badge-pink: var(--badge-pink);
+  --color-badge-violet: var(--badge-violet);
+  --color-badge-emerald: var(--badge-emerald);
 
   /* Surfaces & Borders */
   --color-canvas: var(--canvas);
-  --color-surface-1: var(--surface-1);
-  --color-surface-2: var(--surface-2);
+  --color-surface-soft: var(--surface-soft);
+  --color-surface-card: var(--surface-card);
+  --color-surface-strong: var(--surface-strong);
+  --color-surface-dark: var(--surface-dark);
+  --color-surface-dark-elevated: var(--surface-dark-elevated);
   --color-hairline: var(--hairline);
   --color-hairline-soft: var(--hairline-soft);
-  --color-hairline-interactive: var(--hairline-interactive);
-  --color-inverse-canvas: var(--inverse-canvas);
-  --color-inverse-surface-1: var(--inverse-surface-1);
 
   /* Text & Ink */
   --color-ink: var(--ink);
-  --color-ink-muted: var(--ink-muted);
-  --color-ink-subtle: var(--ink-subtle);
-  --color-ink-strong: var(--ink-strong);
-  --color-ink-tertiary: var(--ink-tertiary);
+  --color-body: var(--body);
+  --color-muted-text: var(--muted);
+  --color-muted-soft: var(--muted-soft);
   --color-on-primary: var(--on-primary);
-  --color-inverse-ink: var(--inverse-ink);
-  --color-inverse-ink-muted: var(--inverse-ink-muted);
+  --color-on-dark: var(--on-dark);
+  --color-on-dark-soft: var(--on-dark-soft);
+
+  /* Semantic */
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-error: var(--error);
 
   /* Shadcn UI Bindings */
-  --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
@@ -154,9 +140,12 @@
   --color-sidebar-ring: var(--sidebar-ring);
 
   /* Fonts */
-  --font-sans: var(--font-sans), "Camera Plain Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), var(--font-sans), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: var(--font-cal-sans), var(--font-inter), var(--font-sans), sans-serif;
   --font-mono: var(
     --font-jetbrains-mono,
+    var(--font-mono),
+    "JetBrains Mono",
     ui-monospace,
     SFMono-Regular,
     Menlo,
@@ -165,99 +154,75 @@
     monospace
   );
 
-  /* Spacing Tokens (from design.md Section 5) */
-  --spacing-8: 8px;
-  --spacing-10: 10px;
-  --spacing-12: 12px;
-  --spacing-16: 16px;
-  --spacing-24: 24px;
-  --spacing-32: 32px;
-  --spacing-40: 40px;
-  --spacing-56: 56px;
-  --spacing-80: 80px;
-  --spacing-96: 96px;
-  --spacing-128: 128px;
-  --spacing-176: 176px;
-  --spacing-192: 192px;
-  --spacing-208: 208px;
+  /* Spacing Tokens (from design.md: base unit 4px) */
+  --spacing-xxs: 4px;
+  --spacing-xs: 8px;
+  --spacing-sm: 12px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --spacing-xxl: 48px;
+  --spacing-section: 96px;
 
-  /* Border Radius Scale (from design.md Section 5) */
-  --radius-micro: 4px;
-  --radius-standard: 6px;
-  --radius-comfortable: 8px;
-  --radius-card: 12px;
-  --radius-container: 16px;
-  --radius-pill: 9999px;
-  --radius-full: 9999px;
-
-  /* Compatibility radius aliases */
+  /* Border Radius Scale (from design.md) */
   --radius-xs: 4px;
   --radius-sm: 6px;
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-xl: 16px;
+  --radius-pill: 9999px;
+  --radius-full: 9999px;
 
-  /* Signature Shadows & Focus (from design.md Section 2 & 6) */
-  --shadow-button-inset:
-    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-    rgba(255, 255, 255, 0.2) 0px 0.5px 0px 0px inset,
-    rgba(0, 0, 0, 0.2) 0px 0px 0px 0.5px inset,
-    rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
-  --shadow-focus: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  /* Elevation / Shadows (from design.md) */
+  --shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .dark {
   /* Semantic mappings for dark contexts aligned to design system */
-  --background: var(--charcoal);
-  --foreground: var(--off-white);
-  --card: var(--charcoal);
-  --card-foreground: var(--off-white);
-  --popover: var(--charcoal);
-  --popover-foreground: var(--off-white);
-  --primary: var(--off-white);
-  --primary-foreground: var(--charcoal);
-  --secondary: var(--charcoal-40);
-  --secondary-foreground: var(--off-white);
-  --muted: var(--charcoal-40);
-  --muted-foreground: var(--off-white);
-  --accent: var(--charcoal-4);
-  --accent-foreground: var(--off-white);
-  --destructive: var(--off-white);
-  --destructive-foreground: var(--charcoal);
-  --border: rgba(252, 251, 248, 0.15);
-  --input: rgba(252, 251, 248, 0.15);
-  --ring: var(--ring-blue);
+  --background: var(--surface-dark);
+  --foreground: var(--on-dark);
+  --card: var(--surface-dark-elevated);
+  --card-foreground: var(--on-dark);
+  --popover: var(--surface-dark);
+  --popover-foreground: var(--on-dark);
+  --primary: var(--on-dark);
+  --primary-foreground: var(--surface-dark);
+  --secondary: var(--surface-dark-elevated);
+  --secondary-foreground: var(--on-dark);
+  --muted: var(--surface-dark-elevated);
+  --muted-foreground: var(--on-dark-soft);
+  --accent: var(--surface-dark-elevated);
+  --accent-foreground: var(--on-dark);
+  --destructive: var(--error);
+  --destructive-foreground: var(--on-primary);
+  --border: #27272a;
+  --input: #27272a;
+  --ring: var(--brand-accent);
 
-  --canvas: var(--charcoal);
-  --surface-1: var(--charcoal);
-  --surface-2: var(--charcoal-40);
-  --hairline: rgba(252, 251, 248, 0.15);
-  --hairline-soft: rgba(252, 251, 248, 0.1);
-  --hairline-interactive: rgba(252, 251, 248, 0.3);
-  --inverse-canvas: var(--cream);
-  --inverse-surface-1: var(--light-cream);
+  --canvas: var(--surface-dark);
+  --surface-soft: var(--surface-dark-elevated);
+  --surface-card: var(--surface-dark-elevated);
+  --surface-strong: #27272a;
+  --hairline: #27272a;
+  --hairline-soft: #1f1f23;
 
-  --ink: var(--off-white);
-  --ink-muted: var(--muted-gray);
-  --ink-subtle: rgba(252, 251, 248, 0.6);
-  --ink-strong: var(--off-white);
-  --ink-tertiary: rgba(252, 251, 248, 0.4);
-  --on-primary: var(--charcoal);
-  --inverse-ink: var(--charcoal);
-  --inverse-ink-muted: var(--muted-gray);
+  --ink: var(--on-dark);
+  --body: var(--on-dark-soft);
+  --muted-soft: #71717a;
 
-  --sidebar: var(--charcoal);
-  --sidebar-foreground: var(--off-white);
-  --sidebar-primary: var(--off-white);
-  --sidebar-primary-foreground: var(--charcoal);
-  --sidebar-accent: var(--charcoal-40);
-  --sidebar-accent-foreground: var(--off-white);
-  --sidebar-border: rgba(252, 251, 248, 0.15);
-  --sidebar-ring: var(--ring-blue);
+  --sidebar: var(--surface-dark);
+  --sidebar-foreground: var(--on-dark);
+  --sidebar-primary: var(--on-dark);
+  --sidebar-primary-foreground: var(--surface-dark);
+  --sidebar-accent: var(--surface-dark-elevated);
+  --sidebar-accent-foreground: var(--on-dark);
+  --sidebar-border: #27272a;
+  --sidebar-ring: var(--brand-accent);
 
   --scrollbar-track: transparent;
-  --scrollbar-thumb: rgba(252, 251, 248, 0.2);
-  --scrollbar-thumb-hover: rgba(252, 251, 248, 0.35);
+  --scrollbar-thumb: #3f3f46;
+  --scrollbar-thumb-hover: #52525b;
 }
 
 /* ==========================================================================
@@ -265,160 +230,97 @@
    ========================================================================== */
 
 @layer utilities {
-  /* Display Hero: 3.75rem (60px), weight 600, line-height 1.05, tracking -1.5px */
-  .text-display-hero {
-    font-size: 3.75rem;
+  /* Display XL: 64px (4rem), weight 600, line-height 1.05, tracking -2px (Cal Sans / Display) */
+  .text-display-xl {
+    font-family: var(--font-display);
+    font-size: 4rem;
     line-height: 1.05;
+    letter-spacing: -2px;
+    font-weight: 600;
+  }
+
+  /* Display LG: 48px (3rem), weight 600, line-height 1.10, tracking -1.5px (Cal Sans / Display) */
+  .text-display-lg {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    line-height: 1.1;
     letter-spacing: -1.5px;
     font-weight: 600;
   }
 
-  /* Display Alt: 3.75rem (60px), weight 480, line-height 1.00, tracking normal */
-  .text-display-alt {
-    font-size: 3.75rem;
-    line-height: 1.0;
-    letter-spacing: normal;
-    font-weight: 480;
-  }
-
-  /* Section Heading: 3rem (48px), weight 600, line-height 1.00, tracking -1.2px */
-  .text-section-heading {
-    font-size: 3rem;
-    line-height: 1.0;
-    letter-spacing: -1.2px;
-    font-weight: 600;
-  }
-
-  /* Sub-heading: 2.25rem (36px), weight 600, line-height 1.10, tracking -0.9px */
-  .text-sub-heading {
+  /* Display MD: 36px (2.25rem), weight 600, line-height 1.15, tracking -1px (Cal Sans / Display) */
+  .text-display-md {
+    font-family: var(--font-display);
     font-size: 2.25rem;
-    line-height: 1.1;
-    letter-spacing: -0.9px;
+    line-height: 1.15;
+    letter-spacing: -1px;
     font-weight: 600;
   }
 
-  /* Card Title: 1.25rem (20px), weight 400, line-height 1.25, tracking normal */
-  .text-card-title {
-    font-size: 1.25rem;
-    line-height: 1.25;
-    letter-spacing: normal;
-    font-weight: 400;
+  /* Display SM: 28px (1.75rem), weight 600, line-height 1.20, tracking -0.5px (Cal Sans / Display) */
+  .text-display-sm {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    font-weight: 600;
   }
 
-  /* Body Large: 1.125rem (18px), weight 400, line-height 1.38, tracking normal */
-  .text-body-large,
-  .text-body-lg {
+  /* Title LG: 22px (1.375rem), weight 600, line-height 1.30, tracking -0.3px (Inter) */
+  .text-title-lg {
+    font-size: 1.375rem;
+    line-height: 1.3;
+    letter-spacing: -0.3px;
+    font-weight: 600;
+  }
+
+  /* Title MD: 18px (1.125rem), weight 600, line-height 1.40, tracking 0 (Inter) */
+  .text-title-md {
     font-size: 1.125rem;
-    line-height: 1.38;
-    letter-spacing: normal;
-    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0;
+    font-weight: 600;
   }
 
-  /* Body: 1rem (16px), weight 400, line-height 1.50, tracking normal */
+  /* Title SM: 16px (1rem), weight 600, line-height 1.40, tracking 0 (Inter) */
+  .text-title-sm {
+    font-size: 1rem;
+    line-height: 1.4;
+    letter-spacing: 0;
+    font-weight: 600;
+  }
+
+  /* Body MD: 16px (1rem), weight 400, line-height 1.50, tracking 0 (Inter) */
+  .text-body-md,
   .text-body {
     font-size: 1rem;
     line-height: 1.5;
-    letter-spacing: normal;
+    letter-spacing: 0;
     font-weight: 400;
   }
 
-  /* Button: 1rem (16px), weight 400, line-height 1.50, tracking normal */
-  .text-button {
-    font-size: 1rem;
-    line-height: 1.5;
-    letter-spacing: normal;
-    font-weight: 400;
-  }
-
-  /* Button Small: 0.875rem (14px), weight 400, line-height 1.50, tracking normal */
-  .text-button-small,
-  .text-button-sm {
-    font-size: 0.875rem;
-    line-height: 1.5;
-    letter-spacing: normal;
-    font-weight: 400;
-  }
-
-  /* Link: 1rem (16px), weight 400, line-height 1.50, underline */
-  .text-link {
-    font-size: 1rem;
-    line-height: 1.5;
-    letter-spacing: normal;
-    font-weight: 400;
-    text-decoration: underline;
-  }
-
-  /* Link Small: 0.875rem (14px), weight 400, line-height 1.50, underline */
-  .text-link-small,
-  .text-link-sm {
-    font-size: 0.875rem;
-    line-height: 1.5;
-    letter-spacing: normal;
-    font-weight: 400;
-    text-decoration: underline;
-  }
-
-  /* Caption: 0.875rem (14px), weight 400, line-height 1.50, tracking normal */
-  .text-caption {
-    font-size: 0.875rem;
-    line-height: 1.5;
-    letter-spacing: normal;
-    font-weight: 400;
-  }
-
-  /* Compatibility Typography Classes */
-  .text-display-xl {
-    font-size: 3.75rem;
-    line-height: 1.05;
-    letter-spacing: -1.5px;
-    font-weight: 600;
-  }
-
-  .text-display-lg {
-    font-size: 3rem;
-    line-height: 1.0;
-    letter-spacing: -1.2px;
-    font-weight: 600;
-  }
-
-  .text-display-md {
-    font-size: 2.25rem;
-    line-height: 1.1;
-    letter-spacing: -0.9px;
-    font-weight: 600;
-  }
-
-  .text-headline {
-    font-size: 2.25rem;
-    line-height: 1.1;
-    letter-spacing: -0.9px;
-    font-weight: 600;
-  }
-
-  .text-subhead {
-    font-size: 1.25rem;
-    line-height: 1.25;
-    letter-spacing: normal;
-    font-weight: 400;
-  }
-
+  /* Body SM: 14px (0.875rem), weight 400, line-height 1.50, tracking 0 (Inter) */
   .text-body-sm {
     font-size: 0.875rem;
     line-height: 1.5;
-    letter-spacing: normal;
+    letter-spacing: 0;
     font-weight: 400;
   }
 
-  .text-eyebrow {
-    font-size: 0.875rem;
-    line-height: 1.5;
-    letter-spacing: normal;
-    font-weight: 400;
+  /* Caption: 13px (0.8125rem), weight 500, line-height 1.40, tracking 0 (Inter) */
+  .text-caption {
+    font-size: 0.8125rem;
+    line-height: 1.4;
+    letter-spacing: 0;
+    font-weight: 500;
   }
 
+  /* Code: 14px (0.875rem), weight 400, line-height 1.50, tracking 0 (JetBrains Mono) */
+  .text-code,
   .text-mono {
     font-family: var(
       --font-mono,
+      "JetBrains Mono",
       ui-monospace,
       SFMono-Regular,
       Menlo,
@@ -428,21 +330,33 @@
     );
     font-size: 0.875rem;
     line-height: 1.5;
-    letter-spacing: normal;
+    letter-spacing: 0;
     font-weight: 400;
   }
 
-  /* Signature Shadow Utilities */
-  .shadow-button-inset {
-    box-shadow:
-      rgba(0, 0, 0, 0) 0px 0px 0px 0px,
-      rgba(255, 255, 255, 0.2) 0px 0.5px 0px 0px inset,
-      rgba(0, 0, 0, 0.2) 0px 0px 0px 0.5px inset,
-      rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  /* Button: 14px (0.875rem), weight 600, line-height 1.00, tracking 0 (Inter) */
+  .text-button {
+    font-size: 0.875rem;
+    line-height: 1;
+    letter-spacing: 0;
+    font-weight: 600;
   }
 
-  .shadow-focus {
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  /* Nav Link: 14px (0.875rem), weight 500, line-height 1.40, tracking 0 (Inter) */
+  .text-nav-link {
+    font-size: 0.875rem;
+    line-height: 1.4;
+    letter-spacing: 0;
+    font-weight: 500;
+  }
+
+  /* Elevation Shadows */
+  .shadow-subtle {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  .shadow-card {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   }
 }
 

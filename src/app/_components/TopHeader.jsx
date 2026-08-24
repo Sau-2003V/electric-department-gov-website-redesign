@@ -46,13 +46,13 @@ export default function TopHeader() {
   return (
     <header className="w-full font-sans">
       {/* 1. Top Accessibility & Emergency Helpline Bar */}
-      <div className="border-inverse-surface-1 bg-inverse-canvas text-inverse-ink-muted border-b px-4 py-1.5 text-xs">
+      <div className="border-surface-dark-elevated bg-surface-dark text-on-dark-soft border-b px-4 py-1.5 text-caption">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center gap-4">
             <span className="inline-flex items-center gap-1.5">
               <PhoneCall
-                className="text-fin-orange h-3.5 w-3.5 shrink-0"
-                strokeWidth={2}
+                className="text-on-dark h-3.5 w-3.5 shrink-0"
+                strokeWidth={1.5}
               />
               <span className="truncate">
                 <span className="hidden sm:inline">
@@ -61,14 +61,14 @@ export default function TopHeader() {
                 <span className="sm:hidden">24x7 Helpline: </span>
                 <a
                   href="tel:1912"
-                  className="text-inverse-ink font-semibold hover:underline"
+                  className="text-on-dark font-semibold hover:underline"
                 >
                   1912
                 </a>
                 <span className="xs:inline hidden"> / </span>
                 <a
                   href="tel:18001801912"
-                  className="text-inverse-ink xs:inline hidden font-semibold hover:underline"
+                  className="text-on-dark xs:inline hidden font-semibold hover:underline"
                 >
                   1800-180-1912
                 </a>
@@ -80,7 +80,7 @@ export default function TopHeader() {
             {/* Language Selector */}
             <div className="relative flex items-center gap-1">
               <Globe
-                className="text-inverse-ink-muted h-3.5 w-3.5"
+                className="text-on-dark-soft h-3.5 w-3.5"
                 strokeWidth={1.5}
               />
               <label htmlFor="language-select" className="sr-only">
@@ -90,31 +90,31 @@ export default function TopHeader() {
                 id="language-select"
                 value={selectedLang}
                 onChange={(e) => setSelectedLang(e.target.value)}
-                className="text-inverse-ink cursor-pointer bg-transparent text-xs focus:outline-none"
+                className="text-on-dark cursor-pointer bg-transparent text-caption focus:outline-none"
               >
                 <option
                   value="English"
-                  className="bg-inverse-surface-1 text-inverse-ink"
+                  className="bg-surface-dark-elevated text-on-dark"
                 >
                   English
                 </option>
                 <option
                   value="Hindi"
-                  className="bg-inverse-surface-1 text-inverse-ink"
+                  className="bg-surface-dark-elevated text-on-dark"
                 >
                   हिन्दी (Hindi)
                 </option>
               </select>
             </div>
 
-            <div className="bg-inverse-surface-1 hidden h-3 w-px sm:block" />
+            <div className="bg-surface-dark-elevated hidden h-3 w-px sm:block" />
 
             {/* Font Resizing */}
             <div className="hidden items-center gap-1 sm:flex">
               <button
                 type="button"
                 onClick={() => handleFontChange(-1)}
-                className="text-inverse-ink-muted hover:bg-inverse-surface-1 hover:text-inverse-ink rounded-xs px-1.5 py-0.5 transition-colors active:scale-[0.96]"
+                className="text-on-dark-soft hover:bg-surface-dark-elevated hover:text-on-dark rounded-xs px-1.5 py-0.5 transition-colors active:scale-[0.98]"
                 title="Decrease font size"
               >
                 A-
@@ -122,7 +122,7 @@ export default function TopHeader() {
               <button
                 type="button"
                 onClick={() => handleFontChange(0)}
-                className="text-inverse-ink-muted hover:bg-inverse-surface-1 hover:text-inverse-ink rounded-xs px-1.5 py-0.5 transition-colors active:scale-[0.96]"
+                className="text-on-dark-soft hover:bg-surface-dark-elevated hover:text-on-dark rounded-xs px-1.5 py-0.5 transition-colors active:scale-[0.98]"
                 title="Reset font size"
               >
                 A
@@ -130,22 +130,22 @@ export default function TopHeader() {
               <button
                 type="button"
                 onClick={() => handleFontChange(1)}
-                className="text-inverse-ink-muted hover:bg-inverse-surface-1 hover:text-inverse-ink rounded-xs px-1.5 py-0.5 transition-colors active:scale-[0.96]"
+                className="text-on-dark-soft hover:bg-surface-dark-elevated hover:text-on-dark rounded-xs px-1.5 py-0.5 transition-colors active:scale-[0.98]"
                 title="Increase font size"
               >
                 A+
               </button>
             </div>
 
-            <div className="bg-inverse-surface-1 hidden h-3 w-px sm:block" />
+            <div className="bg-surface-dark-elevated hidden h-3 w-px sm:block" />
 
             {/* Screen Reader */}
             <button
               type="button"
-              className="hover:text-inverse-ink flex items-center gap-1 transition-colors active:scale-[0.96]"
+              className="hover:text-on-dark flex items-center gap-1 transition-colors active:scale-[0.98]"
               title="Screen Reader Access"
             >
-              <Eye className="text-fin-orange h-3.5 w-3.5" strokeWidth={1.5} />
+              <Eye className="text-on-dark h-3.5 w-3.5" strokeWidth={1.5} />
               <span className="hidden md:inline">Screen Reader</span>
             </button>
           </div>
@@ -154,11 +154,11 @@ export default function TopHeader() {
 
       {/* 2. Main Navigation Bar */}
       <nav className="border-hairline bg-canvas/95 sticky top-0 z-50 border-b backdrop-blur-xs">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
           {/* Logo & Org Title */}
           <Link href="/" className="group flex items-center gap-3">
             <div className="flex flex-col">
-              <span className="text-ink group-hover:text-fin-orange text-lg font-bold tracking-tight transition-colors">
+              <span className="text-ink text-title-md font-semibold tracking-tight transition-opacity group-hover:opacity-80">
                 Vidhyut Portal
               </span>
             </div>
@@ -171,12 +171,12 @@ export default function TopHeader() {
                 key={item.label}
                 href={item.href}
                 className={cn(
-                  "rounded-md px-3 py-1.5 text-xs font-medium transition-colors active:scale-[0.96]",
+                  "rounded-md px-3 py-1.5 text-nav-link font-medium transition-colors active:scale-[0.98]",
                   item.highlight
-                    ? "bg-fin-orange text-on-primary font-semibold shadow-xs hover:brightness-110"
+                    ? "bg-primary text-on-primary hover:bg-primary-active"
                     : item.active
-                      ? "bg-surface-2 text-ink font-semibold shadow-2xs"
-                      : "text-ink-muted hover:bg-surface-2 hover:text-ink"
+                      ? "bg-surface-card text-ink font-semibold shadow-subtle"
+                      : "text-muted-text hover:bg-surface-card hover:text-ink"
                 )}
               >
                 {item.label}
@@ -189,7 +189,7 @@ export default function TopHeader() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className="text-ink hover:bg-surface-2 border-hairline/80 bg-surface-1 focus-visible:ring-ink relative flex h-10 w-10 items-center justify-center rounded-lg border shadow-2xs transition-colors focus-visible:ring-2 focus-visible:outline-none active:scale-[0.96]"
+              className="text-ink hover:bg-surface-card border-hairline bg-canvas focus-visible:ring-primary relative flex h-10 w-10 items-center justify-center rounded-md border shadow-subtle transition-colors focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]"
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation-drawer"
               aria-label={
@@ -282,17 +282,17 @@ export default function TopHeader() {
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
                       className={cn(
-                        "flex items-center justify-between rounded-lg px-3.5 py-2.5 text-sm font-medium transition-all active:scale-[0.96]",
+                        "flex items-center justify-between rounded-md px-3.5 py-2.5 text-nav-link font-medium transition-all active:scale-[0.98]",
                         item.highlight
-                          ? "bg-fin-orange text-on-primary font-semibold shadow-xs hover:brightness-110"
+                          ? "bg-primary text-on-primary hover:bg-primary-active"
                           : item.active
-                            ? "bg-surface-2 text-ink border-hairline/60 border font-semibold"
-                            : "text-ink hover:bg-surface-2 hover:text-ink"
+                            ? "bg-surface-card text-ink border-hairline border font-semibold"
+                            : "text-muted-text hover:bg-surface-card hover:text-ink"
                       )}
                     >
                       <span>{item.label}</span>
                       {item.highlight && (
-                        <span className="bg-on-primary/20 text-on-primary rounded-full px-2 py-0.5 text-xs font-semibold">
+                        <span className="bg-on-primary/20 text-on-primary rounded-pill px-2 py-0.5 text-caption font-semibold">
                           Quick Action
                         </span>
                       )}
@@ -312,20 +312,20 @@ export default function TopHeader() {
                   }}
                   className="border-hairline mt-2.5 border-t pt-3"
                 >
-                  <div className="bg-inverse-canvas text-inverse-ink flex items-center justify-between rounded-xl p-3 shadow-xs">
+                  <div className="bg-surface-dark text-on-dark flex items-center justify-between rounded-lg p-3 shadow-subtle">
                     <div className="flex min-w-0 items-center gap-2.5">
-                      <div className="border-fin-orange/30 bg-fin-orange/15 text-fin-orange flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border">
-                        <PhoneCall className="h-4 w-4" strokeWidth={2} />
+                      <div className="border-surface-dark-elevated bg-surface-dark-elevated text-on-dark flex h-8 w-8 shrink-0 items-center justify-center rounded-md border">
+                        <PhoneCall className="h-4 w-4" strokeWidth={1.5} />
                       </div>
                       <div className="truncate">
-                        <p className="text-inverse-ink mt-0.5 text-xs leading-tight font-semibold">
+                        <p className="text-on-dark mt-0.5 text-caption leading-tight font-semibold">
                           1912 / 1800-180-1912
                         </p>
                       </div>
                     </div>
                     <a
                       href="tel:1912"
-                      className="bg-fin-orange text-on-primary ml-2 shrink-0 rounded-lg px-3 py-1.5 text-xs font-semibold shadow-xs transition-transform active:scale-[0.96]"
+                      className="bg-primary text-on-primary ml-2 shrink-0 rounded-md px-3 py-1.5 text-button font-medium transition-transform active:scale-[0.98]"
                     >
                       Call
                     </a>
