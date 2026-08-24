@@ -1,4 +1,5 @@
 "use client";
+
 import {
   useRef,
   useState,
@@ -19,24 +20,7 @@ import {
 import { cn } from "@/lib/utils";
 import { spring, exitFallbackMs } from "@/lib/springs";
 import { useProximityHover } from "@/hooks/use-proximity-hover";
-import { shapeMap } from "@/lib/shape-context";
 import { SizeProvider, useSize } from "@/lib/size-context";
-import { Elevated } from "@/lib/elevated";
-
-// Dropdown opts out of the global pill/rounded shape context — popover surfaces
-// look cleaner with the smaller "rounded" radii regardless of how the rest of
-// the UI is shaped (the heavy pill bubbling distorts perceived padding at this
-// scale and produces the corner-shadow asymmetry).
-const shape = shapeMap.rounded;
-
-// ---------------------------------------------------------------------------
-// Panel context — shared by the inline Dropdown and the popup DropdownContent.
-//
-// The context object itself lives in menu-item.tsx so MenuItem resolves
-// whichever dropdown provider actually wraps it, even when dropdowns built
-// on different primitives render side by side. Re-exported here so the
-// public dropdown API is unchanged.
-// ---------------------------------------------------------------------------
 
 export { useDropdown, useDropdownMaybe };
 
@@ -62,13 +46,12 @@ const Dropdown = forwardRef(
     const activeRect = activeIndex !== null ? itemRects[activeIndex] : null;
     const checkedRect = checkedIndex != null ? itemRects[checkedIndex] : null;
     const focusRect = focusedIndex !== null ? itemRects[focusedIndex] : null;
+
     const panel = (
       <DropdownContext.Provider
         value={{ registerItem, activeIndex, checkedIndex }}
       >
-        <Elevated
-          offset={2}
-          shadowLevel={3}
+        <div
           ref={(node) => {
             containerRef.current = node;
             if (typeof ref === "function") ref(node);
@@ -121,7 +104,7 @@ const Dropdown = forwardRef(
           }}
           role="group"
           className={cn(
-            `relative flex w-72 max-w-full flex-col gap-0.5 ${shape.container} p-1 select-none`,
+            "bg-canvas text-ink border-hairline shadow-card dark:bg-surface-dark-elevated dark:border-hairline dark:text-on-dark relative flex w-64 max-w-full flex-col gap-0.5 rounded-xl border p-1.5 select-none focus:outline-none",
             className
           )}
           {...props}
@@ -130,7 +113,7 @@ const Dropdown = forwardRef(
           <AnimatePresence>
             {checkedRect && (
               <motion.div
-                className={`absolute ${shape.bg} bg-active pointer-events-none`}
+                className="bg-surface-soft dark:bg-surface-dark pointer-events-none absolute rounded-md"
                 initial={false}
                 animate={{
                   top: checkedRect.top,
@@ -153,7 +136,7 @@ const Dropdown = forwardRef(
             {activeRect && (
               <motion.div
                 key={sessionRef.current}
-                className={`absolute ${shape.bg} bg-hover pointer-events-none`}
+                className="bg-surface-soft/80 dark:bg-surface-dark/70 pointer-events-none absolute rounded-md"
                 initial={{
                   opacity: 0,
                   top: checkedRect?.top ?? activeRect.top,
@@ -181,13 +164,13 @@ const Dropdown = forwardRef(
           <AnimatePresence>
             {focusRect && (
               <motion.div
-                className={`absolute ${shape.focusRing} pointer-events-none z-20 border border-[color:var(--focus-ring,#6B97FF)]`}
+                className="border-brand-accent ring-brand-accent/25 pointer-events-none absolute z-20 rounded-md border ring-2"
                 initial={false}
                 animate={{
-                  left: focusRect.left - 2,
-                  top: focusRect.top - 2,
-                  width: focusRect.width + 4,
-                  height: focusRect.height + 4,
+                  left: focusRect.left - 1,
+                  top: focusRect.top - 1,
+                  width: focusRect.width + 2,
+                  height: focusRect.height + 2,
                 }}
                 exit={{ opacity: 0, transition: spring.fast.exit }}
                 transition={{
@@ -199,11 +182,10 @@ const Dropdown = forwardRef(
           </AnimatePresence>
 
           {children}
-        </Elevated>
+        </div>
       </DropdownContext.Provider>
     );
 
-    // A size prop pins every row in the panel to one ladder step.
     return size ? <SizeProvider size={size}>{panel}</SizeProvider> : panel;
   }
 );
@@ -243,8 +225,6 @@ function DropdownMenu({
 
   const ctx = useMemo(() => ({ open, actionsRef }), [open]);
 
-  // A size prop pins the whole compound (trigger content + portalled popup —
-  // React context crosses portals) to one ladder step.
   const root = (
     <DropdownMenuContext.Provider value={ctx}>
       <Menu.Root
@@ -252,8 +232,6 @@ function DropdownMenu({
         onOpenChange={handleOpenChange}
         actionsRef={actionsRef}
         disabled={disabled}
-        // Non-modal: the page keeps scrolling and the Positioner tracks the
-        // anchor, so the popup follows its trigger instead of detaching.
         modal={false}
       >
         {children}
@@ -295,11 +273,6 @@ const DropdownContent = forwardRef(
 
     const [focusedIndex, setFocusedIndex] = useState(null);
 
-    // Release Base UI's deferred unmount once the exit tween has played.
-    // onAnimationComplete on the motion.div is the primary signal; this
-    // timeout is a fallback for throttled/background tabs where rAF-driven
-    // animation callbacks can stall. The popup exits with spring.fast, so the
-    // fallback tracks that tier's exit duration plus a safety buffer.
     useEffect(() => {
       if (open) return;
       const id = setTimeout(
@@ -309,10 +282,8 @@ const DropdownContent = forwardRef(
       return () => clearTimeout(id);
     }, [open, actionsRef]);
 
-    // Measure items once the popup has mounted.
     useEffect(() => {
       if (!open) return;
-      // Double rAF: first waits for React commit, second for layout
       let inner;
       const outer = requestAnimationFrame(() => {
         inner = requestAnimationFrame(() => {
@@ -328,11 +299,7 @@ const DropdownContent = forwardRef(
     const activeRect = activeIndex !== null ? itemRects[activeIndex] : null;
     const checkedRect = checkedIndex != null ? itemRects[checkedIndex] : null;
     const focusRect = focusedIndex !== null ? itemRects[focusedIndex] : null;
-    // Inside the popup, Base UI's Menu.Item / Menu.RadioItem own the role,
-    // aria-checked, tabIndex, roving highlight, typeahead, and Enter/Space/
-    // click activation (activation synthesizes a click, so the row div's
-    // onClick also fires for keyboard). The render div carries the Fluid
-    // Functionalism visuals and the proximity-hover registration.
+
     const renderMenuItem = useCallback(
       ({ radio, value, disabled, label, closeOnClick, element, children }) =>
         radio ? (
@@ -378,9 +345,6 @@ const DropdownContent = forwardRef(
           className="z-50 outline-none"
         >
           <motion.div
-            // A popup opening upward grows from its bottom edge — the edge
-            // anchored to the trigger — so the offset and origin flip with
-            // `side`.
             initial={{ opacity: 0, y: side === "top" ? 4 : -4, scaleY: 0.96 }}
             animate={
               open
@@ -391,137 +355,133 @@ const DropdownContent = forwardRef(
             style={{
               transformOrigin: side === "top" ? "bottom center" : "top center",
             }}
-            // Base UI defers unmount while actionsRef is set; release it once
-            // the exit spring has finished so the close animation fully plays.
             onAnimationComplete={() => {
               if (!open) actionsRef.current?.unmount();
             }}
           >
             <DropdownContext.Provider value={contentCtx}>
               <Menu.Popup
-                render={
-                  <Elevated
-                    offset={2}
-                    shadowLevel={3}
+                render={(popupProps) => (
+                  <div
+                    {...popupProps}
                     ref={(node) => {
                       containerRef.current = node;
                       if (typeof ref === "function") ref(node);
                       else if (ref) ref.current = node;
                     }}
-                  />
-                }
-                onMouseEnter={() => {
-                  handlers.onMouseEnter();
-                  setFocusedIndex(null);
-                }}
-                onMouseMove={handlers.onMouseMove}
-                onMouseLeave={handlers.onMouseLeave}
-                onFocus={(e) => {
-                  const indexAttr = e.target
-                    .closest("[data-proximity-index]")
-                    ?.getAttribute("data-proximity-index");
-                  if (indexAttr != null) {
-                    const idx = Number(indexAttr);
-                    setActiveIndex(idx);
-                    setFocusedIndex(
-                      e.target.matches(":focus-visible") ? idx : null
-                    );
-                  }
-                }}
-                onBlur={(e) => {
-                  if (containerRef.current?.contains(e.relatedTarget)) return;
-                  setFocusedIndex(null);
-                  setActiveIndex(null);
-                }}
-                className={cn(
-                  // min-w tracks the trigger via the Positioner's
-                  // --anchor-width var.
-                  `relative flex max-h-[min(480px,var(--available-height))] w-72 max-w-full min-w-[var(--anchor-width)] flex-col gap-0.5 overflow-y-auto ${shape.container} p-1 outline-none select-none`,
-                  className
+                    onMouseEnter={() => {
+                      handlers.onMouseEnter();
+                      setFocusedIndex(null);
+                    }}
+                    onMouseMove={handlers.onMouseMove}
+                    onMouseLeave={handlers.onMouseLeave}
+                    onFocus={(e) => {
+                      const indexAttr = e.target
+                        .closest("[data-proximity-index]")
+                        ?.getAttribute("data-proximity-index");
+                      if (indexAttr != null) {
+                        const idx = Number(indexAttr);
+                        setActiveIndex(idx);
+                        setFocusedIndex(
+                          e.target.matches(":focus-visible") ? idx : null
+                        );
+                      }
+                    }}
+                    onBlur={(e) => {
+                      if (containerRef.current?.contains(e.relatedTarget))
+                        return;
+                      setFocusedIndex(null);
+                      setActiveIndex(null);
+                    }}
+                    className={cn(
+                      "bg-canvas text-ink border-hairline shadow-card dark:bg-surface-dark-elevated dark:border-hairline dark:text-on-dark relative flex max-h-[min(480px,var(--available-height))] w-64 max-w-full min-w-[var(--anchor-width)] flex-col gap-0.5 overflow-y-auto rounded-xl border p-1.5 outline-none select-none",
+                      className
+                    )}
+                  >
+                    {/* Selected background */}
+                    <AnimatePresence>
+                      {checkedRect && (
+                        <motion.div
+                          className="bg-surface-soft dark:bg-surface-dark pointer-events-none absolute rounded-md"
+                          initial={false}
+                          animate={{
+                            top: checkedRect.top,
+                            left: checkedRect.left,
+                            width: checkedRect.width,
+                            height: checkedRect.height,
+                            opacity: 1,
+                          }}
+                          exit={{
+                            opacity: 0,
+                            transition: spring.moderate.exit,
+                          }}
+                          transition={{
+                            ...spring.moderate,
+                            opacity: { duration: 0.08 },
+                          }}
+                        />
+                      )}
+                    </AnimatePresence>
+
+                    {/* Hover background */}
+                    <AnimatePresence>
+                      {activeRect && (
+                        <motion.div
+                          key={sessionRef.current}
+                          className="bg-surface-soft/80 dark:bg-surface-dark/70 pointer-events-none absolute rounded-md"
+                          initial={{
+                            opacity: 0,
+                            top: checkedRect?.top ?? activeRect.top,
+                            left: checkedRect?.left ?? activeRect.left,
+                            width: checkedRect?.width ?? activeRect.width,
+                            height: checkedRect?.height ?? activeRect.height,
+                          }}
+                          animate={{
+                            opacity: 1,
+                            top: activeRect.top,
+                            left: activeRect.left,
+                            width: activeRect.width,
+                            height: activeRect.height,
+                          }}
+                          exit={{ opacity: 0, transition: spring.fast.exit }}
+                          transition={{
+                            ...spring.fast,
+                            opacity: { duration: 0.08 },
+                          }}
+                        />
+                      )}
+                    </AnimatePresence>
+
+                    {/* Focus ring */}
+                    <AnimatePresence>
+                      {focusRect && (
+                        <motion.div
+                          className="border-brand-accent ring-brand-accent/25 pointer-events-none absolute z-20 rounded-md border ring-2"
+                          initial={false}
+                          animate={{
+                            left: focusRect.left - 1,
+                            top: focusRect.top - 1,
+                            width: focusRect.width + 2,
+                            height: focusRect.height + 2,
+                          }}
+                          exit={{ opacity: 0, transition: spring.fast.exit }}
+                          transition={{
+                            ...spring.fast,
+                            opacity: { duration: 0.08 },
+                          }}
+                        />
+                      )}
+                    </AnimatePresence>
+
+                    <Menu.RadioGroup
+                      value={checkedIndex ?? null}
+                      className="contents"
+                    >
+                      {children}
+                    </Menu.RadioGroup>
+                  </div>
                 )}
-              >
-                {/* Selected background */}
-                <AnimatePresence>
-                  {checkedRect && (
-                    <motion.div
-                      className={`absolute ${shape.bg} bg-active pointer-events-none`}
-                      initial={false}
-                      animate={{
-                        top: checkedRect.top,
-                        left: checkedRect.left,
-                        width: checkedRect.width,
-                        height: checkedRect.height,
-                        opacity: 1,
-                      }}
-                      exit={{ opacity: 0, transition: spring.moderate.exit }}
-                      transition={{
-                        ...spring.moderate,
-                        opacity: { duration: 0.08 },
-                      }}
-                    />
-                  )}
-                </AnimatePresence>
-
-                {/* Hover background */}
-                <AnimatePresence>
-                  {activeRect && (
-                    <motion.div
-                      key={sessionRef.current}
-                      className={`absolute ${shape.bg} bg-hover pointer-events-none`}
-                      initial={{
-                        opacity: 0,
-                        top: checkedRect?.top ?? activeRect.top,
-                        left: checkedRect?.left ?? activeRect.left,
-                        width: checkedRect?.width ?? activeRect.width,
-                        height: checkedRect?.height ?? activeRect.height,
-                      }}
-                      animate={{
-                        opacity: 1,
-                        top: activeRect.top,
-                        left: activeRect.left,
-                        width: activeRect.width,
-                        height: activeRect.height,
-                      }}
-                      exit={{ opacity: 0, transition: spring.fast.exit }}
-                      transition={{
-                        ...spring.fast,
-                        opacity: { duration: 0.08 },
-                      }}
-                    />
-                  )}
-                </AnimatePresence>
-
-                {/* Focus ring */}
-                <AnimatePresence>
-                  {focusRect && (
-                    <motion.div
-                      className={`absolute ${shape.focusRing} pointer-events-none z-20 border border-[color:var(--focus-ring,#6B97FF)]`}
-                      initial={false}
-                      animate={{
-                        left: focusRect.left - 2,
-                        top: focusRect.top - 2,
-                        width: focusRect.width + 4,
-                        height: focusRect.height + 4,
-                      }}
-                      exit={{ opacity: 0, transition: spring.fast.exit }}
-                      transition={{
-                        ...spring.fast,
-                        opacity: { duration: 0.08 },
-                      }}
-                    />
-                  )}
-                </AnimatePresence>
-
-                {/* display: contents keeps items direct flex children of the
-                  popup so proximity measurement and gap layout still work,
-                  while the group provides the radio value context. */}
-                <Menu.RadioGroup
-                  value={checkedIndex ?? null}
-                  className="contents"
-                >
-                  {children}
-                </Menu.RadioGroup>
-              </Menu.Popup>
+              />
             </DropdownContext.Provider>
           </motion.div>
         </Menu.Positioner>
@@ -537,14 +497,11 @@ DropdownContent.displayName = "DropdownContent";
 // ---------------------------------------------------------------------------
 
 const DropdownLabel = forwardRef(({ className, ...props }, ref) => {
-  // Group labels are the caption role of the type scale — see /docs/sizes.
-  const compact = useSize().variant === "compact";
   return (
     <div
       ref={ref}
       className={cn(
-        "text-muted-foreground shrink-0 px-2 py-1.5",
-        compact ? "text-[11px]" : "text-[12px]",
+        "text-muted-text dark:text-on-dark-soft px-2.5 py-1.5 text-[11px] font-semibold tracking-wider uppercase shrink-0 select-none",
         className
       )}
       {...props}
@@ -562,7 +519,10 @@ const DropdownSeparator = forwardRef(({ className, ...props }, ref) => (
   <div
     ref={ref}
     role="separator"
-    className={cn("bg-border/60 -mx-1 my-1 h-px shrink-0", className)}
+    className={cn(
+      "bg-hairline dark:bg-hairline my-1 h-px shrink-0 -mx-1",
+      className
+    )}
     {...props}
   />
 ));

@@ -1,4 +1,5 @@
 "use client";
+
 import {
   Children,
   forwardRef,
@@ -14,29 +15,13 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { cva } from "class-variance-authority";
 import { Select as SelectPrimitive } from "@base-ui/react/select";
+import { ChevronDown, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { spring, exitFallbackMs } from "@/lib/springs";
 import { useProximityHover } from "@/hooks/use-proximity-hover";
-import { useShape } from "@/lib/shape-context";
 import { SizeProvider, useSize } from "@/lib/size-context";
-import { Elevated } from "@/lib/elevated";
 
-// ---------------------------------------------------------------------------
-// Select context
-//
-// Built on Base UI's Select primitive, which owns positioning (collision
-// flipping, anchor tracking), dismissal (outside press, focus-out, Escape
-// nesting inside dialogs), list keyboard navigation + typeahead, combobox
-// ARIA, and the hidden form input. This layer keeps the
-// proximity-hover overlays, the spring open/close animation (via actionsRef
-// deferred unmount), and the animated checkmark.
-// ---------------------------------------------------------------------------
-
-// How long a selection holds the popup open before closing, so the
-// acknowledgment — the checkmark drawing in and the selected background
-// springing to the picked row — is visible instead of being cut off by the
-// ~60ms close fade. Escape and outside presses still close immediately.
-const selectionAckMs = 300;
+const selectionAckMs = 240;
 
 const SelectContext = createContext(null);
 
@@ -49,13 +34,6 @@ function useSelectContext() {
 
 const SelectContentContext = createContext(null);
 
-/**
- * Walk the children tree collecting `{ value, label }` pairs from SelectItem
- * elements. Passed to Base UI's `items` prop so the trigger can resolve the
- * label of an initial value before the popup has ever mounted (items only
- * render while open). Non-string labels fall back to the raw value, matching
- * the previous labelMap behaviour.
- */
 function collectSelectItems(node, out = []) {
   Children.forEach(node, (child) => {
     if (!isValidElement(child)) return;
@@ -108,11 +86,6 @@ function Select({
   }, []);
   useEffect(() => cancelAckClose, [cancelAckClose]);
 
-  // Picking an item acknowledges before closing: the close is deferred by
-  // selectionAckMs so the checkmark draw and the selected background's spring
-  // to the picked row are seen. Every other close reason (Escape, outside
-  // press, trigger toggle, focus-out) closes immediately and cancels any
-  // pending acknowledgment; re-picking within the window restarts it.
   const handleOpenChange = useCallback(
     (nextOpen, eventDetails) => {
       if (!nextOpen && eventDetails.reason === "item-press") {
@@ -134,12 +107,9 @@ function Select({
     [currentValue, open]
   );
 
-  // A size prop pins the whole compound (trigger + portalled popup — React
-  // context crosses portals) to one step of the ladder.
   const root = (
     <SelectContext.Provider value={ctx}>
       <SelectPrimitive.Root
-        // Always controlled; "" (no selection) maps to Base UI's null.
         value={currentValue === "" ? null : currentValue}
         onValueChange={handleValueChange}
         open={open}
@@ -149,8 +119,6 @@ function Select({
         disabled={disabled}
         name={name}
         required={required}
-        // Non-modal: the page keeps scrolling and the Positioner tracks the
-        // anchor, so the popup follows its trigger instead of detaching.
         modal={false}
       >
         {children}
@@ -168,23 +136,26 @@ Select.displayName = "Select";
 // ---------------------------------------------------------------------------
 
 const triggerVariants = cva(
-  [
-    "group inline-flex items-center justify-between outline-none cursor-pointer",
-    "transition-all duration-80",
-    "disabled:opacity-50 disabled:pointer-events-none",
-    "focus-visible:ring-1 focus-visible:ring-[color:var(--focus-ring,#6B97FF)]",
-  ],
+  "group inline-flex items-center justify-between border text-sm font-medium transition-colors cursor-pointer select-none focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none",
   {
     variants: {
       variant: {
-        bordered:
-          "border border-border bg-transparent text-foreground hover:bg-hover",
-        borderless:
-          "border border-transparent bg-transparent text-foreground hover:bg-hover",
+        default:
+          "border-hairline bg-canvas text-ink hover:border-ink/40 focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20 dark:bg-surface-dark-elevated dark:border-hairline dark:text-on-dark dark:focus:border-brand-accent",
+        card:
+          "border-hairline bg-surface-card text-ink hover:border-ink/40 focus:border-brand-accent focus:ring-2 focus:ring-brand-accent/20 dark:bg-surface-dark dark:border-hairline dark:text-on-dark",
+        ghost:
+          "border-transparent bg-transparent text-ink hover:bg-surface-soft focus:bg-surface-soft dark:text-on-dark dark:hover:bg-surface-dark",
+      },
+      size: {
+        compact: "h-8 px-2.5 text-xs rounded-lg min-w-[120px]",
+        default: "h-10 px-3 text-sm rounded-lg min-w-[160px]",
+        lg: "h-12 px-4 text-base rounded-xl min-w-[180px]",
       },
     },
     defaultVariants: {
-      variant: "bordered",
+      variant: "default",
+      size: "default",
     },
   }
 );
@@ -193,73 +164,50 @@ const SelectTrigger = forwardRef(
   (
     {
       className,
-      variant,
+      variant = "default",
+      size = "default",
       icon: Icon,
-      placeholder = "Select…",
+      placeholder = "Select an option…",
+      label,
       error,
-      size,
       ...props
     },
     ref
   ) => {
-    const shape = useShape();
-    const sizeClasses = useSize(size);
-    const compact = sizeClasses.variant === "compact";
-
     return (
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1.5 text-left">
+        {label && (
+          <label className="text-muted-text dark:text-on-dark-soft text-xs font-semibold">
+            {label}
+          </label>
+        )}
         <SelectPrimitive.Trigger
           ref={ref}
           aria-invalid={!!error || undefined}
           className={cn(
-            triggerVariants({ variant }),
-            sizeClasses.control,
-            sizeClasses.text,
-            sizeClasses.px,
-            sizeClasses.gap,
-            compact ? "min-w-[128px]" : "min-w-[160px]",
-            shape.input,
-            error && "border-destructive/50 hover:border-destructive/50",
+            triggerVariants({ variant, size }),
+            error &&
+              "border-error focus:border-error focus:ring-error/20 dark:border-rose-500",
             className
           )}
           {...props}
         >
-          <span
-            className={cn("flex min-w-0 flex-1 items-center", sizeClasses.gap)}
-          >
+          <span className="flex min-w-0 flex-1 items-center gap-2">
             {Icon && (
-              <Icon
-                size={sizeClasses.icon}
-                strokeWidth={1.5}
-                className="text-muted-foreground group-hover:text-foreground shrink-0 transition-[color,stroke-width] duration-80 group-hover:stroke-[2]"
-              />
+              <Icon className="text-muted-text group-hover:text-ink dark:text-on-dark-soft size-4 shrink-0 transition-colors" />
             )}
             <SelectPrimitive.Value
               placeholder={placeholder}
-              // py-1/-my-1: truncate's overflow:hidden clips at the padding
-              // box, and the trimmed box excludes ascenders/descenders — the
-              // padding gives glyphs room while the negative margin keeps the
-              // trimmed layout box.
-              className="data-[placeholder]:text-muted-foreground -my-1 min-w-0 flex-1 truncate py-1 text-left [text-box:trim-both_cap_alphabetic]"
+              className="data-[placeholder]:text-muted-text dark:data-[placeholder]:text-on-dark-soft/60 min-w-0 flex-1 truncate text-left"
             />
           </span>
 
-          <svg
-            width={sizeClasses.icon}
-            height={sizeClasses.icon}
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth={2}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="text-muted-foreground group-hover:text-foreground shrink-0 transition-colors duration-80"
-          >
-            <path d="M6 9l6 6 6-6" />
-          </svg>
+          <ChevronDown className="text-muted-text group-hover:text-ink dark:text-on-dark-soft size-4 shrink-0 transition-colors" />
         </SelectPrimitive.Trigger>
         {error && (
-          <span className="text-destructive pl-3 text-[12px]">{error}</span>
+          <span className="text-error dark:text-rose-400 text-xs font-medium">
+            {error}
+          </span>
         )}
       </div>
     );
@@ -268,9 +216,12 @@ const SelectTrigger = forwardRef(
 
 SelectTrigger.displayName = "SelectTrigger";
 
-const SelectContent = forwardRef(({ className, children }, ref) => {
+// ---------------------------------------------------------------------------
+// SelectContent
+// ---------------------------------------------------------------------------
+
+const SelectContent = forwardRef(({ className, children, sideOffset = 6 }, ref) => {
   const { open, value, actionsRef } = useSelectContext();
-  const shape = useShape();
   const containerRef = useRef(null);
 
   const {
@@ -287,11 +238,6 @@ const SelectContent = forwardRef(({ className, children }, ref) => {
   const [focusedIndex, setFocusedIndex] = useState(null);
   const [checkedIndex, setCheckedIndex] = useState(undefined);
 
-  // Release Base UI's deferred unmount once the exit tween has played.
-  // onAnimationComplete on the motion.div is the primary signal; this
-  // timeout is a fallback for throttled/background tabs where rAF-driven
-  // animation callbacks can stall. The popup exits with spring.fast, so the
-  // fallback tracks that tier's exit duration plus a safety buffer.
   useEffect(() => {
     if (open) return;
     const id = setTimeout(
@@ -301,25 +247,13 @@ const SelectContent = forwardRef(({ className, children }, ref) => {
     return () => clearTimeout(id);
   }, [open, actionsRef]);
 
-  // Fresh rects once per open. Measuring is the hook's job — it owns the
-  // one coalesced pass that item registration and container resizes both
-  // feed into, and a second pass from elsewhere is what used to land a
-  // corrected rect on an already-mounted overlay. The popup keeps its items
-  // registered while it sits hidden between opens, so registration alone
-  // would never trigger a fresh pass on reopen.
   useEffect(() => {
     if (!open) return;
     remeasure();
   }, [open, remeasure]);
 
-  // Detect the checked row. Deliberately does NOT remeasure on a value
-  // change while open: the rows haven't moved, so the published rects stay
-  // trustworthy and only checkedIndex switches — which lets the selected
-  // marker spring from the old row to the picked one (the selection
-  // acknowledgment) instead of unmounting and snapping.
   useEffect(() => {
     if (!open) return;
-    // Double rAF: first waits for React commit, second for layout
     let inner;
     const outer = requestAnimationFrame(() => {
       inner = requestAnimationFrame(() => {
@@ -341,12 +275,6 @@ const SelectContent = forwardRef(({ className, children }, ref) => {
     };
   }, [open, value]);
 
-  // Reset every overlay index as the close begins. checkedIndex otherwise
-  // lags one open behind value (picking an item closes the popup before the
-  // effect above re-syncs it), and a leftover activeIndex is worse: Base UI
-  // keeps the popup mounted through the exit tween, so on reopen the hover
-  // pill would still be sitting on the previously active row and spring from
-  // there to the row that auto-focus lands on.
   useEffect(() => {
     if (open) return;
     setCheckedIndex(undefined);
@@ -354,9 +282,6 @@ const SelectContent = forwardRef(({ className, children }, ref) => {
     setFocusedIndex(null);
   }, [open, setActiveIndex]);
 
-  // Overlays read rects only once the hook reports the item set fully
-  // measured. Positioning one from an incomplete pass mounts it at the wrong
-  // row, and the correcting pass then springs it across the list.
   const activeRect =
     isMeasured && activeIndex !== null ? itemRects[activeIndex] : null;
   const checkedRect =
@@ -374,7 +299,7 @@ const SelectContent = forwardRef(({ className, children }, ref) => {
       <SelectPrimitive.Positioner
         side="bottom"
         align="start"
-        sideOffset={6}
+        sideOffset={sideOffset}
         alignItemWithTrigger={false}
         className="z-50 outline-none"
       >
@@ -387,147 +312,133 @@ const SelectContent = forwardRef(({ className, children }, ref) => {
           }
           transition={open ? spring.fast : spring.fast.exit}
           style={{ transformOrigin: "top center" }}
-          // Base UI defers unmount while actionsRef is set; release it once
-          // the exit spring has finished so the close animation fully plays.
           onAnimationComplete={() => {
             if (!open) actionsRef.current?.unmount();
           }}
         >
           <SelectContentContext.Provider value={contentCtx}>
             <SelectPrimitive.Popup
-              render={
-                <Elevated
-                  offset={2}
-                  shadowLevel={3}
+              render={(popupProps) => (
+                <div
+                  {...popupProps}
                   ref={(node) => {
                     containerRef.current = node;
                     if (typeof ref === "function") ref(node);
                     else if (ref) ref.current = node;
                   }}
-                />
-              }
-              onMouseEnter={() => {
-                handlers.onMouseEnter();
-                setFocusedIndex(null);
-              }}
-              onMouseMove={handlers.onMouseMove}
-              onMouseLeave={handlers.onMouseLeave}
-              onFocus={(e) => {
-                const indexAttr = e.target
-                  .closest("[data-proximity-index]")
-                  ?.getAttribute("data-proximity-index");
-                if (indexAttr != null) {
-                  const idx = Number(indexAttr);
-                  setActiveIndex(idx);
-                  setFocusedIndex(
-                    e.target.matches(":focus-visible") ? idx : null
-                  );
-                }
-              }}
-              onBlur={(e) => {
-                if (containerRef.current?.contains(e.relatedTarget)) return;
-                setFocusedIndex(null);
-                setActiveIndex(null);
-              }}
-              className={cn(
-                // min-w tracks the trigger via the Positioner's --anchor-width
-                // var, matching the pre-migration minWidth: triggerRect.width.
-                `relative flex max-h-[min(300px,var(--available-height))] min-w-[var(--anchor-width)] flex-col gap-0.5 overflow-y-auto ${shape.container} p-1 outline-none select-none`,
-                className
-              )}
-            >
-              {/* The three overlays are torn down as the close begins rather
-                  than exit-animated, because an overlay still mounted when the
-                  popup reopens is one AnimatePresence re-adopts under its old
-                  key: `initial` never runs again, so it keeps the position of the
-                  row it had before and animates from there to the new one. The
-                  popup's own fade covers their disappearance. */}
-              {/* Selected background */}
-              {open && (
-                <AnimatePresence>
-                  {checkedRect && (
-                    <motion.div
-                      className={`absolute ${shape.bg} bg-active pointer-events-none`}
-                      // Position lives in `animate` so an in-session value
-                      // change springs the marker to the picked row (the
-                      // selection acknowledgment). Safe against the reopen
-                      // slide: the `open &&` teardown means no marker
-                      // survives a close, and a fresh mount with
-                      // initial={false} renders snapped at these values.
-                      initial={false}
-                      animate={{
-                        top: checkedRect.top,
-                        left: checkedRect.left,
-                        width: checkedRect.width,
-                        height: checkedRect.height,
-                        opacity: 1,
-                      }}
-                      exit={{ opacity: 0, transition: spring.moderate.exit }}
-                      transition={{
-                        ...spring.moderate,
-                        opacity: { duration: 0.08 },
-                      }}
-                    />
+                  onMouseEnter={() => {
+                    handlers.onMouseEnter();
+                    setFocusedIndex(null);
+                  }}
+                  onMouseMove={handlers.onMouseMove}
+                  onMouseLeave={handlers.onMouseLeave}
+                  onFocus={(e) => {
+                    const indexAttr = e.target
+                      .closest("[data-proximity-index]")
+                      ?.getAttribute("data-proximity-index");
+                    if (indexAttr != null) {
+                      const idx = Number(indexAttr);
+                      setActiveIndex(idx);
+                      setFocusedIndex(
+                        e.target.matches(":focus-visible") ? idx : null
+                      );
+                    }
+                  }}
+                  onBlur={(e) => {
+                    if (containerRef.current?.contains(e.relatedTarget)) return;
+                    setFocusedIndex(null);
+                    setActiveIndex(null);
+                  }}
+                  className={cn(
+                    "bg-canvas text-ink border-hairline shadow-card dark:bg-surface-dark-elevated dark:border-hairline dark:text-on-dark relative flex max-h-[min(320px,var(--available-height))] min-w-[var(--anchor-width)] flex-col gap-0.5 overflow-y-auto rounded-xl border p-1.5 outline-none select-none",
+                    className
                   )}
-                </AnimatePresence>
-              )}
-
-              {/* Hover background */}
-              {open && (
-                <AnimatePresence>
-                  {activeRect && (
-                    <motion.div
-                      key={sessionRef.current}
-                      className={`absolute ${shape.bg} bg-hover pointer-events-none`}
-                      initial={{
-                        opacity: 0,
-                        top: activeRect.top,
-                        left: activeRect.left,
-                        width: activeRect.width,
-                        height: activeRect.height,
-                      }}
-                      animate={{
-                        opacity: 1,
-                        top: activeRect.top,
-                        left: activeRect.left,
-                        width: activeRect.width,
-                        height: activeRect.height,
-                      }}
-                      exit={{ opacity: 0, transition: spring.fast.exit }}
-                      transition={{
-                        ...spring.fast,
-                        opacity: { duration: 0.08 },
-                      }}
-                    />
+                >
+                  {/* Selected background */}
+                  {open && (
+                    <AnimatePresence>
+                      {checkedRect && (
+                        <motion.div
+                          className="bg-surface-soft dark:bg-surface-dark pointer-events-none absolute rounded-md"
+                          initial={false}
+                          animate={{
+                            top: checkedRect.top,
+                            left: checkedRect.left,
+                            width: checkedRect.width,
+                            height: checkedRect.height,
+                            opacity: 1,
+                          }}
+                          exit={{
+                            opacity: 0,
+                            transition: spring.moderate.exit,
+                          }}
+                          transition={{
+                            ...spring.moderate,
+                            opacity: { duration: 0.08 },
+                          }}
+                        />
+                      )}
+                    </AnimatePresence>
                   )}
-                </AnimatePresence>
-              )}
 
-              {/* Focus ring */}
-              {open && (
-                <AnimatePresence>
-                  {focusRect && (
-                    <motion.div
-                      className={`absolute ${shape.focusRing} pointer-events-none z-20 border border-[color:var(--focus-ring,#6B97FF)]`}
-                      initial={false}
-                      animate={{
-                        left: focusRect.left - 2,
-                        top: focusRect.top - 2,
-                        width: focusRect.width + 4,
-                        height: focusRect.height + 4,
-                      }}
-                      exit={{ opacity: 0, transition: spring.fast.exit }}
-                      transition={{
-                        ...spring.fast,
-                        opacity: { duration: 0.08 },
-                      }}
-                    />
+                  {/* Hover background */}
+                  {open && (
+                    <AnimatePresence>
+                      {activeRect && (
+                        <motion.div
+                          key={sessionRef.current}
+                          className="bg-surface-soft/80 dark:bg-surface-dark/70 pointer-events-none absolute rounded-md"
+                          initial={{
+                            opacity: 0,
+                            top: activeRect.top,
+                            left: activeRect.left,
+                            width: activeRect.width,
+                            height: activeRect.height,
+                          }}
+                          animate={{
+                            opacity: 1,
+                            top: activeRect.top,
+                            left: activeRect.left,
+                            width: activeRect.width,
+                            height: activeRect.height,
+                          }}
+                          exit={{ opacity: 0, transition: spring.fast.exit }}
+                          transition={{
+                            ...spring.fast,
+                            opacity: { duration: 0.08 },
+                          }}
+                        />
+                      )}
+                    </AnimatePresence>
                   )}
-                </AnimatePresence>
-              )}
 
-              {children}
-            </SelectPrimitive.Popup>
+                  {/* Focus ring */}
+                  {open && (
+                    <AnimatePresence>
+                      {focusRect && (
+                        <motion.div
+                          className="border-brand-accent ring-brand-accent/25 pointer-events-none absolute z-20 rounded-md border ring-2"
+                          initial={false}
+                          animate={{
+                            left: focusRect.left - 1,
+                            top: focusRect.top - 1,
+                            width: focusRect.width + 2,
+                            height: focusRect.height + 2,
+                          }}
+                          exit={{ opacity: 0, transition: spring.fast.exit }}
+                          transition={{
+                            ...spring.fast,
+                            opacity: { duration: 0.08 },
+                          }}
+                        />
+                      )}
+                    </AnimatePresence>
+                  )}
+
+                  {children}
+                </div>
+              )}
+            />
           </SelectContentContext.Provider>
         </motion.div>
       </SelectPrimitive.Positioner>
@@ -536,6 +447,10 @@ const SelectContent = forwardRef(({ className, children }, ref) => {
 });
 
 SelectContent.displayName = "SelectContent";
+
+// ---------------------------------------------------------------------------
+// SelectItem
+// ---------------------------------------------------------------------------
 
 const SelectItem = forwardRef(
   (
@@ -553,20 +468,7 @@ const SelectItem = forwardRef(
     const selectCtx = useSelectContext();
     const contentCtx = useContext(SelectContentContext);
     const internalRef = useRef(null);
-    const shape = useShape();
-    const sizeClasses = useSize();
-    const compact = sizeClasses.variant === "compact";
-    const hasMounted = useRef(false);
 
-    useEffect(() => {
-      hasMounted.current = true;
-    }, []);
-
-    // Register with proximity hover. Depends on the (stable) registerItem
-    // rather than the content context, which is rebuilt on every activeIndex
-    // change: keying the effect to the whole context re-ran it per mousemove,
-    // unregistering and re-registering every row and so keeping the hook's
-    // measurement permanently unsettled while the pointer moved.
     const registerItem = contentCtx?.registerItem;
     useEffect(() => {
       if (!registerItem) return;
@@ -576,7 +478,6 @@ const SelectItem = forwardRef(
 
     const isActive = contentCtx?.activeIndex === index;
     const isChecked = selectCtx.value === value;
-    const skipAnimation = !hasMounted.current;
 
     return (
       <SelectPrimitive.Item
@@ -593,16 +494,11 @@ const SelectItem = forwardRef(
             data-proximity-index={index}
             data-value={value}
             className={cn(
-              // Fixed height (was py-2 around a 19.5px line box ≈ 35.5px) so
-              // the text-box trim on the item text doesn't shrink the row.
-              // shrink-0: the popup is a max-height flex column, so without it
-              // a long list compresses rows to fit instead of scrolling.
-              `relative z-10 flex ${sizeClasses.control} shrink-0 items-center ${sizeClasses.gap} ${shape.item} ${sizeClasses.itemPx} ${sizeClasses.text} cursor-pointer outline-none select-none`,
-              "transition-[color] duration-80",
-              isActive || isChecked
-                ? "text-foreground"
-                : "text-muted-foreground",
-              disabled && "pointer-events-none opacity-50",
+              "relative z-10 flex h-8.5 w-full shrink-0 items-center gap-2.5 rounded-md px-2.5 text-xs font-medium transition-colors cursor-pointer outline-none select-none",
+              isChecked || isActive
+                ? "bg-surface-soft text-ink dark:bg-surface-dark dark:text-on-dark"
+                : "text-muted-text hover:bg-surface-soft hover:text-ink dark:text-on-dark-soft dark:hover:bg-surface-dark dark:hover:text-on-dark",
+              disabled && "opacity-45 pointer-events-none cursor-not-allowed",
               className
             )}
             {...props}
@@ -611,59 +507,43 @@ const SelectItem = forwardRef(
       >
         {Icon && (
           <Icon
-            size={sizeClasses.icon}
-            strokeWidth={isActive || isChecked ? 2 : 1.5}
-            className="shrink-0 transition-[color,stroke-width] duration-80"
+            className={cn(
+              "size-4 shrink-0 transition-colors",
+              isChecked || isActive
+                ? "text-ink dark:text-on-dark"
+                : "text-muted-text dark:text-on-dark-soft"
+            )}
           />
         )}
 
         <SelectPrimitive.ItemText
-          // py-1/-my-1 keeps truncate's overflow:hidden from clipping
-          // ascenders/descenders outside the trimmed box.
           render={
-            <span className="-my-1 min-w-0 flex-1 truncate py-1 [text-box:trim-both_cap_alphabetic]" />
+            <span
+              className={cn(
+                "min-w-0 flex-1 truncate text-left",
+                isChecked ? "font-semibold text-ink dark:text-on-dark" : "font-medium"
+              )}
+            />
           }
         >
           {children}
         </SelectPrimitive.ItemText>
 
-        {/* Always-rendered fixed slot so the check appearing/disappearing
-          never changes the row's intrinsic width — without it the whole
-          popup resizes when a selection lands. */}
         <span
           aria-hidden
-          className={cn("shrink-0", compact ? "h-3.5 w-3.5" : "h-4 w-4")}
+          className="size-4 shrink-0 flex items-center justify-center"
         >
           <AnimatePresence>
             {isChecked && (
-              <motion.svg
-                key="check"
-                width={sizeClasses.icon}
-                height={sizeClasses.icon}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="text-foreground"
-                initial={{ opacity: 1 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 1 }}
+              <motion.span
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.1 }}
+                className="text-ink dark:text-on-dark"
               >
-                <motion.path
-                  d="M4 12L9 17L20 6"
-                  initial={{ pathLength: skipAnimation ? 1 : 0 }}
-                  animate={{
-                    pathLength: 1,
-                    transition: { duration: 0.08, ease: "easeOut" },
-                  }}
-                  exit={{
-                    pathLength: 0,
-                    transition: { duration: 0.04, ease: "easeIn" },
-                  }}
-                />
-              </motion.svg>
+                <Check className="size-3.5 stroke-[2.5]" />
+              </motion.span>
             )}
           </AnimatePresence>
         </span>
@@ -689,14 +569,11 @@ function SelectGroup({ children, className, ...props }) {
 SelectGroup.displayName = "SelectGroup";
 
 const SelectLabel = forwardRef(({ className, ...props }, ref) => {
-  // Group labels are the caption role of the type scale — see /docs/sizes.
-  const compact = useSize().variant === "compact";
   return (
     <div
       ref={ref}
       className={cn(
-        "text-muted-foreground shrink-0 px-2 py-1.5",
-        compact ? "text-[11px]" : "text-[12px]",
+        "text-muted-text dark:text-on-dark-soft px-2.5 py-1.5 text-[11px] font-semibold tracking-wider uppercase shrink-0 select-none",
         className
       )}
       {...props}
@@ -710,16 +587,15 @@ const SelectSeparator = forwardRef(({ className, ...props }, ref) => (
   <div
     ref={ref}
     role="separator"
-    className={cn("bg-border/60 -mx-1 my-1 h-px shrink-0", className)}
+    className={cn(
+      "bg-hairline dark:bg-hairline my-1 h-px shrink-0 -mx-1",
+      className
+    )}
     {...props}
   />
 ));
 
 SelectSeparator.displayName = "SelectSeparator";
-
-// ---------------------------------------------------------------------------
-// Exports
-// ---------------------------------------------------------------------------
 
 export {
   Select,
@@ -731,3 +607,4 @@ export {
   SelectSeparator,
   triggerVariants,
 };
+export default Select;

@@ -8,6 +8,10 @@ import {
   ArrowRight,
   ToggleLeft,
   Layers,
+  MessageSquare,
+  ListFilter,
+  ChevronsUpDown,
+  Loader2,
   BookOpen,
 } from "lucide-react";
 
@@ -22,10 +26,10 @@ const componentsList = [
   { name: "Input", href: "/docs/components/input", status: "Updated" },
   { name: "Switch", href: "/docs/components/switch", status: "Updated" },
   { name: "Tabs", href: "/docs/components/tabs", status: "Updated" },
-  { name: "Dialog", href: "/docs/components/dialog", status: "Ready" },
-  { name: "Dropdown", href: "/docs/components/dropdown", status: "Ready" },
-  { name: "Select", href: "/docs/components/select", status: "Ready" },
-  { name: "Spinner", href: "/docs/components/spinner", status: "Ready" },
+  { name: "Dialog", href: "/docs/components/dialog", status: "Updated" },
+  { name: "Dropdown", href: "/docs/components/dropdown", status: "Updated" },
+  { name: "Select", href: "/docs/components/select", status: "Updated" },
+  { name: "Spinner", href: "/docs/components/spinner", status: "Updated" },
 ];
 
 export default function DocsLayout({ children }) {
@@ -112,6 +116,14 @@ export default function DocsLayout({ children }) {
                           <ToggleLeft className="text-brand-accent size-3" />
                         ) : item.name === "Tabs" ? (
                           <Layers className="text-brand-accent size-3" />
+                        ) : item.name === "Dialog" ? (
+                          <MessageSquare className="text-brand-accent size-3" />
+                        ) : item.name === "Dropdown" ? (
+                          <ListFilter className="text-brand-accent size-3" />
+                        ) : item.name === "Select" ? (
+                          <ChevronsUpDown className="text-brand-accent size-3" />
+                        ) : item.name === "Spinner" ? (
+                          <Loader2 className="text-brand-accent size-3 animate-spin" />
                         ) : (
                           <SquareSquare className="text-muted-text group-hover:text-ink size-3" />
                         )}

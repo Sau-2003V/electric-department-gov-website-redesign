@@ -1,4 +1,5 @@
 "use client";
+
 import {
   createContext,
   useContext,
@@ -7,14 +8,9 @@ import {
   forwardRef,
 } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { fontWeights } from "@/lib/font-weight";
-import { shapeMap } from "@/lib/shape-context";
 import { useSize } from "@/lib/size-context";
-
-// MenuItem is only used inside Dropdown, which opts out of the global pill
-// shape — see dropdown.tsx for the rationale.
-const shape = shapeMap.rounded;
 
 export const DropdownContext = createContext(null);
 
@@ -34,33 +30,43 @@ const MenuItem = forwardRef(
     {
       icon: Icon,
       label,
+      description,
+      shortcut,
+      badge,
       index,
       checked,
       onSelect,
-      disabled,
-      closeOnClick,
+      disabled = false,
+      destructive = false,
+      closeOnClick = true,
       className,
       onClick,
+      children,
       ...props
     },
     ref
   ) => {
     const internalRef = useRef(null);
     const hasMounted = useRef(false);
-    const { registerItem, activeIndex, checkedIndex, renderMenuItem } =
-      useDropdown();
+    const dropdownCtx = useDropdownMaybe();
+    const registerItem = dropdownCtx?.registerItem;
+    const activeIndex = dropdownCtx?.activeIndex;
+    const checkedIndex = dropdownCtx?.checkedIndex;
+    const renderMenuItem = dropdownCtx?.renderMenuItem;
 
     useEffect(() => {
-      registerItem(index, internalRef.current);
-      return () => registerItem(index, null);
+      if (index !== undefined && registerItem) {
+        registerItem(index, internalRef.current);
+        return () => registerItem(index, null);
+      }
     }, [index, registerItem]);
 
     useEffect(() => {
       hasMounted.current = true;
     }, []);
 
-    const isActive = activeIndex === index;
-    const skipAnimation = !hasMounted.current;
+    const isActive = index !== undefined && activeIndex === index;
+    const isChecked = checked ?? (index !== undefined && checkedIndex === index);
     const sizeClasses = useSize();
 
     const mergeRef = (node) => {
@@ -77,112 +83,84 @@ const MenuItem = forwardRef(
         };
 
     const itemClassName = cn(
-      // Fixed height (was py-2 around a 19.5px line box ≈ 35.5px) so the
-      // text-box trim on the label doesn't shrink the row. shrink-0 because
-      // menu popups are max-height flex columns — without it a long list
-      // compresses rows to fit instead of scrolling.
-      `relative z-10 flex ${sizeClasses.control} shrink-0 items-center ${sizeClasses.gap} ${shape.item} ${sizeClasses.itemPx} cursor-pointer outline-none`,
-      disabled && "opacity-50 pointer-events-none",
+      "relative z-10 flex w-full items-center gap-2.5 rounded-md px-2.5 py-1.5 text-xs font-medium outline-none select-none transition-colors cursor-pointer",
+      destructive
+        ? "text-error hover:bg-error/10 focus-visible:bg-error/10 dark:text-rose-400"
+        : isChecked || isActive
+          ? "bg-surface-soft text-ink dark:bg-surface-dark dark:text-on-dark"
+          : "text-muted-text hover:bg-surface-soft hover:text-ink dark:text-on-dark-soft dark:hover:bg-surface-dark dark:hover:text-on-dark",
+      disabled && "opacity-45 pointer-events-none cursor-not-allowed",
       className
     );
 
     const content = (
       <>
         {Icon && (
-          <span className="inline-grid">
-            <span className="invisible col-start-1 row-start-1">
-              <Icon size={sizeClasses.icon} strokeWidth={2} />
-            </span>
-            <Icon
-              size={sizeClasses.icon}
-              strokeWidth={isActive || checked ? 2 : 1.5}
-              className={cn(
-                "col-start-1 row-start-1 transition-[color,stroke-width] duration-80",
-                isActive || checked
-                  ? "text-foreground"
-                  : "text-muted-foreground"
-              )}
-            />
-          </span>
-        )}
-        {/* Both stacked spans carry the text-box trim so the invisible bold
-          sizer and the visible label keep identical boxes. */}
-        <span className={cn("inline-grid flex-1", sizeClasses.text)}>
-          <span
-            className="invisible col-start-1 row-start-1 [text-box:trim-both_cap_alphabetic]"
-            style={{ fontVariationSettings: fontWeights.semibold }}
-            aria-hidden="true"
-          >
-            {label}
-          </span>
           <span
             className={cn(
-              "col-start-1 row-start-1 transition-[color,font-variation-settings] duration-80 [text-box:trim-both_cap_alphabetic]",
-              isActive || checked ? "text-foreground" : "text-muted-foreground"
+              "shrink-0 pointer-events-none transition-colors",
+              destructive
+                ? "text-error dark:text-rose-400"
+                : isChecked || isActive
+                  ? "text-ink dark:text-on-dark"
+                  : "text-muted-text dark:text-on-dark-soft"
             )}
-            style={{
-              fontVariationSettings: checked
-                ? fontWeights.semibold
-                : fontWeights.normal,
-            }}
           >
-            {label}
+            {typeof Icon === "function" || typeof Icon === "object" ? (
+              <Icon className="size-4" aria-hidden="true" />
+            ) : (
+              Icon
+            )}
           </span>
-        </span>
-        <AnimatePresence>
-          {checked && (
-            <motion.svg
-              key="check"
-              width={sizeClasses.icon}
-              height={sizeClasses.icon}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth={2}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-foreground shrink-0"
-              initial={{ opacity: 1 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 1 }}
+        )}
+
+        <div className="flex flex-1 flex-col text-left">
+          {label && (
+            <span
+              className={cn(
+                "leading-none transition-colors",
+                isChecked ? "font-semibold text-ink dark:text-on-dark" : "font-medium"
+              )}
             >
-              <motion.path
-                d="M4 12L9 17L20 6"
-                initial={{ pathLength: skipAnimation ? 1 : 0 }}
-                animate={{
-                  pathLength: 1,
-                  transition: { duration: 0.08, ease: "easeOut" },
-                }}
-                exit={{
-                  pathLength: 0,
-                  transition: { duration: 0.04, ease: "easeIn" },
-                }}
-              />
-            </motion.svg>
+              {label}
+            </span>
           )}
-        </AnimatePresence>
+          {description && (
+            <span className="text-muted-soft dark:text-on-dark-soft/70 mt-0.5 text-[11px] font-normal leading-tight">
+              {description}
+            </span>
+          )}
+          {!label && !description && children}
+        </div>
+
+        {badge && <span className="shrink-0">{badge}</span>}
+
+        {shortcut && (
+          <span className="text-muted-soft dark:text-on-dark-soft text-[10px] font-mono tracking-widest uppercase">
+            {shortcut}
+          </span>
+        )}
+
+        {isChecked && !badge && (
+          <span className="text-ink dark:text-on-dark shrink-0">
+            <Check className="size-3.5 stroke-[2.5]" aria-hidden="true" />
+          </span>
+        )}
       </>
     );
 
     if (renderMenuItem) {
-      // Inside DropdownContent, the menu-item primitive (supplied by the
-      // surrounding DropdownContent through context) owns the role,
-      // aria-checked, tabIndex, roving highlight, typeahead, and Enter/Space/
-      // click activation (activation synthesizes a click, so handleActivate
-      // also fires for keyboard). The styled div carries the Fluid
-      // Functionalism visuals and the proximity-hover registration; MenuItem
-      // itself imports no primitive.
       return renderMenuItem({
         radio: typeof checked === "boolean",
         value: index,
         disabled,
         label,
-        closeOnClick: closeOnClick ?? true,
+        closeOnClick,
         element: (
           <div
             ref={mergeRef}
             data-proximity-index={index}
-            aria-label={label}
+            aria-label={typeof label === "string" ? label : undefined}
             onClick={handleActivate}
             className={itemClassName}
             {...props}
@@ -196,18 +174,17 @@ const MenuItem = forwardRef(
       <div
         ref={mergeRef}
         data-proximity-index={index}
-        // Disabled items are never the roving tab stop.
-        tabIndex={!disabled && index === (checkedIndex ?? 0) ? 0 : -1}
+        tabIndex={!disabled ? 0 : -1}
         role={typeof checked === "boolean" ? "menuitemradio" : "menuitem"}
-        aria-checked={typeof checked === "boolean" ? checked : undefined}
+        aria-checked={typeof checked === "boolean" ? isChecked : undefined}
         aria-disabled={disabled || undefined}
-        aria-label={label}
+        aria-label={typeof label === "string" ? label : undefined}
         onClick={handleActivate}
         onKeyDown={(e) => {
           if (disabled) return;
           if (e.key === " " || e.key === "Enter") {
             e.preventDefault();
-            onSelect?.();
+            handleActivate(e);
           }
         }}
         className={itemClassName}

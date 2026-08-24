@@ -7,6 +7,10 @@ import {
   Sliders,
   ToggleLeft,
   Layers,
+  MessageSquare,
+  ListFilter,
+  ChevronsUpDown,
+  Loader2,
 } from "lucide-react";
 
 export default function ComponentsIndexPage() {
@@ -22,6 +26,120 @@ export default function ComponentsIndexPage() {
       </div>
 
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Spinner Card */}
+        <Link
+          href="/docs/components/spinner"
+          className="group border-hairline bg-surface-card hover:border-ink shadow-subtle relative flex flex-col justify-between overflow-hidden rounded-2xl border p-6 transition-all hover:shadow-md"
+        >
+          <div>
+            <div className="flex items-center justify-between">
+              <div className="bg-canvas border-hairline flex size-10 items-center justify-center rounded-xl border">
+                <Loader2 className="text-brand-accent size-5 animate-spin" />
+              </div>
+              <Badge variant="accent" size="sm" shape="tag">
+                Updated
+              </Badge>
+            </div>
+            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-semibold transition-colors">
+              Spinner
+            </h2>
+            <p className="text-body-sm text-muted-text mt-1">
+              Circular loaders, pulsing dot rhythms, 5-step sizing ladder, and status color tokens.
+            </p>
+          </div>
+
+          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-semibold">
+            <span>Explore 6+ variants</span>
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+          </div>
+        </Link>
+
+        {/* Select Card */}
+        <Link
+          href="/docs/components/select"
+          className="group border-hairline bg-surface-card hover:border-ink shadow-subtle relative flex flex-col justify-between overflow-hidden rounded-2xl border p-6 transition-all hover:shadow-md"
+        >
+          <div>
+            <div className="flex items-center justify-between">
+              <div className="bg-canvas border-hairline flex size-10 items-center justify-center rounded-xl border">
+                <ChevronsUpDown className="text-brand-accent size-5" />
+              </div>
+              <Badge variant="accent" size="sm" shape="tag">
+                Updated
+              </Badge>
+            </div>
+            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-semibold transition-colors">
+              Select
+            </h2>
+            <p className="text-body-sm text-muted-text mt-1">
+              Form dropdowns with proximity hover glow, spring physics, check indicators, and group labels.
+            </p>
+          </div>
+
+          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-semibold">
+            <span>Explore 4+ variants</span>
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+          </div>
+        </Link>
+
+        {/* Dropdown Card */}
+        <Link
+          href="/docs/components/dropdown"
+          className="group border-hairline bg-surface-card hover:border-ink shadow-subtle relative flex flex-col justify-between overflow-hidden rounded-2xl border p-6 transition-all hover:shadow-md"
+        >
+          <div>
+            <div className="flex items-center justify-between">
+              <div className="bg-canvas border-hairline flex size-10 items-center justify-center rounded-xl border">
+                <ListFilter className="text-brand-accent size-5" />
+              </div>
+              <Badge variant="accent" size="sm" shape="tag">
+                Updated
+              </Badge>
+            </div>
+            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-semibold transition-colors">
+              Dropdown Menu
+            </h2>
+            <p className="text-body-sm text-muted-text mt-1">
+              Floating action menus, item shortcuts, destructive states, and
+              proximity hover highlights.
+            </p>
+          </div>
+
+          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-semibold">
+            <span>Explore 4+ variants</span>
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+          </div>
+        </Link>
+
+        {/* Dialog Card */}
+        <Link
+          href="/docs/components/dialog"
+          className="group border-hairline bg-surface-card hover:border-ink shadow-subtle relative flex flex-col justify-between overflow-hidden rounded-2xl border p-6 transition-all hover:shadow-md"
+        >
+          <div>
+            <div className="flex items-center justify-between">
+              <div className="bg-canvas border-hairline flex size-10 items-center justify-center rounded-xl border">
+                <MessageSquare className="text-brand-accent size-5" />
+              </div>
+              <Badge variant="accent" size="sm" shape="tag">
+                Updated
+              </Badge>
+            </div>
+            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-semibold transition-colors">
+              Dialog
+            </h2>
+            <p className="text-body-sm text-muted-text mt-1">
+              Modal dialogs and overlays with calibrated canvas/surface cards,
+              hairline borders, and spring physics.
+            </p>
+          </div>
+
+          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-semibold">
+            <span>Explore 4+ variants</span>
+            <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+          </div>
+        </Link>
+
         {/* Tabs Card */}
         <Link
           href="/docs/components/tabs"
@@ -40,7 +158,8 @@ export default function ComponentsIndexPage() {
               Tabs & Nav-Pill-Group
             </h2>
             <p className="text-body-sm text-muted-text mt-1">
-              Cal.com&apos;s signature interactive pill switcher with proximity hover glow, spring physics, and underline bars.
+              Cal.com&apos;s signature interactive pill switcher with proximity
+              hover glow, spring physics, and underline bars.
             </p>
           </div>
 
