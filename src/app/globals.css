@@ -5,133 +5,156 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Surface Tokens (from design.md) */
-  --canvas: #f5f1ec;
-  --surface-1: #ffffff;
-  --surface-2: #ebe5df;
-  --surface-3: #e4ded7;
-  --surface-4: #ddd6ce;
-  --surface-5: #d5cdc4;
-  --surface-6: #cdc4ba;
-  --surface-7: #c5bbb0;
-  --surface-8: #bcb2a6;
-  --hairline: #d3cec6;
-  --hairline-soft: #e6e2dc;
-  --inverse-canvas: #000000;
-  --inverse-surface-1: #1a1a1a;
+  /* 1. Primary Palette (from design.md Section 2) */
+  --cream: #f7f4ed;
+  --charcoal: #1c1c1c;
+  --off-white: #fcfbf8;
 
-  /* Brand & Accent Tokens (from design.md) */
-  --ink: #111111;
-  --on-primary: #ffffff;
-  --fin-orange: #ff5600;
-  --brand-blue: #0007cb;
+  /* 2. Neutral Scale - Opacity-Based (from design.md Section 2) */
+  --charcoal-100: #1c1c1c;
+  --charcoal-83: rgba(28, 28, 28, 0.83);
+  --charcoal-82: rgba(28, 28, 28, 0.82);
+  --muted-gray: #5f5f5d;
+  --charcoal-40: rgba(28, 28, 28, 0.4);
+  --charcoal-4: rgba(28, 28, 28, 0.04);
+  --charcoal-3: rgba(28, 28, 28, 0.03);
 
-  /* Text / Ink Tokens (from design.md) */
-  --ink-muted: #626260;
-  --ink-subtle: #7b7b78;
-  --ink-tertiary: #9c9fa5;
-  --inverse-ink: #ffffff;
-  --inverse-ink-muted: #9c9fa5;
+  /* 3. Surface & Border (from design.md Section 2) */
+  --light-cream: #eceae4;
+  --cream-surface: #f7f4ed;
+  --canvas: var(--cream);
+  --surface-1: var(--cream);
+  --surface-2: var(--light-cream);
+  --hairline: var(--light-cream);
+  --hairline-soft: var(--light-cream);
+  --hairline-interactive: var(--charcoal-40);
+  --inverse-canvas: var(--charcoal);
+  --inverse-surface-1: var(--charcoal);
 
-  /* Semantic & Report Palette (from design.md) */
-  --semantic-error: #df1b41;
-  --semantic-success: #00875a;
-  --report-orange: #ff7a00;
-  --report-blue: #0052cc;
-  --report-green: #00875a;
-  --report-pink: #e056fd;
-  --report-lime: #84cc16;
-  --report-cyan: #00b8d9;
+  /* 4. Text & Ink Tokens (from design.md Section 2) */
+  --ink: var(--charcoal);
+  --ink-muted: var(--muted-gray);
+  --ink-subtle: var(--charcoal-82);
+  --ink-strong: var(--charcoal-83);
+  --ink-tertiary: var(--charcoal-40);
+  --on-primary: var(--off-white);
+  --inverse-ink: var(--off-white);
+  --inverse-ink-muted: rgba(252, 251, 248, 0.7);
 
-  /* Semantic Base / Shadcn UI Mappings */
-  --background: var(--canvas);
-  --foreground: var(--ink);
-  --card: var(--surface-1);
-  --card-foreground: var(--ink);
-  --popover: var(--surface-1);
-  --popover-foreground: var(--ink);
-  --primary: var(--ink);
-  --primary-foreground: var(--on-primary);
-  --secondary: var(--surface-2);
-  --secondary-foreground: var(--ink);
-  --muted: var(--surface-2);
-  --muted-foreground: var(--ink-muted);
-  --accent: var(--surface-2);
-  --accent-foreground: var(--ink);
-  --destructive: var(--semantic-error);
-  --destructive-foreground: #ffffff;
-  --border: var(--hairline);
-  --input: var(--hairline);
-  --ring: var(--ink);
-  --radius: 0.5rem;
+  /* 5. Interactive & Focus (from design.md Section 2 & 6) */
+  --ring-blue: #3b82f6;
+  --focus-ring: rgba(59, 130, 246, 0.5);
 
-  /* Sidebar Tokens */
-  --sidebar: var(--canvas);
-  --sidebar-foreground: var(--ink);
-  --sidebar-primary: var(--ink);
-  --sidebar-primary-foreground: var(--on-primary);
-  --sidebar-accent: var(--surface-2);
-  --sidebar-accent-foreground: var(--ink);
-  --sidebar-border: var(--hairline);
-  --sidebar-ring: var(--ink);
+  /* 6. Semantic Base / Shadcn UI Mappings */
+  --background: var(--cream);
+  --foreground: var(--charcoal);
+  --card: var(--cream);
+  --card-foreground: var(--charcoal);
+  --popover: var(--cream);
+  --popover-foreground: var(--charcoal);
+  --primary: var(--charcoal);
+  --primary-foreground: var(--off-white);
+  --secondary: var(--light-cream);
+  --secondary-foreground: var(--charcoal);
+  --muted: var(--light-cream);
+  --muted-foreground: var(--muted-gray);
+  --accent: var(--charcoal-4);
+  --accent-foreground: var(--charcoal);
+  --destructive: var(--charcoal);
+  --destructive-foreground: var(--off-white);
+  --border: var(--light-cream);
+  --input: var(--light-cream);
+  --ring: var(--ring-blue);
+  --radius: 6px;
 
-  /* Chart Tokens */
-  --chart-1: var(--report-blue);
-  --chart-2: var(--report-green);
-  --chart-3: var(--report-orange);
-  --chart-4: var(--report-pink);
-  --chart-5: var(--report-cyan);
+  /* 7. Sidebar Tokens */
+  --sidebar: var(--cream);
+  --sidebar-foreground: var(--charcoal);
+  --sidebar-primary: var(--charcoal);
+  --sidebar-primary-foreground: var(--off-white);
+  --sidebar-accent: var(--light-cream);
+  --sidebar-accent-foreground: var(--charcoal);
+  --sidebar-border: var(--light-cream);
+  --sidebar-ring: var(--ring-blue);
 
-  /* Scrollbar Tokens */
+  /* 8. Scrollbar Tokens */
   --scrollbar-track: transparent;
-  --scrollbar-thumb: rgba(0, 0, 0, 0.2);
-  --scrollbar-thumb-hover: rgba(0, 0, 0, 0.35);
+  --scrollbar-thumb: var(--charcoal-40);
+  --scrollbar-thumb-hover: var(--charcoal-82);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
-  /* Surfaces */
+  /* Primary Design System Colors */
+  --color-cream: var(--cream);
+  --color-charcoal: var(--charcoal);
+  --color-off-white: var(--off-white);
+  --color-muted-gray: var(--muted-gray);
+  --color-light-cream: var(--light-cream);
+  --color-cream-surface: var(--cream-surface);
+  --color-ring-blue: var(--ring-blue);
+
+  /* Neutral Opacity Scale */
+  --color-charcoal-100: var(--charcoal-100);
+  --color-charcoal-83: var(--charcoal-83);
+  --color-charcoal-82: var(--charcoal-82);
+  --color-charcoal-40: var(--charcoal-40);
+  --color-charcoal-4: var(--charcoal-4);
+  --color-charcoal-3: var(--charcoal-3);
+
+  /* Surfaces & Borders */
   --color-canvas: var(--canvas);
   --color-surface-1: var(--surface-1);
   --color-surface-2: var(--surface-2);
-  --color-surface-3: var(--surface-3);
-  --color-surface-4: var(--surface-4);
-  --color-surface-5: var(--surface-5);
-  --color-surface-6: var(--surface-6);
-  --color-surface-7: var(--surface-7);
-  --color-surface-8: var(--surface-8);
   --color-hairline: var(--hairline);
   --color-hairline-soft: var(--hairline-soft);
+  --color-hairline-interactive: var(--hairline-interactive);
   --color-inverse-canvas: var(--inverse-canvas);
   --color-inverse-surface-1: var(--inverse-surface-1);
 
-  /* Brand & Accent */
+  /* Text & Ink */
   --color-ink: var(--ink);
-  --color-on-primary: var(--on-primary);
-  --color-fin-orange: var(--fin-orange);
-  --color-brand-blue: var(--brand-blue);
-
-  /* Text Colors */
   --color-ink-muted: var(--ink-muted);
   --color-ink-subtle: var(--ink-subtle);
+  --color-ink-strong: var(--ink-strong);
   --color-ink-tertiary: var(--ink-tertiary);
+  --color-on-primary: var(--on-primary);
   --color-inverse-ink: var(--inverse-ink);
   --color-inverse-ink-muted: var(--inverse-ink-muted);
 
-  /* Semantic & Report */
-  --color-semantic-error: var(--semantic-error);
-  --color-semantic-success: var(--semantic-success);
-  --color-report-orange: var(--report-orange);
-  --color-report-blue: var(--report-blue);
-  --color-report-green: var(--report-green);
-  --color-report-pink: var(--report-pink);
-  --color-report-lime: var(--report-lime);
-  --color-report-cyan: var(--report-cyan);
+  /* Shadcn UI Bindings */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Sidebar */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 
   /* Fonts */
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-sans), "Camera Plain Variable", ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(
     --font-jetbrains-mono,
     ui-monospace,
@@ -142,339 +165,255 @@
     monospace
   );
 
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
+  /* Spacing Tokens (from design.md Section 5) */
+  --spacing-8: 8px;
+  --spacing-10: 10px;
+  --spacing-12: 12px;
+  --spacing-16: 16px;
+  --spacing-24: 24px;
+  --spacing-32: 32px;
+  --spacing-40: 40px;
+  --spacing-56: 56px;
+  --spacing-80: 80px;
+  --spacing-96: 96px;
+  --spacing-128: 128px;
+  --spacing-176: 176px;
+  --spacing-192: 192px;
+  --spacing-208: 208px;
 
-  /* Spacing Tokens (from design.md) */
-  --spacing-xxs: 4px;
-  --spacing-xs: 8px;
-  --spacing-sm: 12px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-  --spacing-xxl: 48px;
-  --spacing-section: 96px;
+  /* Border Radius Scale (from design.md Section 5) */
+  --radius-micro: 4px;
+  --radius-standard: 6px;
+  --radius-comfortable: 8px;
+  --radius-card: 12px;
+  --radius-container: 16px;
+  --radius-pill: 9999px;
+  --radius-full: 9999px;
 
-  /* Border Radius Tokens (from design.md) */
+  /* Compatibility radius aliases */
   --radius-xs: 4px;
   --radius-sm: 6px;
   --radius-md: 8px;
   --radius-lg: 12px;
   --radius-xl: 16px;
-  --radius-xxl: 24px;
-  --radius-2xl: 24px;
-  --radius-pill: 9999px;
-  --radius-full: 9999px;
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
-  @keyframes spinner-move {
-    to {
-      stroke-dashoffset: -100;
-    }
-  }
-  @keyframes spinner-dash {
-    0%,
-    100% {
-      stroke-dasharray: 15 85;
-    }
-    50% {
-      stroke-dasharray: 40 60;
-    }
-  }
-  /* Shadows */
-  --shadow-color: rgb(0 0 0 / 0.06);
-  --color-shadow-color: var(--shadow-color);
 
-  --shadow-1: 0 0 0 1px var(--shadow-color);
-  --shadow-2:
-    0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color);
-  --shadow-3:
-    0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color),
-    0 3px 3px -1.5px var(--shadow-color);
-  --shadow-4:
-    0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color),
-    0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color);
-  --shadow-5:
-    0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color),
-    0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color),
-    0 12px 12px -6px var(--shadow-color);
-  --shadow-6:
-    0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color),
-    0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color),
-    0 12px 12px -6px var(--shadow-color), 0 24px 24px -12px var(--shadow-color);
-  --shadow-7:
-    0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color),
-    0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color),
-    0 12px 12px -6px var(--shadow-color), 0 24px 24px -12px var(--shadow-color),
-    0 48px 48px -24px var(--shadow-color);
-  --shadow-8:
-    0 0 0 1px var(--shadow-color), 0 1px 1px -0.5px var(--shadow-color),
-    0 3px 3px -1.5px var(--shadow-color), 0 6px 6px -3px var(--shadow-color),
-    0 12px 12px -6px var(--shadow-color), 0 24px 24px -12px var(--shadow-color),
-    0 48px 48px -24px var(--shadow-color), 0 96px 96px -48px var(--shadow-color);
-
-  --shadow-surface-1: var(--shadow-1);
-  --shadow-surface-2: var(--shadow-2);
-  --shadow-surface-3: var(--shadow-3);
-  --shadow-surface-4: var(--shadow-4);
-  --shadow-surface-5: var(--shadow-5);
-  --shadow-surface-6: var(--shadow-6);
-  --shadow-surface-7: var(--shadow-7);
-  --shadow-surface-8: var(--shadow-8);
-
-  --color-dm-drop: var(--dm-drop);
-  --color-dm-ring-high: var(--dm-ring-high);
-  --color-dm-ring-mid: var(--dm-ring-mid);
-  --color-dm-ring-base: var(--dm-ring-base);
-  --color-dm-hi-peak: var(--dm-hi-peak);
-  --color-dm-hi-high: var(--dm-hi-high);
-  --color-dm-hi-mid: var(--dm-hi-mid);
-  --color-dm-hi-base: var(--dm-hi-base);
+  /* Signature Shadows & Focus (from design.md Section 2 & 6) */
+  --shadow-button-inset:
+    rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+    rgba(255, 255, 255, 0.2) 0px 0.5px 0px 0px inset,
+    rgba(0, 0, 0, 0.2) 0px 0px 0px 0.5px inset,
+    rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  --shadow-focus: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
+
 .dark {
-  /* Surface Tokens (Dark) */
-  --canvas: #0d0d0d;
-  --surface-1: #171717;
-  --surface-2: #1e1e1e;
-  --surface-3: #252525;
-  --surface-4: #2c2c2c;
-  --surface-5: #333333;
-  --surface-6: #3a3a3a;
-  --surface-7: #414141;
-  --surface-8: #484848;
-  --hairline: rgba(255, 255, 255, 0.1);
-  --hairline-soft: rgba(255, 255, 255, 0.06);
-  --inverse-canvas: #ffffff;
-  --inverse-surface-1: #f5f1ec;
+  /* Semantic mappings for dark contexts aligned to design system */
+  --background: var(--charcoal);
+  --foreground: var(--off-white);
+  --card: var(--charcoal);
+  --card-foreground: var(--off-white);
+  --popover: var(--charcoal);
+  --popover-foreground: var(--off-white);
+  --primary: var(--off-white);
+  --primary-foreground: var(--charcoal);
+  --secondary: var(--charcoal-40);
+  --secondary-foreground: var(--off-white);
+  --muted: var(--charcoal-40);
+  --muted-foreground: var(--off-white);
+  --accent: var(--charcoal-4);
+  --accent-foreground: var(--off-white);
+  --destructive: var(--off-white);
+  --destructive-foreground: var(--charcoal);
+  --border: rgba(252, 251, 248, 0.15);
+  --input: rgba(252, 251, 248, 0.15);
+  --ring: var(--ring-blue);
 
-  /* Brand & Accent Tokens (Dark) */
-  --ink: #ffffff;
-  --on-primary: #111111;
-  --fin-orange: #ff6a1a;
-  --brand-blue: #4d5fff;
+  --canvas: var(--charcoal);
+  --surface-1: var(--charcoal);
+  --surface-2: var(--charcoal-40);
+  --hairline: rgba(252, 251, 248, 0.15);
+  --hairline-soft: rgba(252, 251, 248, 0.1);
+  --hairline-interactive: rgba(252, 251, 248, 0.3);
+  --inverse-canvas: var(--cream);
+  --inverse-surface-1: var(--light-cream);
 
-  /* Text / Ink Tokens (Dark) */
-  --ink-muted: #9c9fa5;
-  --ink-subtle: #7b7b78;
-  --ink-tertiary: #626260;
-  --inverse-ink: #111111;
-  --inverse-ink-muted: #626260;
+  --ink: var(--off-white);
+  --ink-muted: var(--muted-gray);
+  --ink-subtle: rgba(252, 251, 248, 0.6);
+  --ink-strong: var(--off-white);
+  --ink-tertiary: rgba(252, 251, 248, 0.4);
+  --on-primary: var(--charcoal);
+  --inverse-ink: var(--charcoal);
+  --inverse-ink-muted: var(--muted-gray);
 
-  /* Semantic & Report Palette (Dark - calibrated for dark surfaces) */
-  --semantic-error: #f87171;
-  --semantic-success: #34d399;
-  --report-orange: #fb923c;
-  --report-blue: #60a5fa;
-  --report-green: #34d399;
-  --report-pink: #f472b6;
-  --report-lime: #a3e635;
-  --report-cyan: #22d3ee;
+  --sidebar: var(--charcoal);
+  --sidebar-foreground: var(--off-white);
+  --sidebar-primary: var(--off-white);
+  --sidebar-primary-foreground: var(--charcoal);
+  --sidebar-accent: var(--charcoal-40);
+  --sidebar-accent-foreground: var(--off-white);
+  --sidebar-border: rgba(252, 251, 248, 0.15);
+  --sidebar-ring: var(--ring-blue);
 
-  /* Semantic Base / Shadcn UI Mappings (Dark) */
-  --background: var(--canvas);
-  --foreground: var(--ink);
-  --card: var(--surface-1);
-  --card-foreground: var(--ink);
-  --popover: var(--surface-1);
-  --popover-foreground: var(--ink);
-  --primary: var(--ink);
-  --primary-foreground: var(--on-primary);
-  --secondary: var(--surface-2);
-  --secondary-foreground: var(--ink);
-  --muted: var(--surface-2);
-  --muted-foreground: var(--ink-muted);
-  --accent: var(--surface-2);
-  --accent-foreground: var(--ink);
-  --destructive: var(--semantic-error);
-  --destructive-foreground: #111111;
-  --border: var(--hairline);
-  --input: rgba(255, 255, 255, 0.15);
-  --ring: var(--ink);
-
-  /* Sidebar Tokens (Dark) */
-  --sidebar: var(--surface-1);
-  --sidebar-foreground: var(--ink);
-  --sidebar-primary: var(--ink);
-  --sidebar-primary-foreground: var(--on-primary);
-  --sidebar-accent: var(--surface-2);
-  --sidebar-accent-foreground: var(--ink);
-  --sidebar-border: var(--hairline);
-  --sidebar-ring: var(--ink);
-
-  /* Chart Tokens (Dark) */
-  --chart-1: var(--report-blue);
-  --chart-2: var(--report-green);
-  --chart-3: var(--report-orange);
-  --chart-4: var(--report-pink);
-  --chart-5: var(--report-cyan);
-
-  /* Dark Mode Elevation Highlights & Shadows */
-  --dm-hi-base: rgba(255, 255, 255, 0.01);
-  --dm-hi-mid: rgba(255, 255, 255, 0.02);
-  --dm-hi-high: rgba(255, 255, 255, 0.04);
-  --dm-hi-peak: rgba(255, 255, 255, 0.06);
-  --dm-ring-base: rgba(255, 255, 255, 0.02);
-  --dm-ring-mid: rgba(255, 255, 255, 0.04);
-  --dm-ring-high: rgba(255, 255, 255, 0.06);
-  --dm-drop: rgba(0, 0, 0, 0.18);
-  --shadow-color: rgba(0, 0, 0, 0.4);
-
-  --shadow-1: inset 0 0 0 1px var(--dm-ring-base);
-  --shadow-2:
-    inset 0 1px 0 0 var(--dm-hi-base), inset 0 0 0 1px var(--dm-ring-base),
-    0 1px 1px -0.5px var(--dm-drop);
-  --shadow-3:
-    inset 0 1px 0 0 var(--dm-hi-mid), inset 0 0 0 1px var(--dm-ring-base),
-    0 0 0 1px rgba(0, 0, 0, 0.12), 0 1px 1px -0.5px var(--dm-drop),
-    0 3px 3px -1.5px var(--dm-drop);
-  --shadow-4:
-    inset 0 1px 0 0 var(--dm-hi-mid), inset 0 0 0 1px var(--dm-ring-mid),
-    0 0 0 1px rgba(0, 0, 0, 0.14), 0 1px 1px -0.5px var(--dm-drop),
-    0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop);
-  --shadow-5:
-    inset 0 1px 0 0 var(--dm-hi-high), inset 0 0 0 1px var(--dm-ring-mid),
-    0 0 0 1px rgba(0, 0, 0, 0.16), 0 1px 1px -0.5px var(--dm-drop),
-    0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop),
-    0 12px 12px -6px var(--dm-drop);
-  --shadow-6:
-    inset 0 1px 0 0 var(--dm-hi-high), inset 0 0 0 1px var(--dm-ring-high),
-    0 0 0 1px rgba(0, 0, 0, 0.18), 0 1px 1px -0.5px var(--dm-drop),
-    0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop),
-    0 12px 12px -6px var(--dm-drop), 0 24px 24px -12px var(--dm-drop);
-  --shadow-7:
-    inset 0 1px 0 0 var(--dm-hi-peak), inset 0 0 0 1px var(--dm-ring-high),
-    0 0 0 1px rgba(0, 0, 0, 0.2), 0 1px 1px -0.5px var(--dm-drop),
-    0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop),
-    0 12px 12px -6px var(--dm-drop), 0 24px 24px -12px var(--dm-drop),
-    0 48px 48px -24px var(--dm-drop);
-  --shadow-8:
-    inset 0 1px 0 0 var(--dm-hi-peak), inset 0 0 0 1px var(--dm-ring-high),
-    0 0 0 1px rgba(0, 0, 0, 0.22), 0 1px 1px -0.5px var(--dm-drop),
-    0 3px 3px -1.5px var(--dm-drop), 0 6px 6px -3px var(--dm-drop),
-    0 12px 12px -6px var(--dm-drop), 0 24px 24px -12px var(--dm-drop),
-    0 48px 48px -24px var(--dm-drop), 0 96px 96px -48px var(--dm-drop);
-
-  /* Scrollbar Tokens (Dark) */
   --scrollbar-track: transparent;
-  --scrollbar-thumb: rgba(255, 255, 255, 0.2);
-  --scrollbar-thumb-hover: rgba(255, 255, 255, 0.35);
+  --scrollbar-thumb: rgba(252, 251, 248, 0.2);
+  --scrollbar-thumb-hover: rgba(252, 251, 248, 0.35);
 }
 
 /* ==========================================================================
-   Typography & Text Styling Utility Classes (Design System)
+   Typography & Text Styling Utility Classes (from design.md)
    ========================================================================== */
 
 @layer utilities {
-  /* Typography Presets (Size, Line-Height, Tracking, and Weight Hierarchy) */
-  .text-display-xl {
-    font-size: 72px;
+  /* Display Hero: 3.75rem (60px), weight 600, line-height 1.05, tracking -1.5px */
+  .text-display-hero {
+    font-size: 3.75rem;
     line-height: 1.05;
-    letter-spacing: -2px;
-    font-weight: 500;
+    letter-spacing: -1.5px;
+    font-weight: 600;
+  }
+
+  /* Display Alt: 3.75rem (60px), weight 480, line-height 1.00, tracking normal */
+  .text-display-alt {
+    font-size: 3.75rem;
+    line-height: 1.0;
+    letter-spacing: normal;
+    font-weight: 480;
+  }
+
+  /* Section Heading: 3rem (48px), weight 600, line-height 1.00, tracking -1.2px */
+  .text-section-heading {
+    font-size: 3rem;
+    line-height: 1.0;
+    letter-spacing: -1.2px;
+    font-weight: 600;
+  }
+
+  /* Sub-heading: 2.25rem (36px), weight 600, line-height 1.10, tracking -0.9px */
+  .text-sub-heading {
+    font-size: 2.25rem;
+    line-height: 1.1;
+    letter-spacing: -0.9px;
+    font-weight: 600;
+  }
+
+  /* Card Title: 1.25rem (20px), weight 400, line-height 1.25, tracking normal */
+  .text-card-title {
+    font-size: 1.25rem;
+    line-height: 1.25;
+    letter-spacing: normal;
+    font-weight: 400;
+  }
+
+  /* Body Large: 1.125rem (18px), weight 400, line-height 1.38, tracking normal */
+  .text-body-large,
+  .text-body-lg {
+    font-size: 1.125rem;
+    line-height: 1.38;
+    letter-spacing: normal;
+    font-weight: 400;
+  }
+
+  /* Body: 1rem (16px), weight 400, line-height 1.50, tracking normal */
+  .text-body {
+    font-size: 1rem;
+    line-height: 1.5;
+    letter-spacing: normal;
+    font-weight: 400;
+  }
+
+  /* Button: 1rem (16px), weight 400, line-height 1.50, tracking normal */
+  .text-button {
+    font-size: 1rem;
+    line-height: 1.5;
+    letter-spacing: normal;
+    font-weight: 400;
+  }
+
+  /* Button Small: 0.875rem (14px), weight 400, line-height 1.50, tracking normal */
+  .text-button-small,
+  .text-button-sm {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: normal;
+    font-weight: 400;
+  }
+
+  /* Link: 1rem (16px), weight 400, line-height 1.50, underline */
+  .text-link {
+    font-size: 1rem;
+    line-height: 1.5;
+    letter-spacing: normal;
+    font-weight: 400;
+    text-decoration: underline;
+  }
+
+  /* Link Small: 0.875rem (14px), weight 400, line-height 1.50, underline */
+  .text-link-small,
+  .text-link-sm {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: normal;
+    font-weight: 400;
+    text-decoration: underline;
+  }
+
+  /* Caption: 0.875rem (14px), weight 400, line-height 1.50, tracking normal */
+  .text-caption {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: normal;
+    font-weight: 400;
+  }
+
+  /* Compatibility Typography Classes */
+  .text-display-xl {
+    font-size: 3.75rem;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    font-weight: 600;
   }
 
   .text-display-lg {
-    font-size: 56px;
-    line-height: 1.1;
-    letter-spacing: -1.4px;
-    font-weight: 500;
+    font-size: 3rem;
+    line-height: 1.0;
+    letter-spacing: -1.2px;
+    font-weight: 600;
   }
 
   .text-display-md {
-    font-size: 40px;
-    line-height: 1.15;
-    letter-spacing: -0.8px;
-    font-weight: 500;
+    font-size: 2.25rem;
+    line-height: 1.1;
+    letter-spacing: -0.9px;
+    font-weight: 600;
   }
 
   .text-headline {
-    font-size: 28px;
-    line-height: 1.2;
-    letter-spacing: -0.5px;
-    font-weight: 500;
-  }
-
-  .text-card-title {
-    font-size: 22px;
-    line-height: 1.25;
-    letter-spacing: -0.3px;
-    font-weight: 500;
+    font-size: 2.25rem;
+    line-height: 1.1;
+    letter-spacing: -0.9px;
+    font-weight: 600;
   }
 
   .text-subhead {
-    font-size: 20px;
-    line-height: 1.4;
-    letter-spacing: -0.2px;
-    font-weight: 400;
-  }
-
-  .text-body-lg {
-    font-size: 18px;
-    line-height: 1.5;
-    letter-spacing: -0.1px;
-    font-weight: 400;
-  }
-
-  .text-body {
-    font-size: 16px;
-    line-height: 1.5;
-    letter-spacing: 0;
+    font-size: 1.25rem;
+    line-height: 1.25;
+    letter-spacing: normal;
     font-weight: 400;
   }
 
   .text-body-sm {
-    font-size: 14px;
+    font-size: 0.875rem;
     line-height: 1.5;
-    letter-spacing: 0;
+    letter-spacing: normal;
     font-weight: 400;
-  }
-
-  .text-caption {
-    font-size: 12px;
-    line-height: 1.4;
-    letter-spacing: 0;
-    font-weight: 400;
-  }
-
-  .text-button {
-    font-size: 15px;
-    line-height: 1.2;
-    letter-spacing: 0;
-    font-weight: 500;
   }
 
   .text-eyebrow {
-    font-size: 14px;
-    line-height: 1.3;
-    letter-spacing: 0;
-    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: normal;
+    font-weight: 400;
   }
 
   .text-mono {
@@ -487,10 +426,23 @@
       Consolas,
       monospace
     );
-    font-size: 13px;
+    font-size: 0.875rem;
     line-height: 1.5;
-    letter-spacing: 0;
+    letter-spacing: normal;
     font-weight: 400;
+  }
+
+  /* Signature Shadow Utilities */
+  .shadow-button-inset {
+    box-shadow:
+      rgba(0, 0, 0, 0) 0px 0px 0px 0px,
+      rgba(255, 255, 255, 0.2) 0px 0.5px 0px 0px inset,
+      rgba(0, 0, 0, 0.2) 0px 0px 0px 0.5px inset,
+      rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  }
+
+  .shadow-focus {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
   }
 }
 
