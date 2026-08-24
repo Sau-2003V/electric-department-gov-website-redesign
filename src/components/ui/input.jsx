@@ -9,73 +9,94 @@ import { useSizeVariant } from "@/lib/size-context";
 
 const inputVariants = cva(
   [
-    "w-full min-w-0 font-normal outline-none transition-all duration-150 ease-out",
-    "placeholder:text-ink-subtle placeholder:font-normal dark:placeholder:text-muted-foreground",
-    "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-surface-2/50 dark:disabled:bg-muted/50",
-    "aria-invalid:border-semantic-error aria-invalid:ring-1 aria-invalid:ring-semantic-error aria-invalid:text-semantic-error dark:aria-invalid:border-destructive dark:aria-invalid:ring-destructive/40",
-    "file:inline-flex file:h-6 file:border-0 file:bg-surface-2 file:text-ink file:rounded-sm file:px-2 file:py-0.5 file:text-xs file:font-medium file:cursor-pointer hover:file:bg-surface-2/80 dark:file:bg-muted dark:file:text-foreground",
+    "w-full min-w-0 font-sans font-normal outline-none transition-all duration-150 ease-out",
+    "placeholder:text-muted-soft placeholder:font-normal dark:placeholder:text-on-dark-soft",
+    "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 disabled:bg-surface-card/60 dark:disabled:bg-surface-dark-elevated/60",
+    "aria-invalid:border-error aria-invalid:ring-2 aria-invalid:ring-error/25 dark:aria-invalid:border-error dark:aria-invalid:ring-error/30",
+    "file:inline-flex file:h-6 file:border-0 file:bg-surface-card file:text-ink file:rounded-sm file:px-2 file:py-0.5 file:text-xs file:font-medium file:cursor-pointer hover:file:bg-surface-strong dark:file:bg-surface-dark-elevated dark:file:text-on-dark",
   ],
   {
     variants: {
       variant: {
-        // Default / Primary - White surface on cream canvas with hairline border
+        // 1. Primary & Canvas (from design.md: text-input with canvas #ffffff & hairline #e5e7eb)
         default:
-          "bg-surface-1 text-ink border border-hairline hover:border-hairline/80 focus-visible:border-ink focus-visible:ring-1 focus-visible:ring-ink dark:bg-card dark:border-border dark:text-foreground dark:focus-visible:border-ring dark:focus-visible:ring-ring/50",
-        surface:
-          "bg-surface-1 text-ink border border-hairline hover:border-hairline/80 focus-visible:border-ink focus-visible:ring-1 focus-visible:ring-ink dark:bg-card dark:border-border dark:text-foreground dark:focus-visible:border-ring dark:focus-visible:ring-ring/50",
+          "bg-canvas text-ink border border-hairline shadow-subtle hover:border-hairline/80 focus-visible:border-ink focus-visible:ring-1 focus-visible:ring-ink dark:bg-surface-dark dark:border-hairline dark:text-on-dark dark:focus-visible:border-ring dark:focus-visible:ring-1 dark:focus-visible:ring-ring",
         primary:
-          "bg-surface-1 text-ink border border-hairline hover:border-hairline/80 focus-visible:border-ink focus-visible:ring-1 focus-visible:ring-ink dark:bg-card dark:border-border dark:text-foreground dark:focus-visible:border-ring dark:focus-visible:ring-ring/50",
-
-        // Canvas - Cream background for white card surfaces
+          "bg-canvas text-ink border border-hairline shadow-subtle hover:border-hairline/80 focus-visible:border-ink focus-visible:ring-1 focus-visible:ring-ink dark:bg-surface-dark dark:border-hairline dark:text-on-dark dark:focus-visible:border-ring dark:focus-visible:ring-1 dark:focus-visible:ring-ring",
         canvas:
-          "bg-canvas text-ink border border-hairline hover:border-hairline/80 focus-visible:border-ink focus-visible:ring-1 focus-visible:ring-ink dark:bg-muted dark:border-border dark:text-foreground dark:focus-visible:border-ring dark:focus-visible:ring-ring/50",
+          "bg-canvas text-ink border border-hairline shadow-subtle hover:border-hairline/80 focus-visible:border-ink focus-visible:ring-1 focus-visible:ring-ink dark:bg-surface-dark dark:border-hairline dark:text-on-dark dark:focus-visible:border-ring dark:focus-visible:ring-1 dark:focus-visible:ring-ring",
 
-        // Secondary / Filled - Tinted cream background
+        // 2. Surface Card - Light gray surface for cards and nested dialogs
+        surface:
+          "bg-surface-card text-ink border border-hairline shadow-subtle hover:border-surface-strong focus-visible:border-ink focus-visible:ring-1 focus-visible:ring-ink dark:bg-surface-dark-elevated dark:border-hairline dark:text-on-dark dark:focus-visible:border-ring dark:focus-visible:ring-1 dark:focus-visible:ring-ring",
+        card: "bg-surface-card text-ink border border-hairline shadow-subtle hover:border-surface-strong focus-visible:border-ink focus-visible:ring-1 focus-visible:ring-ink dark:bg-surface-dark-elevated dark:border-hairline dark:text-on-dark dark:focus-visible:border-ring dark:focus-visible:ring-1 dark:focus-visible:ring-ring",
+
+        // 3. Secondary / Filled / Soft
         secondary:
-          "bg-surface-2 text-ink border border-transparent hover:bg-surface-2/80 focus-visible:bg-surface-1 focus-visible:border-hairline focus-visible:ring-1 focus-visible:ring-ink dark:bg-muted/80 dark:border-transparent dark:text-foreground dark:focus-visible:bg-card",
+          "bg-surface-soft text-ink border border-transparent hover:bg-surface-card focus-visible:bg-canvas focus-visible:border-hairline focus-visible:ring-1 focus-visible:ring-ink dark:bg-surface-dark-elevated dark:border-transparent dark:text-on-dark dark:focus-visible:bg-surface-dark",
         filled:
-          "bg-surface-2 text-ink border border-transparent hover:bg-surface-2/80 focus-visible:bg-surface-1 focus-visible:border-hairline focus-visible:ring-1 focus-visible:ring-ink dark:bg-muted/80 dark:border-transparent dark:text-foreground dark:focus-visible:bg-card",
+          "bg-surface-soft text-ink border border-transparent hover:bg-surface-card focus-visible:bg-canvas focus-visible:border-hairline focus-visible:ring-1 focus-visible:ring-ink dark:bg-surface-dark-elevated dark:border-transparent dark:text-on-dark dark:focus-visible:bg-surface-dark",
+        soft: "bg-surface-soft text-ink border border-transparent hover:bg-surface-card focus-visible:bg-canvas focus-visible:border-hairline focus-visible:ring-1 focus-visible:ring-ink dark:bg-surface-dark-elevated dark:border-transparent dark:text-on-dark dark:focus-visible:bg-surface-dark",
 
-        // Outline - Transparent background with hairline border
+        // 4. Outline - Transparent background with hairline border
         outline:
-          "bg-transparent text-ink border border-hairline hover:border-ink/40 focus-visible:border-ink focus-visible:ring-1 focus-visible:ring-ink dark:border-border dark:text-foreground dark:hover:border-foreground/40",
+          "bg-transparent text-ink border border-hairline hover:border-ink/40 focus-visible:border-ink focus-visible:ring-1 focus-visible:ring-ink dark:border-hairline dark:text-on-dark dark:hover:border-hairline-soft",
 
-        // Ghost - Completely minimal, no border until focused/hovered
+        // 5. Ghost - Completely minimal, no border until focused/hovered
         ghost:
-          "bg-transparent text-ink border border-transparent hover:bg-surface-2/60 focus-visible:bg-surface-1 focus-visible:border-hairline focus-visible:ring-1 focus-visible:ring-ink dark:text-foreground dark:hover:bg-muted/50 dark:focus-visible:bg-card",
+          "bg-transparent text-ink border border-transparent hover:bg-surface-card focus-visible:bg-canvas focus-visible:border-hairline focus-visible:ring-1 focus-visible:ring-ink dark:text-on-dark dark:hover:bg-surface-dark-elevated",
 
-        // Accent / Fin - AI product styling with Fin Orange
+        // 6. Brand Accent (from design.md: brand-accent #3b82f6)
         accent:
-          "bg-surface-1 text-ink border border-fin-orange/40 hover:border-fin-orange/70 focus-visible:border-fin-orange focus-visible:ring-1 focus-visible:ring-fin-orange dark:bg-card dark:text-foreground",
-        fin: "bg-surface-1 text-ink border border-fin-orange/40 hover:border-fin-orange/70 focus-visible:border-fin-orange focus-visible:ring-1 focus-visible:ring-fin-orange dark:bg-card dark:text-foreground",
-
-        // Brand - Saturated Brand Blue styling
+          "bg-canvas text-ink border border-brand-accent/40 shadow-subtle hover:border-brand-accent/70 focus-visible:border-brand-accent focus-visible:ring-2 focus-visible:ring-brand-accent/25 dark:bg-surface-dark dark:text-on-dark",
         brand:
-          "bg-surface-1 text-ink border border-brand-blue/40 hover:border-brand-blue/70 focus-visible:border-brand-blue focus-visible:ring-1 focus-visible:ring-brand-blue dark:bg-card dark:text-foreground",
+          "bg-canvas text-ink border border-brand-accent/40 shadow-subtle hover:border-brand-accent/70 focus-visible:border-brand-accent focus-visible:ring-2 focus-visible:ring-brand-accent/25 dark:bg-surface-dark dark:text-on-dark",
+        "brand-accent":
+          "bg-canvas text-ink border border-brand-accent/40 shadow-subtle hover:border-brand-accent/70 focus-visible:border-brand-accent focus-visible:ring-2 focus-visible:ring-brand-accent/25 dark:bg-surface-dark dark:text-on-dark",
 
-        // Destructive / Error styling
+        // 7. Semantic Statuses (from design.md: success, warning, error)
+        success:
+          "bg-canvas text-ink border border-success/40 shadow-subtle hover:border-success/70 focus-visible:border-success focus-visible:ring-2 focus-visible:ring-success/25 dark:bg-surface-dark dark:text-on-dark",
+        warning:
+          "bg-canvas text-ink border border-warning/40 shadow-subtle hover:border-warning/70 focus-visible:border-warning focus-visible:ring-2 focus-visible:ring-warning/25 dark:bg-surface-dark dark:text-on-dark",
         destructive:
-          "bg-surface-1 text-semantic-error border border-semantic-error/60 focus-visible:border-semantic-error focus-visible:ring-1 focus-visible:ring-semantic-error dark:bg-card dark:border-destructive dark:text-destructive",
+          "bg-canvas text-ink border border-error/50 shadow-subtle hover:border-error/80 focus-visible:border-error focus-visible:ring-2 focus-visible:ring-error/25 dark:bg-surface-dark dark:text-on-dark",
         error:
-          "bg-surface-1 text-semantic-error border border-semantic-error/60 focus-visible:border-semantic-error focus-visible:ring-1 focus-visible:ring-semantic-error dark:bg-card dark:border-destructive dark:text-destructive",
+          "bg-canvas text-ink border border-error/50 shadow-subtle hover:border-error/80 focus-visible:border-error focus-visible:ring-2 focus-visible:ring-error/25 dark:bg-surface-dark dark:text-on-dark",
+
+        // 8. Badge Pastels (from design.md section 29)
+        "badge-orange":
+          "bg-canvas text-ink border border-badge-orange/50 shadow-subtle hover:border-badge-orange/80 focus-visible:border-badge-orange focus-visible:ring-2 focus-visible:ring-badge-orange/25 dark:bg-surface-dark dark:text-on-dark",
+        "badge-pink":
+          "bg-canvas text-ink border border-badge-pink/50 shadow-subtle hover:border-badge-pink/80 focus-visible:border-badge-pink focus-visible:ring-2 focus-visible:ring-badge-pink/25 dark:bg-surface-dark dark:text-on-dark",
+        "badge-violet":
+          "bg-canvas text-ink border border-badge-violet/50 shadow-subtle hover:border-badge-violet/80 focus-visible:border-badge-violet focus-visible:ring-2 focus-visible:ring-badge-violet/25 dark:bg-surface-dark dark:text-on-dark",
+        "badge-emerald":
+          "bg-canvas text-ink border border-badge-emerald/50 shadow-subtle hover:border-badge-emerald/80 focus-visible:border-badge-emerald focus-visible:ring-2 focus-visible:ring-badge-emerald/25 dark:bg-surface-dark dark:text-on-dark",
+
+        // 9. Inverse / Dark Surface
+        inverse:
+          "bg-surface-dark text-on-dark border border-hairline shadow-subtle hover:border-hairline-soft focus-visible:border-white focus-visible:ring-1 focus-visible:ring-white dark:bg-surface-dark-elevated",
+        dark: "bg-surface-dark text-on-dark border border-hairline shadow-subtle hover:border-hairline-soft focus-visible:border-white focus-visible:ring-1 focus-visible:ring-white dark:bg-surface-dark-elevated",
       },
       size: {
-        default:
-          "h-10 sm:h-11 px-3.5 py-2.5 text-sm sm:text-base leading-normal",
+        // 40px height per design.md (text-input: 10px x 14px / 40px height)
+        default: "h-10 px-3.5 py-2.5 text-sm leading-normal",
+        md: "h-10 px-3.5 py-2.5 text-sm leading-normal",
         compact: "h-8 px-2.5 py-1.5 text-xs leading-normal",
         sm: "h-8 px-2.5 py-1.5 text-xs leading-normal",
-        md: "h-10 sm:h-11 px-3.5 py-2.5 text-sm sm:text-base leading-normal",
         lg: "h-12 px-4 py-3 text-base leading-normal",
       },
       shape: {
-        default: "rounded-md",
+        default: "rounded-md", // 8px from design.md: rounded.md
         rounded: "rounded-md",
         md: "rounded-md",
-        xs: "rounded-xs",
-        sm: "rounded-sm",
-        lg: "rounded-lg",
-        xl: "rounded-xl",
-        pill: "rounded-full",
+        xs: "rounded-xs", // 4px from design.md: rounded.xs
+        sm: "rounded-sm", // 6px from design.md: rounded.sm
+        tag: "rounded-sm",
+        lg: "rounded-lg", // 12px from design.md: rounded.lg
+        xl: "rounded-xl", // 16px from design.md: rounded.xl
+        pill: "rounded-full", // 9999px from design.md: rounded.pill
         full: "rounded-full",
         square: "rounded-none",
       },
@@ -213,7 +234,7 @@ const Input = forwardRef(
         {label && (
           <label
             htmlFor={inputId}
-            className="text-ink dark:text-foreground mb-1.5 block text-xs font-medium tracking-tight select-none sm:text-sm"
+            className="text-ink dark:text-on-dark mb-1.5 block text-xs font-medium tracking-tight select-none sm:text-sm"
           >
             {label}
           </label>
@@ -224,7 +245,7 @@ const Input = forwardRef(
           {hasLeading && (
             <div
               className={cn(
-                "text-ink-subtle dark:text-muted-foreground pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center justify-center",
+                "text-muted-soft dark:text-on-dark-soft pointer-events-none absolute inset-y-0 left-0 z-10 flex items-center justify-center",
                 isCompact ? "pl-2.5" : isLg ? "pl-3.5" : "pl-3"
               )}
             >
@@ -238,7 +259,7 @@ const Input = forwardRef(
                   />
                 ))}
               {prefix && (
-                <span className="text-ink-muted text-xs font-medium select-none sm:text-sm">
+                <span className="text-muted-text text-xs font-medium select-none sm:text-sm">
                   {prefix}
                 </span>
               )}
@@ -251,12 +272,12 @@ const Input = forwardRef(
           {hasTrailing && (
             <div
               className={cn(
-                "text-ink-subtle dark:text-muted-foreground pointer-events-none absolute inset-y-0 right-0 z-10 flex items-center justify-center",
+                "text-muted-soft dark:text-on-dark-soft pointer-events-none absolute inset-y-0 right-0 z-10 flex items-center justify-center",
                 isCompact ? "pr-2.5" : isLg ? "pr-3.5" : "pr-3"
               )}
             >
               {suffix && (
-                <span className="text-ink-muted text-xs font-medium select-none sm:text-sm">
+                <span className="text-muted-text text-xs font-medium select-none sm:text-sm">
                   {suffix}
                 </span>
               )}
@@ -277,14 +298,14 @@ const Input = forwardRef(
         {errorMessage ? (
           <p
             id={inputId ? `${inputId}-error` : undefined}
-            className="text-semantic-error dark:text-destructive mt-1.5 flex items-center gap-1 text-xs font-medium"
+            className="text-error dark:text-error mt-1.5 flex items-center gap-1 text-xs font-medium"
           >
             {errorMessage}
           </p>
         ) : infoText ? (
           <p
             id={inputId ? `${inputId}-description` : undefined}
-            className="text-ink-subtle dark:text-muted-foreground mt-1.5 text-xs"
+            className="text-muted-text dark:text-on-dark-soft mt-1.5 text-xs"
           >
             {infoText}
           </p>

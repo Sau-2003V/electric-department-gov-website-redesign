@@ -56,7 +56,7 @@ export default function Hero() {
                   <CarouselItem key={i}>
                     <div
                       className={cn(
-                        "flex flex-col justify-between rounded-lg border border-hairline bg-surface-card p-5 shadow-subtle sm:flex-row sm:items-center sm:p-6"
+                        "border-hairline bg-surface-card shadow-subtle flex flex-col justify-between rounded-lg border p-5 sm:flex-row sm:items-center sm:p-6"
                       )}
                     >
                       <div className="mb-4 sm:mb-0 sm:pr-6">
@@ -86,7 +86,7 @@ export default function Hero() {
         {/* Main action grid */}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
           {/* Left: Complaint Registration Hub */}
-          <div className="border-hairline bg-canvas flex flex-col justify-between rounded-xl border p-6 shadow-subtle sm:p-8 lg:col-span-8">
+          <div className="border-hairline bg-canvas shadow-subtle flex flex-col justify-between rounded-xl border p-6 sm:p-8 lg:col-span-8">
             <div>
               {/* Welcome Header */}
               <div>
@@ -139,7 +139,7 @@ export default function Hero() {
           {/* Right: Emergency contacts & Quick Links */}
           <div className="flex flex-col gap-4 lg:col-span-4">
             {/* 24x7 emergency */}
-            <div className="border-surface-dark-elevated bg-surface-dark text-on-dark flex flex-col justify-between rounded-xl border p-6 shadow-subtle">
+            <div className="border-surface-dark-elevated bg-surface-dark text-on-dark shadow-subtle flex flex-col justify-between rounded-xl border p-6">
               <div>
                 <h3 className="text-title-lg text-on-dark mt-2">
                   Call toll-free 1912
@@ -154,7 +154,7 @@ export default function Hero() {
                   <Button
                     variant="primary"
                     size="default"
-                    className="w-full justify-center bg-on-dark text-surface-dark hover:bg-on-dark/90"
+                    className="bg-on-dark text-surface-dark hover:bg-on-dark/90 w-full justify-center"
                     leftIcon={
                       <PhoneCall className="h-4 w-4" strokeWidth={1.5} />
                     }

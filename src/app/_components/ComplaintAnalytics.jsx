@@ -116,7 +116,9 @@ function DonutChart({ data }) {
       </svg>
       {/* Center label */}
       <div className="absolute flex flex-col items-center">
-        <span className="text-ink font-mono text-title-lg font-bold">88.4%</span>
+        <span className="text-ink text-title-lg font-mono font-bold">
+          88.4%
+        </span>
         <span className="text-caption text-muted-text">Resolved</span>
       </div>
     </div>
@@ -128,7 +130,9 @@ function CategoryBar({ label, count, max }) {
   const pct = Math.round((count / max) * 100);
   return (
     <div className="flex items-center gap-3">
-      <span className="text-caption text-muted-text w-28 shrink-0">{label}</span>
+      <span className="text-caption text-muted-text w-28 shrink-0">
+        {label}
+      </span>
       <div className="bg-surface-soft flex-1 overflow-hidden rounded-full">
         <div
           className="bg-primary h-2 rounded-full transition-all"
@@ -220,7 +224,7 @@ export default function ComplaintAnalytics() {
                 onMouseEnter={() => setHoveredStat(s.label)}
                 onMouseLeave={() => setHoveredStat(null)}
                 className={cn(
-                  "border-hairline bg-canvas flex flex-col rounded-lg border p-5 shadow-subtle transition-shadow",
+                  "border-hairline bg-canvas shadow-subtle flex flex-col rounded-lg border p-5 transition-shadow",
                   hoveredStat === s.label && "shadow-card"
                 )}
               >
@@ -230,7 +234,7 @@ export default function ComplaintAnalytics() {
                   </span>
                   <Icon className="text-ink h-4 w-4" strokeWidth={1.5} />
                 </div>
-                <span className="text-ink font-mono text-display-sm font-semibold">
+                <span className="text-ink text-display-sm font-mono font-semibold">
                   {s.value}
                 </span>
                 <span className="text-caption text-muted-text mt-1">
@@ -244,7 +248,7 @@ export default function ComplaintAnalytics() {
         {/* Charts row */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {/* Donut — resolution status */}
-          <div className="border-hairline bg-canvas rounded-lg border p-6 shadow-subtle">
+          <div className="border-hairline bg-canvas shadow-subtle rounded-lg border p-6">
             <h3 className="text-caption text-ink mb-4 font-semibold uppercase">
               Status distribution
             </h3>
@@ -271,7 +275,7 @@ export default function ComplaintAnalytics() {
           </div>
 
           {/* Category bars */}
-          <div className="border-hairline bg-canvas rounded-lg border p-6 shadow-subtle">
+          <div className="border-hairline bg-canvas shadow-subtle rounded-lg border p-6">
             <h3 className="text-caption text-ink mb-4 font-semibold uppercase">
               By category (today)
             </h3>
@@ -283,7 +287,7 @@ export default function ComplaintAnalytics() {
           </div>
 
           {/* 7-day trend sparkline */}
-          <div className="border-hairline bg-canvas flex flex-col rounded-lg border p-6 shadow-subtle">
+          <div className="border-hairline bg-canvas shadow-subtle flex flex-col rounded-lg border p-6">
             <h3 className="text-caption text-ink mb-1 font-semibold uppercase">
               7-day complaint trend
             </h3>
@@ -295,7 +299,7 @@ export default function ComplaintAnalytics() {
             </div>
             <div className="mt-4 flex items-end justify-between">
               <div>
-                <span className="text-ink font-mono text-title-lg font-semibold">
+                <span className="text-ink text-title-lg font-mono font-semibold">
                   1,284
                 </span>
                 <p className="text-caption text-muted-text">Today</p>

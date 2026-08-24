@@ -1,93 +1,127 @@
 import { mergeProps } from "@base-ui/react/merge-props";
 import { useRender } from "@base-ui/react/use-render";
 import { cva } from "class-variance-authority";
-
 import { cn } from "@/lib/utils";
 
 const badgeVariants = cva(
-  "group/badge inline-flex w-fit shrink-0 items-center justify-center font-medium whitespace-nowrap transition-all border focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&>svg]:pointer-events-none",
+  "group/badge inline-flex w-fit shrink-0 items-center justify-center font-sans font-medium whitespace-nowrap transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 select-none [&>svg]:pointer-events-none [&>svg]:shrink-0",
   {
     variants: {
       variant: {
-        // Brand & Surface Variants
+        // 1. Core Brand & Surfaces (from design.md)
         default:
-          "border-transparent bg-ink text-on-primary [a]:hover:bg-ink/90 dark:bg-primary dark:text-primary-foreground",
+          "border-transparent bg-primary text-on-primary shadow-subtle [a]:hover:bg-primary-active dark:bg-canvas dark:text-ink",
         primary:
-          "border-transparent bg-ink text-on-primary [a]:hover:bg-ink/90 dark:bg-primary dark:text-primary-foreground",
+          "border-transparent bg-primary text-on-primary shadow-subtle [a]:hover:bg-primary-active dark:bg-canvas dark:text-ink",
         secondary:
-          "border-transparent bg-surface-2 text-ink [a]:hover:bg-surface-2/80 dark:bg-secondary dark:text-secondary-foreground",
+          "border-transparent bg-surface-card text-ink [a]:hover:bg-surface-strong dark:bg-surface-dark-elevated dark:text-on-dark",
         surface:
-          "border-hairline bg-surface-1 text-ink [a]:hover:bg-surface-2/50 dark:border-border dark:bg-card dark:text-card-foreground",
+          "border-hairline bg-surface-card text-ink [a]:hover:bg-surface-strong dark:border-hairline dark:bg-surface-dark-elevated dark:text-on-dark",
         canvas:
-          "border-hairline bg-canvas text-ink-muted [a]:hover:bg-surface-2/60 dark:border-border dark:bg-muted dark:text-muted-foreground",
+          "border-hairline bg-canvas text-muted-text [a]:hover:bg-surface-soft [a]:hover:text-ink dark:border-hairline dark:bg-surface-dark dark:text-on-dark-soft",
         outline:
-          "border-hairline bg-transparent text-ink [a]:hover:bg-surface-2/40 dark:border-border dark:text-foreground dark:hover:bg-muted",
+          "border-hairline bg-transparent text-ink [a]:hover:bg-surface-soft dark:border-hairline dark:text-on-dark dark:hover:bg-surface-dark-elevated",
         "outline-muted":
-          "border-hairline-soft bg-transparent text-ink-muted [a]:hover:bg-surface-2/30 dark:border-border dark:text-muted-foreground",
+          "border-hairline-soft bg-transparent text-muted-text [a]:hover:bg-surface-soft [a]:hover:text-ink dark:border-hairline dark:text-on-dark-soft",
         ghost:
-          "border-transparent text-ink-muted hover:bg-surface-2/60 hover:text-ink dark:text-muted-foreground dark:hover:bg-muted/50",
-        link: "border-transparent text-ink underline-offset-4 hover:underline dark:text-primary",
+          "border-transparent bg-transparent text-muted-text hover:bg-surface-soft hover:text-ink dark:text-on-dark-soft dark:hover:bg-surface-dark-elevated dark:hover:text-on-dark",
+        link: "border-transparent bg-transparent text-ink underline-offset-4 hover:underline dark:text-on-dark",
         inverse:
-          "border-inverse-surface-1 bg-inverse-canvas text-inverse-ink [a]:hover:bg-inverse-surface-1 dark:bg-foreground dark:text-background",
+          "border-transparent bg-surface-dark text-on-dark [a]:hover:bg-surface-dark-elevated dark:bg-canvas dark:text-ink",
+        dark: "border-transparent bg-surface-dark text-on-dark [a]:hover:bg-surface-dark-elevated dark:bg-canvas dark:text-ink",
 
-        // Accent & Brand Variants
+        // 2. Brand Accent (from design.md: brand-accent #3b82f6)
         accent:
-          "border-transparent bg-primary text-primary-foreground shadow-button-inset [a]:hover:opacity-90",
-        "accent-subtle":
-          "border-hairline bg-surface-2 text-ink [a]:hover:bg-surface-2/80",
-        fin: "border-transparent bg-primary text-primary-foreground shadow-button-inset [a]:hover:opacity-90",
-        "fin-subtle":
-          "border-hairline bg-surface-2 text-ink [a]:hover:bg-surface-2/80",
+          "border-transparent bg-brand-accent text-white shadow-subtle [a]:hover:bg-brand-accent/90",
         brand:
-          "border-transparent bg-brand-blue text-white [a]:hover:bg-brand-blue/90",
+          "border-transparent bg-brand-accent text-white shadow-subtle [a]:hover:bg-brand-accent/90",
+        "brand-accent":
+          "border-transparent bg-brand-accent text-white shadow-subtle [a]:hover:bg-brand-accent/90",
+        "accent-subtle":
+          "border-brand-accent/25 bg-brand-accent/10 text-brand-accent [a]:hover:bg-brand-accent/20 dark:border-brand-accent/35 dark:bg-brand-accent/20 dark:text-blue-400",
         "brand-subtle":
-          "border-brand-blue/20 bg-brand-blue/10 text-brand-blue [a]:hover:bg-brand-blue/20",
+          "border-brand-accent/25 bg-brand-accent/10 text-brand-accent [a]:hover:bg-brand-accent/20 dark:border-brand-accent/35 dark:bg-brand-accent/20 dark:text-blue-400",
 
-        // Semantic Status Variants
+        // 3. Semantic Statuses (from design.md: success, warning, error)
         success:
-          "border-semantic-success/20 bg-semantic-success/10 text-semantic-success [a]:hover:bg-semantic-success/20",
+          "border-success/30 bg-success/10 text-emerald-700 [a]:hover:bg-success/20 dark:border-success/35 dark:bg-success/20 dark:text-emerald-400",
+        "success-subtle":
+          "border-success/30 bg-success/10 text-emerald-700 [a]:hover:bg-success/20 dark:border-success/35 dark:bg-success/20 dark:text-emerald-400",
         "success-solid":
-          "border-transparent bg-semantic-success text-white [a]:hover:bg-semantic-success/90",
-        destructive:
-          "border-semantic-error/20 bg-semantic-error/10 text-semantic-error focus-visible:ring-semantic-error/20 [a]:hover:bg-semantic-error/20 dark:border-destructive/30 dark:bg-destructive/20 dark:text-destructive",
-        "destructive-solid":
-          "border-transparent bg-semantic-error text-white [a]:hover:bg-semantic-error/90 dark:bg-destructive dark:text-destructive-foreground",
-        error:
-          "border-semantic-error/20 bg-semantic-error/10 text-semantic-error focus-visible:ring-semantic-error/20 [a]:hover:bg-semantic-error/20 dark:border-destructive/30 dark:bg-destructive/20 dark:text-destructive",
-        "error-solid":
-          "border-transparent bg-semantic-error text-white [a]:hover:bg-semantic-error/90 dark:bg-destructive dark:text-destructive-foreground",
-        warning:
-          "border-report-orange/20 bg-report-orange/10 text-report-orange [a]:hover:bg-report-orange/20",
-        "warning-solid":
-          "border-transparent bg-report-orange text-white [a]:hover:bg-report-orange/90",
-        info: "border-report-blue/20 bg-report-blue/10 text-report-blue [a]:hover:bg-report-blue/20",
-        "info-solid":
-          "border-transparent bg-report-blue text-white [a]:hover:bg-report-blue/90",
+          "border-transparent bg-success text-white shadow-subtle [a]:hover:bg-success/90",
 
-        // In-Product Report Palette Variants
-        "report-blue":
-          "border-report-blue/20 bg-report-blue/10 text-report-blue [a]:hover:bg-report-blue/20",
-        "report-green":
-          "border-report-green/20 bg-report-green/10 text-report-green [a]:hover:bg-report-green/20",
-        "report-pink":
-          "border-report-pink/20 bg-report-pink/10 text-report-pink [a]:hover:bg-report-pink/20",
-        "report-lime":
-          "border-report-lime/20 bg-report-lime/10 text-report-lime [a]:hover:bg-report-lime/20",
-        "report-cyan":
-          "border-report-cyan/20 bg-report-cyan/10 text-report-cyan [a]:hover:bg-report-cyan/20",
-        "report-orange":
-          "border-report-orange/20 bg-report-orange/10 text-report-orange [a]:hover:bg-report-orange/20",
+        warning:
+          "border-warning/30 bg-warning/10 text-amber-700 [a]:hover:bg-warning/20 dark:border-warning/35 dark:bg-warning/20 dark:text-amber-400",
+        "warning-subtle":
+          "border-warning/30 bg-warning/10 text-amber-700 [a]:hover:bg-warning/20 dark:border-warning/35 dark:bg-warning/20 dark:text-amber-400",
+        "warning-solid":
+          "border-transparent bg-warning text-white shadow-subtle [a]:hover:bg-warning/90",
+
+        destructive:
+          "border-error/30 bg-error/10 text-rose-700 [a]:hover:bg-error/20 dark:border-error/35 dark:bg-error/20 dark:text-rose-400",
+        "destructive-subtle":
+          "border-error/30 bg-error/10 text-rose-700 [a]:hover:bg-error/20 dark:border-error/35 dark:bg-error/20 dark:text-rose-400",
+        "destructive-solid":
+          "border-transparent bg-error text-white shadow-subtle [a]:hover:bg-error/90",
+
+        error:
+          "border-error/30 bg-error/10 text-rose-700 [a]:hover:bg-error/20 dark:border-error/35 dark:bg-error/20 dark:text-rose-400",
+        "error-subtle":
+          "border-error/30 bg-error/10 text-rose-700 [a]:hover:bg-error/20 dark:border-error/35 dark:bg-error/20 dark:text-rose-400",
+        "error-solid":
+          "border-transparent bg-error text-white shadow-subtle [a]:hover:bg-error/90",
+
+        info: "border-brand-accent/30 bg-brand-accent/10 text-brand-accent [a]:hover:bg-brand-accent/20 dark:border-brand-accent/35 dark:bg-brand-accent/20 dark:text-blue-400",
+        "info-subtle":
+          "border-brand-accent/30 bg-brand-accent/10 text-brand-accent [a]:hover:bg-brand-accent/20 dark:border-brand-accent/35 dark:bg-brand-accent/20 dark:text-blue-400",
+        "info-solid":
+          "border-transparent bg-brand-accent text-white shadow-subtle [a]:hover:bg-brand-accent/90",
+
+        // 4. Badge Pastels (from design.md section 29 & 199: orange, pink, violet, emerald)
+        "badge-orange":
+          "border-badge-orange/30 bg-badge-orange/15 text-[#c2410c] [a]:hover:bg-badge-orange/25 dark:border-badge-orange/35 dark:bg-badge-orange/25 dark:text-orange-300",
+        "badge-orange-solid":
+          "border-transparent bg-badge-orange text-white shadow-subtle [a]:hover:bg-badge-orange/90",
+        "pastel-orange":
+          "border-badge-orange/30 bg-badge-orange/15 text-[#c2410c] [a]:hover:bg-badge-orange/25 dark:border-badge-orange/35 dark:bg-badge-orange/25 dark:text-orange-300",
+
+        "badge-pink":
+          "border-badge-pink/30 bg-badge-pink/15 text-[#be185d] [a]:hover:bg-badge-pink/25 dark:border-badge-pink/35 dark:bg-badge-pink/25 dark:text-pink-300",
+        "badge-pink-solid":
+          "border-transparent bg-badge-pink text-white shadow-subtle [a]:hover:bg-badge-pink/90",
+        "pastel-pink":
+          "border-badge-pink/30 bg-badge-pink/15 text-[#be185d] [a]:hover:bg-badge-pink/25 dark:border-badge-pink/35 dark:bg-badge-pink/25 dark:text-pink-300",
+
+        "badge-violet":
+          "border-badge-violet/30 bg-badge-violet/15 text-[#6d28d9] [a]:hover:bg-badge-violet/25 dark:border-badge-violet/35 dark:bg-badge-violet/25 dark:text-violet-300",
+        "badge-violet-solid":
+          "border-transparent bg-badge-violet text-white shadow-subtle [a]:hover:bg-badge-violet/90",
+        "pastel-violet":
+          "border-badge-violet/30 bg-badge-violet/15 text-[#6d28d9] [a]:hover:bg-badge-violet/25 dark:border-badge-violet/35 dark:bg-badge-violet/25 dark:text-violet-300",
+
+        "badge-emerald":
+          "border-badge-emerald/30 bg-badge-emerald/15 text-[#047857] [a]:hover:bg-badge-emerald/25 dark:border-badge-emerald/35 dark:bg-badge-emerald/25 dark:text-emerald-300",
+        "badge-emerald-solid":
+          "border-transparent bg-badge-emerald text-white shadow-subtle [a]:hover:bg-badge-emerald/90",
+        "pastel-emerald":
+          "border-badge-emerald/30 bg-badge-emerald/15 text-[#047857] [a]:hover:bg-badge-emerald/25 dark:border-badge-emerald/35 dark:bg-badge-emerald/25 dark:text-emerald-300",
       },
       size: {
-        default: "h-5 px-2 py-0.5 text-xs gap-1 [&>svg]:size-3!",
-        sm: "h-4 px-1.5 py-0 text-[10px] gap-0.5 [&>svg]:size-2.5!",
-        lg: "h-6 px-2.5 py-0.5 text-xs gap-1.5 [&>svg]:size-3.5!",
+        default: "h-5 px-2.5 py-0.5 text-xs gap-1.5 [&>svg]:size-3",
+        sm: "h-4 px-1.5 py-0 text-[10px] gap-1 [&>svg]:size-2.5",
+        lg: "h-6 px-3 py-0.5 text-xs font-semibold gap-1.5 [&>svg]:size-3.5",
+        pill: "h-6 px-3 py-1 text-caption gap-1.5 [&>svg]:size-3.5", // design.md: 4px x 12px / caption 13px
       },
       shape: {
-        pill: "rounded-full",
-        rounded: "rounded-[4px]",
-        tag: "rounded-[6px]",
-        md: "rounded-md",
+        pill: "rounded-full", // design.md: rounded.pill (9999px)
+        full: "rounded-full",
+        circular: "rounded-full",
+        rounded: "rounded-xs", // design.md: rounded.xs (4px)
+        xs: "rounded-xs",
+        tag: "rounded-sm", // design.md: rounded.sm (6px)
+        sm: "rounded-sm",
+        md: "rounded-md", // design.md: rounded.md (8px)
+        lg: "rounded-lg", // design.md: rounded.lg (12px)
       },
     },
     defaultVariants: {
@@ -103,18 +137,45 @@ function Badge({
   variant = "default",
   size = "default",
   shape = "pill",
+  dot = false,
+  dotClassName,
+  icon: Icon,
+  children,
   render,
   ...props
 }) {
+  const content = (
+    <>
+      {dot && (
+        <span
+          className={cn(
+            "size-1.5 shrink-0 rounded-full bg-current opacity-85",
+            dotClassName
+          )}
+          aria-hidden="true"
+        />
+      )}
+      {Icon && (
+        <Icon className="pointer-events-none shrink-0" aria-hidden="true" />
+      )}
+      {children}
+    </>
+  );
+
   return useRender({
     defaultTagName: "span",
     props: mergeProps(
       {
-        className: cn(badgeVariants({ variant, size, shape }), className),
+        className: cn(
+          "border",
+          badgeVariants({ variant, size, shape }),
+          className
+        ),
       },
       props
     ),
     render,
+    children: content,
     state: {
       slot: "badge",
       variant,

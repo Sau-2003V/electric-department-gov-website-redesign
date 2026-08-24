@@ -163,7 +163,7 @@ export default function VideoGuides() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search video guides..."
-              className="border-hairline bg-canvas text-ink placeholder:text-muted-soft focus:border-ink w-full rounded-md border py-2 pr-4 pl-10 text-body-sm shadow-subtle focus:outline-none"
+              className="border-hairline bg-canvas text-ink placeholder:text-muted-soft focus:border-ink text-body-sm shadow-subtle w-full rounded-md border py-2 pr-4 pl-10 focus:outline-none"
             />
           </div>
         </div>
@@ -176,7 +176,7 @@ export default function VideoGuides() {
               type="button"
               onClick={() => setActiveTab(cat)}
               className={cn(
-                "cursor-pointer rounded-md px-3.5 py-1.5 text-button font-medium transition-all active:scale-[0.98]",
+                "text-button cursor-pointer rounded-md px-3.5 py-1.5 font-medium transition-all active:scale-[0.98]",
                 activeTab === cat
                   ? "bg-primary text-on-primary"
                   : "border-hairline bg-canvas text-muted-text hover:bg-surface-soft hover:text-ink border"
@@ -193,7 +193,7 @@ export default function VideoGuides() {
             <div
               key={video.id}
               onClick={() => setSelectedVideo(video)}
-              className="group border-hairline bg-canvas hover:border-hairline flex cursor-pointer flex-col overflow-hidden rounded-lg border shadow-subtle transition-all duration-150 hover:shadow-card active:scale-[0.98]"
+              className="group border-hairline bg-canvas hover:border-hairline shadow-subtle hover:shadow-card flex cursor-pointer flex-col overflow-hidden rounded-lg border transition-all duration-150 active:scale-[0.98]"
             >
               {/* Thumbnail Container */}
               <div
@@ -204,10 +204,10 @@ export default function VideoGuides() {
               >
                 {/* Header overlay */}
                 <div className="flex items-start justify-between">
-                  <span className="rounded-xs bg-black/50 px-2 py-0.5 text-caption font-medium tracking-wider uppercase backdrop-blur-xs">
+                  <span className="text-caption rounded-xs bg-black/50 px-2 py-0.5 font-medium tracking-wider uppercase backdrop-blur-xs">
                     {video.category}
                   </span>
-                  <span className="flex items-center gap-1 rounded-xs bg-black/50 px-1.5 py-0.5 font-mono text-caption font-medium backdrop-blur-xs">
+                  <span className="text-caption flex items-center gap-1 rounded-xs bg-black/50 px-1.5 py-0.5 font-mono font-medium backdrop-blur-xs">
                     <Clock className="h-3 w-3" strokeWidth={1.5} />
                     {video.duration}
                   </span>
@@ -239,15 +239,15 @@ export default function VideoGuides() {
               {/* Card Meta & Title */}
               <div className="flex flex-1 flex-col justify-between p-4">
                 <div>
-                  <span className="bg-surface-soft text-ink inline-block rounded-xs px-2 py-0.5 text-caption font-medium uppercase">
+                  <span className="bg-surface-soft text-ink text-caption inline-block rounded-xs px-2 py-0.5 font-medium uppercase">
                     {video.category}
                   </span>
-                  <h3 className="text-ink group-hover:underline mt-1.5 line-clamp-2 text-title-sm leading-snug font-semibold transition-colors">
+                  <h3 className="text-ink text-title-sm mt-1.5 line-clamp-2 leading-snug font-semibold transition-colors group-hover:underline">
                     {video.title}
                   </h3>
                 </div>
 
-                <div className="border-hairline-soft text-muted-text mt-3 flex items-center justify-between border-t pt-2.5 text-caption">
+                <div className="border-hairline-soft text-muted-text text-caption mt-3 flex items-center justify-between border-t pt-2.5">
                   <span className="flex items-center gap-1">
                     <Eye className="h-3 w-3" strokeWidth={1.5} />
                     {video.views}
@@ -260,7 +260,7 @@ export default function VideoGuides() {
         </div>
 
         {filteredVideos.length === 0 && (
-          <div className="border-hairline bg-surface-card text-muted-text rounded-lg border p-8 text-center text-body-sm">
+          <div className="border-hairline bg-surface-card text-muted-text text-body-sm rounded-lg border p-8 text-center">
             No video guides found matching your search. Try another query or
             category.
           </div>
@@ -288,23 +288,25 @@ export default function VideoGuides() {
               <div className="bg-primary text-on-primary flex h-16 w-16 items-center justify-center rounded-full">
                 <Play className="ml-1 h-8 w-8 fill-current" strokeWidth={1.5} />
               </div>
-              <p className="mt-4 text-title-lg font-semibold">{selectedVideo.hindiTag}</p>
+              <p className="text-title-lg mt-4 font-semibold">
+                {selectedVideo.hindiTag}
+              </p>
               <p className="text-on-dark-soft text-body-sm">
                 {selectedVideo.title}
               </p>
-              <span className="mt-2 rounded-md bg-black/50 px-3 py-1 font-mono text-caption">
+              <span className="text-caption mt-2 rounded-md bg-black/50 px-3 py-1 font-mono">
                 Duration: {selectedVideo.duration}
               </span>
             </div>
 
             <div className="mt-4">
-              <span className="bg-surface-dark-elevated text-on-dark rounded-xs px-2 py-0.5 text-caption font-medium uppercase">
+              <span className="bg-surface-dark-elevated text-on-dark text-caption rounded-xs px-2 py-0.5 font-medium uppercase">
                 {selectedVideo.category}
               </span>
               <h3 className="text-title-md mt-2 font-semibold">
                 {selectedVideo.title}
               </h3>
-              <p className="text-on-dark-soft mt-1 text-body-sm">
+              <p className="text-on-dark-soft text-body-sm mt-1">
                 {selectedVideo.description}
               </p>
             </div>
@@ -313,7 +315,7 @@ export default function VideoGuides() {
               <button
                 type="button"
                 onClick={() => setSelectedVideo(null)}
-                className="border-surface-dark-elevated bg-surface-dark-elevated text-on-dark hover:bg-surface-dark-elevated/80 rounded-md border px-5 py-2 text-button font-medium transition-all active:scale-[0.98]"
+                className="border-surface-dark-elevated bg-surface-dark-elevated text-on-dark hover:bg-surface-dark-elevated/80 text-button rounded-md border px-5 py-2 font-medium transition-all active:scale-[0.98]"
               >
                 Close Player
               </button>

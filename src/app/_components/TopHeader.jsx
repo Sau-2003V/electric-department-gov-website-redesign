@@ -46,7 +46,7 @@ export default function TopHeader() {
   return (
     <header className="w-full font-sans">
       {/* 1. Top Accessibility & Emergency Helpline Bar */}
-      <div className="border-surface-dark-elevated bg-surface-dark text-on-dark-soft border-b px-4 py-1.5 text-caption">
+      <div className="border-surface-dark-elevated bg-surface-dark text-on-dark-soft text-caption border-b px-4 py-1.5">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center gap-4">
             <span className="inline-flex items-center gap-1.5">
@@ -90,7 +90,7 @@ export default function TopHeader() {
                 id="language-select"
                 value={selectedLang}
                 onChange={(e) => setSelectedLang(e.target.value)}
-                className="text-on-dark cursor-pointer bg-transparent text-caption focus:outline-none"
+                className="text-on-dark text-caption cursor-pointer bg-transparent focus:outline-none"
               >
                 <option
                   value="English"
@@ -171,11 +171,11 @@ export default function TopHeader() {
                 key={item.label}
                 href={item.href}
                 className={cn(
-                  "rounded-md px-3 py-1.5 text-nav-link font-medium transition-colors active:scale-[0.98]",
+                  "text-nav-link rounded-md px-3 py-1.5 font-medium transition-colors active:scale-[0.98]",
                   item.highlight
                     ? "bg-primary text-on-primary hover:bg-primary-active"
                     : item.active
-                      ? "bg-surface-card text-ink font-semibold shadow-subtle"
+                      ? "bg-surface-card text-ink shadow-subtle font-semibold"
                       : "text-muted-text hover:bg-surface-card hover:text-ink"
                 )}
               >
@@ -189,7 +189,7 @@ export default function TopHeader() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className="text-ink hover:bg-surface-card border-hairline bg-canvas focus-visible:ring-primary relative flex h-10 w-10 items-center justify-center rounded-md border shadow-subtle transition-colors focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]"
+              className="text-ink hover:bg-surface-card border-hairline bg-canvas focus-visible:ring-primary shadow-subtle relative flex h-10 w-10 items-center justify-center rounded-md border transition-colors focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]"
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation-drawer"
               aria-label={
@@ -282,7 +282,7 @@ export default function TopHeader() {
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
                       className={cn(
-                        "flex items-center justify-between rounded-md px-3.5 py-2.5 text-nav-link font-medium transition-all active:scale-[0.98]",
+                        "text-nav-link flex items-center justify-between rounded-md px-3.5 py-2.5 font-medium transition-all active:scale-[0.98]",
                         item.highlight
                           ? "bg-primary text-on-primary hover:bg-primary-active"
                           : item.active
@@ -292,7 +292,7 @@ export default function TopHeader() {
                     >
                       <span>{item.label}</span>
                       {item.highlight && (
-                        <span className="bg-on-primary/20 text-on-primary rounded-pill px-2 py-0.5 text-caption font-semibold">
+                        <span className="bg-on-primary/20 text-on-primary rounded-pill text-caption px-2 py-0.5 font-semibold">
                           Quick Action
                         </span>
                       )}
@@ -312,20 +312,20 @@ export default function TopHeader() {
                   }}
                   className="border-hairline mt-2.5 border-t pt-3"
                 >
-                  <div className="bg-surface-dark text-on-dark flex items-center justify-between rounded-lg p-3 shadow-subtle">
+                  <div className="bg-surface-dark text-on-dark shadow-subtle flex items-center justify-between rounded-lg p-3">
                     <div className="flex min-w-0 items-center gap-2.5">
                       <div className="border-surface-dark-elevated bg-surface-dark-elevated text-on-dark flex h-8 w-8 shrink-0 items-center justify-center rounded-md border">
                         <PhoneCall className="h-4 w-4" strokeWidth={1.5} />
                       </div>
                       <div className="truncate">
-                        <p className="text-on-dark mt-0.5 text-caption leading-tight font-semibold">
+                        <p className="text-on-dark text-caption mt-0.5 leading-tight font-semibold">
                           1912 / 1800-180-1912
                         </p>
                       </div>
                     </div>
                     <a
                       href="tel:1912"
-                      className="bg-primary text-on-primary ml-2 shrink-0 rounded-md px-3 py-1.5 text-button font-medium transition-transform active:scale-[0.98]"
+                      className="bg-primary text-on-primary text-button ml-2 shrink-0 rounded-md px-3 py-1.5 font-medium transition-transform active:scale-[0.98]"
                     >
                       Call
                     </a>

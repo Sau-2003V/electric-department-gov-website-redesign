@@ -190,13 +190,83 @@ Avatar photos use `{rounded.full}` (perfect circles) at 36px or 40px. Product UI
 
 ### Inputs & Forms
 
-**`text-input`** — Standard text input. Background `{colors.canvas}`, text `{colors.ink}`, type `{typography.body-md}`, rounded `{rounded.md}` (8px), padding 10px × 14px, height 40px. 1px hairline border in `{colors.hairline}`.
+**`text-input`** — Standard text input for forms, search fields, and credential authentication.
 
-**`text-input-focused`** — Focus state. Border thickens or shifts to `{colors.ink}` for emphasis.
+- **Visual Variants:**
+  - `primary` / `default` / `canvas`: Background `{colors.canvas}` (#ffffff), text `{colors.ink}` (#111111), 1px `{colors.hairline}` border, subtle drop shadow. Focus state shifts border to `{colors.ink}` (or focus ring in dark mode).
+  - `surface` / `card`: Background `{colors.surface-card}` (#f5f5f5) with 1px `{colors.hairline}` border for nested card or modal forms.
+  - `secondary` / `filled` / `soft`: Background `{colors.surface-soft}` (#f8f9fa) with borderless resting state.
+  - `outline`: Transparent background with 1px `{colors.hairline}` border.
+  - `ghost`: Transparent borderless input.
+  - `accent` / `brand`: Focus ring in `{colors.brand-accent}` (#3b82f6).
+  - `success`: 1px border in `{colors.success}` (#10b981) with subtle focus ring.
+  - `warning`: 1px border in `{colors.warning}` (#f59e0b) with subtle focus ring.
+  - `destructive` / `error`: 1px border in `{colors.error}` (#ef4444) with error focus ring.
+  - `badge-orange` / `badge-pink` / `badge-violet` / `badge-emerald`: Category pastel accent borders.
+  - `inverse` / `dark`: Background `{colors.surface-dark}` (#101010) or `{colors.surface-dark-elevated}` (#1a1a1a) with white focus ring for dark panels.
+- **Sizes:**
+  - `compact` (sm): 32px height (h-8), 12px text (`text-xs`), 10px horizontal padding.
+  - `default` (md): 40px height (h-10), 14px text (`text-sm`), 14px horizontal padding (per `design.md` spec).
+  - `lg`: 48px height (h-12), 16px text (`text-base`), 16px horizontal padding.
+- **Shapes:**
+  - `default` / `md` (`{rounded.md}`): 8px standard control radius.
+  - `xs` (`{rounded.xs}`): 4px small radius.
+  - `sm` / `tag` (`{rounded.sm}`): 6px tag radius.
+  - `lg` (`{rounded.lg}`): 12px card-match radius.
+  - `xl` (`{rounded.xl}`): 16px container radius.
+  - `pill` (`{rounded.pill}`): 9999px pill search bar radius.
+
+**`switch` / `toggle-switch`** — The toggle control for binary settings and preferences.
+
+- **Visual Variants:**
+  - `primary` / `default`: Signature monochrome switch. Unchecked background is `{colors.surface-strong}` (#e5e7eb); checked state shifts to `{colors.primary}` (#111111) with white sliding thumb.
+  - `accent` / `brand`: Checked background is `{colors.brand-accent}` (#3b82f6).
+  - `success`: Checked background is `{colors.success}` (#10b981).
+  - `warning`: Checked background is `{colors.warning}` (#f59e0b).
+  - `destructive` / `error`: Checked background is `{colors.error}` (#ef4444).
+  - `badge-orange` / `badge-pink` / `badge-violet` / `badge-emerald`: Themed pastel accent switches matching badge palette tokens.
+  - `inverse` / `dark`: White thumb on dark elevated background `{colors.surface-dark-elevated}` for dark panels.
+- **Sizes:**
+  - `compact` (sm): 28 × 16px track with 12px thumb, 2px padding.
+  - `default` (md): 36 × 20px track with 16px thumb, 2px padding.
+  - `lg`: 44 × 24px track with 20px thumb, 2px padding.
+- **Shapes:**
+  - `pill` (`{rounded.pill}`): Standard 9999px rounded track and circular thumb.
+  - `rounded` (`{rounded.md}`): 8px rounded track with 4px rounded thumb for modern squircle cards.
+- **Physics & Motion:** Damped spring animation (`spring.moderate` ~160ms) with tactile drag gesture support and dynamic squash/stretch during press.
 
 ### Tags / Badges
 
-**`badge-pill`** — Small pill label used for category tags ("Product", "Article", "New") and pastel-fill avatar substitutes. Background `{colors.surface-card}` or one of the badge pastels (`{colors.badge-orange}`, `{colors.badge-pink}`, etc.), text `{colors.ink}`, type `{typography.caption}` (13px / 500), rounded `{rounded.pill}`, padding 4px × 12px.
+**`badge` / `badge-pill`** — Small indicator pills and chips used for status tags ("Product", "Article", "New"), counts, indicators, and pastel-fill avatar substitutes.
+
+- **Visual Variants:**
+  - `primary` / `default`: Background `{colors.primary}` (#111111), text `{colors.on-primary}` (#ffffff), subtle drop shadow.
+  - `secondary`: Background `{colors.surface-card}` (#f5f5f5), text `{colors.ink}`.
+  - `surface`: Background `{colors.surface-card}` with 1px `{colors.hairline}` border.
+  - `canvas`: Background `{colors.canvas}` with 1px `{colors.hairline}` border, text `{colors.muted}`.
+  - `outline`: Transparent background with 1px `{colors.hairline}` border, text `{colors.ink}`.
+  - `outline-muted`: Transparent background with 1px `{colors.hairline-soft}` border, text `{colors.muted}`.
+  - `ghost`: Transparent background, hover `{colors.surface-soft}`.
+  - `accent` / `brand`: Background `{colors.brand-accent}` (#3b82f6), text white.
+  - `accent-subtle` / `brand-subtle`: Background `{colors.brand-accent}` (10% alpha), 1px border (25% alpha), text `{colors.brand-accent}`.
+  - `success` / `success-subtle`: 10% `{colors.success}` tint with border. `success-solid` uses solid `{colors.success}` fill with white text.
+  - `warning` / `warning-subtle`: 10% `{colors.warning}` tint with border. `warning-solid` uses solid `{colors.warning}` fill with white text.
+  - `destructive` / `error`: 10% `{colors.error}` tint with border. `destructive-solid` uses solid `{colors.error}` fill with white text.
+  - `badge-orange`: Pastel orange tint (`{colors.badge-orange}` #fb923c) with `#c2410c` text. `badge-orange-solid` for solid fill.
+  - `badge-pink`: Pastel pink tint (`{colors.badge-pink}` #ec4899) with `#be185d` text. `badge-pink-solid` for solid fill.
+  - `badge-violet`: Pastel violet tint (`{colors.badge-violet}` #8b5cf6) with `#6d28d9` text. `badge-violet-solid` for solid fill.
+  - `badge-emerald`: Pastel emerald tint (`{colors.badge-emerald}` #34d399) with `#047857` text. `badge-emerald-solid` for solid fill.
+- **Sizes:**
+  - `sm`: 16px height (h-4), 10px text, 6px horizontal padding.
+  - `default`: 20px height (h-5), 12px text, 10px horizontal padding.
+  - `lg`: 24px height (h-6), 12px bold text, 12px horizontal padding.
+  - `pill`: 24px height (h-6), `{typography.caption}` (13px / 500), 12px horizontal padding.
+- **Shapes:**
+  - `pill` (`{rounded.pill}`): 9999px pill radius.
+  - `rounded` (`{rounded.xs}`): 4px subtle rounded corners.
+  - `tag` (`{rounded.sm}`): 6px tag corners.
+  - `md` (`{rounded.md}`): 8px standard control radius.
+  - `lg` (`{rounded.lg}`): 12px card radius.
 
 **`avatar-circle`** — 36px diameter, rounded `{rounded.full}`. Either holds a photo or a pastel fill with initials in `{typography.caption}`.
 

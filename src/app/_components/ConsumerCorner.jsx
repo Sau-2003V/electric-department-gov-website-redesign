@@ -126,7 +126,7 @@ const categories = [
 
 function CategoryCard({ icon: Icon, title, items }) {
   return (
-    <div className="border-hairline bg-canvas hover:border-hairline flex flex-col overflow-hidden rounded-lg border shadow-subtle transition-all duration-150">
+    <div className="border-hairline bg-canvas hover:border-hairline shadow-subtle flex flex-col overflow-hidden rounded-lg border transition-all duration-150">
       {/* Card Header */}
       <div className="border-hairline-soft bg-surface-soft flex items-center justify-between border-b px-5 py-3.5">
         <div className="flex items-center gap-3">
@@ -146,10 +146,10 @@ function CategoryCard({ icon: Icon, title, items }) {
           <li key={item.text}>
             <Link
               href={item.href}
-              className="group hover:bg-surface-soft flex items-start gap-2.5 px-5 py-3 text-body-sm transition-colors active:scale-[0.98]"
+              className="group hover:bg-surface-soft text-body-sm flex items-start gap-2.5 px-5 py-3 transition-colors active:scale-[0.98]"
             >
               <span className="bg-muted-soft mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full transition-transform group-hover:scale-125" />
-              <span className="text-ink group-hover:underline flex-1 leading-snug font-normal transition-colors">
+              <span className="text-ink flex-1 leading-snug font-normal transition-colors group-hover:underline">
                 {item.text}
               </span>
               {item.badge && (

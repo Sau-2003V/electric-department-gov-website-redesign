@@ -14,7 +14,7 @@ export default function HelplineBar() {
               <p className="text-on-dark-soft text-caption font-medium tracking-widest uppercase">
                 Toll Free Helpline
               </p>
-              <p className="text-on-dark font-mono text-title-sm font-semibold">
+              <p className="text-on-dark text-title-sm font-mono font-semibold">
                 1800-419-1912 / 1912
               </p>
             </div>
@@ -29,7 +29,7 @@ export default function HelplineBar() {
               <p className="text-on-dark-soft text-caption font-medium tracking-widest uppercase">
                 Official Email
               </p>
-              <p className="text-on-dark max-w-[200px] truncate text-body-sm font-normal">
+              <p className="text-on-dark text-body-sm max-w-[200px] truncate font-normal">
                 grievance@vidhyutportal.gov.in
               </p>
             </div>

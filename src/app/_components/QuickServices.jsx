@@ -45,7 +45,7 @@ export default function QuickServices() {
               <Link
                 key={action.title}
                 href={action.href}
-                className="group border-hairline bg-surface-card hover:bg-surface-soft relative flex flex-col justify-between rounded-lg border p-6 shadow-subtle transition-all duration-150 active:scale-[0.98]"
+                className="group border-hairline bg-surface-card hover:bg-surface-soft shadow-subtle relative flex flex-col justify-between rounded-lg border p-6 transition-all duration-150 active:scale-[0.98]"
               >
                 <div>
                   <div className="border-hairline bg-canvas text-ink group-hover:bg-primary group-hover:text-on-primary mb-4 inline-flex h-10 w-10 items-center justify-center rounded-md border transition-colors">
@@ -54,12 +54,12 @@ export default function QuickServices() {
                   <h3 className="text-ink text-title-sm font-semibold transition-opacity group-hover:opacity-80">
                     {action.title}
                   </h3>
-                  <p className="text-muted-text mt-1 text-body-sm leading-relaxed">
+                  <p className="text-muted-text text-body-sm mt-1 leading-relaxed">
                     {action.description}
                   </p>
                 </div>
 
-                <div className="text-muted-text group-hover:text-ink mt-6 flex items-center gap-1 text-button font-medium transition-colors">
+                <div className="text-muted-text group-hover:text-ink text-button mt-6 flex items-center gap-1 font-medium transition-colors">
                   <span>Proceed</span>
                   <ChevronRight
                     className="h-3.5 w-3.5 transition-transform duration-150 group-hover:translate-x-1"

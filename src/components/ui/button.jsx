@@ -7,113 +7,156 @@ import { useSizeVariant } from "@/lib/size-context";
 
 const buttonVariants = cva(
   [
-    "group relative isolate inline-flex flex-row items-center justify-center font-medium whitespace-nowrap cursor-pointer select-none rounded-md",
+    "group relative isolate inline-flex flex-row items-center justify-center font-sans font-semibold whitespace-nowrap cursor-pointer select-none rounded-md",
     "transition-all duration-150 ease-out",
     "disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 focus-visible:ring-offset-1 dark:focus-visible:ring-ring/40",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 dark:focus-visible:ring-ring/60",
     "active:scale-[0.98]",
     "[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg]:align-middle",
   ],
   {
     variants: {
       variant: {
-        // Primary / Charcoal (Brand default)
+        // 1. Primary / Signature CTA (Cal.com design system: #111111 with active #242424)
         primary:
-          "bg-primary text-primary-foreground shadow-button-inset hover:opacity-90 active:opacity-80 dark:bg-primary dark:text-primary-foreground",
+          "bg-primary text-on-primary shadow-subtle hover:bg-primary-active active:bg-primary-active dark:bg-canvas dark:text-ink dark:hover:bg-surface-soft",
         default:
-          "bg-primary text-primary-foreground shadow-button-inset hover:opacity-90 active:opacity-80 dark:bg-primary dark:text-primary-foreground",
+          "bg-primary text-on-primary shadow-subtle hover:bg-primary-active active:bg-primary-active dark:bg-canvas dark:text-ink dark:hover:bg-surface-soft",
 
-        // Secondary / White on cream surface with hairline border
+        // 2. Secondary / Canvas with hairline border (from design.md: button-secondary)
         secondary:
-          "border-hairline bg-surface-1 text-ink border shadow-2xs hover:bg-surface-2 hover:border-hairline active:bg-surface-2/80 dark:border-border dark:bg-card dark:text-card-foreground dark:hover:bg-surface-2",
+          "bg-canvas text-ink border border-hairline shadow-subtle hover:bg-surface-soft hover:border-hairline active:bg-surface-strong dark:bg-surface-card dark:text-on-dark dark:border-hairline dark:hover:bg-surface-dark-elevated",
 
-        // Tertiary / Soft cream background
+        // 3. Tertiary / Surface Soft Card Background
         tertiary:
-          "bg-canvas text-ink hover:bg-surface-2 active:bg-surface-2/80 dark:bg-muted dark:text-muted-foreground dark:hover:bg-muted/80",
+          "bg-surface-card text-ink border border-transparent hover:bg-surface-strong active:bg-surface-strong/90 dark:bg-surface-dark-elevated dark:text-on-dark dark:hover:bg-surface-strong/20",
+        soft: "bg-surface-soft text-ink border border-transparent hover:bg-surface-strong active:bg-surface-strong/90 dark:bg-surface-dark-elevated dark:text-on-dark dark:hover:bg-surface-strong/20",
+        surface:
+          "bg-surface-card text-ink border border-transparent hover:bg-surface-strong active:bg-surface-strong/90 dark:bg-surface-dark-elevated dark:text-on-dark dark:hover:bg-surface-strong/20",
 
-        // Outline / Transparent with hairline border
+        // 4. Outline / Transparent with hairline border
         outline:
-          "border-hairline bg-transparent text-ink border hover:bg-surface-2/60 active:bg-surface-2/80 dark:border-border dark:text-foreground dark:hover:bg-muted/50",
+          "bg-transparent text-ink border border-hairline hover:bg-surface-soft hover:border-hairline active:bg-surface-card dark:text-on-dark dark:border-hairline dark:hover:bg-surface-dark-elevated",
+        "outline-muted":
+          "bg-transparent text-muted-text border border-hairline hover:bg-surface-soft hover:text-ink hover:border-hairline active:bg-surface-card dark:text-on-dark-soft dark:border-hairline dark:hover:bg-surface-dark-elevated dark:hover:text-on-dark",
 
-        // Ghost / Minimal hover background
+        // 6. Ghost / Minimal hover background
         ghost:
-          "bg-transparent text-ink-muted hover:bg-surface-2/60 hover:text-ink active:bg-surface-2/80 dark:text-muted-foreground dark:hover:bg-muted/50 dark:hover:text-foreground",
+          "bg-transparent text-muted-text hover:bg-surface-soft hover:text-ink active:bg-surface-card dark:text-on-dark-soft dark:hover:bg-surface-dark-elevated dark:hover:text-on-dark",
 
-        // Link / Inline text underline
-        link: "text-ink underline-offset-4 hover:underline active:opacity-75 dark:text-primary !h-auto !p-0 font-medium",
+        // 7. Link / Inline text link (from design.md: button-text-link / text-link)
+        link: "bg-transparent text-ink underline-offset-4 hover:underline active:opacity-75 dark:text-on-dark !h-auto !p-0 font-medium",
+        "text-link":
+          "bg-transparent text-ink underline-offset-4 hover:underline active:opacity-75 dark:text-on-dark !h-auto !p-0 font-medium",
 
-        // Accent / Brand CTA
+        // 8. Brand Accent / Blue (from design.md: brand-accent #3b82f6)
         accent:
-          "bg-primary text-primary-foreground shadow-button-inset hover:opacity-90 active:opacity-80 focus-visible:ring-ring/50",
-        fin: "bg-primary text-primary-foreground shadow-button-inset hover:opacity-90 active:opacity-80 focus-visible:ring-ring/50",
-
-        // Accent Subtle / Surface 2
-        "accent-subtle":
-          "border-hairline bg-surface-2 text-ink border hover:bg-surface-2/80 active:bg-surface-2/60 focus-visible:ring-ring/40",
-        "fin-subtle":
-          "border-hairline bg-surface-2 text-ink border hover:bg-surface-2/80 active:bg-surface-2/60 focus-visible:ring-ring/40",
-
-        // Brand Blue CTA
+          "bg-brand-accent text-white shadow-subtle hover:bg-brand-accent/90 active:bg-brand-accent/80 focus-visible:ring-brand-accent/50",
         brand:
-          "bg-brand-blue text-white shadow-xs hover:bg-brand-blue/90 active:bg-brand-blue/80 focus-visible:ring-brand-blue/50",
+          "bg-brand-accent text-white shadow-subtle hover:bg-brand-accent/90 active:bg-brand-accent/80 focus-visible:ring-brand-accent/50",
+        "brand-accent":
+          "bg-brand-accent text-white shadow-subtle hover:bg-brand-accent/90 active:bg-brand-accent/80 focus-visible:ring-brand-accent/50",
+        fin: "bg-brand-accent text-white shadow-subtle hover:bg-brand-accent/90 active:bg-brand-accent/80 focus-visible:ring-brand-accent/50",
+
+        // 9. Accent Subtle / Brand Subtle
+        "accent-subtle":
+          "border border-brand-accent/25 bg-brand-accent/10 text-brand-accent hover:bg-brand-accent/20 active:bg-brand-accent/25 focus-visible:ring-brand-accent/40 dark:border-brand-accent/30 dark:bg-brand-accent/15",
         "brand-subtle":
-          "border-brand-blue/20 bg-brand-blue/10 text-brand-blue border hover:bg-brand-blue/20 active:bg-brand-blue/25 focus-visible:ring-brand-blue/40",
+          "border border-brand-accent/25 bg-brand-accent/10 text-brand-accent hover:bg-brand-accent/20 active:bg-brand-accent/25 focus-visible:ring-brand-accent/40 dark:border-brand-accent/30 dark:bg-brand-accent/15",
+        "fin-subtle":
+          "border border-brand-accent/25 bg-brand-accent/10 text-brand-accent hover:bg-brand-accent/20 active:bg-brand-accent/25 focus-visible:ring-brand-accent/40 dark:border-brand-accent/30 dark:bg-brand-accent/15",
 
-        // Destructive / Semantic Error
+        // 10. Semantic Destructive / Error (from design.md: error #ef4444)
         destructive:
-          "bg-semantic-error text-white shadow-xs hover:bg-semantic-error/90 active:bg-semantic-error/80 focus-visible:ring-semantic-error/50 dark:bg-destructive dark:text-destructive-foreground dark:hover:bg-destructive/90",
+          "bg-error text-white shadow-subtle hover:bg-error/90 active:bg-error/80 focus-visible:ring-error/50 dark:bg-error dark:text-white",
         error:
-          "bg-semantic-error text-white shadow-xs hover:bg-semantic-error/90 active:bg-semantic-error/80 focus-visible:ring-semantic-error/50 dark:bg-destructive dark:text-destructive-foreground dark:hover:bg-destructive/90",
-
-        // Destructive Subtle / Tinted Error
+          "bg-error text-white shadow-subtle hover:bg-error/90 active:bg-error/80 focus-visible:ring-error/50 dark:bg-error dark:text-white",
         "destructive-subtle":
-          "border-semantic-error/20 bg-semantic-error/10 text-semantic-error border hover:bg-semantic-error/20 active:bg-semantic-error/25 focus-visible:ring-semantic-error/40 dark:border-destructive/30",
+          "border border-error/25 bg-error/10 text-error hover:bg-error/20 active:bg-error/25 focus-visible:ring-error/40 dark:border-error/30 dark:bg-error/15",
         "error-subtle":
-          "border-semantic-error/20 bg-semantic-error/10 text-semantic-error border hover:bg-semantic-error/20 active:bg-semantic-error/25 focus-visible:ring-semantic-error/40 dark:border-destructive/30",
+          "border border-error/25 bg-error/10 text-error hover:bg-error/20 active:bg-error/25 focus-visible:ring-error/40 dark:border-error/30 dark:bg-error/15",
         "destructive-outline":
-          "border-semantic-error/20 bg-semantic-error/10 text-semantic-error border hover:bg-semantic-error/20 active:bg-semantic-error/25 focus-visible:ring-semantic-error/40 dark:border-destructive/30",
+          "border border-error/30 bg-transparent text-error hover:bg-error/10 active:bg-error/15 focus-visible:ring-error/40",
 
-        // Success / Positive
+        // 11. Semantic Success (from design.md: success #10b981)
         success:
-          "bg-semantic-success text-white shadow-xs hover:bg-semantic-success/90 active:bg-semantic-success/80 focus-visible:ring-semantic-success/50",
+          "bg-success text-white shadow-subtle hover:bg-success/90 active:bg-success/80 focus-visible:ring-success/50",
         "success-subtle":
-          "border-semantic-success/20 bg-semantic-success/10 text-semantic-success border hover:bg-semantic-success/20 active:bg-semantic-success/25 focus-visible:ring-semantic-success/40",
+          "border border-success/25 bg-success/10 text-success hover:bg-success/20 active:bg-success/25 focus-visible:ring-success/40 dark:border-success/30 dark:bg-success/15",
 
-        // Inverse / Pure black on white canvas
+        // 12. Semantic Warning (from design.md: warning #f59e0b)
+        warning:
+          "bg-warning text-white shadow-subtle hover:bg-warning/90 active:bg-warning/80 focus-visible:ring-warning/50",
+        "warning-subtle":
+          "border border-warning/25 bg-warning/10 text-warning hover:bg-warning/20 active:bg-warning/25 focus-visible:ring-warning/40 dark:border-warning/30 dark:bg-warning/15",
+
+        // 13. Badge Pastels (from design.md section 29: badge-orange, badge-pink, badge-violet, badge-emerald)
+        "badge-orange":
+          "border border-badge-orange/30 bg-badge-orange/15 text-[#c2410c] hover:bg-badge-orange/25 active:bg-badge-orange/30 dark:bg-badge-orange/20 dark:text-badge-orange dark:border-badge-orange/30",
+        "badge-pink":
+          "border border-badge-pink/30 bg-badge-pink/15 text-[#be185d] hover:bg-badge-pink/25 active:bg-badge-pink/30 dark:bg-badge-pink/20 dark:text-badge-pink dark:border-badge-pink/30",
+        "badge-violet":
+          "border border-badge-violet/30 bg-badge-violet/15 text-[#6d28d9] hover:bg-badge-violet/25 active:bg-badge-violet/30 dark:bg-badge-violet/20 dark:text-badge-violet dark:border-badge-violet/30",
+        "badge-emerald":
+          "border border-badge-emerald/30 bg-badge-emerald/15 text-[#047857] hover:bg-badge-emerald/25 active:bg-badge-emerald/30 dark:bg-badge-emerald/20 dark:text-badge-emerald dark:border-badge-emerald/30",
+
+        // 14. Inverse / Dark Surface (from design.md: surface-dark #101010)
         inverse:
-          "bg-inverse-canvas text-inverse-ink hover:bg-inverse-surface-1 active:bg-inverse-surface-1/90 dark:bg-foreground dark:text-background dark:hover:bg-foreground/90",
+          "bg-surface-dark text-on-dark hover:bg-surface-dark-elevated active:bg-surface-dark-elevated/90 shadow-subtle dark:bg-canvas dark:text-ink dark:hover:bg-surface-soft",
+        dark: "bg-surface-dark text-on-dark hover:bg-surface-dark-elevated active:bg-surface-dark-elevated/90 shadow-subtle dark:bg-canvas dark:text-ink dark:hover:bg-surface-soft",
+        "surface-dark":
+          "bg-surface-dark text-on-dark hover:bg-surface-dark-elevated active:bg-surface-dark-elevated/90 shadow-subtle dark:bg-canvas dark:text-ink dark:hover:bg-surface-soft",
+
+        // 15. Nav-Pill-Group / Category Tab (from design.md: category-tab)
+        tab: "bg-transparent text-muted-text hover:text-ink active:bg-canvas active:text-ink data-[state=active]:bg-canvas data-[state=active]:text-ink data-[state=active]:shadow-subtle",
+        "category-tab":
+          "bg-transparent text-muted-text hover:text-ink active:bg-canvas active:text-ink data-[state=active]:bg-canvas data-[state=active]:text-ink data-[state=active]:shadow-subtle",
       },
       size: {
-        default:
-          "px-[18px] py-[10px] text-[15px] leading-none gap-2 [&_svg]:size-4",
+        // Default: 40px height, 14px Inter font (from design.md: button-primary 12px x 20px / 40px h)
+        default: "h-10 px-5 py-2.5 text-sm leading-none gap-2 [&_svg]:size-4",
+        md: "h-10 px-5 py-2.5 text-sm leading-none gap-2 [&_svg]:size-4",
+        // Compact / Small
         compact:
-          "px-3 py-1.5 text-[12px] leading-none gap-1.5 [&_svg]:size-3.5",
-        lg: "px-6 py-3 text-[16px] leading-none gap-2.5 [&_svg]:size-4.5",
-        icon: "size-9 p-0 [&_svg]:size-4",
-        "icon-compact": "size-7 p-0 [&_svg]:size-3.5",
-        "icon-lg": "size-11 p-0 [&_svg]:size-5",
+          "h-8 px-3 py-1.5 text-xs leading-none gap-1.5 [&_svg]:size-3.5",
+        sm: "h-8 px-3 py-1.5 text-xs leading-none gap-1.5 [&_svg]:size-3.5",
+        // Large: 48px height
+        lg: "h-12 px-6 py-3 text-base leading-none gap-2.5 [&_svg]:size-5",
+        // Icon variants
+        icon: "size-10 p-0 [&_svg]:size-4",
+        "icon-compact": "size-8 p-0 [&_svg]:size-3.5",
+        "icon-sm": "size-8 p-0 [&_svg]:size-3.5",
+        "icon-circular": "size-9 p-0 rounded-full [&_svg]:size-4", // 36px diameter from design.md: button-icon-circular
+        "icon-lg": "size-12 p-0 [&_svg]:size-5",
       },
       shape: {
-        default: "rounded-md",
+        default: "rounded-md", // 8px from design.md: rounded.md
         rounded: "rounded-md",
         md: "rounded-md",
-        lg: "rounded-lg",
-        pill: "rounded-full",
-        full: "rounded-full",
+        sm: "rounded-sm", // 6px from design.md: rounded.sm
+        xs: "rounded-xs", // 4px from design.md: rounded.xs
+        lg: "rounded-lg", // 12px from design.md: rounded.lg
+        xl: "rounded-xl", // 16px from design.md: rounded.xl
+        pill: "rounded-full", // 9999px from design.md: rounded.pill
+        full: "rounded-full", // 9999px / 50% from design.md: rounded.full
+        circular: "rounded-full",
         tag: "rounded-sm",
-        xs: "rounded-xs",
         square: "rounded-none",
       },
       iconLeft: { true: "" },
       iconRight: { true: "" },
     },
     compoundVariants: [
-      { size: "compact", iconLeft: true, className: "pl-[10px]" },
-      { size: "default", iconLeft: true, className: "pl-[14px]" },
-      { size: "lg", iconLeft: true, className: "pl-[18px]" },
-      { size: "compact", iconRight: true, className: "pr-[10px]" },
-      { size: "default", iconRight: true, className: "pr-[14px]" },
-      { size: "lg", iconRight: true, className: "pr-[18px]" },
+      { size: "compact", iconLeft: true, className: "pl-2.5" },
+      { size: "sm", iconLeft: true, className: "pl-2.5" },
+      { size: "default", iconLeft: true, className: "pl-4" },
+      { size: "md", iconLeft: true, className: "pl-4" },
+      { size: "lg", iconLeft: true, className: "pl-5" },
+      { size: "compact", iconRight: true, className: "pr-2.5" },
+      { size: "sm", iconRight: true, className: "pr-2.5" },
+      { size: "default", iconRight: true, className: "pr-4" },
+      { size: "md", iconRight: true, className: "pr-4" },
+      { size: "lg", iconRight: true, className: "pr-5" },
     ],
     defaultVariants: {
       variant: "primary",
@@ -124,7 +167,7 @@ const buttonVariants = cva(
 );
 
 const legacySizeAliases = {
-  sm: "compact",
+  sm: "sm",
   compact: "compact",
   md: "default",
   default: "default",
@@ -132,32 +175,50 @@ const legacySizeAliases = {
   "icon-sm": "icon-compact",
   "icon-compact": "icon-compact",
   icon: "icon",
+  "icon-circular": "icon-circular",
   "icon-md": "icon",
   "icon-lg": "icon-lg",
 };
 
 const activeVariantClasses = {
-  primary: "bg-ink/80 dark:bg-primary/80 ring-2 ring-hairline-interactive",
-  default: "bg-ink/80 dark:bg-primary/80 ring-2 ring-hairline-interactive",
-  secondary: "bg-surface-2 border-hairline ring-2 ring-hairline/40",
-  tertiary: "bg-surface-2 ring-2 ring-hairline/40",
-  outline: "bg-surface-2/80 ring-2 ring-hairline/40",
-  ghost: "bg-surface-2 text-ink dark:bg-muted",
-  link: "underline",
-  accent: "bg-ink/80 ring-2 ring-hairline-interactive",
-  fin: "bg-ink/80 ring-2 ring-hairline-interactive",
-  "accent-subtle": "bg-surface-2/80 ring-2 ring-hairline/40",
-  "fin-subtle": "bg-surface-2/80 ring-2 ring-hairline/40",
-  brand: "bg-brand-blue/85 ring-2 ring-brand-blue/30",
-  "brand-subtle": "bg-brand-blue/25 ring-2 ring-brand-blue/30",
-  destructive: "bg-semantic-error/85 ring-2 ring-semantic-error/30",
-  error: "bg-semantic-error/85 ring-2 ring-semantic-error/30",
-  "destructive-subtle": "bg-semantic-error/25 ring-2 ring-semantic-error/30",
-  "error-subtle": "bg-semantic-error/25 ring-2 ring-semantic-error/30",
-  "destructive-outline": "bg-semantic-error/25 ring-2 ring-semantic-error/30",
-  success: "bg-semantic-success/85 ring-2 ring-semantic-success/30",
-  "success-subtle": "bg-semantic-success/25 ring-2 ring-semantic-success/30",
-  inverse: "bg-inverse-surface-1 ring-2 ring-inverse-surface-1/40",
+  primary: "bg-primary-active text-on-primary ring-2 ring-primary/20",
+  default: "bg-primary-active text-on-primary ring-2 ring-primary/20",
+  secondary: "bg-surface-strong text-ink ring-2 ring-hairline",
+  tertiary: "bg-surface-strong text-ink ring-2 ring-hairline",
+  soft: "bg-surface-strong text-ink ring-2 ring-hairline",
+  surface: "bg-surface-strong text-ink ring-2 ring-hairline",
+  outline: "bg-surface-card text-ink ring-2 ring-hairline",
+  "outline-muted": "bg-surface-card text-ink ring-2 ring-hairline",
+  ghost:
+    "bg-surface-card text-ink dark:bg-surface-dark-elevated dark:text-on-dark",
+  link: "underline text-ink dark:text-on-dark",
+  "text-link": "underline text-ink dark:text-on-dark",
+  accent: "bg-brand-accent/90 ring-2 ring-brand-accent/30",
+  brand: "bg-brand-accent/90 ring-2 ring-brand-accent/30",
+  "brand-accent": "bg-brand-accent/90 ring-2 ring-brand-accent/30",
+  fin: "bg-brand-accent/90 ring-2 ring-brand-accent/30",
+  "accent-subtle": "bg-brand-accent/25 ring-2 ring-brand-accent/30",
+  "brand-subtle": "bg-brand-accent/25 ring-2 ring-brand-accent/30",
+  "fin-subtle": "bg-brand-accent/25 ring-2 ring-brand-accent/30",
+  destructive: "bg-error/90 ring-2 ring-error/30",
+  error: "bg-error/90 ring-2 ring-error/30",
+  "destructive-subtle": "bg-error/25 ring-2 ring-error/30",
+  "error-subtle": "bg-error/25 ring-2 ring-error/30",
+  "destructive-outline": "bg-error/25 ring-2 ring-error/30",
+  success: "bg-success/90 ring-2 ring-success/30",
+  "success-subtle": "bg-success/25 ring-2 ring-success/30",
+  warning: "bg-warning/90 ring-2 ring-warning/30",
+  "warning-subtle": "bg-warning/25 ring-2 ring-warning/30",
+  "badge-orange": "bg-badge-orange/30 ring-2 ring-badge-orange/40",
+  "badge-pink": "bg-badge-pink/30 ring-2 ring-badge-pink/40",
+  "badge-violet": "bg-badge-violet/30 ring-2 ring-badge-violet/40",
+  "badge-emerald": "bg-badge-emerald/30 ring-2 ring-badge-emerald/40",
+  inverse: "bg-surface-dark-elevated text-on-dark ring-2 ring-surface-strong",
+  dark: "bg-surface-dark-elevated text-on-dark ring-2 ring-surface-strong",
+  "surface-dark":
+    "bg-surface-dark-elevated text-on-dark ring-2 ring-surface-strong",
+  tab: "bg-canvas text-ink shadow-subtle ring-1 ring-hairline",
+  "category-tab": "bg-canvas text-ink shadow-subtle ring-1 ring-hairline",
 };
 
 function renderIcon(Icon, { size, className }) {

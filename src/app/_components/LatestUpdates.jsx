@@ -54,7 +54,7 @@ export default function LatestUpdates() {
 
           <Link
             href="/notices"
-            className="text-body-sm text-ink hover:opacity-80 flex items-center gap-1 font-medium active:scale-[0.98]"
+            className="text-body-sm text-ink flex items-center gap-1 font-medium hover:opacity-80 active:scale-[0.98]"
           >
             <span>View all notices</span>
             <ChevronRight className="h-4 w-4" strokeWidth={1.5} />
@@ -67,13 +67,13 @@ export default function LatestUpdates() {
             <Link
               key={idx}
               href={item.href}
-              className="group border-hairline bg-canvas hover:border-hairline hover:bg-surface-soft flex items-center justify-between gap-4 rounded-lg border p-4 shadow-subtle transition-all duration-150 active:scale-[0.99]"
+              className="group border-hairline bg-canvas hover:border-hairline hover:bg-surface-soft shadow-subtle flex items-center justify-between gap-4 rounded-lg border p-4 transition-all duration-150 active:scale-[0.99]"
             >
               {/* Date Box + Title */}
               <div className="flex items-center gap-4">
                 {/* Date Pill Box */}
                 <div className="border-hairline bg-surface-soft text-ink group-hover:bg-primary group-hover:text-on-primary flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-md border transition-colors">
-                  <span className="font-mono text-body-sm leading-none font-bold">
+                  <span className="text-body-sm font-mono leading-none font-bold">
                     {item.day}
                   </span>
                   <span className="text-[10px] font-medium tracking-wider uppercase">
@@ -85,7 +85,7 @@ export default function LatestUpdates() {
                   <h3 className="text-ink text-title-sm leading-snug font-semibold transition-opacity group-hover:opacity-80">
                     {item.title}
                   </h3>
-                  <span className="text-muted-text mt-1 inline-block text-caption font-normal">
+                  <span className="text-muted-text text-caption mt-1 inline-block font-normal">
                     Category: {item.category}
                   </span>
                 </div>
@@ -94,7 +94,7 @@ export default function LatestUpdates() {
               {/* Badges & Chevron */}
               <div className="flex shrink-0 items-center gap-3">
                 {item.count && (
-                  <span className="bg-primary text-on-primary flex h-5 w-5 items-center justify-center rounded-full text-caption font-medium">
+                  <span className="bg-primary text-on-primary text-caption flex h-5 w-5 items-center justify-center rounded-full font-medium">
                     {item.count}
                   </span>
                 )}

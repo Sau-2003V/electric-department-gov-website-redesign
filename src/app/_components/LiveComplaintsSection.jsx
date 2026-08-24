@@ -228,18 +228,20 @@ export default function LiveComplaintsSection() {
             <span className="text-caption text-muted-text font-medium tracking-wide uppercase">
               Live registry
             </span>
-            <h2 className="text-display-sm sm:text-display-md text-ink mt-1">Recent complaints</h2>
+            <h2 className="text-display-sm sm:text-display-md text-ink mt-1">
+              Recent complaints
+            </h2>
           </div>
           <Link
             href="/complaints"
-            className="text-body-sm text-ink hover:opacity-80 inline-flex items-center gap-1.5 font-medium"
+            className="text-body-sm text-ink inline-flex items-center gap-1.5 font-medium hover:opacity-80"
           >
             View all complaints
             <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </div>
 
-        <div className="border-hairline bg-canvas overflow-hidden rounded-lg border shadow-subtle">
+        <div className="border-hairline bg-canvas shadow-subtle overflow-hidden rounded-lg border">
           {/* Toolbar */}
           <div className="border-hairline-soft bg-surface-soft flex flex-col gap-3 border-b px-5 py-3 sm:flex-row sm:items-center sm:justify-between">
             {/* Tab pills */}
@@ -250,7 +252,7 @@ export default function LiveComplaintsSection() {
                   type="button"
                   onClick={() => setActiveTab(t.id)}
                   className={cn(
-                    "cursor-pointer rounded-md px-3 py-1.5 text-button font-medium transition-all active:scale-[0.98]",
+                    "text-button cursor-pointer rounded-md px-3 py-1.5 font-medium transition-all active:scale-[0.98]",
                     activeTab === t.id
                       ? "bg-primary text-on-primary"
                       : "border-hairline bg-canvas text-muted-text hover:bg-surface-soft hover:text-ink border"
@@ -272,7 +274,7 @@ export default function LiveComplaintsSection() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search docket or area…"
-                className="border-hairline bg-canvas text-ink placeholder:text-muted-soft focus:border-ink w-full rounded-md border py-2 pr-3 pl-9 text-body-sm focus:outline-none"
+                className="border-hairline bg-canvas text-ink placeholder:text-muted-soft focus:border-ink text-body-sm w-full rounded-md border py-2 pr-3 pl-9 focus:outline-none"
               />
             </div>
           </div>
@@ -283,7 +285,7 @@ export default function LiveComplaintsSection() {
               No complaints match your search.{" "}
               <button
                 type="button"
-                className="text-ink underline hover:opacity-80 cursor-pointer"
+                className="text-ink cursor-pointer underline hover:opacity-80"
                 onClick={() => {
                   setSearchQuery("");
                   setActiveTab("all");
@@ -310,7 +312,7 @@ export default function LiveComplaintsSection() {
             </span>
             <Link
               href="/complaints/new"
-              className="bg-primary text-on-primary inline-flex items-center gap-1.5 rounded-md px-4 py-2 text-button font-semibold transition-all hover:bg-primary-active active:scale-[0.98]"
+              className="bg-primary text-on-primary text-button hover:bg-primary-active inline-flex items-center gap-1.5 rounded-md px-4 py-2 font-semibold transition-all active:scale-[0.98]"
             >
               Register new complaint
               <ArrowRight className="h-3.5 w-3.5" />

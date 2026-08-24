@@ -98,10 +98,10 @@ export default function SiteDetails() {
         <div className="mb-10 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
           {statutoryColumns.map((col) => (
             <div key={col.title} className="flex flex-col">
-              <h3 className="border-hairline text-ink mb-3 border-b pb-1.5 text-caption font-semibold tracking-wider uppercase">
+              <h3 className="border-hairline text-ink text-caption mb-3 border-b pb-1.5 font-semibold tracking-wider uppercase">
                 {col.title}
               </h3>
-              <ul className="space-y-1.5 text-body-sm">
+              <ul className="text-body-sm space-y-1.5">
                 {col.links.map((link) => (
                   <li key={link.label}>
                     <Link
@@ -123,9 +123,9 @@ export default function SiteDetails() {
             <Link
               key={pill.label}
               href={pill.href}
-              className="group border-hairline bg-surface-card hover:bg-surface-soft flex items-center justify-between rounded-lg border px-4 py-2.5 shadow-subtle transition-all active:scale-[0.98]"
+              className="group border-hairline bg-surface-card hover:bg-surface-soft shadow-subtle flex items-center justify-between rounded-lg border px-4 py-2.5 transition-all active:scale-[0.98]"
             >
-              <span className="text-ink group-hover:opacity-80 flex items-center gap-2 truncate text-button font-medium transition-opacity">
+              <span className="text-ink text-button flex items-center gap-2 truncate font-medium transition-opacity group-hover:opacity-80">
                 <Zap
                   className="text-ink h-3.5 w-3.5 shrink-0"
                   strokeWidth={1.5}
