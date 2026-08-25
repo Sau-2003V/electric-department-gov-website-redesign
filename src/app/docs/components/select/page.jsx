@@ -33,7 +33,7 @@ export default function SelectDocsPage() {
       {/* Header */}
       <div className="border-hairline space-y-2 border-b pb-6">
         <div className="flex items-center gap-3">
-          <h1 className="text-ink text-3xl font-semibold tracking-tight">
+          <h1 className="text-ink text-3xl font-medium tracking-tight">
             Select
           </h1>
           <Badge variant="accent" size="sm" shape="tag">
@@ -56,7 +56,7 @@ export default function SelectDocsPage() {
       {/* 1. Interactive Selects */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">
+          <h2 className="text-ink text-lg font-medium">
             1. Interactive Selects
           </h2>
           <p className="text-muted-text text-xs">
@@ -68,7 +68,7 @@ export default function SelectDocsPage() {
           {/* Timezone Selector */}
           <div className="bg-canvas border-hairline shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="space-y-1">
-              <h3 className="text-ink text-sm font-semibold">
+              <h3 className="text-ink text-sm font-medium">
                 Timezone Selector
               </h3>
               <p className="text-muted-text text-xs">
@@ -116,7 +116,7 @@ export default function SelectDocsPage() {
           {/* Subscription Tier */}
           <div className="bg-canvas border-hairline shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="space-y-1">
-              <h3 className="text-ink text-sm font-semibold">Plan Level</h3>
+              <h3 className="text-ink text-sm font-medium">Plan Level</h3>
               <p className="text-muted-text text-xs">
                 Surface card background with category tiers.
               </p>
@@ -146,7 +146,7 @@ export default function SelectDocsPage() {
           {/* Validation Error State */}
           <div className="bg-canvas border-hairline shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="space-y-1">
-              <h3 className="text-ink text-sm font-semibold">
+              <h3 className="text-ink text-sm font-medium">
                 Validation State
               </h3>
               <p className="text-muted-text text-xs">
@@ -180,7 +180,7 @@ export default function SelectDocsPage() {
       {/* 2. Size Ladder */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">2. Size Ladder</h2>
+          <h2 className="text-ink text-lg font-medium">2. Size Ladder</h2>
           <p className="text-muted-text text-xs">
             Select triggers scale through 32px compact, 40px standard, and 48px
             large.

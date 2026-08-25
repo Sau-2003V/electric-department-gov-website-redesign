@@ -34,7 +34,7 @@ export default function DialogDocsPage() {
       {/* Header */}
       <div className="border-hairline space-y-2 border-b pb-6">
         <div className="flex items-center gap-3">
-          <h1 className="text-ink text-3xl font-semibold tracking-tight">
+          <h1 className="text-ink text-3xl font-medium tracking-tight">
             Dialog
           </h1>
           <Badge variant="accent" size="sm" shape="tag">
@@ -58,7 +58,7 @@ export default function DialogDocsPage() {
       {/* 1. Interactive Demos */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">
+          <h2 className="text-ink text-lg font-medium">
             1. Interactive Modals
           </h2>
           <p className="text-muted-text text-xs">
@@ -70,7 +70,7 @@ export default function DialogDocsPage() {
           {/* Standard Confirmation */}
           <div className="bg-canvas border-hairline shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="space-y-1">
-              <h3 className="text-ink text-sm font-semibold">
+              <h3 className="text-ink text-sm font-medium">
                 Default Canvas Modal
               </h3>
               <p className="text-muted-text text-xs">
@@ -98,13 +98,13 @@ export default function DialogDocsPage() {
                 <div className="border-hairline bg-surface-soft my-2 rounded-lg border p-3.5 text-xs">
                   <div className="text-muted-text flex items-center justify-between">
                     <span>Date & Time</span>
-                    <span className="text-ink font-semibold">
+                    <span className="text-ink font-medium">
                       Aug 25, 2026 · 10:00 AM
                     </span>
                   </div>
                   <div className="text-muted-text mt-1 flex items-center justify-between">
                     <span>Duration</span>
-                    <span className="text-ink font-semibold">
+                    <span className="text-ink font-medium">
                       30 mins (Google Meet)
                     </span>
                   </div>
@@ -128,7 +128,7 @@ export default function DialogDocsPage() {
           {/* Surface Card Modal */}
           <div className="bg-canvas border-hairline shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="space-y-1">
-              <h3 className="text-ink text-sm font-semibold">
+              <h3 className="text-ink text-sm font-medium">
                 Surface Card Modal
               </h3>
               <p className="text-muted-text text-xs">
@@ -178,7 +178,7 @@ export default function DialogDocsPage() {
           {/* Destructive Alert Modal */}
           <div className="bg-canvas border-hairline shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="space-y-1">
-              <h3 className="text-ink text-sm font-semibold">
+              <h3 className="text-ink text-sm font-medium">
                 Destructive Action
               </h3>
               <p className="text-muted-text text-xs">
@@ -227,7 +227,7 @@ export default function DialogDocsPage() {
       {/* 2. Size Ladder */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">2. Size Ladder</h2>
+          <h2 className="text-ink text-lg font-medium">2. Size Ladder</h2>
           <p className="text-muted-text text-xs">
             Dialogs scale from compact alerts ({`max-w-sm`}) to wide workflows (
             {`max-w-2xl`}).
@@ -307,7 +307,7 @@ export default function DialogDocsPage() {
               </DialogHeader>
               <div className="grid grid-cols-2 gap-3 py-2">
                 <div className="border-hairline bg-canvas rounded-lg border p-3">
-                  <div className="text-ink text-xs font-semibold">
+                  <div className="text-ink text-xs font-medium">
                     Google Calendar
                   </div>
                   <div className="text-muted-text text-[11px]">
@@ -315,7 +315,7 @@ export default function DialogDocsPage() {
                   </div>
                 </div>
                 <div className="border-hairline bg-canvas rounded-lg border p-3">
-                  <div className="text-ink text-xs font-semibold">
+                  <div className="text-ink text-xs font-medium">
                     Zoom Meetings
                   </div>
                   <div className="text-muted-text text-[11px]">

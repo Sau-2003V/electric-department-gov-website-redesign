@@ -65,7 +65,7 @@ function LoginForm({
             height={36}
             className="size-9 rounded-md object-contain"
           />
-          <span className="text-title-sm text-ink font-semibold tracking-tight">
+          <span className="text-title-sm text-ink font-medium tracking-tight">
             Vidhyut Portal
           </span>
         </Link>
@@ -83,7 +83,7 @@ function LoginForm({
 
       {/* Title */}
       <div className="mb-6 space-y-1">
-        <h1 className="text-title-lg text-ink font-semibold tracking-tight">
+        <h1 className="text-title-lg text-ink font-medium tracking-tight">
           Consumer Login
         </h1>
         <p className="text-body-sm text-muted-text leading-relaxed">
@@ -175,7 +175,7 @@ function LoginForm({
             <KeyRound className="size-4" />
           </div>
           <div className="min-w-0 flex-1">
-            <p className="text-title-sm text-ink font-semibold">
+            <p className="text-title-sm text-ink font-medium">
               Use Demo Credentials
             </p>
             <p className="text-caption text-muted-text leading-tight">

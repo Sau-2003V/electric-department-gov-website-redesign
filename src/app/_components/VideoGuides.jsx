@@ -214,7 +214,7 @@ export default function VideoGuides() {
                 </div>
 
                 <div className="my-auto text-center">
-                  <p className="text-title-sm font-semibold tracking-tight">
+                  <p className="text-title-sm font-medium tracking-tight">
                     {video.hindiTag}
                   </p>
                   <p className="text-on-dark-soft text-caption font-normal">
@@ -242,7 +242,7 @@ export default function VideoGuides() {
                   <span className="bg-surface-soft text-ink text-caption inline-block rounded-xs px-2 py-0.5 font-medium uppercase">
                     {video.category}
                   </span>
-                  <h3 className="text-ink text-title-sm mt-1.5 line-clamp-2 leading-snug font-semibold transition-colors group-hover:underline">
+                  <h3 className="text-ink text-title-sm mt-1.5 line-clamp-2 leading-snug font-medium transition-colors group-hover:underline">
                     {video.title}
                   </h3>
                 </div>
@@ -288,7 +288,7 @@ export default function VideoGuides() {
               <div className="bg-primary text-on-primary flex h-16 w-16 items-center justify-center rounded-full">
                 <Play className="ml-1 h-8 w-8 fill-current" strokeWidth={1.5} />
               </div>
-              <p className="text-title-lg mt-4 font-semibold">
+              <p className="text-title-lg mt-4 font-medium">
                 {selectedVideo.hindiTag}
               </p>
               <p className="text-on-dark-soft text-body-sm">
@@ -303,7 +303,7 @@ export default function VideoGuides() {
               <span className="bg-surface-dark-elevated text-on-dark text-caption rounded-xs px-2 py-0.5 font-medium uppercase">
                 {selectedVideo.category}
               </span>
-              <h3 className="text-title-md mt-2 font-semibold">
+              <h3 className="text-title-md mt-2 font-medium">
                 {selectedVideo.title}
               </h3>
               <p className="text-on-dark-soft text-body-sm mt-1">

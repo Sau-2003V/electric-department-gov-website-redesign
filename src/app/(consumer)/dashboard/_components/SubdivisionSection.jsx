@@ -56,7 +56,7 @@ export default function SubdivisionSection({
             <div>
               {/* Top Row: Avatar & Call Button */}
               <div className="flex items-start justify-between gap-2">
-                <div className="bg-surface-card text-caption text-ink border-hairline-soft mb-3 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border font-semibold">
+                <div className="bg-surface-card text-caption text-ink border-hairline-soft mb-3 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border font-medium">
                   {contact.name
                     .split(" ")
                     .map((n) => n[0])

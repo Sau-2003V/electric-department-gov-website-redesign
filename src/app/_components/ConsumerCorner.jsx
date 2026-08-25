@@ -133,7 +133,7 @@ function CategoryCard({ icon: Icon, title, items }) {
           <div className="border-hairline bg-canvas text-ink flex h-9 w-9 shrink-0 items-center justify-center rounded-md border">
             <Icon className="h-4.5 w-4.5" strokeWidth={1.5} />
           </div>
-          <h3 className="text-ink text-title-sm leading-tight font-semibold">
+          <h3 className="text-ink text-title-sm leading-tight font-medium">
             {title}
           </h3>
         </div>
@@ -153,7 +153,7 @@ function CategoryCard({ icon: Icon, title, items }) {
                 {item.text}
               </span>
               {item.badge && (
-                <span className="bg-primary text-on-primary shrink-0 rounded-xs px-1.5 py-0.5 text-[10px] font-semibold tracking-wider uppercase">
+                <span className="bg-primary text-on-primary shrink-0 rounded-xs px-1.5 py-0.5 text-[10px] font-medium tracking-wider uppercase">
                   {item.badge}
                 </span>
               )}

@@ -51,7 +51,7 @@ export default function ButtonDocsPage() {
     <div className="mx-auto max-w-5xl space-y-10 py-6">
       {/* Header */}
       <div className="border-hairline space-y-2 border-b pb-6">
-        <h1 className="text-ink text-3xl font-semibold tracking-tight">
+        <h1 className="text-ink text-3xl font-medium tracking-tight">
           Button
         </h1>
         <p className="text-muted-text text-sm">
@@ -67,7 +67,7 @@ export default function ButtonDocsPage() {
 
       {/* All Available Variants */}
       <section className="space-y-4">
-        <h2 className="text-ink text-lg font-semibold">All Variants</h2>
+        <h2 className="text-ink text-lg font-medium">All Variants</h2>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {allVariants.map(({ name, label, icon: Icon }) => (
             <div
@@ -87,7 +87,7 @@ export default function ButtonDocsPage() {
 
       {/* Sizes */}
       <section className="space-y-4">
-        <h2 className="text-ink text-lg font-semibold">Size Ladder</h2>
+        <h2 className="text-ink text-lg font-medium">Size Ladder</h2>
         <div className="border-hairline bg-surface-card shadow-subtle flex flex-wrap items-center gap-6 rounded-xl border p-6">
           <div className="flex items-center gap-3">
             <code className="text-muted-text font-mono text-xs">
@@ -120,7 +120,7 @@ export default function ButtonDocsPage() {
 
       {/* Shapes (Border Radii) */}
       <section className="space-y-4">
-        <h2 className="text-ink text-lg font-semibold">Shapes</h2>
+        <h2 className="text-ink text-lg font-medium">Shapes</h2>
         <div className="border-hairline bg-surface-card shadow-subtle flex flex-wrap items-center gap-6 rounded-xl border p-6">
           <div className="flex items-center gap-3">
             <code className="text-muted-text font-mono text-xs">
@@ -162,7 +162,7 @@ export default function ButtonDocsPage() {
 
       {/* Icon & Loading States */}
       <section className="space-y-4">
-        <h2 className="text-ink text-lg font-semibold">
+        <h2 className="text-ink text-lg font-medium">
           Icons & Interactive States
         </h2>
         <div className="border-hairline bg-surface-card shadow-subtle flex flex-wrap items-center gap-6 rounded-xl border p-6">

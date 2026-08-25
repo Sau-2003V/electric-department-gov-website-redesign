@@ -17,7 +17,7 @@ export default function ComponentsIndexPage() {
   return (
     <div className="space-y-8">
       <div className="border-hairline border-b pb-6">
-        <h1 className="text-display-md text-ink font-semibold tracking-tight">
+        <h1 className="text-display-md text-ink font-medium tracking-tight">
           Components
         </h1>
         <p className="text-body text-muted-text mt-1.5">
@@ -40,7 +40,7 @@ export default function ComponentsIndexPage() {
                 Updated
               </Badge>
             </div>
-            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-semibold transition-colors">
+            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-medium transition-colors">
               Spinner
             </h2>
             <p className="text-body-sm text-muted-text mt-1">
@@ -49,7 +49,7 @@ export default function ComponentsIndexPage() {
             </p>
           </div>
 
-          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-semibold">
+          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-medium">
             <span>Explore 6+ variants</span>
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </div>
@@ -69,7 +69,7 @@ export default function ComponentsIndexPage() {
                 Updated
               </Badge>
             </div>
-            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-semibold transition-colors">
+            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-medium transition-colors">
               Select
             </h2>
             <p className="text-body-sm text-muted-text mt-1">
@@ -78,7 +78,7 @@ export default function ComponentsIndexPage() {
             </p>
           </div>
 
-          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-semibold">
+          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-medium">
             <span>Explore 4+ variants</span>
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </div>
@@ -98,7 +98,7 @@ export default function ComponentsIndexPage() {
                 Updated
               </Badge>
             </div>
-            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-semibold transition-colors">
+            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-medium transition-colors">
               Dropdown Menu
             </h2>
             <p className="text-body-sm text-muted-text mt-1">
@@ -107,7 +107,7 @@ export default function ComponentsIndexPage() {
             </p>
           </div>
 
-          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-semibold">
+          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-medium">
             <span>Explore 4+ variants</span>
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </div>
@@ -127,7 +127,7 @@ export default function ComponentsIndexPage() {
                 Updated
               </Badge>
             </div>
-            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-semibold transition-colors">
+            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-medium transition-colors">
               Dialog
             </h2>
             <p className="text-body-sm text-muted-text mt-1">
@@ -136,7 +136,7 @@ export default function ComponentsIndexPage() {
             </p>
           </div>
 
-          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-semibold">
+          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-medium">
             <span>Explore 4+ variants</span>
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </div>
@@ -156,7 +156,7 @@ export default function ComponentsIndexPage() {
                 Signature
               </Badge>
             </div>
-            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-semibold transition-colors">
+            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-medium transition-colors">
               Tabs & Nav-Pill-Group
             </h2>
             <p className="text-body-sm text-muted-text mt-1">
@@ -165,7 +165,7 @@ export default function ComponentsIndexPage() {
             </p>
           </div>
 
-          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-semibold">
+          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-medium">
             <span>Explore 5+ variants</span>
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </div>
@@ -185,7 +185,7 @@ export default function ComponentsIndexPage() {
                 Updated
               </Badge>
             </div>
-            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-semibold transition-colors">
+            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-medium transition-colors">
               Switch
             </h2>
             <p className="text-body-sm text-muted-text mt-1">
@@ -194,7 +194,7 @@ export default function ComponentsIndexPage() {
             </p>
           </div>
 
-          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-semibold">
+          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-medium">
             <span>Explore 9+ variants</span>
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </div>
@@ -214,7 +214,7 @@ export default function ComponentsIndexPage() {
                 Updated
               </Badge>
             </div>
-            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-semibold transition-colors">
+            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-medium transition-colors">
               Badge
             </h2>
             <p className="text-body-sm text-muted-text mt-1">
@@ -223,7 +223,7 @@ export default function ComponentsIndexPage() {
             </p>
           </div>
 
-          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-semibold">
+          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-medium">
             <span>Explore 20+ variants</span>
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </div>
@@ -243,7 +243,7 @@ export default function ComponentsIndexPage() {
                 Ready
               </Badge>
             </div>
-            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-semibold transition-colors">
+            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-medium transition-colors">
               Button
             </h2>
             <p className="text-body-sm text-muted-text mt-1">
@@ -252,7 +252,7 @@ export default function ComponentsIndexPage() {
             </p>
           </div>
 
-          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-semibold">
+          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-medium">
             <span>Explore 15+ variants</span>
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </div>
@@ -272,7 +272,7 @@ export default function ComponentsIndexPage() {
                 Updated
               </Badge>
             </div>
-            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-semibold transition-colors">
+            <h2 className="text-title-md text-ink group-hover:text-brand-accent mt-4 font-medium transition-colors">
               Input
             </h2>
             <p className="text-body-sm text-muted-text mt-1">
@@ -282,7 +282,7 @@ export default function ComponentsIndexPage() {
             </p>
           </div>
 
-          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-semibold">
+          <div className="border-hairline text-ink mt-6 flex items-center justify-between border-t pt-4 text-xs font-medium">
             <span>Explore 10+ variants</span>
             <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
           </div>

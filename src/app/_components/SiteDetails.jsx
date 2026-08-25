@@ -98,7 +98,7 @@ export default function SiteDetails() {
         <div className="mb-10 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-6">
           {statutoryColumns.map((col) => (
             <div key={col.title} className="flex flex-col">
-              <h3 className="border-hairline text-ink text-caption mb-3 border-b pb-1.5 font-semibold tracking-wider uppercase">
+              <h3 className="border-hairline text-ink text-caption mb-3 border-b pb-1.5 font-medium tracking-wider uppercase">
                 {col.title}
               </h3>
               <ul className="text-body-sm space-y-1.5">

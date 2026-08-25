@@ -37,7 +37,7 @@ function ServiceCard({ icon: Icon, title, subtitle }) {
       </div>
 
       <div className="flex flex-col gap-1">
-        <h3 className="text-[15px] font-semibold text-neutral-900">{title}</h3>
+        <h3 className="text-[15px] font-medium text-neutral-900">{title}</h3>
         <p className="text-sm text-neutral-500">{subtitle}</p>
       </div>
 
@@ -54,7 +54,7 @@ export default function QuickServices() {
     <div className="w-full bg-[#F4F1EA] px-8 py-10">
       <div className="mb-6 flex items-center gap-3">
         <span className="h-2px w-8 bg-orange-400" />
-        <h2 className="text-xs font-semibold tracking-[0.15em] text-neutral-600 uppercase">
+        <h2 className="text-xs font-medium tracking-[0.15em] text-neutral-600 uppercase">
           Quick Services
         </h2>
         <span className="h-px flex-1 bg-neutral-300" />

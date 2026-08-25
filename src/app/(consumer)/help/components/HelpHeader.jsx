@@ -6,7 +6,7 @@ export default function HelpHeader() {
   return (
     <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
       <div>
-        <h1 className="text-display-sm text-ink font-semibold tracking-tight">
+        <h1 className="text-display-sm text-ink font-medium tracking-tight">
           Help & Emergency Support
         </h1>
       </div>

@@ -37,7 +37,7 @@ export default function TabsDocsPage() {
       {/* Header */}
       <div className="border-hairline space-y-2 border-b pb-6">
         <div className="flex items-center gap-3">
-          <h1 className="text-ink text-3xl font-semibold tracking-tight">
+          <h1 className="text-ink text-3xl font-medium tracking-tight">
             Tabs & Nav-Pill-Group
           </h1>
           <Badge variant="accent" size="sm" shape="tag">
@@ -60,7 +60,7 @@ export default function TabsDocsPage() {
       {/* 1. Signature Nav-Pill-Group Demo */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">
+          <h2 className="text-ink text-lg font-medium">
             1. Signature Nav-Pill-Group (Product Switcher)
           </h2>
           <p className="text-muted-text text-xs">
@@ -93,7 +93,7 @@ export default function TabsDocsPage() {
                   <div className="bg-brand-accent/10 text-brand-accent mx-auto mb-2 flex size-10 items-center justify-center rounded-full">
                     <User className="size-5" />
                   </div>
-                  <h3 className="text-ink text-base font-semibold">
+                  <h3 className="text-ink text-base font-medium">
                     Personal Scheduling
                   </h3>
                   <p className="text-muted-text mt-1 text-xs">
@@ -116,7 +116,7 @@ export default function TabsDocsPage() {
                   <div className="bg-badge-orange/15 mx-auto mb-2 flex size-10 items-center justify-center rounded-full text-orange-600">
                     <Users className="size-5" />
                   </div>
-                  <h3 className="text-ink text-base font-semibold">
+                  <h3 className="text-ink text-base font-medium">
                     Team Scheduling & Round-Robin
                   </h3>
                   <p className="text-muted-text mt-1 text-xs">
@@ -139,7 +139,7 @@ export default function TabsDocsPage() {
                   <div className="bg-badge-violet/15 mx-auto mb-2 flex size-10 items-center justify-center rounded-full text-violet-600">
                     <Building2 className="size-5" />
                   </div>
-                  <h3 className="text-ink text-base font-semibold">
+                  <h3 className="text-ink text-base font-medium">
                     Enterprise Deployment
                   </h3>
                   <p className="text-muted-text mt-1 text-xs">
@@ -164,7 +164,7 @@ export default function TabsDocsPage() {
       {/* 2. Visual Variants */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">2. Visual Variants</h2>
+          <h2 className="text-ink text-lg font-medium">2. Visual Variants</h2>
           <p className="text-muted-text text-xs">
             Pill, segmented squircle, surface card, and underline tab bars.
           </p>
@@ -174,7 +174,7 @@ export default function TabsDocsPage() {
           {/* Segmented Squircle */}
           <div className="border-hairline bg-surface-card shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="flex items-center justify-between">
-              <span className="text-ink text-sm font-semibold">
+              <span className="text-ink text-sm font-medium">
                 Segmented / Squircle
               </span>
               <code className="text-muted-text font-mono text-[11px]">
@@ -194,7 +194,7 @@ export default function TabsDocsPage() {
           {/* Underline Line */}
           <div className="border-hairline bg-surface-card shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="flex items-center justify-between">
-              <span className="text-ink text-sm font-semibold">
+              <span className="text-ink text-sm font-medium">
                 Underline Bar
               </span>
               <code className="text-muted-text font-mono text-[11px]">
@@ -214,7 +214,7 @@ export default function TabsDocsPage() {
           {/* Surface Card */}
           <div className="border-hairline bg-surface-card shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="flex items-center justify-between">
-              <span className="text-ink text-sm font-semibold">
+              <span className="text-ink text-sm font-medium">
                 Surface Card Wrapper
               </span>
               <code className="text-muted-text font-mono text-[11px]">
@@ -233,7 +233,7 @@ export default function TabsDocsPage() {
           {/* Ghost / Minimal */}
           <div className="border-hairline bg-surface-card shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="flex items-center justify-between">
-              <span className="text-ink text-sm font-semibold">
+              <span className="text-ink text-sm font-medium">
                 Ghost Minimal
               </span>
               <code className="text-muted-text font-mono text-[11px]">
@@ -254,7 +254,7 @@ export default function TabsDocsPage() {
       {/* 3. Size Ladder */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">3. Size Ladder</h2>
+          <h2 className="text-ink text-lg font-medium">3. Size Ladder</h2>
           <p className="text-muted-text text-xs">
             Compact (28px), Default (36px), and Large (44px) control heights.
           </p>
@@ -263,7 +263,7 @@ export default function TabsDocsPage() {
         <div className="border-hairline bg-surface-card shadow-subtle space-y-6 rounded-xl border p-6">
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-ink text-xs font-semibold">
+              <span className="text-ink text-xs font-medium">
                 Compact (28px height / text 12px)
               </span>
               <code className="text-muted-text font-mono text-[11px]">
@@ -281,7 +281,7 @@ export default function TabsDocsPage() {
 
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-ink text-xs font-semibold">
+              <span className="text-ink text-xs font-medium">
                 Default (36px height / text 14px)
               </span>
               <code className="text-muted-text font-mono text-[11px]">
@@ -299,7 +299,7 @@ export default function TabsDocsPage() {
 
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <span className="text-ink text-xs font-semibold">
+              <span className="text-ink text-xs font-medium">
                 Large (44px height / text 15px)
               </span>
               <code className="text-muted-text font-mono text-[11px]">
@@ -320,7 +320,7 @@ export default function TabsDocsPage() {
       {/* 4. Pricing / Billing Switcher Example */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">
+          <h2 className="text-ink text-lg font-medium">
             4. Billing Period Toggle Pattern
           </h2>
           <p className="text-muted-text text-xs">
@@ -345,7 +345,7 @@ export default function TabsDocsPage() {
           </Tabs>
           <p className="text-muted-text text-xs">
             Selected cycle:{" "}
-            <span className="text-ink font-semibold capitalize">
+            <span className="text-ink font-medium capitalize">
               {billingCycle}
             </span>
           </p>

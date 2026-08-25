@@ -23,7 +23,7 @@ export default function SettingsHeader() {
         />
       </div>
 
-      <h1 className="text-display-sm sm:text-display-md text-ink font-semibold tracking-tight">
+      <h1 className="text-display-sm sm:text-display-md text-ink font-medium tracking-tight">
         Settings
       </h1>
       <p className="text-body-sm sm:text-body text-muted-text mt-1 max-w-2xl">

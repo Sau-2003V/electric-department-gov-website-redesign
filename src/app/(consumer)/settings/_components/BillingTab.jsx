@@ -49,7 +49,7 @@ export default function BillingTab() {
       <div className="border-hairline bg-canvas shadow-subtle space-y-6 rounded-xl border p-5 sm:p-7">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="text-title-md text-ink font-semibold">
+            <h3 className="text-title-md text-ink font-medium">
               Invoice Delivery & Auto-Settlement
             </h3>
             <Badge
@@ -73,7 +73,7 @@ export default function BillingTab() {
               </div>
               <div className="space-y-0.5">
                 <div className="flex items-center gap-2">
-                  <p className="text-title-sm text-ink font-semibold">
+                  <p className="text-title-sm text-ink font-medium">
                     Paperless Green Bill (Opt-in)
                   </p>
                   <Badge
@@ -104,7 +104,7 @@ export default function BillingTab() {
               </div>
               <div className="space-y-0.5">
                 <div className="flex items-center gap-2">
-                  <p className="text-title-sm text-ink font-semibold">
+                  <p className="text-title-sm text-ink font-medium">
                     e-NACH / UPI Auto-Pay Mandate
                   </p>
                   <Badge
@@ -140,7 +140,7 @@ export default function BillingTab() {
               </div>
               <div className="space-y-0.5">
                 <div className="flex items-center gap-2">
-                  <p className="text-title-sm text-ink font-semibold">
+                  <p className="text-title-sm text-ink font-medium">
                     Rooftop Solar Export Credit Integration
                   </p>
                   <Badge
@@ -171,7 +171,7 @@ export default function BillingTab() {
               </div>
               <div className="space-y-0.5">
                 <div className="flex items-center gap-2">
-                  <p className="text-title-sm text-ink font-semibold">
+                  <p className="text-title-sm text-ink font-medium">
                     Government Domestic Tariff Subsidy
                   </p>
                   <Badge variant="badge-violet" size="sm" text="DBT Linked" />
@@ -196,7 +196,7 @@ export default function BillingTab() {
 
         {/* Preferred Payment Gateway */}
         <div className="border-hairline border-t pt-4">
-          <h4 className="text-title-sm text-ink mb-3 font-semibold">
+          <h4 className="text-title-sm text-ink mb-3 font-medium">
             Default Instant Payment Route
           </h4>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
@@ -209,7 +209,7 @@ export default function BillingTab() {
               }
               className={`cursor-pointer rounded-lg border p-3.5 transition-all ${
                 billingConfig.preferredGateway === "upi"
-                  ? "border-ink bg-surface-card text-ink ring-ink font-semibold ring-1"
+                  ? "border-ink bg-surface-card text-ink ring-ink font-medium ring-1"
                   : "border-hairline bg-canvas text-muted-text hover:border-hairline/80"
               }`}
             >
@@ -236,7 +236,7 @@ export default function BillingTab() {
               }
               className={`cursor-pointer rounded-lg border p-3.5 transition-all ${
                 billingConfig.preferredGateway === "netbanking"
-                  ? "border-ink bg-surface-card text-ink ring-ink font-semibold ring-1"
+                  ? "border-ink bg-surface-card text-ink ring-ink font-medium ring-1"
                   : "border-hairline bg-canvas text-muted-text hover:border-hairline/80"
               }`}
             >
@@ -261,7 +261,7 @@ export default function BillingTab() {
               }
               className={`cursor-pointer rounded-lg border p-3.5 transition-all ${
                 billingConfig.preferredGateway === "cards"
-                  ? "border-ink bg-surface-card text-ink ring-ink font-semibold ring-1"
+                  ? "border-ink bg-surface-card text-ink ring-ink font-medium ring-1"
                   : "border-hairline bg-canvas text-muted-text hover:border-hairline/80"
               }`}
             >

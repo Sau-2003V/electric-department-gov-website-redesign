@@ -423,7 +423,7 @@ const Switch = forwardRef(
               className={cn(
                 "font-sans transition-colors duration-100",
                 labelClasses,
-                isChecked ? "text-ink font-semibold" : "text-body"
+                isChecked ? "text-ink font-medium" : "text-body"
               )}
             >
               {label}

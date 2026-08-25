@@ -14,7 +14,7 @@ export default function HelplineBar() {
               <p className="text-on-dark-soft text-caption font-medium tracking-widest uppercase">
                 Toll Free Helpline
               </p>
-              <p className="text-on-dark text-title-sm font-mono font-semibold">
+              <p className="text-on-dark text-title-sm font-mono font-medium">
                 1800-419-1912 / 1912
               </p>
             </div>

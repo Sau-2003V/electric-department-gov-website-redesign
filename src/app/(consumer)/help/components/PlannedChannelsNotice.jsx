@@ -11,7 +11,7 @@ export default function PlannedChannelsNotice() {
         strokeWidth={1.8}
       />
       <p className="text-body-sm text-muted-text leading-relaxed">
-        <strong className="text-ink font-semibold">
+        <strong className="text-ink font-medium">
           Digital Roadmap Notice:
         </strong>{" "}
         Automated IVR phone intake, official WhatsApp grievance bot, and direct

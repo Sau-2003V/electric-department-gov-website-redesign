@@ -65,7 +65,7 @@ export default function Sidebar() {
             height={48}
           />
           <div className="min-w-0">
-            <p className="text-ink truncate text-sm font-semibold tracking-tight">
+            <p className="text-ink truncate text-sm font-medium tracking-tight">
               Vidhyut Portal
             </p>
             <p className="text-muted text-[11px]">Consumer Portal</p>
@@ -155,11 +155,11 @@ export default function Sidebar() {
             </div>
           ) : (
             <div className="flex items-center gap-3">
-              <div className="bg-primary text-on-primary flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-semibold">
+              <div className="bg-primary text-on-primary flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-medium">
                 {initials}
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-ink truncate text-sm font-semibold">
+                <p className="text-ink truncate text-sm font-medium">
                   {name}
                 </p>
                 <p className="text-muted truncate text-xs">

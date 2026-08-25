@@ -310,7 +310,7 @@ export default function LiveComplaintsSection() {
             </span>
             <Link
               href="/complaints/new"
-              className="bg-primary text-on-primary text-button hover:bg-primary-active inline-flex items-center gap-1.5 rounded-md px-4 py-2 font-semibold transition-all active:scale-[0.98]"
+              className="bg-primary text-on-primary text-button hover:bg-primary-active inline-flex items-center gap-1.5 rounded-md px-4 py-2 font-medium transition-all active:scale-[0.98]"
             >
               Register new complaint
               <ArrowRight className="h-3.5 w-3.5" />

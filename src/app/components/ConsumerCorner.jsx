@@ -108,7 +108,7 @@ function CategoryCard({ icon: Icon, title, count, items }) {
         <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-orange-50">
           <Icon className="h-4.5 w-4.5 text-orange-500" strokeWidth={2} />
         </div>
-        <h3 className="flex-1 text-[15px] font-semibold text-neutral-900">
+        <h3 className="flex-1 text-[15px] font-medium text-neutral-900">
           {title}
         </h3>
         <span className="text-sm text-neutral-400">{count}</span>
@@ -123,7 +123,7 @@ function CategoryCard({ icon: Icon, title, count, items }) {
                 {item.text}
               </span>
               {item.badge && (
-                <span className="shrink-0 rounded bg-orange-500 px-1.5 py-0.5 text-[10px] font-semibold tracking-wide text-white uppercase">
+                <span className="shrink-0 rounded bg-orange-500 px-1.5 py-0.5 text-[10px] font-medium tracking-wide text-white uppercase">
                   {item.badge}
                 </span>
               )}
@@ -140,10 +140,10 @@ export default function ConsumerCorner() {
     <div className="min-h-screen w-full bg-[#F4F1EA] px-10 py-8">
       <div className="mb-8 flex items-start justify-between">
         <div>
-          <p className="mb-1.5 text-xs font-semibold tracking-[0.15em] text-neutral-500 uppercase">
+          <p className="mb-1.5 text-xs font-medium tracking-[0.15em] text-neutral-500 uppercase">
             Self Service
           </p>
-          <h1 className="text-2xl font-bold text-neutral-900">
+          <h1 className="text-2xl font-normal text-neutral-900">
             Consumer Corner
           </h1>
         </div>

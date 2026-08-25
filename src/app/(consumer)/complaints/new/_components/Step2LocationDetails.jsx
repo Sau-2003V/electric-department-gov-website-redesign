@@ -73,7 +73,7 @@ export function Step2LocationDetails({ onBack, onNext }) {
     <form onSubmit={handleSubmit(onSubmit)} noValidate className="space-y-6">
       {/* Header */}
       <div>
-        <h2 className="text-title-lg text-ink font-semibold tracking-tight">
+        <h2 className="text-title-lg text-ink font-medium tracking-tight">
           Where is the problem?
         </h2>
         <p className="text-body-sm text-muted-text mt-1">
@@ -90,7 +90,7 @@ export function Step2LocationDetails({ onBack, onNext }) {
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-ink text-sm font-semibold tracking-tight">
+                <h3 className="text-ink text-sm font-medium tracking-tight">
                   Instant GPS auto-detection
                 </h3>
                 {gpsTagged && (

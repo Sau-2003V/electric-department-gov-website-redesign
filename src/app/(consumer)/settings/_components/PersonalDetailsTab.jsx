@@ -59,7 +59,7 @@ export default function PersonalDetailsTab({ user }) {
         className="border-hairline bg-canvas shadow-subtle space-y-6 rounded-xl border p-5 sm:p-7"
       >
         <div>
-          <h3 className="text-title-md text-ink font-semibold">
+          <h3 className="text-title-md text-ink font-medium">
             Consumer Profile Information
           </h3>
           <p className="text-body-sm text-muted-text mt-0.5">
@@ -169,7 +169,7 @@ export default function PersonalDetailsTab({ user }) {
         <div className="mb-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="text-title-sm text-ink font-semibold">
+              <h3 className="text-title-sm text-ink font-medium">
                 Sanctioned Grid Specifications
               </h3>
               <Badge
@@ -203,7 +203,7 @@ export default function PersonalDetailsTab({ user }) {
             <p className="text-caption text-muted-soft">
               Sanctioned Load & Phase
             </p>
-            <p className="text-ink mt-0.5 font-semibold">
+            <p className="text-ink mt-0.5 font-medium">
               5.00 kW · 1-Phase (230V)
             </p>
             <p className="text-muted-text mt-1 text-[11px]">
@@ -215,7 +215,7 @@ export default function PersonalDetailsTab({ user }) {
             <p className="text-caption text-muted-soft">
               Smart Electronic Meter ID
             </p>
-            <p className="text-ink mt-0.5 font-mono font-semibold">
+            <p className="text-ink mt-0.5 font-mono font-medium">
               MTR-8829410-GENUS
             </p>
             <p className="text-muted-text mt-1 text-[11px]">
@@ -227,7 +227,7 @@ export default function PersonalDetailsTab({ user }) {
             <p className="text-caption text-muted-soft">
               Transformer (DTR) Code
             </p>
-            <p className="text-ink mt-0.5 font-mono font-semibold">
+            <p className="text-ink mt-0.5 font-mono font-medium">
               DTR-250kVA-SHV-09
             </p>
             <p className="text-muted-text mt-1 text-[11px]">
