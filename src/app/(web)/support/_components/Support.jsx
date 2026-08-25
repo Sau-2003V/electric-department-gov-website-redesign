@@ -315,7 +315,7 @@ export default function SupportPage() {
           {/* Search Bar & Quick Suggestion Pills */}
           <div className="mt-8 max-w-3xl">
             <div className="border-hairline bg-canvas shadow-subtle flex items-center rounded-full border p-1.5 focus-within:ring-2 focus-within:ring-brand-accent/30 focus-within:border-brand-accent">
-              <div className="text-muted-soft pl-3.5 pr-2">
+              <div className="text-muted-soft pl-3.5 pr-2.5">
                 <Search className="size-5" />
               </div>
               <input
@@ -328,9 +328,8 @@ export default function SupportPage() {
               {searchTerm && (
                 <button
                   type="button"
-                  onClick={() => setSearchTerm("")}
-                  className="text-muted-soft hover:text-ink text-caption pr-3 font-medium transition-colors"
-                >
+                  text="sm"
+                  onClick={() => setSearchTerm("")}>
                   Clear
                 </button>
               )}
@@ -374,43 +373,42 @@ export default function SupportPage() {
                 </div>
               </div>
 
-              <div className="flex flex-wrap items-center gap-3">
-                <a href="tel:1912" className="inline-flex">
-                  <Button
-                    variant="primary"
-                    size="default"
-                    shape="pill"
-                    leftIcon={<Phone className="size-4" />}
-                  >
-                    Dial 1912 Now
-                  </Button>
-                </a>
-                <Link href="/complaints/new" className="inline-flex">
-                  <Button
-                    variant="secondary"
-                    size="default"
-                    shape="pill"
-                    leftIcon={<AlertTriangle className="size-4 text-warning" />}
-                  >
-                    Lodge Online Complaint
-                  </Button>
-                </Link>
-                <a
-                  href="https://wa.me/911912000000"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex"
-                >
-                  <Button
-                    variant="secondary"
-                    size="default"
-                    shape="pill"
-                    leftIcon={<MessageSquareText className="size-4 text-emerald-600" />}
-                  >
-                    WhatsApp Helpdesk
-                  </Button>
-                </a>
-              </div>
+                <div className="mt-1 flex flex-wrap items-center justify-center gap-3">
+                  <div className="mt-1 flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <Link href="tel:1912" className="w-full sm:w-auto">
+                    <Button
+                      variant="accent"
+                      size="md"
+                      className="w-full sm:w-auto"
+                      leftIcon={<Phone className="size-4" />}
+                    >
+                      <span>Dial 1912 Now</span>
+                    </Button>
+                    </Link>
+                    <Link href="/complaints/new" className="w-full sm:w-auto">
+                    <Button
+                      variant="secondary"
+                      size="md"
+                      className="w-full sm:w-auto"
+                      leftIcon={<AlertTriangle className="size-4 text-warning" />}
+                    >
+                      <span>Lodge Online Complaint</span>
+                    </Button>
+                    </Link>
+                  </div>
+                  <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <Link href="https://wa.me/911912000000" className="w-full sm:w-auto">
+                    <Button
+                      variant="secondary"
+                      size="md"
+                      className="w-full sm:w-auto"
+                      leftIcon={<MessageSquareText className="size-4 text-emerald-600" />}
+                    >
+                      <span>Whatsapp Helpdesk</span>
+                    </Button>
+                    </Link>
+                  </div>
+                </div>
             </div>
           </div>
         </div>
@@ -537,14 +535,16 @@ export default function SupportPage() {
                     required
                   />
                 </div>
-                <Button
-                  type="submit"
-                  variant="primary"
-                  loading={isSearchingDocket}
-                  rightIcon={<ArrowRight className="size-4" />}
-                >
-                  <span>Track Status</span>
-                </Button>
+                    <Button
+                      type="submit"
+                      variant="primary"
+                      size="md"
+                      className="w-full sm:w-auto"
+                      loading={isSearchingDocket}
+                      rightIcon={<ArrowRight className="size-4" />}
+                    >
+                      <span>Track Status</span>
+                    </Button>
               </form>
 
               {/* Sample Quick Demo Dockets */}
@@ -651,8 +651,9 @@ export default function SupportPage() {
                 </p>
                 <div className="mt-5 flex flex-col gap-2.5">
                   <Link href="/contact" className="inline-flex w-full">
-                    <Button
-                      variant="primary"
+                  <Button
+                      variant="accent"
+                      size="md"
                       className="bg-on-dark text-surface-dark hover:bg-on-dark/90 w-full justify-center"
                       leftIcon={<Building2 className="size-4" />}
                     >
@@ -829,29 +830,29 @@ export default function SupportPage() {
               Our consumer support team is committed to prompt grievance redressal and transparent status updates at every stage.
             </p>
           </div>
-
-          <div className="flex flex-wrap items-center gap-3 shrink-0">
-            <Link href="/complaints/new">
-              <Button
-                variant="primary"
-                size="lg"
-                shape="pill"
-                rightIcon={<ArrowRight className="size-4" />}
-              >
-                <span>Register Complaint</span>
-              </Button>
-            </Link>
-            <Link href="/contact">
-              <Button
-                variant="secondary"
-                size="lg"
-                shape="pill"
-                leftIcon={<Building2 className="size-4" />}
-              >
-                <span>Find Subdivision</span>
-              </Button>
-            </Link>
-          </div>
+          
+          <div className="mt-1 flex flex-col gap-3 sm:flex-row sm:items-center">
+                    <Link href="/complaints/new" className="w-full sm:w-auto">
+                    <Button
+                      variant="accent"
+                      size="lg"
+                      className="w-full sm:w-auto"
+                      rightIcon={<ArrowRight className="size-4" />}
+                    >
+                      <span>Register Complaint</span>
+                    </Button>
+                    </Link>
+                    <Link href="/contact" className="w-full sm:w-auto">
+                    <Button
+                      variant="secondary"
+                      size="lg"
+                      className="w-full sm:w-auto"
+                      leftIcon={<Building2 className="size-4" />}
+                    >
+                      <span>Find Subdivisiont</span>
+                    </Button>
+                    </Link>
+                  </div>
         </div>
       </section>
     </div>
