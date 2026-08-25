@@ -189,27 +189,28 @@ export default function HowItWorksPage() {
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <Link href="/complaints/new">
-              <Button
-                variant="primary"
-                size="lg"
-                shape="pill"
-                rightIcon={<ArrowRight className="size-4" />}
-              >
-                <span>Register a Complaint</span>
-              </Button>
-            </Link>
-
-            <Link href="/support">
-              <Button
-                variant="secondary"
-                size="lg"
-                shape="pill"
-                leftIcon={<Search className="size-4" />}
-              >
-                <span>Track Active Docket</span>
-              </Button>
-            </Link>
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <Link href="/complaints/new" className="w-full sm:w-auto">
+                    <Button
+                      variant="accent"
+                      size="lg"
+                      className="w-full sm:w-auto"
+                      rightIcon={<ArrowRight className="h-4 w-4" />}
+                    >
+                      <span>Register complaint</span>
+                    </Button>
+                  </Link>
+                  <Link href="/support" className="w-full sm:w-auto">
+                    <Button
+                      variant="secondary"
+                      size="lg"
+                      className="w-full sm:w-auto"
+                      leftIcon={<Search className="size-4" />}
+                    >
+                      <span>Track active Docket</span>
+                    </Button>
+                  </Link>
+                </div>
           </div>
         </div>
       </section>
@@ -420,27 +421,28 @@ export default function HowItWorksPage() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 shrink-0">
-            <Link href="/complaints/new">
-              <Button
-                variant="primary"
-                size="lg"
-                shape="pill"
-                rightIcon={<ArrowRight className="size-4" />}
-              >
-                <span>Register a Complaint</span>
-              </Button>
-            </Link>
-
-            <Link href="/login">
-              <Button
-                variant="secondary"
-                size="lg"
-                shape="pill"
-              >
-                <span>Sign in to Dashboard</span>
-              </Button>
-            </Link>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <Link href="/complaints/new" className="w-full sm:w-auto">
+                    <Button
+                      variant="accent"
+                      size="lg"
+                      className="w-full sm:w-auto"
+                      rightIcon={<ArrowRight className="h-4 w-4" />}
+                    >
+                      <span>Register complaint</span>
+                    </Button>
+                  </Link>
+                  <Link href="/login" className="w-full sm:w-auto">
+                    <Button
+                      variant="secondary"
+                      size="lg"
+                      className="w-full sm:w-auto"
+                    >
+                      <span>Sign in to Dashboard</span>
+                    </Button>
+                  </Link>
+                </div>
           </div>
         </div>
       </section>
