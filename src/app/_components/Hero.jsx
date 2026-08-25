@@ -108,7 +108,7 @@ export default function Hero() {
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
                   <Link href="/complaints/new" className="w-full sm:w-auto">
                     <Button
-                      variant="primary"
+                      variant="accent"
                       size="lg"
                       className="w-full sm:w-auto"
                       rightIcon={<ArrowRight className="h-4 w-4" />}
