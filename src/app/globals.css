@@ -28,6 +28,7 @@
   --ink: #111111;
   --body: #374151;
   --muted: #6b7280;
+  --muted-text: #6b7280;
   --muted-soft: #898989;
   --on-primary: #ffffff;
   --on-dark: #ffffff;
@@ -48,7 +49,7 @@
   --primary-foreground: var(--on-primary);
   --secondary: var(--surface-soft);
   --secondary-foreground: var(--ink);
-  --muted-foreground: var(--muted);
+  --muted-foreground: var(--muted-text);
   --accent: var(--surface-soft);
   --accent-foreground: var(--ink);
   --destructive: var(--error);
@@ -100,7 +101,8 @@
   /* Text & Ink */
   --color-ink: var(--ink);
   --color-body: var(--body);
-  --color-muted-text: var(--muted);
+  --color-muted: var(--muted-text);
+  --color-muted-text: var(--muted-text);
   --color-muted-soft: var(--muted-soft);
   --color-on-primary: var(--on-primary);
   --color-on-dark: var(--on-dark);
@@ -115,7 +117,6 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
@@ -175,45 +176,63 @@
 }
 
 .dark {
-  /* Semantic mappings for dark contexts aligned to design system */
-  --background: var(--surface-dark);
-  --foreground: var(--on-dark);
-  --card: var(--surface-dark-elevated);
-  --card-foreground: var(--on-dark);
-  --popover: var(--surface-dark);
-  --popover-foreground: var(--on-dark);
-  --primary: var(--on-dark);
-  --primary-foreground: var(--surface-dark);
-  --secondary: var(--surface-dark-elevated);
-  --secondary-foreground: var(--on-dark);
-  --muted: var(--surface-dark-elevated);
-  --muted-foreground: var(--on-dark-soft);
-  --accent: var(--surface-dark-elevated);
-  --accent-foreground: var(--on-dark);
-  --destructive: var(--error);
-  --destructive-foreground: var(--on-primary);
-  --border: #27272a;
-  --input: #27272a;
-  --ring: var(--brand-accent);
-
-  --canvas: var(--surface-dark);
-  --surface-soft: var(--surface-dark-elevated);
-  --surface-card: var(--surface-dark-elevated);
+  /* Surfaces & Canvas Hierarchy */
+  --canvas: #09090b;
+  --surface-dark: #09090b;
+  --surface-card: #141417;
+  --surface-dark-elevated: #18181c;
+  --surface-soft: #1e1e23;
   --surface-strong: #27272a;
   --hairline: #27272a;
-  --hairline-soft: #1f1f23;
+  --hairline-soft: #1b1b1f;
 
-  --ink: var(--on-dark);
-  --body: var(--on-dark-soft);
+  /* Typography & High-Contrast Ink */
+  --ink: #f4f4f5;
+  --body: #d4d4d8;
+  --muted: #a1a1aa;
+  --muted-text: #a1a1aa;
   --muted-soft: #71717a;
+  --on-primary: #09090b;
+  --on-dark: #f4f4f5;
+  --on-dark-soft: #a1a1aa;
 
-  --sidebar: var(--surface-dark);
-  --sidebar-foreground: var(--on-dark);
-  --sidebar-primary: var(--on-dark);
-  --sidebar-primary-foreground: var(--surface-dark);
-  --sidebar-accent: var(--surface-dark-elevated);
-  --sidebar-accent-foreground: var(--on-dark);
-  --sidebar-border: #27272a;
+  /* Action & Primary (High contrast white-on-dark CTA) */
+  --primary: #f4f4f5;
+  --primary-active: #e4e4e7;
+  --primary-foreground: #09090b;
+
+  /* Semantic Tokens */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --brand-accent: #3b82f6;
+
+  /* Shadcn / Base UI semantic tokens */
+  --background: var(--canvas);
+  --foreground: var(--ink);
+  --card: var(--surface-card);
+  --card-foreground: var(--ink);
+  --popover: var(--surface-dark-elevated);
+  --popover-foreground: var(--ink);
+  --secondary: var(--surface-soft);
+  --secondary-foreground: var(--ink);
+  --muted-foreground: var(--muted-text);
+  --accent: var(--surface-soft);
+  --accent-foreground: var(--ink);
+  --destructive: var(--error);
+  --destructive-foreground: #ffffff;
+  --border: var(--hairline);
+  --input: var(--hairline);
+  --ring: var(--brand-accent);
+
+  /* Sidebar */
+  --sidebar: var(--canvas);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--surface-card);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--hairline);
   --sidebar-ring: var(--brand-accent);
 
   --scrollbar-track: transparent;

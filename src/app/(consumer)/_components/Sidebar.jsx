@@ -8,8 +8,9 @@ import { CONSUMER_SIDEBAR_LINKS } from "@/constants/nav-links";
 import { useGetUser, useInvalidateUser } from "@/database/query/getUser";
 import { supabase } from "@/database/supabase/supabase";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
-export default function Sidebar({ mobileOpen = false, onClose }) {
+export default function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const { data: user, isLoading } = useGetUser();
@@ -46,21 +47,18 @@ export default function Sidebar({ mobileOpen = false, onClose }) {
   return (
     <aside
       className={cn(
-        "border-hairline bg-canvas fixed inset-y-0 left-0 z-40 flex w-72 flex-col border-r transition-transform duration-200 ease-out",
-        mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+        "border-hairline bg-canvas fixed inset-y-0 left-0 z-40 hidden w-72 flex-col border-r duration-200 ease-out md:flex"
       )}
     >
       {/* Brand Header */}
       <div className="border-hairline-soft flex h-16 items-center justify-between border-b px-4">
-        <Link
-          href="/dashboard"
-          className="flex min-w-0 items-center gap-3"
-          onClick={() => onClose?.()}
-        >
-          <img
+        <Link href="/dashboard" className="flex min-w-0 items-center gap-3">
+          <Image
             src="/image/logo.svg"
             alt="Vidhyut Portal Logo"
             className="h-8 w-8 object-contain"
+            width={48}
+            height={48}
           />
           <div className="min-w-0">
             <p className="text-ink truncate text-sm font-semibold tracking-tight">
@@ -69,16 +67,6 @@ export default function Sidebar({ mobileOpen = false, onClose }) {
             <p className="text-muted text-[11px]">Consumer Portal</p>
           </div>
         </Link>
-
-        {/* Mobile close button */}
-        <button
-          type="button"
-          onClick={() => onClose?.()}
-          className="text-muted hover:bg-surface-card hover:text-ink flex h-8 w-8 items-center justify-center rounded-md transition-colors md:hidden"
-          aria-label="Close sidebar"
-        >
-          <X size={18} />
-        </button>
       </div>
 
       {/* CTA Button & Navigation Links */}
@@ -93,7 +81,6 @@ export default function Sidebar({ mobileOpen = false, onClose }) {
           >
             <Link
               href="/complaints/new"
-              onClick={() => onClose?.()}
               aria-label="Register a new complaint"
               className="flex items-center justify-center gap-2"
             >
@@ -117,7 +104,6 @@ export default function Sidebar({ mobileOpen = false, onClose }) {
               <Link
                 key={item.label}
                 href={item.href}
-                onClick={() => onClose?.()}
                 className={cn(
                   "flex h-10 items-center gap-2.5 rounded-md px-3 text-sm transition-colors",
                   isActive
@@ -150,7 +136,11 @@ export default function Sidebar({ mobileOpen = false, onClose }) {
         </button>
 
         {/* User Card */}
-        <div className="border-hairline-soft bg-surface-card rounded-xl border p-3">
+        <Link
+          href="/settings"
+          className="border-hairline-soft bg-surface-card hover:bg-surface-soft block rounded-xl border p-3 transition-colors"
+          title="Account Settings"
+        >
           {isLoading ? (
             <div className="flex animate-pulse items-center gap-3">
               <div className="bg-surface-strong h-10 w-10 rounded-full" />
@@ -174,7 +164,7 @@ export default function Sidebar({ mobileOpen = false, onClose }) {
               </div>
             </div>
           )}
-        </div>
+        </Link>
       </div>
     </aside>
   );

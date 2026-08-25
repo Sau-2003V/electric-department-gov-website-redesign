@@ -39,7 +39,7 @@ export default function RootLayout({ children }) {
           disableTransitionOnChange
         >
           <NextTopLoader
-            color="#ff5600"
+            color="var(--color-primary)"
             initialPosition={0.08}
             crawlSpeed={200}
             height={3}
@@ -47,7 +47,6 @@ export default function RootLayout({ children }) {
             showSpinner={false}
             easing="ease"
             speed={200}
-            shadow="0 0 10px #ff5600,0 0 5px #ff5600"
           />
           <QueryProvider>
             {children}

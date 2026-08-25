@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { Copy, Check } from "lucide-react";
 import { toast } from "sonner";
 import { useGetUser } from "@/database/query/getUser";
@@ -21,6 +22,14 @@ export default function DashboardHeader() {
   const meterNumber =
     appMetadata.meter_number || user?.user_metadata?.meter_number || null;
 
+  const initials =
+    name
+      .split(" ")
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((part) => part[0]?.toUpperCase() || "")
+      .join("") || "C";
+
   const handleCopy = async () => {
     if (!meterNumber) return;
     try {
@@ -38,7 +47,7 @@ export default function DashboardHeader() {
   return (
     <section className="mb-6 sm:mb-8">
       {/* Greeting row */}
-      <div className="flex items-start justify-between">
+      <div className="flex items-start justify-between gap-4">
         <div>
           <p className="text-caption text-muted-text font-semibold tracking-wider uppercase">
             Namaste,
@@ -95,6 +104,20 @@ export default function DashboardHeader() {
             </>
           )}
         </div>
+
+        {/* User Icon Avatar (Visible ONLY on mobile: md:hidden) */}
+        {isLoading ? (
+          <div className="md:hidden size-10 rounded-full bg-surface-card animate-pulse border border-hairline shrink-0 mt-1" />
+        ) : (
+          <Link
+            href="/settings"
+            className="md:hidden flex size-10 items-center justify-center rounded-full bg-primary text-on-primary font-semibold text-sm shadow-subtle border border-hairline active:scale-95 transition-all hover:opacity-90 shrink-0 mt-1"
+            aria-label="Go to Account Settings"
+            title="Account Settings"
+          >
+            {initials}
+          </Link>
+        )}
       </div>
     </section>
   );

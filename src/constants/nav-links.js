@@ -1,4 +1,4 @@
-import { Bell, Grid2X2, HelpCircle, Plus, Ticket } from "lucide-react";
+import { Bell, Grid2X2, HelpCircle, Plus, Settings, Ticket } from "lucide-react";
 
 /**
  * Main navigation items for the Consumer application.
@@ -41,6 +41,14 @@ export const CONSUMER_NAV_ITEMS = [
     href: "/help",
     icon: HelpCircle,
   },
+  {
+    id: "settings",
+    label: "Settings",
+    shortLabel: "Settings",
+    href: "/settings",
+    icon: Settings,
+    isSidebarOnly: true,
+  },
 ];
 
 /**
@@ -51,6 +59,8 @@ export const CONSUMER_SIDEBAR_LINKS = CONSUMER_NAV_ITEMS.filter(
 );
 
 /**
- * Bottom navigation bar links (all consumer tabs with icons and short labels).
+ * Bottom navigation bar links (all consumer mobile tabs, excluding sidebar-only links like Settings).
  */
-export const CONSUMER_BOTTOM_NAV_LINKS = CONSUMER_NAV_ITEMS;
+export const CONSUMER_BOTTOM_NAV_LINKS = CONSUMER_NAV_ITEMS.filter(
+  (item) => !item.isSidebarOnly
+);
