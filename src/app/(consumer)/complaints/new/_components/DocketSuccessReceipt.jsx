@@ -2,7 +2,16 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { CheckCircle2, FileCheck, Copy, Check, RotateCcw } from "lucide-react";
+import {
+  CheckCircle2,
+  FileCheck,
+  Copy,
+  Check,
+  RotateCcw,
+  ImageIcon,
+  FileText,
+  Link2,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
@@ -16,6 +25,8 @@ export function DocketSuccessReceipt({ docket, onReset }) {
       setTimeout(() => setCopied(false), 2000);
     }
   };
+
+  const totalProofs = (docket?.filesCount || 0) + (docket?.linksCount || 0);
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6">
@@ -44,11 +55,13 @@ export function DocketSuccessReceipt({ docket, onReset }) {
         </div>
 
         {/* Receipt table / card */}
-        <div className="border-hairline bg-surface-soft mt-6 space-y-3 rounded-lg border p-4 text-xs sm:p-5">
+        <div className="border-hairline bg-surface-soft text-body-sm mt-6 space-y-3 rounded-lg border p-4 sm:p-5">
           <div className="border-hairline-soft flex items-center justify-between border-b pb-2.5">
-            <span className="text-muted-text">Docket ID:</span>
+            <span className="text-caption text-muted-text font-medium">
+              Docket ID:
+            </span>
             <div className="flex items-center gap-2">
-              <span className="text-ink font-mono font-medium">
+              <span className="text-body-sm text-ink font-mono font-medium">
                 {docket.id}
               </span>
               <button
@@ -67,24 +80,74 @@ export function DocketSuccessReceipt({ docket, onReset }) {
           </div>
 
           <div className="border-hairline-soft flex items-center justify-between border-b pb-2.5">
-            <span className="text-muted-text">Issue Category:</span>
-            <span className="text-ink font-medium">{docket.issue.title}</span>
+            <span className="text-caption text-muted-text font-medium">
+              Issue Category:
+            </span>
+            <span className="text-body-sm text-ink font-medium">
+              {docket.issue.title}
+            </span>
           </div>
 
           <div className="border-hairline-soft flex items-center justify-between border-b pb-2.5">
-            <span className="text-muted-text">Lodged Timestamp:</span>
-            <span className="text-ink font-normal">{docket.time}</span>
+            <span className="text-caption text-muted-text font-medium">
+              Lodged Timestamp:
+            </span>
+            <span className="text-body-sm text-ink font-normal">
+              {docket.time}
+            </span>
           </div>
 
-          <div className="flex items-start justify-between">
-            <span className="text-muted-text shrink-0">Fault Location:</span>
-            <span className="text-ink max-w-[280px] text-right leading-relaxed font-normal">
-              {docket.location.address}
-              {docket.location.landmark
+          <div
+            className={
+              totalProofs > 0
+                ? "border-hairline-soft flex items-start justify-between border-b pb-2.5"
+                : "flex items-start justify-between"
+            }
+          >
+            <span className="text-caption text-muted-text shrink-0 font-medium">
+              Fault Location:
+            </span>
+            <span className="text-body-sm text-ink max-w-[280px] text-right leading-relaxed font-normal">
+              {docket.location?.address ||
+                (docket.location?.latitude != null
+                  ? `${docket.location.latitude.toFixed(4)}° N, ${docket.location.longitude.toFixed(4)}° E`
+                  : "Tagged via GPS")}
+              {docket.location?.landmark
                 ? ` (Landmark: ${docket.location.landmark})`
                 : ""}
             </span>
           </div>
+
+          {totalProofs > 0 && (
+            <div className="flex items-center justify-between">
+              <span className="text-caption text-muted-text font-medium">
+                Attached Proofs:
+              </span>
+              <div className="text-body-sm text-ink flex flex-wrap items-center gap-3 font-medium">
+                {docket.imageCount > 0 && (
+                  <span className="flex items-center gap-1">
+                    <ImageIcon className="text-primary size-3.5" />
+                    {docket.imageCount} WebP Photo
+                    {docket.imageCount > 1 ? "s" : ""}
+                  </span>
+                )}
+                {docket.pdfCount > 0 && (
+                  <span className="flex items-center gap-1">
+                    <FileText className="size-3.5 text-red-500" />
+                    {docket.pdfCount} PDF Doc
+                    {docket.pdfCount > 1 ? "s" : ""}
+                  </span>
+                )}
+                {docket.linksCount > 0 && (
+                  <span className="flex items-center gap-1">
+                    <Link2 className="text-brand-accent size-3.5" />
+                    {docket.linksCount} Social Link
+                    {docket.linksCount > 1 ? "s" : ""}
+                  </span>
+                )}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Action buttons */}

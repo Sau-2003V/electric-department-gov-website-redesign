@@ -175,9 +175,7 @@ export default function SpinnerDocsPage() {
       {/* 4. Practical In-Context Usages */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-medium">
-            4. In-Context Usages
-          </h2>
+          <h2 className="text-ink text-lg font-medium">4. In-Context Usages</h2>
           <p className="text-muted-text text-xs">
             Spinners embedded inside buttons and card loading states.
           </p>

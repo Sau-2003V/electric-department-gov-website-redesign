@@ -51,9 +51,7 @@ export default function ButtonDocsPage() {
     <div className="mx-auto max-w-5xl space-y-10 py-6">
       {/* Header */}
       <div className="border-hairline space-y-2 border-b pb-6">
-        <h1 className="text-ink text-3xl font-medium tracking-tight">
-          Button
-        </h1>
+        <h1 className="text-ink text-3xl font-medium tracking-tight">Button</h1>
         <p className="text-muted-text text-sm">
           Interactive action buttons with all design system variants, size
           ladder, shapes, icon slots, and loading states.

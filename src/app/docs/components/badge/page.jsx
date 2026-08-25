@@ -176,9 +176,7 @@ export default function BadgeDocsPage() {
       {/* 4. Semantic Statuses */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-medium">
-            4. Semantic Statuses
-          </h2>
+          <h2 className="text-ink text-lg font-medium">4. Semantic Statuses</h2>
           <p className="text-muted-text text-xs">
             Subtle background tints with matching borders or solid emphasis
             fills.

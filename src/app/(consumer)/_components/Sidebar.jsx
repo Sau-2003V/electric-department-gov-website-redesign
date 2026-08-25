@@ -159,9 +159,7 @@ export default function Sidebar() {
                 {initials}
               </div>
               <div className="min-w-0 flex-1">
-                <p className="text-ink truncate text-sm font-medium">
-                  {name}
-                </p>
+                <p className="text-ink truncate text-sm font-medium">{name}</p>
                 <p className="text-muted truncate text-xs">
                   {meterNumber ? `Meter ${meterNumber}` : "Meter not linked"}
                 </p>

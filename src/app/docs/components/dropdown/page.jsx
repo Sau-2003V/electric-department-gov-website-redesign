@@ -61,9 +61,7 @@ export default function DropdownDocsPage() {
       {/* 1. Interactive Demos */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-medium">
-            1. Interactive Menus
-          </h2>
+          <h2 className="text-ink text-lg font-medium">1. Interactive Menus</h2>
           <p className="text-muted-text text-xs">
             Click any trigger below to preview popover menus.
           </p>

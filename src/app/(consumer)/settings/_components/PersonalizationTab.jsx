@@ -124,9 +124,7 @@ export default function PersonalizationTab() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Sun className="text-warning size-4" />
-                <span className="text-ink text-sm font-medium">
-                  Light Mode
-                </span>
+                <span className="text-ink text-sm font-medium">Light Mode</span>
               </div>
               {mounted && theme === "light" && (
                 <span className="bg-primary text-on-primary flex size-4.5 items-center justify-center rounded-full">
@@ -166,9 +164,7 @@ export default function PersonalizationTab() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Moon className="text-brand-accent size-4" />
-                <span className="text-ink text-sm font-medium">
-                  Dark Mode
-                </span>
+                <span className="text-ink text-sm font-medium">Dark Mode</span>
               </div>
               {mounted && theme === "dark" && (
                 <span className="bg-primary text-on-primary flex size-4.5 items-center justify-center rounded-full">

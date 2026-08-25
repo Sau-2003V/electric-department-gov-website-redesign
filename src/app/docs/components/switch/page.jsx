@@ -233,9 +233,7 @@ export default function SwitchDocsPage() {
           {/* Large */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-ink text-xs font-medium">
-                Large (44px)
-              </span>
+              <span className="text-ink text-xs font-medium">Large (44px)</span>
               <code className="text-muted-text font-mono text-[11px]">
                 size=&quot;lg&quot;
               </code>

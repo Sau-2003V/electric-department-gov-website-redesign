@@ -19,7 +19,7 @@ export default function NewComplaintPage() {
   // locationData is set by Step2 on validated submit
   const [locationData, setLocationData] = useState(null);
 
-  // files / mediaLinks live here so Step3 review can show them
+  // files (compressed WebP images + raw PDFs, max 3) and mediaLinks (YouTube / Instagram / X)
   const [files, setFiles] = useState([]);
   const [mediaLinks, setMediaLinks] = useState([]);
 
@@ -29,74 +29,47 @@ export default function NewComplaintPage() {
   const currentIssue =
     ISSUES.find((i) => i.id === selectedIssueId) || ISSUES[0];
 
-  // ── File upload helpers (passed into Step2 if needed later) ─
-  const handleFileUpload = (input) => {
-    const rawFiles = input?.target?.files
-      ? Array.from(input.target.files)
-      : Array.isArray(input)
-        ? input
-        : Array.from(input || []);
-    if (!rawFiles.length) return;
-
-    setFiles((prev) => {
-      const remaining = Math.max(0, 5 - prev.length);
-      const toAdd = rawFiles.slice(0, remaining).map((f) => ({
-        name: f.name,
-        size:
-          f.size > 1024 * 1024
-            ? `${(f.size / (1024 * 1024)).toFixed(1)} MB`
-            : `${Math.max(1, Math.round(f.size / 1024))} KB`,
-        previewUrl:
-          f.type.startsWith("image/") && typeof URL !== "undefined"
-            ? URL.createObjectURL(f)
-            : null,
-      }));
-      return [...prev, ...toAdd];
-    });
-  };
-
-  const handleRemoveFile = (index) => {
-    setFiles((prev) => {
-      const target = prev[index];
-      if (target?.previewUrl && typeof URL !== "undefined") {
-        try {
-          URL.revokeObjectURL(target.previewUrl);
-        } catch {}
-      }
-      return prev.filter((_, idx) => idx !== index);
-    });
-  };
-
-  const handleAddMediaLink = (url) => setMediaLinks((prev) => [...prev, url]);
-
-  const handleRemoveMediaLink = (index) =>
-    setMediaLinks((prev) => prev.filter((_, idx) => idx !== index));
-
   // ── Step 2 → 3: receive validated location data ──────────────
   const handleLocationNext = (data) => {
     setLocationData(data);
     setStep(3);
   };
 
-  // ── Step 3 → 4: receive DB complaint from server action ──────
-  const handleSuccess = (complaint) => {
+  // ── Step 3 → 4: receive DB complaint ID from server action ──────
+  const handleSuccess = (complaintId) => {
+    const id = typeof complaintId === "object" ? complaintId?.id : complaintId;
+    const imageCount = files.filter((f) => f.type === "image").length;
+    const pdfCount = files.filter((f) => f.type === "pdf").length;
+
     setDocket({
-      id: complaint.id,
-      time: new Date(complaint.created_at).toLocaleString("en-IN", {
+      id,
+      time: new Date().toLocaleString("en-IN", {
         dateStyle: "medium",
         timeStyle: "short",
       }),
       issue: currentIssue,
       location: locationData,
       filesCount: files.length,
+      imageCount,
+      pdfCount,
       linksCount: mediaLinks.length,
     });
     setStep(4);
   };
 
   const handleReset = () => {
+    // Revoke any created preview URLs
+    files.forEach((f) => {
+      if (f.previewUrl && typeof URL !== "undefined") {
+        try {
+          URL.revokeObjectURL(f.previewUrl);
+        } catch {}
+      }
+    });
+
     setDocket(null);
     setStep(1);
+    setSelectedIssueId("outage");
     setNotes("");
     setLocationData(null);
     setFiles([]);
@@ -127,6 +100,11 @@ export default function NewComplaintPage() {
 
           {step === 2 && (
             <Step2LocationDetails
+              initialLocationData={locationData}
+              files={files}
+              onFilesChange={setFiles}
+              mediaLinks={mediaLinks}
+              onMediaLinksChange={setMediaLinks}
               onBack={() => setStep(1)}
               onNext={handleLocationNext}
             />

@@ -1,13 +1,14 @@
 "use server";
 
-import { complaintSchema } from "@/types/schema/complaint";
+import {
+  complaintSchema,
+  detectSocialPlatform,
+} from "@/types/schema/complaint";
 import { ISSUES } from "@/constants/issues";
 import { createClient } from "@/database/supabase/server";
 import { createAdminClient } from "@/database/supabase/admin";
 
 // ── Derive priority from issue title ────────────────────────────────────────
-// Looks up the canonical priority from shared ISSUES data so the client
-// never has to send it (and can't spoof it).
 function derivePriority(issueTitle) {
   const match = ISSUES.find(
     (i) => i.title.toLowerCase() === issueTitle?.toLowerCase()
@@ -26,12 +27,12 @@ function buildLocationString({ latitude, longitude, address }) {
 
 // ============================================================
 // CREATE COMPLAINT
-// Accepts a plain JS object (from React Hook Form).
-// priority and location are derived server-side.
+// 1. Authenticate user & validate schema.
+// 2. Insert complaint record into DB.
+// 3. Generate signed upload URLs for attached files.
+// 4. Return complaint ID and upload URLs to client.
 // ============================================================
-
 export async function createComplaint(payload) {
-  // ── Validate first (no I/O) ───────────────────────────────
   const validation = complaintSchema.safeParse(payload);
 
   if (!validation.success) {
@@ -44,9 +45,9 @@ export async function createComplaint(payload) {
 
   const data = validation.data;
 
-  // ── Auth (JWT claims — no network round-trip) ─────────────
+  // ── Auth check ────────────────────────────────────────────
   const supabase = await createClient();
-  const supabaseAdmin = await createAdminClient();
+  const supabaseAdmin = createAdminClient();
 
   const {
     data: { user },
@@ -59,7 +60,19 @@ export async function createComplaint(payload) {
     };
   }
 
-  // ── Derive server-side fields ─────────────────────────────
+  // ── Process social media links ─────────────────────────────
+  const socialUrls = [];
+  for (const item of data.url || []) {
+    const platform = detectSocialPlatform(item.url);
+    if (platform) {
+      socialUrls.push({
+        type: platform,
+        url: item.url.trim(),
+      });
+    }
+  }
+
+  // ── Insert complaint into DB ──────────────────────────────
   const priority = derivePriority(data.issue);
   const location = buildLocationString({
     latitude: data.latitude,
@@ -67,7 +80,6 @@ export async function createComplaint(payload) {
     address: data.address,
   });
 
-  // ── Insert ────────────────────────────────────────────────
   const { data: complaint, error: insertError } = await supabaseAdmin
     .from("complaints")
     .insert({
@@ -80,8 +92,10 @@ export async function createComplaint(payload) {
       latitude: data.latitude ?? null,
       location,
       priority,
+      status: "registered",
+      url: socialUrls,
     })
-    .select()
+    .select("id")
     .single();
 
   if (insertError) {
@@ -92,15 +106,38 @@ export async function createComplaint(payload) {
     };
   }
 
+  // ── Process file upload URLs if files are attached ─────────
+  let uploadUrls = [];
+
+  if (data.files && data.files.length > 0) {
+    // ponytail: create signed upload URLs in storage bucket 'complaints'
+    uploadUrls = await Promise.all(
+      data.files.map(async (file, idx) => {
+        const ext = file.type === "pdf" ? "pdf" : "webp";
+        const filePath = `${complaint.id}/${Date.now()}_${idx}.${ext}`;
+
+        const { data: signedData, error: signError } =
+          await supabaseAdmin.storage
+            .from("complaint-evidence")
+            .createSignedUploadUrl(filePath);
+
+        if (signError) {
+          console.warn("Signed upload URL error:", signError.message);
+        }
+
+        return {
+          type: file.type,
+          path: filePath,
+          signedUrl: signedData?.signedUrl || null,
+          token: signedData?.token || null,
+        };
+      })
+    );
+  }
+
   return {
     success: true,
-    complaint: {
-      id: complaint.id,
-      issue: complaint.issue,
-      status: complaint.status,
-      priority: complaint.priority,
-      created_at: complaint.created_at,
-    },
-    message: "Complaint submitted successfully.",
+    complaintId: complaint.id,
+    uploadUrls,
   };
 }

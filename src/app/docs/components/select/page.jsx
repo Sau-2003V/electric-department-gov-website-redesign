@@ -146,9 +146,7 @@ export default function SelectDocsPage() {
           {/* Validation Error State */}
           <div className="bg-canvas border-hairline shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="space-y-1">
-              <h3 className="text-ink text-sm font-medium">
-                Validation State
-              </h3>
+              <h3 className="text-ink text-sm font-medium">Validation State</h3>
               <p className="text-muted-text text-xs">
                 Error border and feedback message display.
               </p>

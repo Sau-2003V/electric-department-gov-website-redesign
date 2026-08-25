@@ -33,7 +33,7 @@ export function ComplaintStepper({ step, onStepChange }) {
                 >
                   <span
                     className={cn(
-                      "flex size-7 shrink-0 items-center justify-center rounded-md text-xs font-medium transition-all duration-150",
+                      "text-caption flex size-7 shrink-0 items-center justify-center rounded-md font-medium transition-all duration-150",
                       isCompleted
                         ? "border-hairline bg-surface-soft text-ink group-hover:border-ink/40 group-hover:bg-surface-strong border"
                         : isCurrent
@@ -50,7 +50,7 @@ export function ComplaintStepper({ step, onStepChange }) {
                   <div className="flex flex-col">
                     <span
                       className={cn(
-                        "text-xs font-medium tracking-tight sm:text-sm",
+                        "text-caption sm:text-body-sm font-medium tracking-tight",
                         isCurrent
                           ? "text-ink"
                           : isCompleted

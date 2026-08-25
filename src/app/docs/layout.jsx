@@ -46,9 +46,7 @@ export default function DocsLayout({ children }) {
               <span className="bg-ink shadow-subtle flex size-7 items-center justify-center rounded-lg text-xs font-medium text-white">
                 ED
               </span>
-              <span className="font-medium tracking-tight">
-                Design System
-              </span>
+              <span className="font-medium tracking-tight">Design System</span>
             </Link>
             <span className="text-hairline font-light">/</span>
             <span className="text-muted-text text-xs font-medium">Docs</span>
