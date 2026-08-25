@@ -149,7 +149,7 @@ export default function TopHeader() {
       </div>
 
       {/* 2. Main Navigation Bar */}
-      <nav className="border-hairline bg-canvas/95 dark:bg-surface-dark/95 sticky top-0 z-50 border-b backdrop-blur-md">
+      <nav className="border-hairline bg-canvas/95 dark:bg-surface-dark/95 sticky top-0 z-50 border-b px-4 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between py-3">
           {/* Logo & Org Title */}
           <Link href="/" className="group flex items-center gap-3">
@@ -303,6 +303,105 @@ export default function TopHeader() {
                   </motion.div>
                 ))}
 
+                {/* Mobile Preferences: Language, Font Size, Theme */}
+                <motion.div
+                  variants={{
+                    hidden: { opacity: 0, y: -6 },
+                    show: {
+                      opacity: 1,
+                      y: 0,
+                      transition: { duration: 0.2, ease: [0.2, 0, 0, 1] },
+                    },
+                  }}
+                  className="border-hairline mt-2 border-t pt-3"
+                >
+                  <p className="text-muted-text dark:text-on-dark-soft px-1 pb-2 text-[11px] font-semibold tracking-wider uppercase">
+                    Preferences & Accessibility
+                  </p>
+                  <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+                    {/* Language Selector */}
+                    <div className="bg-surface-card dark:bg-surface-dark-elevated border-hairline shadow-subtle flex items-center justify-between rounded-lg border p-1.5 pl-3">
+                      <div className="text-ink dark:text-on-dark flex items-center gap-2 text-xs font-medium">
+                        <Globe className="text-muted-text h-4 w-4 shrink-0" />
+                        <span>Language</span>
+                      </div>
+                      <Select
+                        value={selectedLang}
+                        onValueChange={setSelectedLang}
+                        size="compact"
+                      >
+                        <SelectTrigger
+                          variant="secondary"
+                          size="compact"
+                          className="h-8 min-w-[115px] text-xs font-medium"
+                          aria-label="Select Language"
+                        />
+                        <SelectContent className="z-[100] max-h-72 min-w-[170px]">
+                          {INDIAN_LANGUAGES.map((lang) => (
+                            <SelectItem key={lang.code} value={lang.name}>
+                              {lang.name}
+                              {lang.name !== lang.nativeName
+                                ? ` (${lang.nativeName})`
+                                : ""}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Font Size Selector */}
+                    <div className="bg-surface-card dark:bg-surface-dark-elevated border-hairline shadow-subtle flex items-center justify-between rounded-lg border p-1.5 pl-3">
+                      <div className="text-ink dark:text-on-dark flex items-center gap-2 text-xs font-medium">
+                        <Type className="text-muted-text h-4 w-4 shrink-0" />
+                        <span>Font Size</span>
+                      </div>
+                      <Select
+                        value={fontSize}
+                        onValueChange={handleFontSizeChange}
+                        size="compact"
+                      >
+                        <SelectTrigger
+                          variant="secondary"
+                          size="compact"
+                          className="h-8 min-w-[105px] text-xs font-medium"
+                          aria-label="Select Font Size"
+                        />
+                        <SelectContent className="z-[100] min-w-[140px]">
+                          <SelectItem value="90">Small (90%)</SelectItem>
+                          <SelectItem value="100">Default (100%)</SelectItem>
+                          <SelectItem value="110">Large (110%)</SelectItem>
+                          <SelectItem value="120">Extra (120%)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    {/* Theme Selector */}
+                    <div className="bg-surface-card dark:bg-surface-dark-elevated border-hairline shadow-subtle flex items-center justify-between rounded-lg border p-1.5 pl-3">
+                      <div className="text-ink dark:text-on-dark flex items-center gap-2 text-xs font-medium">
+                        <SunMoon className="text-muted-text h-4 w-4 shrink-0" />
+                        <span>Theme</span>
+                      </div>
+                      <Select
+                        value={mounted ? theme : "system"}
+                        onValueChange={(val) => setTheme(val)}
+                        size="compact"
+                      >
+                        <SelectTrigger
+                          variant="secondary"
+                          size="compact"
+                          className="h-8 min-w-[95px] text-xs font-medium capitalize"
+                          aria-label="Select Theme"
+                        />
+                        <SelectContent className="z-[100] min-w-[130px]">
+                          <SelectItem value="light">Light</SelectItem>
+                          <SelectItem value="dark">Dark</SelectItem>
+                          <SelectItem value="system">System</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                  </div>
+                </motion.div>
+
                 {/* Mobile Quick Emergency Contact Card */}
                 <motion.div
                   variants={{
@@ -313,7 +412,7 @@ export default function TopHeader() {
                       transition: { duration: 0.2, ease: [0.2, 0, 0, 1] },
                     },
                   }}
-                  className="border-hairline mt-2.5 border-t pt-3"
+                  className="border-hairline mt-1 border-t pt-3"
                 >
                   <div className="bg-surface-card border-hairline text-ink dark:bg-surface-dark-elevated dark:border-hairline dark:text-on-dark shadow-subtle flex items-center justify-between rounded-lg border p-3">
                     <div className="flex min-w-0 items-center gap-2.5">
