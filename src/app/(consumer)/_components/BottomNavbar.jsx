@@ -45,7 +45,7 @@ export default function BottomNavbar() {
                 className={cn(
                   "flex h-8 w-14 items-center justify-center rounded-full transition-all duration-200",
                   isActive
-                    ? "bg-surface-soft text-ink shadow-subtle font-semibold"
+                    ? "bg-surface-soft text-ink shadow-subtle font-medium"
                     : "text-muted-text group-hover:bg-surface-soft/80 group-hover:text-ink"
                 )}
               >

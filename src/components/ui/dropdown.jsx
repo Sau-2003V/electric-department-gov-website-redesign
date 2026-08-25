@@ -501,7 +501,7 @@ const DropdownLabel = forwardRef(({ className, ...props }, ref) => {
     <div
       ref={ref}
       className={cn(
-        "text-muted-text dark:text-on-dark-soft shrink-0 px-2.5 py-1.5 text-[11px] font-semibold tracking-wider uppercase select-none",
+        "text-muted-text dark:text-on-dark-soft shrink-0 px-2.5 py-1.5 text-[11px] font-medium tracking-wider uppercase select-none",
         className
       )}
       {...props}

@@ -77,7 +77,7 @@ export default function NoticeCard({ notice, isCopied, onCopyId, onDownload }) {
         </div>
 
         {/* Notice Title */}
-        <h2 className="text-title-sm text-ink group-hover:text-ink font-semibold tracking-tight">
+        <h2 className="text-title-sm text-ink group-hover:text-ink font-medium tracking-tight">
           {notice.title}
         </h2>
 

@@ -106,7 +106,7 @@ export default function Boxes({ sections }) {
               key={idx}
               className="border-hairline bg-surface-1 flex h-full flex-col rounded-xl border p-6 shadow-xs"
             >
-              <h3 className="text-card-title text-ink mb-2 font-semibold">
+              <h3 className="text-card-title text-ink mb-2 font-medium">
                 {it.title}
               </h3>
               <div className="text-body text-ink-muted mb-4">

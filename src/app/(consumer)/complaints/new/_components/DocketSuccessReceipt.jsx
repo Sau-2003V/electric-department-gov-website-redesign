@@ -31,13 +31,13 @@ export function DocketSuccessReceipt({ docket, onReset }) {
             </Badge>
           </div>
 
-          <h1 className="text-display-sm text-ink mt-3 font-semibold tracking-tight">
+          <h1 className="text-display-sm text-ink mt-3 font-medium tracking-tight">
             Docket #{docket.id}
           </h1>
 
           <p className="text-body-sm text-muted-text mt-1">
             Assigned directly to{" "}
-            <span className="text-ink font-semibold">
+            <span className="text-ink font-medium">
               {docket.issue.authority}
             </span>
           </p>
@@ -48,7 +48,7 @@ export function DocketSuccessReceipt({ docket, onReset }) {
           <div className="border-hairline-soft flex items-center justify-between border-b pb-2.5">
             <span className="text-muted-text">Docket ID:</span>
             <div className="flex items-center gap-2">
-              <span className="text-ink font-mono font-semibold">
+              <span className="text-ink font-mono font-medium">
                 {docket.id}
               </span>
               <button

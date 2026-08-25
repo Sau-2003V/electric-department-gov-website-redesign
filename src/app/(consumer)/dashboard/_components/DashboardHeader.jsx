@@ -49,7 +49,7 @@ export default function DashboardHeader() {
       {/* Greeting row */}
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="text-caption text-muted-text font-semibold tracking-wider uppercase">
+          <p className="text-caption text-muted-text font-medium tracking-wider uppercase">
             Namaste,
           </p>
 
@@ -60,12 +60,12 @@ export default function DashboardHeader() {
             </div>
           ) : (
             <>
-              <h1 className="text-display-md text-ink sm:text-display-lg mt-1 font-semibold">
+              <h1 className="text-display-md text-ink sm:text-display-lg mt-1 font-medium">
                 {name}
               </h1>
               <div className="text-body-sm sm:text-body text-muted-text mt-2 flex items-center gap-2 font-normal">
                 <span>Meter No.</span>
-                <span className="text-ink font-semibold">
+                <span className="text-ink font-medium">
                   {meterNumber ?? "—"}
                 </span>
                 {meterNumber && (
@@ -111,7 +111,7 @@ export default function DashboardHeader() {
         ) : (
           <Link
             href="/settings"
-            className="bg-primary text-on-primary shadow-subtle border-hairline mt-1 flex size-10 shrink-0 items-center justify-center rounded-full border text-sm font-semibold transition-all hover:opacity-90 active:scale-95 md:hidden"
+            className="bg-primary text-on-primary shadow-subtle border-hairline mt-1 flex size-10 shrink-0 items-center justify-center rounded-full border text-sm font-medium transition-all hover:opacity-90 active:scale-95 md:hidden"
             aria-label="Go to Account Settings"
             title="Account Settings"
           >

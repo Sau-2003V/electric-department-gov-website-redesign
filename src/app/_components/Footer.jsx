@@ -95,7 +95,7 @@ export default function Footer() {
                 <p className="text-on-dark-soft text-caption font-medium tracking-wider uppercase">
                   Electric Department
                 </p>
-                <p className="text-on-dark text-title-md font-semibold">
+                <p className="text-on-dark text-title-md font-medium">
                   Vidhyut Portal
                 </p>
               </div>
@@ -132,7 +132,7 @@ export default function Footer() {
           <div className="grid grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-5 lg:col-span-8">
             {footerColumns.map((col) => (
               <div key={col.title} className="flex flex-col">
-                <h4 className="text-on-dark text-caption mb-3 font-semibold tracking-wider uppercase">
+                <h4 className="text-on-dark text-caption mb-3 font-medium tracking-wider uppercase">
                   {col.title}
                 </h4>
                 <ul className="text-body-sm space-y-2">
@@ -154,7 +154,7 @@ export default function Footer() {
 
         {/* Related Portals Row */}
         <div className="border-surface-dark-elevated border-b py-6">
-          <p className="text-on-dark text-caption mb-2.5 font-semibold tracking-wider uppercase">
+          <p className="text-on-dark text-caption mb-2.5 font-medium tracking-wider uppercase">
             Related Portals:
           </p>
           <div className="text-body-sm flex flex-wrap gap-2">

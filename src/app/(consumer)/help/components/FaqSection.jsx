@@ -19,7 +19,7 @@ export default function FaqSection() {
         <div>
           <h2
             id="faq-heading"
-            className="text-title-lg text-ink font-semibold tracking-tight"
+            className="text-title-lg text-ink font-medium tracking-tight"
           >
             Frequently Asked Questions
           </h2>

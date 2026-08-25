@@ -17,7 +17,7 @@ export function ComplaintHeader() {
 
       <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
         <div>
-          <h1 className="text-display-sm text-ink font-semibold tracking-tight">
+          <h1 className="text-display-sm text-ink font-medium tracking-tight">
             Register a complaint
           </h1>
         </div>

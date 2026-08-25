@@ -28,7 +28,7 @@ function StatCard({ value, label, ghost, dark }) {
 
       <div className="relative min-w-0">
         <p
-          className={`text-10px wrap-break max-w-full leading-tight font-semibold tracking-wide sm:text-xs ${
+          className={`text-10px wrap-break max-w-full leading-tight font-medium tracking-wide sm:text-xs ${
             dark ? "text-neutral-300" : "text-neutral-500"
           }`}
         >
@@ -54,7 +54,7 @@ export default function Hero() {
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-16 lg:grid-cols-2">
         {/* Left column */}
         <div>
-          <span className="mb-6 inline-flex items-center gap-2 rounded-full bg-orange-100 px-3 py-1.5 text-xs font-semibold tracking-wide text-orange-600">
+          <span className="mb-6 inline-flex items-center gap-2 rounded-full bg-orange-100 px-3 py-1.5 text-xs font-medium tracking-wide text-orange-600">
             <span className="h-1.5 w-1.5 rounded-full bg-orange-500" />
             OFFICIAL PORTAL
           </span>

@@ -51,7 +51,7 @@ export default function QuickServices() {
                   <span className="border-hairline bg-canvas text-ink group-hover:bg-primary group-hover:text-on-primary mb-4 inline-flex h-10 w-10 items-center justify-center rounded-md border transition-colors">
                     <Icon className="h-5 w-5" strokeWidth={1.5} />
                   </span>
-                  <span className="text-ink text-title-sm block font-semibold transition-opacity group-hover:opacity-80">
+                  <span className="text-ink text-title-sm block font-medium transition-opacity group-hover:opacity-80">
                     {action.title}
                   </span>
                   <span className="text-muted-text text-body-sm mt-1 block leading-relaxed">

@@ -5,7 +5,7 @@ export default function ComplaintsStats({ totalCount = 0, activeCount = 0 }) {
         <span className="text-caption text-muted-text block font-medium">
           Total Complaints
         </span>
-        <div className="text-title-lg text-ink mt-1 font-semibold">
+        <div className="text-title-lg text-ink mt-1 font-medium">
           {totalCount}
         </div>
         <span className="text-caption text-muted-text mt-0.5 block">
@@ -17,7 +17,7 @@ export default function ComplaintsStats({ totalCount = 0, activeCount = 0 }) {
         <span className="text-caption text-muted-text block font-medium">
           Active Complaints
         </span>
-        <div className="text-title-lg text-ink mt-1 font-semibold">
+        <div className="text-title-lg text-ink mt-1 font-medium">
           {activeCount}
         </div>
         <span className="text-caption text-muted-text mt-0.5 block">

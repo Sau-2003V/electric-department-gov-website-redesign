@@ -19,7 +19,7 @@ export function Step1SelectIssue({
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-title-lg text-ink font-semibold tracking-tight">
+        <h2 className="text-title-lg text-ink font-medium tracking-tight">
           What problem are you facing?
         </h2>
         <p className="text-body-sm text-muted-text mt-1">
@@ -30,7 +30,7 @@ export function Step1SelectIssue({
       {/* Hazardous & Emergency Section */}
       {emergencyIssues.length > 0 && (
         <div className="space-y-2.5">
-          <div className="text-error flex items-center gap-1.5 text-xs font-semibold">
+          <div className="text-error flex items-center gap-1.5 text-xs font-medium">
             <AlertTriangle className="size-3.5 shrink-0" />
             <span>Hazard & Emergency (Highest Priority)</span>
           </div>
@@ -70,7 +70,7 @@ export function Step1SelectIssue({
                         <div className="flex flex-wrap items-center gap-2">
                           <h3
                             className={cn(
-                              "text-sm font-semibold tracking-tight",
+                              "text-sm font-medium tracking-tight",
                               isSelected ? "text-on-primary" : "text-ink"
                             )}
                           >
@@ -144,7 +144,7 @@ export function Step1SelectIssue({
                   <div className="flex items-start justify-between gap-2">
                     <h3
                       className={cn(
-                        "text-sm font-semibold tracking-tight",
+                        "text-sm font-medium tracking-tight",
                         isSelected ? "text-on-primary" : "text-ink"
                       )}
                     >

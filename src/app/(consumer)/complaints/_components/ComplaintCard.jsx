@@ -22,7 +22,7 @@ export default function ComplaintCard({ complaint }) {
     <div className="group hover:bg-surface-soft relative flex flex-col justify-between gap-4 p-4 transition-colors duration-150 sm:flex-row sm:items-center sm:p-5">
       <div className="min-w-0 flex-1">
         {/* Issue Title */}
-        <h2 className="text-title-sm text-ink group-hover:text-ink font-semibold tracking-tight">
+        <h2 className="text-title-sm text-ink group-hover:text-ink font-medium tracking-tight">
           {complaint.issue || complaint.title}
         </h2>
 

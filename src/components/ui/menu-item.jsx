@@ -121,7 +121,7 @@ const MenuItem = forwardRef(
               className={cn(
                 "leading-none transition-colors",
                 isChecked
-                  ? "text-ink dark:text-on-dark font-semibold"
+                  ? "text-ink dark:text-on-dark font-medium"
                   : "font-medium"
               )}
             >

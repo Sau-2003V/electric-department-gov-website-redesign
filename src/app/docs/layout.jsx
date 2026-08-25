@@ -43,10 +43,10 @@ export default function DocsLayout({ children }) {
               href="/"
               className="text-ink flex items-center gap-2 text-sm font-medium tracking-tight transition-opacity hover:opacity-80"
             >
-              <span className="bg-ink shadow-subtle flex size-7 items-center justify-center rounded-lg text-xs font-semibold text-white">
+              <span className="bg-ink shadow-subtle flex size-7 items-center justify-center rounded-lg text-xs font-medium text-white">
                 ED
               </span>
-              <span className="font-semibold tracking-tight">
+              <span className="font-medium tracking-tight">
                 Design System
               </span>
             </Link>
@@ -77,7 +77,7 @@ export default function DocsLayout({ children }) {
           <aside className="hidden lg:col-span-3 lg:block">
             <div className="sticky top-20 space-y-6">
               <div>
-                <h3 className="text-muted-soft mb-2.5 flex items-center gap-2 text-xs font-semibold tracking-wider uppercase">
+                <h3 className="text-muted-soft mb-2.5 flex items-center gap-2 text-xs font-medium tracking-wider uppercase">
                   <BookOpen className="size-3.5" />
                   <span>Overview</span>
                 </h3>
@@ -98,7 +98,7 @@ export default function DocsLayout({ children }) {
               </div>
 
               <div>
-                <h3 className="text-muted-soft mb-2.5 flex items-center gap-2 text-xs font-semibold tracking-wider uppercase">
+                <h3 className="text-muted-soft mb-2.5 flex items-center gap-2 text-xs font-medium tracking-wider uppercase">
                   <Component className="size-3.5" />
                   <span>Components</span>
                 </h3>

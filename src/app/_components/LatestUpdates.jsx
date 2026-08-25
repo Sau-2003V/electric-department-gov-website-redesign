@@ -73,7 +73,7 @@ export default function LatestUpdates() {
               <div className="flex items-center gap-4">
                 {/* Date Pill Box */}
                 <div className="border-hairline bg-surface-soft text-ink group-hover:bg-primary group-hover:text-on-primary flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-md border transition-colors">
-                  <span className="text-body-sm font-mono leading-none font-bold">
+                  <span className="text-body-sm font-mono leading-none font-normal">
                     {item.day}
                   </span>
                   <span className="text-[10px] font-medium tracking-wider uppercase">
@@ -82,7 +82,7 @@ export default function LatestUpdates() {
                 </div>
 
                 <div>
-                  <h3 className="text-ink text-title-sm leading-snug font-semibold transition-opacity group-hover:opacity-80">
+                  <h3 className="text-ink text-title-sm leading-snug font-medium transition-opacity group-hover:opacity-80">
                     {item.title}
                   </h3>
                   <span className="text-muted-text text-caption mt-1 inline-block font-normal">

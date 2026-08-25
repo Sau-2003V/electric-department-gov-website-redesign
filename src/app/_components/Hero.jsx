@@ -60,7 +60,7 @@ export default function Hero() {
                       )}
                     >
                       <div className="mb-4 sm:mb-0 sm:pr-6">
-                        <h2 className="text-title-sm text-ink font-semibold">
+                        <h2 className="text-title-sm text-ink font-medium">
                           {slide.title}
                         </h2>
                         <p className="text-body-sm text-muted-text mt-1">

@@ -92,7 +92,7 @@ export default function SwitchDocsPage() {
       {/* Header */}
       <div className="border-hairline space-y-2 border-b pb-6">
         <div className="flex items-center gap-3">
-          <h1 className="text-ink text-3xl font-semibold tracking-tight">
+          <h1 className="text-ink text-3xl font-medium tracking-tight">
             Switch
           </h1>
           <Badge variant="accent" size="sm" shape="tag">
@@ -113,13 +113,13 @@ export default function SwitchDocsPage() {
 
       {/* Interactive Hero Playground */}
       <section className="space-y-4">
-        <h2 className="text-ink text-lg font-semibold">
+        <h2 className="text-ink text-lg font-medium">
           Live Interactive Playground
         </h2>
         <div className="border-hairline bg-surface-card shadow-subtle flex flex-col items-center justify-between gap-6 rounded-2xl border p-8 sm:flex-row">
           <div className="space-y-1 text-center sm:text-left">
             <div className="flex items-center gap-2">
-              <h3 className="text-ink text-base font-semibold">
+              <h3 className="text-ink text-base font-medium">
                 Dynamic Spring Physics
               </h3>
               <Badge variant={demoChecked ? "success" : "secondary"} size="sm">
@@ -148,7 +148,7 @@ export default function SwitchDocsPage() {
       {/* 1. All Color Variants */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">
+          <h2 className="text-ink text-lg font-medium">
             1. Color Variants & Brand Tokens
           </h2>
           <p className="text-muted-text text-xs">
@@ -163,7 +163,7 @@ export default function SwitchDocsPage() {
               className="border-hairline bg-surface-card shadow-subtle flex items-center justify-between rounded-xl border p-4"
             >
               <div className="space-y-0.5">
-                <div className="text-ink text-xs font-semibold">{label}</div>
+                <div className="text-ink text-xs font-medium">{label}</div>
                 <code className="text-muted-text font-mono text-[11px]">
                   variant=&quot;{name}&quot;
                 </code>
@@ -181,7 +181,7 @@ export default function SwitchDocsPage() {
       {/* 2. Size Ladder */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">2. Size Ladder</h2>
+          <h2 className="text-ink text-lg font-medium">2. Size Ladder</h2>
           <p className="text-muted-text text-xs">
             Sized for compact toolbars, standard dialogs, and high-emphasis
             settings cards.
@@ -191,7 +191,7 @@ export default function SwitchDocsPage() {
           {/* Compact */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-ink text-xs font-semibold">
+              <span className="text-ink text-xs font-medium">
                 Compact (28px)
               </span>
               <code className="text-muted-text font-mono text-[11px]">
@@ -212,7 +212,7 @@ export default function SwitchDocsPage() {
           {/* Default */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-ink text-xs font-semibold">
+              <span className="text-ink text-xs font-medium">
                 Default (36px)
               </span>
               <code className="text-muted-text font-mono text-[11px]">
@@ -233,7 +233,7 @@ export default function SwitchDocsPage() {
           {/* Large */}
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <span className="text-ink text-xs font-semibold">
+              <span className="text-ink text-xs font-medium">
                 Large (44px)
               </span>
               <code className="text-muted-text font-mono text-[11px]">
@@ -256,7 +256,7 @@ export default function SwitchDocsPage() {
       {/* 3. Shapes: Pill vs Squircle Rounded */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">
+          <h2 className="text-ink text-lg font-medium">
             3. Shapes & Border Radii
           </h2>
           <p className="text-muted-text text-xs">
@@ -293,7 +293,7 @@ export default function SwitchDocsPage() {
       {/* 4. Real-world Settings Card Pattern */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">
+          <h2 className="text-ink text-lg font-medium">
             4. Form & Preferences Settings Card
           </h2>
           <p className="text-muted-text text-xs">
@@ -394,7 +394,7 @@ export default function SwitchDocsPage() {
 
       {/* 5. Disabled State */}
       <section className="space-y-4">
-        <h2 className="text-ink text-lg font-semibold">5. Disabled States</h2>
+        <h2 className="text-ink text-lg font-medium">5. Disabled States</h2>
         <div className="border-hairline bg-surface-card shadow-subtle flex flex-wrap items-center gap-6 rounded-xl border p-6">
           <Switch
             disabled

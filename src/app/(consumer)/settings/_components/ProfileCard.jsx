@@ -92,7 +92,7 @@ export default function ProfileCard({ user, isLoading }) {
       <div className="flex flex-col justify-between gap-6 lg:flex-row lg:items-center">
         <div className="flex items-start gap-4 sm:items-center">
           {/* Avatar Circle */}
-          <div className="bg-primary text-on-primary shadow-subtle relative flex size-16 shrink-0 items-center justify-center rounded-full text-xl font-semibold sm:size-18">
+          <div className="bg-primary text-on-primary shadow-subtle relative flex size-16 shrink-0 items-center justify-center rounded-full text-xl font-medium sm:size-18">
             {initials}
             <span className="bg-success ring-surface-card absolute right-0 bottom-0 flex size-4.5 items-center justify-center rounded-full text-[9px] text-white ring-2">
               <Check className="size-3 stroke-[3]" />
@@ -101,7 +101,7 @@ export default function ProfileCard({ user, isLoading }) {
 
           <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
-              <h2 className="text-title-lg sm:text-display-sm text-ink truncate font-semibold">
+              <h2 className="text-title-lg sm:text-display-sm text-ink truncate font-medium">
                 {name}
               </h2>
               <Badge
@@ -147,7 +147,7 @@ export default function ProfileCard({ user, isLoading }) {
               {/* Meter Number */}
               <div className="flex items-center gap-1.5">
                 <span className="text-muted-soft">Meter:</span>
-                <span className="text-ink font-mono font-semibold">
+                <span className="text-ink font-mono font-medium">
                   {meterNumber}
                 </span>
                 <button
@@ -189,7 +189,7 @@ export default function ProfileCard({ user, isLoading }) {
           <p className="text-caption text-muted-soft flex items-center gap-1">
             <Gauge className="size-3.5" /> Sanctioned Load
           </p>
-          <p className="text-title-sm text-ink font-semibold">5.00 kW</p>
+          <p className="text-title-sm text-ink font-medium">5.00 kW</p>
           <p className="text-muted-text text-[11px]">Single Phase (230V AC)</p>
         </div>
 
@@ -197,7 +197,7 @@ export default function ProfileCard({ user, isLoading }) {
           <p className="text-caption text-muted-soft flex items-center gap-1">
             <Zap className="size-3.5" /> Tariff Plan
           </p>
-          <p className="text-title-sm text-ink font-semibold">LMV-1 Domestic</p>
+          <p className="text-title-sm text-ink font-medium">LMV-1 Domestic</p>
           <p className="text-muted-text text-[11px]">Urban Telescopic Slabs</p>
         </div>
 
@@ -205,7 +205,7 @@ export default function ProfileCard({ user, isLoading }) {
           <p className="text-caption text-muted-soft flex items-center gap-1">
             <MapPin className="size-3.5" /> Service Division
           </p>
-          <p className="text-title-sm text-ink font-semibold">
+          <p className="text-title-sm text-ink font-medium">
             North Subdivision
           </p>
           <p className="text-muted-text text-[11px]">Circle IV · Zone 2</p>
@@ -215,7 +215,7 @@ export default function ProfileCard({ user, isLoading }) {
           <p className="text-caption text-muted-soft flex items-center gap-1">
             <ShieldCheck className="size-3.5" /> Billing Cycle
           </p>
-          <p className="text-title-sm text-ink font-semibold">
+          <p className="text-title-sm text-ink font-medium">
             Monthly (1st-5th)
           </p>
           <p className="text-success text-[11px] font-medium">

@@ -7,7 +7,7 @@ import { useSizeVariant } from "@/lib/size-context";
 
 const buttonVariants = cva(
   [
-    "group relative isolate inline-flex flex-row items-center justify-center font-sans font-semibold whitespace-nowrap cursor-pointer select-none rounded-md",
+    "group relative isolate inline-flex flex-row items-center justify-center font-sans font-medium whitespace-nowrap cursor-pointer select-none rounded-md",
     "transition-all duration-150 ease-out",
     "disabled:opacity-50 disabled:pointer-events-none disabled:cursor-not-allowed",
     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 dark:focus-visible:ring-ring/60",

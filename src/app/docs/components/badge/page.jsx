@@ -70,7 +70,7 @@ export default function BadgeDocsPage() {
       {/* Header */}
       <div className="border-hairline space-y-2 border-b pb-6">
         <div className="flex items-center gap-3">
-          <h1 className="text-ink text-3xl font-semibold tracking-tight">
+          <h1 className="text-ink text-3xl font-medium tracking-tight">
             Badge
           </h1>
           <Badge variant="badge-orange" size="sm" shape="tag">
@@ -91,7 +91,7 @@ export default function BadgeDocsPage() {
       {/* 1. Core & Surfaces */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">
+          <h2 className="text-ink text-lg font-medium">
             1. Core Surfaces & Monochrome
           </h2>
           <p className="text-muted-text text-xs">
@@ -116,7 +116,7 @@ export default function BadgeDocsPage() {
       {/* 2. Brand Accent */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">
+          <h2 className="text-ink text-lg font-medium">
             2. Brand Accent (Cal Blue)
           </h2>
           <p className="text-muted-text text-xs">
@@ -144,7 +144,7 @@ export default function BadgeDocsPage() {
       {/* 3. Badge Pastels */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">
+          <h2 className="text-ink text-lg font-medium">
             3. Badge Pastel Palette (from design.md)
           </h2>
           <p className="text-muted-text text-xs">
@@ -176,7 +176,7 @@ export default function BadgeDocsPage() {
       {/* 4. Semantic Statuses */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">
+          <h2 className="text-ink text-lg font-medium">
             4. Semantic Statuses
           </h2>
           <p className="text-muted-text text-xs">
@@ -203,7 +203,7 @@ export default function BadgeDocsPage() {
 
       {/* 5. Size Ladder */}
       <section className="space-y-4">
-        <h2 className="text-ink text-lg font-semibold">5. Size Ladder</h2>
+        <h2 className="text-ink text-lg font-medium">5. Size Ladder</h2>
         <div className="border-hairline bg-surface-card shadow-subtle flex flex-wrap items-center gap-6 rounded-xl border p-6">
           <div className="flex items-center gap-3">
             <code className="text-muted-text font-mono text-xs">
@@ -245,7 +245,7 @@ export default function BadgeDocsPage() {
 
       {/* 6. Shapes (Border Radius Scale) */}
       <section className="space-y-4">
-        <h2 className="text-ink text-lg font-semibold">
+        <h2 className="text-ink text-lg font-medium">
           6. Shapes & Border Radii
         </h2>
         <div className="border-hairline bg-surface-card shadow-subtle flex flex-wrap items-center gap-6 rounded-xl border p-6">
@@ -298,7 +298,7 @@ export default function BadgeDocsPage() {
 
       {/* 7. Indicators, Dots, and Statuses */}
       <section className="space-y-4">
-        <h2 className="text-ink text-lg font-semibold">
+        <h2 className="text-ink text-lg font-medium">
           7. Live Status Indicators & Dots
         </h2>
         <div className="border-hairline bg-surface-card shadow-subtle flex flex-wrap items-center gap-6 rounded-xl border p-6">
@@ -323,7 +323,7 @@ export default function BadgeDocsPage() {
       {/* 8. Interactive Filter Pills */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">
+          <h2 className="text-ink text-lg font-medium">
             8. Interactive Filter Tags
           </h2>
           <p className="text-muted-text text-xs">

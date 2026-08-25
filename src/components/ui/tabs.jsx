@@ -558,7 +558,7 @@ const TabItem = forwardRef(
             shape: isUnderline ? "line" : effectiveShape,
           }),
           isActive
-            ? "text-ink dark:text-on-dark font-semibold"
+            ? "text-ink dark:text-on-dark font-medium"
             : "text-muted-text hover:text-ink dark:text-on-dark-soft dark:hover:text-on-dark font-medium",
           className
         )}
@@ -577,7 +577,7 @@ const TabItem = forwardRef(
             {typeof badge === "string" || typeof badge === "number" ? (
               <span
                 className={cn(
-                  "border-hairline inline-flex items-center justify-center rounded-full border px-1.5 py-0.5 text-[10px] font-semibold transition-colors",
+                  "border-hairline inline-flex items-center justify-center rounded-full border px-1.5 py-0.5 text-[10px] font-medium transition-colors",
                   isSelected
                     ? "bg-surface-card text-ink dark:bg-surface-dark-elevated dark:text-on-dark"
                     : "bg-surface-soft text-muted-text dark:bg-surface-dark dark:text-on-dark-soft"
