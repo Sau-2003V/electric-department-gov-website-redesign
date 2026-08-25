@@ -1,6 +1,6 @@
 import DashboardHeader from "./_components/DashboardHeader";
 import SubdivisionSection from "./_components/SubdivisionSection";
-import OutageAlert from "./_components/OutageAlert";
+// import OutageAlert from "./_components/OutageAlert";
 import RecentComplaints from "./_components/RecentComplaints";
 import RecentNotices from "./_components/RecentNotices";
 import { getUser } from "@/database/query/getUser";
@@ -41,7 +41,7 @@ export default function DashboardPage() {
         <DashboardHeader />
 
         {/* Outage banner — full width */}
-        <OutageAlert />
+        {/* <OutageAlert /> */}
 
         {/* Subdivision contacts — full width */}
         <SubdivisionSection />

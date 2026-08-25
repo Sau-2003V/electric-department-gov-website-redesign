@@ -245,64 +245,64 @@
    ========================================================================== */
 
 @layer utilities {
-  /* Display XL: 64px (4rem), weight 600, line-height 1.05, tracking -2px (Cal Sans / Display) */
+  /* Display XL: 64px (4rem), weight 500, line-height 1.05, tracking -2px (Cal Sans / Display) */
   .text-display-xl {
     font-family: var(--font-display);
     font-size: 4rem;
     line-height: 1.05;
     letter-spacing: -2px;
-    font-weight: 600;
+    font-weight: 500;
   }
 
-  /* Display LG: 48px (3rem), weight 600, line-height 1.10, tracking -1.5px (Cal Sans / Display) */
+  /* Display LG: 48px (3rem), weight 500, line-height 1.10, tracking -1.5px (Cal Sans / Display) */
   .text-display-lg {
     font-family: var(--font-display);
     font-size: 3rem;
     line-height: 1.1;
     letter-spacing: -1.5px;
-    font-weight: 600;
+    font-weight: 500;
   }
 
-  /* Display MD: 36px (2.25rem), weight 600, line-height 1.15, tracking -1px (Cal Sans / Display) */
+  /* Display MD: 36px (2.25rem), weight 500, line-height 1.15, tracking -1px (Cal Sans / Display) */
   .text-display-md {
     font-family: var(--font-display);
     font-size: 2.25rem;
     line-height: 1.15;
     letter-spacing: -1px;
-    font-weight: 600;
+    font-weight: 500;
   }
 
-  /* Display SM: 28px (1.75rem), weight 600, line-height 1.20, tracking -0.5px (Cal Sans / Display) */
+  /* Display SM: 28px (1.75rem), weight 500, line-height 1.20, tracking -0.5px (Cal Sans / Display) */
   .text-display-sm {
     font-family: var(--font-display);
     font-size: 1.75rem;
     line-height: 1.2;
     letter-spacing: -0.5px;
-    font-weight: 600;
+    font-weight: 500;
   }
 
-  /* Title LG: 22px (1.375rem), weight 600, line-height 1.30, tracking -0.3px (Inter) */
+  /* Title LG: 22px (1.375rem), weight 500, line-height 1.30, tracking -0.3px (Inter) */
   .text-title-lg {
     font-size: 1.375rem;
     line-height: 1.3;
     letter-spacing: -0.3px;
-    font-weight: 600;
+    font-weight: 500;
   }
 
-  /* Title MD: 18px (1.125rem), weight 600, line-height 1.40, tracking 0 (Inter) */
+  /* Title MD: 18px (1.125rem), weight 500, line-height 1.40, tracking 0 (Inter) */
   .text-title-md {
     font-size: 1.125rem;
     line-height: 1.4;
     letter-spacing: 0;
-    font-weight: 600;
+    font-weight: 500;
   }
 
-  /* Title SM: 16px (1rem), weight 600, line-height 1.40, tracking 0 (Inter) */
+  /* Title SM: 16px (1rem), weight 500, line-height 1.40, tracking 0 (Inter) */
   .text-title-sm {
     font-size: 1rem;
     line-height: 1.4;
     letter-spacing: 0;
-    font-weight: 600;
+    font-weight: 500;
   }
 
   /* Body MD: 16px (1rem), weight 400, line-height 1.50, tracking 0 (Inter) */
@@ -349,12 +349,12 @@
     font-weight: 400;
   }
 
-  /* Button: 14px (0.875rem), weight 600, line-height 1.00, tracking 0 (Inter) */
+  /* Button: 14px (0.875rem), weight 500, line-height 1.00, tracking 0 (Inter) */
   .text-button {
     font-size: 0.875rem;
     line-height: 1;
     letter-spacing: 0;
-    font-weight: 600;
+    font-weight: 500;
   }
 
   /* Nav Link: 14px (0.875rem), weight 500, line-height 1.40, tracking 0 (Inter) */
