@@ -3,7 +3,6 @@
 import { ArrowRight, Check, AlertTriangle, Clock } from "lucide-react";
 import { ISSUES } from "./constants";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
 export function Step1SelectIssue({
@@ -30,7 +29,7 @@ export function Step1SelectIssue({
       {/* Hazardous & Emergency Section */}
       {emergencyIssues.length > 0 && (
         <div className="space-y-2.5">
-          <div className="text-error flex items-center gap-1.5 text-xs font-medium">
+          <div className="text-warning flex items-center gap-1.5 text-xs font-medium">
             <AlertTriangle className="size-3.5 shrink-0" />
             <span>Hazard & Emergency (Highest Priority)</span>
           </div>
@@ -55,17 +54,12 @@ export function Step1SelectIssue({
                     "group focus-visible:ring-ring relative flex cursor-pointer flex-col justify-between rounded-lg border p-4 text-left transition-all duration-150 select-none focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]",
                     isSelected
                       ? "border-primary bg-primary text-on-primary shadow-subtle"
-                      : "border-error/30 bg-error/5 text-ink hover:border-error/50 hover:bg-error/10"
+                      : "border-warning/30 bg-warning/5 text-ink hover:border-warning/50 hover:bg-warning/10"
                   )}
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="flex items-start gap-2.5">
-                      <AlertTriangle
-                        className={cn(
-                          "mt-0.5 size-4 shrink-0",
-                          isSelected ? "text-warning" : "text-error"
-                        )}
-                      />
+                      <AlertTriangle className="text-warning mt-0.5 size-4 shrink-0" />
                       <div>
                         <div className="flex flex-wrap items-center gap-2">
                           <h3
@@ -93,7 +87,7 @@ export function Step1SelectIssue({
                         "flex size-4 shrink-0 items-center justify-center rounded-full border transition-all duration-150",
                         isSelected
                           ? "border-brand-accent bg-brand-accent text-white"
-                          : "border-error/40 bg-surface-card group-hover:border-error"
+                          : "border-warning/40 bg-surface-card group-hover:border-warning"
                       )}
                     >
                       {isSelected && (
