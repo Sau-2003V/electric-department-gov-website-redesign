@@ -1,7 +1,18 @@
 "use client";
 
 import { useState } from "react";
-import { User, Mail, Phone, MapPin, Globe, Lock, Save, CheckCircle2, Building, Zap } from "lucide-react";
+import {
+  User,
+  Mail,
+  Phone,
+  MapPin,
+  Globe,
+  Lock,
+  Save,
+  CheckCircle2,
+  Building,
+  Zap,
+} from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -34,7 +45,8 @@ export default function PersonalDetailsTab({ user }) {
     setTimeout(() => {
       setIsSaving(false);
       toast.success("Profile information updated successfully", {
-        description: "Your contact details and premises address have been synced.",
+        description:
+          "Your contact details and premises address have been synced.",
       });
     }, 800);
   };
@@ -42,17 +54,21 @@ export default function PersonalDetailsTab({ user }) {
   return (
     <div className="space-y-6">
       {/* Form Container */}
-      <form onSubmit={handleSave} className="border border-hairline bg-canvas rounded-xl p-5 sm:p-7 shadow-subtle space-y-6">
+      <form
+        onSubmit={handleSave}
+        className="border-hairline bg-canvas shadow-subtle space-y-6 rounded-xl border p-5 sm:p-7"
+      >
         <div>
           <h3 className="text-title-md text-ink font-semibold">
             Consumer Profile Information
           </h3>
           <p className="text-body-sm text-muted-text mt-0.5">
-            Update your contact preferences, personal particulars, and billing delivery address.
+            Update your contact preferences, personal particulars, and billing
+            delivery address.
           </p>
         </div>
 
-        <div className="border-t border-hairline pt-5 grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div className="border-hairline grid grid-cols-1 gap-5 border-t pt-5 sm:grid-cols-2">
           {/* Full Name */}
           <Input
             label="Full Name (as per electricity records)"
@@ -132,7 +148,7 @@ export default function PersonalDetailsTab({ user }) {
         </div>
 
         {/* Save CTA Row */}
-        <div className="border-t border-hairline pt-5 flex items-center justify-between">
+        <div className="border-hairline flex items-center justify-between border-t pt-5">
           <p className="text-caption text-muted-soft hidden sm:block">
             Last profile verification: 14 Jan 2026
           </p>
@@ -149,46 +165,74 @@ export default function PersonalDetailsTab({ user }) {
       </form>
 
       {/* Read-Only Technical Connection Record Card */}
-      <div className="border border-hairline bg-surface-card rounded-xl p-5 sm:p-6 shadow-subtle">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+      <div className="border-hairline bg-surface-card shadow-subtle rounded-xl border p-5 sm:p-6">
+        <div className="mb-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
           <div>
             <div className="flex items-center gap-2">
               <h3 className="text-title-sm text-ink font-semibold">
                 Sanctioned Grid Specifications
               </h3>
-              <Badge variant="surface" size="sm" leadingIcon={Lock} text="Official Record" />
+              <Badge
+                variant="surface"
+                size="sm"
+                leadingIcon={Lock}
+                text="Official Record"
+              />
             </div>
             <p className="text-body-sm text-muted-text mt-0.5">
-              Technical parameters verified by the Department Electrical Inspector.
+              Technical parameters verified by the Department Electrical
+              Inspector.
             </p>
           </div>
           <Button
             type="button"
             variant="outline"
             size="sm"
-            onClick={() => toast.info("To request load alteration or meter shift, submit a new Service Request through the portal.")}
+            onClick={() =>
+              toast.info(
+                "To request load alteration or meter shift, submit a new Service Request through the portal."
+              )
+            }
           >
             Apply for Load Change
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4 border-t border-hairline text-body-sm">
-          <div className="bg-canvas p-3.5 rounded-lg border border-hairline">
-            <p className="text-caption text-muted-soft">Sanctioned Load & Phase</p>
-            <p className="font-semibold text-ink mt-0.5">5.00 kW · 1-Phase (230V)</p>
-            <p className="text-[11px] text-muted-text mt-1">Connected to Feeder F-04 Shivpur</p>
+        <div className="border-hairline text-body-sm grid grid-cols-1 gap-4 border-t pt-4 sm:grid-cols-3">
+          <div className="bg-canvas border-hairline rounded-lg border p-3.5">
+            <p className="text-caption text-muted-soft">
+              Sanctioned Load & Phase
+            </p>
+            <p className="text-ink mt-0.5 font-semibold">
+              5.00 kW · 1-Phase (230V)
+            </p>
+            <p className="text-muted-text mt-1 text-[11px]">
+              Connected to Feeder F-04 Shivpur
+            </p>
           </div>
 
-          <div className="bg-canvas p-3.5 rounded-lg border border-hairline">
-            <p className="text-caption text-muted-soft">Smart Electronic Meter ID</p>
-            <p className="font-mono font-semibold text-ink mt-0.5">MTR-8829410-GENUS</p>
-            <p className="text-[11px] text-muted-text mt-1">Installed & Sealed: 10 Nov 2024</p>
+          <div className="bg-canvas border-hairline rounded-lg border p-3.5">
+            <p className="text-caption text-muted-soft">
+              Smart Electronic Meter ID
+            </p>
+            <p className="text-ink mt-0.5 font-mono font-semibold">
+              MTR-8829410-GENUS
+            </p>
+            <p className="text-muted-text mt-1 text-[11px]">
+              Installed & Sealed: 10 Nov 2024
+            </p>
           </div>
 
-          <div className="bg-canvas p-3.5 rounded-lg border border-hairline">
-            <p className="text-caption text-muted-soft">Transformer (DTR) Code</p>
-            <p className="font-mono font-semibold text-ink mt-0.5">DTR-250kVA-SHV-09</p>
-            <p className="text-[11px] text-muted-text mt-1">Pole No: P-14/B Shivpur Main</p>
+          <div className="bg-canvas border-hairline rounded-lg border p-3.5">
+            <p className="text-caption text-muted-soft">
+              Transformer (DTR) Code
+            </p>
+            <p className="text-ink mt-0.5 font-mono font-semibold">
+              DTR-250kVA-SHV-09
+            </p>
+            <p className="text-muted-text mt-1 text-[11px]">
+              Pole No: P-14/B Shivpur Main
+            </p>
           </div>
         </div>
       </div>

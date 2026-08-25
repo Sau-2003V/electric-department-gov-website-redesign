@@ -1,4 +1,11 @@
-import { Bell, Grid2X2, HelpCircle, Plus, Settings, Ticket } from "lucide-react";
+import {
+  Bell,
+  Grid2X2,
+  HelpCircle,
+  Plus,
+  Settings,
+  Ticket,
+} from "lucide-react";
 
 /**
  * Main navigation items for the Consumer application.

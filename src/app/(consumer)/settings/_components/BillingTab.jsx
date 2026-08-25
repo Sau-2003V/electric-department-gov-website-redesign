@@ -1,7 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { Leaf, CreditCard, Sun, Award, Landmark, CheckCircle, Save, ShieldCheck, ArrowUpRight } from "lucide-react";
+import {
+  Leaf,
+  CreditCard,
+  Sun,
+  Award,
+  Landmark,
+  CheckCircle,
+  Save,
+  ShieldCheck,
+  ArrowUpRight,
+} from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
@@ -27,7 +37,8 @@ export default function BillingTab() {
     setTimeout(() => {
       setIsSaving(false);
       toast.success("Billing preferences updated", {
-        description: "Your invoice delivery mode and payment mandate settings have been saved.",
+        description:
+          "Your invoice delivery mode and payment mandate settings have been saved.",
       });
     }, 600);
   };
@@ -35,24 +46,29 @@ export default function BillingTab() {
   return (
     <div className="space-y-6">
       {/* Billing Preferences Card */}
-      <div className="border border-hairline bg-canvas rounded-xl p-5 sm:p-7 shadow-subtle space-y-6">
+      <div className="border-hairline bg-canvas shadow-subtle space-y-6 rounded-xl border p-5 sm:p-7">
         <div>
           <div className="flex items-center gap-2">
             <h3 className="text-title-md text-ink font-semibold">
               Invoice Delivery & Auto-Settlement
             </h3>
-            <Badge variant="badge-emerald" size="sm" text="Green Tariff Active" />
+            <Badge
+              variant="badge-emerald"
+              size="sm"
+              text="Green Tariff Active"
+            />
           </div>
           <p className="text-body-sm text-muted-text mt-0.5">
-            Manage paperless rebate options, recurring auto-debit mandates, and rooftop solar billing.
+            Manage paperless rebate options, recurring auto-debit mandates, and
+            rooftop solar billing.
           </p>
         </div>
 
-        <div className="border-t border-hairline divide-y divide-hairline">
+        <div className="border-hairline divide-hairline divide-y border-t">
           {/* Green Bill Paperless Rebate */}
-          <div className="py-4.5 flex items-start justify-between gap-4">
+          <div className="flex items-start justify-between gap-4 py-4.5">
             <div className="flex items-start gap-3">
-              <div className="size-9 rounded-lg bg-emerald-50 text-emerald-600 dark:bg-emerald-950/40 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 flex items-center justify-center shrink-0 mt-0.5">
+              <div className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg border border-emerald-200 bg-emerald-50 text-emerald-600 dark:border-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-400">
                 <Leaf className="size-4.5" />
               </div>
               <div className="space-y-0.5">
@@ -60,10 +76,16 @@ export default function BillingTab() {
                   <p className="text-title-sm text-ink font-semibold">
                     Paperless Green Bill (Opt-in)
                   </p>
-                  <Badge variant="success-solid" size="sm" text="₹20 / Month Rebate" />
+                  <Badge
+                    variant="success-solid"
+                    size="sm"
+                    text="₹20 / Month Rebate"
+                  />
                 </div>
                 <p className="text-body-sm text-muted-text">
-                  Discontinue paper delivery by meter-readers. Receive authenticated digital PDF invoices on WhatsApp and Email to save trees and earn monthly bill discounts.
+                  Discontinue paper delivery by meter-readers. Receive
+                  authenticated digital PDF invoices on WhatsApp and Email to
+                  save trees and earn monthly bill discounts.
                 </p>
               </div>
             </div>
@@ -75,22 +97,28 @@ export default function BillingTab() {
           </div>
 
           {/* Auto-Debit Mandate (e-NACH / UPI) */}
-          <div className="py-4.5 flex items-start justify-between gap-4">
+          <div className="flex items-start justify-between gap-4 py-4.5">
             <div className="flex items-start gap-3">
-              <div className="size-9 rounded-lg bg-surface-card border border-hairline flex items-center justify-center text-ink shrink-0 mt-0.5">
-                <CreditCard className="size-4.5 text-brand-accent" />
+              <div className="bg-surface-card border-hairline text-ink mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg border">
+                <CreditCard className="text-brand-accent size-4.5" />
               </div>
               <div className="space-y-0.5">
                 <div className="flex items-center gap-2">
                   <p className="text-title-sm text-ink font-semibold">
                     e-NACH / UPI Auto-Pay Mandate
                   </p>
-                  <Badge variant="secondary" size="sm" text="Active · State Bank of India" />
+                  <Badge
+                    variant="secondary"
+                    size="sm"
+                    text="Active · State Bank of India"
+                  />
                 </div>
                 <p className="text-body-sm text-muted-text">
-                  Automatically settle monthly energy consumption charges 2 days before the due date. Avoid late payment surcharges (LPS) and disconnection notices.
+                  Automatically settle monthly energy consumption charges 2 days
+                  before the due date. Avoid late payment surcharges (LPS) and
+                  disconnection notices.
                 </p>
-                <div className="pt-1 flex items-center gap-2 text-[11px] text-muted-soft font-mono">
+                <div className="text-muted-soft flex items-center gap-2 pt-1 font-mono text-[11px]">
                   <span>Mandate Ref: UMRN-SBIN-892019482</span>
                   <span>•</span>
                   <span>Limit: Up to ₹15,000/mo</span>
@@ -105,9 +133,9 @@ export default function BillingTab() {
           </div>
 
           {/* Rooftop Solar Net Metering */}
-          <div className="py-4.5 flex items-start justify-between gap-4">
+          <div className="flex items-start justify-between gap-4 py-4.5">
             <div className="flex items-start gap-3">
-              <div className="size-9 rounded-lg bg-amber-50 text-amber-600 dark:bg-amber-950/40 dark:text-amber-400 border border-amber-200 dark:border-amber-800 flex items-center justify-center shrink-0 mt-0.5">
+              <div className="mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg border border-amber-200 bg-amber-50 text-amber-600 dark:border-amber-800 dark:bg-amber-950/40 dark:text-amber-400">
                 <Sun className="size-4.5" />
               </div>
               <div className="space-y-0.5">
@@ -115,10 +143,16 @@ export default function BillingTab() {
                   <p className="text-title-sm text-ink font-semibold">
                     Rooftop Solar Export Credit Integration
                   </p>
-                  <Badge variant="badge-orange" size="sm" text="3.0 kW Plant Linked" />
+                  <Badge
+                    variant="badge-orange"
+                    size="sm"
+                    text="3.0 kW Plant Linked"
+                  />
                 </div>
                 <p className="text-body-sm text-muted-text">
-                  Display bi-directional import/export power generation units on monthly bills and carry forward surplus kilowatt credits to subsequent billing cycles.
+                  Display bi-directional import/export power generation units on
+                  monthly bills and carry forward surplus kilowatt credits to
+                  subsequent billing cycles.
                 </p>
               </div>
             </div>
@@ -130,10 +164,10 @@ export default function BillingTab() {
           </div>
 
           {/* Government Tariff Subsidy Scheme */}
-          <div className="py-4.5 flex items-start justify-between gap-4">
+          <div className="flex items-start justify-between gap-4 py-4.5">
             <div className="flex items-start gap-3">
-              <div className="size-9 rounded-lg bg-surface-card border border-hairline flex items-center justify-center text-ink shrink-0 mt-0.5">
-                <Award className="size-4.5 text-badge-violet" />
+              <div className="bg-surface-card border-hairline text-ink mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg border">
+                <Award className="text-badge-violet size-4.5" />
               </div>
               <div className="space-y-0.5">
                 <div className="flex items-center gap-2">
@@ -143,9 +177,11 @@ export default function BillingTab() {
                   <Badge variant="badge-violet" size="sm" text="DBT Linked" />
                 </div>
                 <p className="text-body-sm text-muted-text">
-                  Direct Benefit Transfer (DBT) credit of ₹1.50/unit for consumption under 200 kWh/month under State Clean Energy & Domestic Welfare scheme.
+                  Direct Benefit Transfer (DBT) credit of ₹1.50/unit for
+                  consumption under 200 kWh/month under State Clean Energy &
+                  Domestic Welfare scheme.
                 </p>
-                <div className="pt-1 text-[11px] text-muted-soft font-mono">
+                <div className="text-muted-soft pt-1 font-mono text-[11px]">
                   Beneficiary Aadhar Token: *******4892 · Status: Verified
                 </div>
               </div>
@@ -159,63 +195,92 @@ export default function BillingTab() {
         </div>
 
         {/* Preferred Payment Gateway */}
-        <div className="pt-4 border-t border-hairline">
-          <h4 className="text-title-sm text-ink font-semibold mb-3">
+        <div className="border-hairline border-t pt-4">
+          <h4 className="text-title-sm text-ink mb-3 font-semibold">
             Default Instant Payment Route
           </h4>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
             <div
-              onClick={() => setBillingConfig((prev) => ({ ...prev, preferredGateway: "upi" }))}
-              className={`p-3.5 rounded-lg border cursor-pointer transition-all ${
+              onClick={() =>
+                setBillingConfig((prev) => ({
+                  ...prev,
+                  preferredGateway: "upi",
+                }))
+              }
+              className={`cursor-pointer rounded-lg border p-3.5 transition-all ${
                 billingConfig.preferredGateway === "upi"
-                  ? "border-ink bg-surface-card text-ink font-semibold ring-1 ring-ink"
+                  ? "border-ink bg-surface-card text-ink ring-ink font-semibold ring-1"
                   : "border-hairline bg-canvas text-muted-text hover:border-hairline/80"
               }`}
             >
-              <div className="flex items-center justify-between mb-1">
-                <span className="text-xs uppercase tracking-wider font-mono text-muted-soft">Fastest</span>
-                {billingConfig.preferredGateway === "upi" && <CheckCircle className="size-3.5 text-success" />}
+              <div className="mb-1 flex items-center justify-between">
+                <span className="text-muted-soft font-mono text-xs tracking-wider uppercase">
+                  Fastest
+                </span>
+                {billingConfig.preferredGateway === "upi" && (
+                  <CheckCircle className="text-success size-3.5" />
+                )}
               </div>
               <p className="text-sm">UPI / QR Code</p>
-              <p className="text-[11px] text-muted-text font-normal">Google Pay, PhonePe, BHIM (Zero Fee)</p>
+              <p className="text-muted-text text-[11px] font-normal">
+                Google Pay, PhonePe, BHIM (Zero Fee)
+              </p>
             </div>
 
             <div
-              onClick={() => setBillingConfig((prev) => ({ ...prev, preferredGateway: "netbanking" }))}
-              className={`p-3.5 rounded-lg border cursor-pointer transition-all ${
+              onClick={() =>
+                setBillingConfig((prev) => ({
+                  ...prev,
+                  preferredGateway: "netbanking",
+                }))
+              }
+              className={`cursor-pointer rounded-lg border p-3.5 transition-all ${
                 billingConfig.preferredGateway === "netbanking"
-                  ? "border-ink bg-surface-card text-ink font-semibold ring-1 ring-ink"
+                  ? "border-ink bg-surface-card text-ink ring-ink font-semibold ring-1"
                   : "border-hairline bg-canvas text-muted-text hover:border-hairline/80"
               }`}
             >
-              <div className="flex items-center justify-between mb-1">
-                <Landmark className="size-3.5 text-muted-soft" />
-                {billingConfig.preferredGateway === "netbanking" && <CheckCircle className="size-3.5 text-success" />}
+              <div className="mb-1 flex items-center justify-between">
+                <Landmark className="text-muted-soft size-3.5" />
+                {billingConfig.preferredGateway === "netbanking" && (
+                  <CheckCircle className="text-success size-3.5" />
+                )}
               </div>
               <p className="text-sm">Net Banking</p>
-              <p className="text-[11px] text-muted-text font-normal">SBI, HDFC, ICICI, PNB + 54 Banks</p>
+              <p className="text-muted-text text-[11px] font-normal">
+                SBI, HDFC, ICICI, PNB + 54 Banks
+              </p>
             </div>
 
             <div
-              onClick={() => setBillingConfig((prev) => ({ ...prev, preferredGateway: "cards" }))}
-              className={`p-3.5 rounded-lg border cursor-pointer transition-all ${
+              onClick={() =>
+                setBillingConfig((prev) => ({
+                  ...prev,
+                  preferredGateway: "cards",
+                }))
+              }
+              className={`cursor-pointer rounded-lg border p-3.5 transition-all ${
                 billingConfig.preferredGateway === "cards"
-                  ? "border-ink bg-surface-card text-ink font-semibold ring-1 ring-ink"
+                  ? "border-ink bg-surface-card text-ink ring-ink font-semibold ring-1"
                   : "border-hairline bg-canvas text-muted-text hover:border-hairline/80"
               }`}
             >
-              <div className="flex items-center justify-between mb-1">
-                <CreditCard className="size-3.5 text-muted-soft" />
-                {billingConfig.preferredGateway === "cards" && <CheckCircle className="size-3.5 text-success" />}
+              <div className="mb-1 flex items-center justify-between">
+                <CreditCard className="text-muted-soft size-3.5" />
+                {billingConfig.preferredGateway === "cards" && (
+                  <CheckCircle className="text-success size-3.5" />
+                )}
               </div>
               <p className="text-sm">Debit / Credit Card</p>
-              <p className="text-[11px] text-muted-text font-normal">RuPay, Visa, Mastercard via BBPS</p>
+              <p className="text-muted-text text-[11px] font-normal">
+                RuPay, Visa, Mastercard via BBPS
+              </p>
             </div>
           </div>
         </div>
 
         {/* Save Bar */}
-        <div className="border-t border-hairline pt-5 flex items-center justify-end">
+        <div className="border-hairline flex items-center justify-end border-t pt-5">
           <Button
             type="button"
             variant="primary"

@@ -1,7 +1,19 @@
 "use client";
 
 import { useState } from "react";
-import { KeyRound, Shield, Smartphone, Laptop, LogOut, Download, Check, AlertCircle, Save, Eye, EyeOff } from "lucide-react";
+import {
+  KeyRound,
+  Shield,
+  Smartphone,
+  Laptop,
+  LogOut,
+  Download,
+  Check,
+  AlertCircle,
+  Save,
+  Eye,
+  EyeOff,
+} from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -43,7 +55,8 @@ export default function SecurityTab() {
       setIsUpdatingPass(false);
       setPasswords({ current: "", newPass: "", confirmPass: "" });
       toast.success("Account password changed successfully", {
-        description: "Your new credentials are active. Please use them on your next sign in.",
+        description:
+          "Your new credentials are active. Please use them on your next sign in.",
       });
     }, 900);
   };
@@ -53,14 +66,16 @@ export default function SecurityTab() {
     setTimeout(() => {
       setIsRevokingSessions(false);
       toast.success("Other active sessions logged out", {
-        description: "All other browser and mobile app tokens have been terminated.",
+        description:
+          "All other browser and mobile app tokens have been terminated.",
       });
     }, 700);
   };
 
   const handleDownloadData = (type) => {
     toast.success(`Preparing ${type} export...`, {
-      description: "Your encrypted consumption and payment report is being generated.",
+      description:
+        "Your encrypted consumption and payment report is being generated.",
     });
   };
 
@@ -69,38 +84,50 @@ export default function SecurityTab() {
       {/* Password Change Form */}
       <form
         onSubmit={handlePasswordSubmit}
-        className="border border-hairline bg-canvas rounded-xl p-5 sm:p-7 shadow-subtle space-y-6"
+        className="border-hairline bg-canvas shadow-subtle space-y-6 rounded-xl border p-5 sm:p-7"
       >
         <div>
           <div className="flex items-center gap-2">
             <h3 className="text-title-md text-ink font-semibold">
               Security Credentials & Password
             </h3>
-            <Badge variant="surface" size="sm" leadingIcon={KeyRound} text="Encrypted" />
+            <Badge
+              variant="surface"
+              size="sm"
+              leadingIcon={KeyRound}
+              text="Encrypted"
+            />
           </div>
           <p className="text-body-sm text-muted-text mt-0.5">
-            Regularly rotate your password to protect sensitive meter telemetry and billing transactions.
+            Regularly rotate your password to protect sensitive meter telemetry
+            and billing transactions.
           </p>
         </div>
 
-        <div className="border-t border-hairline pt-5 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="border-hairline grid grid-cols-1 gap-4 border-t pt-5 sm:grid-cols-3">
           {/* Current Password */}
           <div className="relative">
             <Input
               label="Current Password"
               type={showCurrent ? "text" : "password"}
               value={passwords.current}
-              onChange={(e) => setPasswords((prev) => ({ ...prev, current: e.target.value }))}
+              onChange={(e) =>
+                setPasswords((prev) => ({ ...prev, current: e.target.value }))
+              }
               placeholder="••••••••"
               required
             />
             <button
               type="button"
               onClick={() => setShowCurrent(!showCurrent)}
-              className="absolute right-3 top-9 text-muted-soft hover:text-ink transition-colors"
+              className="text-muted-soft hover:text-ink absolute top-9 right-3 transition-colors"
               aria-label="Toggle password visibility"
             >
-              {showCurrent ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+              {showCurrent ? (
+                <EyeOff className="size-4" />
+              ) : (
+                <Eye className="size-4" />
+              )}
             </button>
           </div>
 
@@ -110,7 +137,9 @@ export default function SecurityTab() {
               label="New Password"
               type={showNew ? "text" : "password"}
               value={passwords.newPass}
-              onChange={(e) => setPasswords((prev) => ({ ...prev, newPass: e.target.value }))}
+              onChange={(e) =>
+                setPasswords((prev) => ({ ...prev, newPass: e.target.value }))
+              }
               placeholder="••••••••"
               helperText="Min. 8 chars with numbers & symbol"
               required
@@ -118,10 +147,14 @@ export default function SecurityTab() {
             <button
               type="button"
               onClick={() => setShowNew(!showNew)}
-              className="absolute right-3 top-9 text-muted-soft hover:text-ink transition-colors"
+              className="text-muted-soft hover:text-ink absolute top-9 right-3 transition-colors"
               aria-label="Toggle password visibility"
             >
-              {showNew ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+              {showNew ? (
+                <EyeOff className="size-4" />
+              ) : (
+                <Eye className="size-4" />
+              )}
             </button>
           </div>
 
@@ -131,22 +164,31 @@ export default function SecurityTab() {
               label="Confirm New Password"
               type={showConfirm ? "text" : "password"}
               value={passwords.confirmPass}
-              onChange={(e) => setPasswords((prev) => ({ ...prev, confirmPass: e.target.value }))}
+              onChange={(e) =>
+                setPasswords((prev) => ({
+                  ...prev,
+                  confirmPass: e.target.value,
+                }))
+              }
               placeholder="••••••••"
               required
             />
             <button
               type="button"
               onClick={() => setShowConfirm(!showConfirm)}
-              className="absolute right-3 top-9 text-muted-soft hover:text-ink transition-colors"
+              className="text-muted-soft hover:text-ink absolute top-9 right-3 transition-colors"
               aria-label="Toggle password visibility"
             >
-              {showConfirm ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+              {showConfirm ? (
+                <EyeOff className="size-4" />
+              ) : (
+                <Eye className="size-4" />
+              )}
             </button>
           </div>
         </div>
 
-        <div className="border-t border-hairline pt-4 flex items-center justify-end">
+        <div className="border-hairline flex items-center justify-end border-t pt-4">
           <Button
             type="submit"
             variant="primary"
@@ -159,11 +201,11 @@ export default function SecurityTab() {
       </form>
 
       {/* Two-Factor Authentication Toggle */}
-      <div className="border border-hairline bg-canvas rounded-xl p-5 sm:p-7 shadow-subtle">
+      <div className="border-hairline bg-canvas shadow-subtle rounded-xl border p-5 sm:p-7">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-3">
-            <div className="size-9 rounded-lg bg-surface-card border border-hairline flex items-center justify-center text-ink shrink-0 mt-0.5">
-              <Shield className="size-4.5 text-success" />
+            <div className="bg-surface-card border-hairline text-ink mt-0.5 flex size-9 shrink-0 items-center justify-center rounded-lg border">
+              <Shield className="text-success size-4.5" />
             </div>
             <div className="space-y-0.5">
               <div className="flex items-center gap-2">
@@ -173,7 +215,9 @@ export default function SecurityTab() {
                 <Badge variant="success" size="sm" text="Recommended" />
               </div>
               <p className="text-body-sm text-muted-text">
-                Require a 6-digit one-time password (OTP) sent to your registered mobile number for logins from new devices and major load/tariff change applications.
+                Require a 6-digit one-time password (OTP) sent to your
+                registered mobile number for logins from new devices and major
+                load/tariff change applications.
               </p>
             </div>
           </div>
@@ -186,8 +230,8 @@ export default function SecurityTab() {
       </div>
 
       {/* Active Sessions & Logged-In Devices */}
-      <div className="border border-hairline bg-canvas rounded-xl p-5 sm:p-7 shadow-subtle space-y-4">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+      <div className="border-hairline bg-canvas shadow-subtle space-y-4 rounded-xl border p-5 sm:p-7">
+        <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
           <div>
             <h3 className="text-title-sm text-ink font-semibold">
               Active Authorized Sessions
@@ -208,19 +252,19 @@ export default function SecurityTab() {
           </Button>
         </div>
 
-        <div className="divide-y divide-hairline border-t border-hairline">
+        <div className="divide-hairline border-hairline divide-y border-t">
           {/* Current Browser */}
-          <div className="py-3.5 flex items-center justify-between">
+          <div className="flex items-center justify-between py-3.5">
             <div className="flex items-center gap-3">
-              <div className="size-8 rounded-md bg-surface-card flex items-center justify-center text-ink">
-                <Laptop className="size-4 text-brand-accent" />
+              <div className="bg-surface-card text-ink flex size-8 items-center justify-center rounded-md">
+                <Laptop className="text-brand-accent size-4" />
               </div>
               <div>
-                <p className="text-sm font-semibold text-ink flex items-center gap-2">
+                <p className="text-ink flex items-center gap-2 text-sm font-semibold">
                   Chrome on Windows 11
                   <Badge variant="secondary" size="sm" text="Current Session" />
                 </p>
-                <p className="text-xs text-muted-soft font-mono">
+                <p className="text-muted-soft font-mono text-xs">
                   IP: 103.21.24.89 (Varanasi, India) · Active now
                 </p>
               </div>
@@ -228,16 +272,16 @@ export default function SecurityTab() {
           </div>
 
           {/* Mobile App */}
-          <div className="py-3.5 flex items-center justify-between">
+          <div className="flex items-center justify-between py-3.5">
             <div className="flex items-center gap-3">
-              <div className="size-8 rounded-md bg-surface-card flex items-center justify-center text-ink">
-                <Smartphone className="size-4 text-muted-text" />
+              <div className="bg-surface-card text-ink flex size-8 items-center justify-center rounded-md">
+                <Smartphone className="text-muted-text size-4" />
               </div>
               <div>
-                <p className="text-sm font-semibold text-ink">
+                <p className="text-ink text-sm font-semibold">
                   Vidhyut Consumer App · Samsung Galaxy S23
                 </p>
-                <p className="text-xs text-muted-soft font-mono">
+                <p className="text-muted-soft font-mono text-xs">
                   IP: 103.21.25.12 (Varanasi, India) · Last active 3 hrs ago
                 </p>
               </div>
@@ -247,13 +291,14 @@ export default function SecurityTab() {
       </div>
 
       {/* Data Export & GDPR/DPDP Statement Card */}
-      <div className="border border-hairline bg-surface-card rounded-xl p-5 sm:p-6 shadow-subtle flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div className="border-hairline bg-surface-card shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5 sm:flex-row sm:items-center sm:p-6">
         <div>
           <h4 className="text-title-sm text-ink font-semibold">
             Consumer Data Portability & Ledger Export
           </h4>
           <p className="text-body-sm text-muted-text mt-0.5">
-            Download your complete 24-month meter consumption history, audited tariff statements, and complaint logs.
+            Download your complete 24-month meter consumption history, audited
+            tariff statements, and complaint logs.
           </p>
         </div>
         <div className="flex items-center gap-2">

@@ -29,8 +29,12 @@ export default function SettingsPage() {
         <div className="mt-8">
           <Tabs value={activeTab} onValueChange={setActiveTab}>
             {/* Tab Switcher */}
-            <div className="overflow-x-auto pb-2 scrollbar-none">
-              <TabsList variant="nav-pill-group" size="default" className="min-w-max">
+            <div className="scrollbar-none overflow-x-auto pb-2">
+              <TabsList
+                variant="nav-pill-group"
+                size="default"
+                className="min-w-max"
+              >
                 <TabItem
                   value="profile"
                   icon={User}

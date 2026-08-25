@@ -107,11 +107,11 @@ export default function DashboardHeader() {
 
         {/* User Icon Avatar (Visible ONLY on mobile: md:hidden) */}
         {isLoading ? (
-          <div className="md:hidden size-10 rounded-full bg-surface-card animate-pulse border border-hairline shrink-0 mt-1" />
+          <div className="bg-surface-card border-hairline mt-1 size-10 shrink-0 animate-pulse rounded-full border md:hidden" />
         ) : (
           <Link
             href="/settings"
-            className="md:hidden flex size-10 items-center justify-center rounded-full bg-primary text-on-primary font-semibold text-sm shadow-subtle border border-hairline active:scale-95 transition-all hover:opacity-90 shrink-0 mt-1"
+            className="bg-primary text-on-primary shadow-subtle border-hairline mt-1 flex size-10 shrink-0 items-center justify-center rounded-full border text-sm font-semibold transition-all hover:opacity-90 active:scale-95 md:hidden"
             aria-label="Go to Account Settings"
             title="Account Settings"
           >

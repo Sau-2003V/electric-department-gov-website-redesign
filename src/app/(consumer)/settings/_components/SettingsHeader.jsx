@@ -6,7 +6,7 @@ import { Sliders } from "lucide-react";
 export default function SettingsHeader() {
   return (
     <div className="mb-6 sm:mb-8">
-      <div className="flex flex-wrap items-center gap-2 mb-2">
+      <div className="mb-2 flex flex-wrap items-center gap-2">
         <Badge
           variant="secondary"
           size="sm"
@@ -27,7 +27,8 @@ export default function SettingsHeader() {
         Settings
       </h1>
       <p className="text-body-sm sm:text-body text-muted-text mt-1 max-w-2xl">
-        Manage your electricity consumer profile, communication alerts, billing preferences, and account security.
+        Manage your electricity consumer profile, communication alerts, billing
+        preferences, and account security.
       </p>
     </div>
   );
