@@ -84,7 +84,7 @@ export default function TopHeader() {
                 variant="ghost"
                 size="compact"
                 icon={Globe}
-                className="text-muted-text hover:bg-surface-card hover:text-ink dark:text-on-dark-soft dark:hover:bg-surface-dark dark:hover:text-on-dark h-7 min-w-28.75  border-none px-2 text-xs font-medium focus:ring-0"
+                className="text-muted-text hover:bg-surface-card hover:text-ink dark:text-on-dark-soft dark:hover:bg-surface-dark dark:hover:text-on-dark h-7 min-w-28.75 border-none px-2 text-xs font-medium focus:ring-0"
                 aria-label="Select Language"
               />
               <SelectContent className="z-100 max-h-72 min-w-42.5">

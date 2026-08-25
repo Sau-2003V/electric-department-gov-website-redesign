@@ -173,10 +173,14 @@ export default function HowItWorksPage() {
     <div className="bg-canvas text-ink min-h-screen">
       {/* 1. HERO SECTION */}
       <section className="border-hairline bg-surface-card/60 relative overflow-hidden border-b py-12 md:py-16">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(var(--hairline)_1px,transparent_1px)] background-size:[24px_24px] opacity-60" />
+        <div className="background-size:[24px_24px] pointer-events-none absolute inset-0 bg-[radial-gradient(var(--hairline)_1px,transparent_1px)] opacity-60" />
 
         <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-          <Badge variant="accent-subtle" size="pill" className="mx-auto mb-4 gap-1.5">
+          <Badge
+            variant="accent-subtle"
+            size="pill"
+            className="mx-auto mb-4 gap-1.5"
+          >
             <span>Transparent Citizen Redressal Flow</span>
           </Badge>
 
@@ -185,32 +189,34 @@ export default function HowItWorksPage() {
           </h1>
 
           <p className="text-body-md text-muted-text mx-auto mt-4 max-w-2xl leading-relaxed">
-            From lodging an urgent outage to automated lineman dispatch, SMS tracking, and verified supply restoration—explore our 7-step citizen resolution lifecycle.
+            From lodging an urgent outage to automated lineman dispatch, SMS
+            tracking, and verified supply restoration—explore our 7-step citizen
+            resolution lifecycle.
           </p>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-                  <Link href="/complaints/new" className="w-full sm:w-auto">
-                    <Button
-                      variant="accent"
-                      size="lg"
-                      className="w-full sm:w-auto"
-                      rightIcon={<ArrowRight className="h-4 w-4" />}
-                    >
-                      <span>Register complaint</span>
-                    </Button>
-                  </Link>
-                  <Link href="/support" className="w-full sm:w-auto">
-                    <Button
-                      variant="secondary"
-                      size="lg"
-                      className="w-full sm:w-auto"
-                      leftIcon={<Search className="size-4" />}
-                    >
-                      <span>Track active Docket</span>
-                    </Button>
-                  </Link>
-                </div>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <Link href="/complaints/new" className="w-full sm:w-auto">
+                <Button
+                  variant="accent"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                  rightIcon={<ArrowRight className="h-4 w-4" />}
+                >
+                  <span>Register complaint</span>
+                </Button>
+              </Link>
+              <Link href="/support" className="w-full sm:w-auto">
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                  leftIcon={<Search className="size-4" />}
+                >
+                  <span>Track active Docket</span>
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>
@@ -218,14 +224,15 @@ export default function HowItWorksPage() {
       {/* 2. 7-STEP CONSUMER WORKFLOW TIMELINE */}
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
         <div className="mb-10 text-center">
-          <span className="text-caption text-muted-text font-medium uppercase tracking-wider">
+          <span className="text-caption text-muted-text font-medium tracking-wider uppercase">
             Step-By-Step Process
           </span>
-          <h2 className="text-display-md text-ink font-semibold tracking-tight mt-1">
+          <h2 className="text-display-md text-ink mt-1 font-semibold tracking-tight">
             The 7-step citizen journey
           </h2>
-          <p className="text-body-sm text-muted-text mt-2 max-w-xl mx-auto">
-            Designed for complete visibility, zero paperwork, and guaranteed time-bound accountability.
+          <p className="text-body-sm text-muted-text mx-auto mt-2 max-w-xl">
+            Designed for complete visibility, zero paperwork, and guaranteed
+            time-bound accountability.
           </p>
         </div>
 
@@ -236,12 +243,12 @@ export default function HowItWorksPage() {
             return (
               <div
                 key={step.title}
-                className="border-hairline bg-surface-card hover:bg-canvas shadow-subtle hover:shadow-card relative rounded-2xl border p-6 transition-all duration-150 sm:p-8 md:grid md:grid-cols-12 md:gap-8 items-center"
+                className="border-hairline bg-surface-card hover:bg-canvas shadow-subtle hover:shadow-card relative items-center rounded-2xl border p-6 transition-all duration-150 sm:p-8 md:grid md:grid-cols-12 md:gap-8"
               >
                 {/* Left: Step Meta & Icon */}
-                <div className="flex flex-col items-start md:col-span-4 md:border-r md:border-hairline-soft md:pr-6">
+                <div className="md:border-hairline-soft flex flex-col items-start md:col-span-4 md:border-r md:pr-6">
                   <div className="flex w-full items-center justify-between">
-                    <div className="border-hairline bg-canvas text-ink flex size-12 items-center justify-center rounded-xl border shadow-subtle">
+                    <div className="border-hairline bg-canvas text-ink shadow-subtle flex size-12 items-center justify-center rounded-xl border">
                       <Icon className="size-6" strokeWidth={1.75} />
                     </div>
                     <Badge variant={step.badgeVariant} size="sm" shape="pill">
@@ -249,12 +256,12 @@ export default function HowItWorksPage() {
                     </Badge>
                   </div>
 
-                  <h3 className="text-title-md text-ink font-semibold mt-4">
+                  <h3 className="text-title-md text-ink mt-4 font-semibold">
                     {step.title}
                   </h3>
 
                   <div className="text-caption text-muted-soft mt-2 flex items-center gap-1.5 font-medium">
-                    <CheckCircle2 className="size-3.5 text-success" />
+                    <CheckCircle2 className="text-success size-3.5" />
                     <span>Verified DISCOM Protocol</span>
                   </div>
                 </div>
@@ -270,7 +277,7 @@ export default function HowItWorksPage() {
                   </p>
 
                   <div className="border-hairline-soft bg-canvas mt-3 rounded-lg border p-3">
-                    <p className="text-caption text-body font-medium leading-relaxed">
+                    <p className="text-caption text-body leading-relaxed font-medium">
                       💡 {step.highlight}
                     </p>
                   </div>
@@ -282,17 +289,19 @@ export default function HowItWorksPage() {
       </section>
 
       {/* 3. BEHIND THE SCENES: GRID OPERATIONS */}
-      <section className="border-y border-hairline bg-surface-soft py-12 md:py-16">
+      <section className="border-hairline bg-surface-soft border-y py-12 md:py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-10">
+          <div className="mx-auto mb-10 max-w-3xl text-center">
             <Badge variant="secondary" size="pill">
               Behind The Scenes
             </Badge>
-            <h2 className="text-display-md text-ink font-semibold tracking-tight mt-2">
+            <h2 className="text-display-md text-ink mt-2 font-semibold tracking-tight">
               How the department resolves issues
             </h2>
             <p className="text-body-sm text-muted-text mt-2">
-              From automated SCADA trip detection to field crew safety protocols, here is how our technical network responds to emergencies.
+              From automated SCADA trip detection to field crew safety
+              protocols, here is how our technical network responds to
+              emergencies.
             </p>
           </div>
 
@@ -302,10 +311,10 @@ export default function HowItWorksPage() {
               return (
                 <div
                   key={stage.step}
-                  className="border-hairline bg-canvas shadow-subtle rounded-xl border p-6 flex flex-col justify-between"
+                  className="border-hairline bg-canvas shadow-subtle flex flex-col justify-between rounded-xl border p-6"
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="mb-4 flex items-center justify-between">
                       <div className="border-hairline bg-surface-soft text-ink flex size-10 items-center justify-center rounded-lg border">
                         <Icon className="size-5" />
                       </div>
@@ -331,12 +340,12 @@ export default function HowItWorksPage() {
       {/* 4. SLA CITIZEN CHARTER METRICS */}
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
         <div className="border-hairline bg-canvas shadow-card rounded-2xl border p-6 sm:p-10">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 pb-6 border-b border-hairline">
+          <div className="border-hairline flex flex-col gap-6 border-b pb-6 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <span className="text-caption text-brand-accent font-semibold uppercase tracking-wider">
+              <span className="text-caption text-brand-accent font-semibold tracking-wider uppercase">
                 Statutory Redressal Standards
               </span>
-              <h3 className="text-title-lg text-ink font-semibold mt-1">
+              <h3 className="text-title-lg text-ink mt-1 font-semibold">
                 Citizen Charter SLA Guarantees
               </h3>
             </div>
@@ -349,40 +358,64 @@ export default function HowItWorksPage() {
 
           <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <div className="border-hairline bg-surface-card rounded-xl border p-4">
-              <div className="text-caption text-muted-soft">Urban Power Outages</div>
-              <div className="text-title-md text-ink font-semibold mt-1">Max 4 Hours</div>
-              <div className="text-caption text-muted-text mt-1">Fuse-off / feeder restoration</div>
+              <div className="text-caption text-muted-soft">
+                Urban Power Outages
+              </div>
+              <div className="text-title-md text-ink mt-1 font-semibold">
+                Max 4 Hours
+              </div>
+              <div className="text-caption text-muted-text mt-1">
+                Fuse-off / feeder restoration
+              </div>
             </div>
 
             <div className="border-hairline bg-surface-card rounded-xl border p-4">
-              <div className="text-caption text-muted-soft">Rural Power Outages</div>
-              <div className="text-title-md text-ink font-semibold mt-1">Max 12 Hours</div>
-              <div className="text-caption text-muted-text mt-1">Feeder breakdown &amp; line patrol</div>
+              <div className="text-caption text-muted-soft">
+                Rural Power Outages
+              </div>
+              <div className="text-title-md text-ink mt-1 font-semibold">
+                Max 12 Hours
+              </div>
+              <div className="text-caption text-muted-text mt-1">
+                Feeder breakdown &amp; line patrol
+              </div>
             </div>
 
             <div className="border-hairline bg-surface-card rounded-xl border p-4">
-              <div className="text-caption text-muted-soft">Burnt / Defective Meter</div>
-              <div className="text-title-md text-ink font-semibold mt-1">Max 7 Days</div>
-              <div className="text-caption text-muted-text mt-1">Replacement &amp; seal verification</div>
+              <div className="text-caption text-muted-soft">
+                Burnt / Defective Meter
+              </div>
+              <div className="text-title-md text-ink mt-1 font-semibold">
+                Max 7 Days
+              </div>
+              <div className="text-caption text-muted-text mt-1">
+                Replacement &amp; seal verification
+              </div>
             </div>
 
             <div className="border-hairline bg-surface-card rounded-xl border p-4">
-              <div className="text-caption text-muted-soft">Billing Discrepancy</div>
-              <div className="text-title-md text-ink font-semibold mt-1">3-5 Working Days</div>
-              <div className="text-caption text-muted-text mt-1">Audit &amp; amended adjustment</div>
+              <div className="text-caption text-muted-soft">
+                Billing Discrepancy
+              </div>
+              <div className="text-title-md text-ink mt-1 font-semibold">
+                3-5 Working Days
+              </div>
+              <div className="text-caption text-muted-text mt-1">
+                Audit &amp; amended adjustment
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* 5. FAQS ON REDRESSAL PROCESS */}
-      <section className="border-t border-hairline bg-surface-card/40 py-12 md:py-16">
+      <section className="border-hairline bg-surface-card/40 border-t py-12 md:py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <span className="text-caption text-muted-text font-medium uppercase tracking-wider">
+          <div className="mb-8 text-center">
+            <span className="text-caption text-muted-text font-medium tracking-wider uppercase">
               Common Questions
             </span>
-            <h2 className="text-display-md text-ink font-semibold tracking-tight mt-1">
+            <h2 className="text-display-md text-ink mt-1 font-semibold tracking-tight">
               Grievance portal FAQs
             </h2>
           </div>
@@ -390,14 +423,18 @@ export default function HowItWorksPage() {
           <Accordion
             type="single"
             collapsible
-            className="border-hairline bg-canvas shadow-subtle rounded-xl border divide-y divide-hairline"
+            className="border-hairline bg-canvas shadow-subtle divide-hairline divide-y rounded-xl border"
           >
             {faqs.map((faq, idx) => (
-              <AccordionItem key={idx} value={`faq-${idx}`} className="px-5 py-1.5">
-                <AccordionTrigger className="text-title-sm text-ink font-medium py-3 hover:no-underline">
+              <AccordionItem
+                key={idx}
+                value={`faq-${idx}`}
+                className="px-5 py-1.5"
+              >
+                <AccordionTrigger className="text-title-sm text-ink py-3 font-medium hover:no-underline">
                   {faq.q}
                 </AccordionTrigger>
-                <AccordionContent className="text-body-sm text-muted-text pb-4 leading-relaxed pr-6">
+                <AccordionContent className="text-body-sm text-muted-text pr-6 pb-4 leading-relaxed">
                   {faq.a}
                 </AccordionContent>
               </AccordionItem>
@@ -408,41 +445,42 @@ export default function HowItWorksPage() {
 
       {/* 6. BOTTOM CTA CARD */}
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
-        <div className="border-hairline bg-surface-card shadow-subtle flex flex-col md:flex-row items-center justify-between gap-6 rounded-2xl border p-8 sm:p-10">
+        <div className="border-hairline bg-surface-card shadow-subtle flex flex-col items-center justify-between gap-6 rounded-2xl border p-8 sm:p-10 md:flex-row">
           <div className="max-w-xl">
-            <span className="text-caption text-muted-text font-medium uppercase tracking-wider">
+            <span className="text-caption text-muted-text font-medium tracking-wider uppercase">
               Ready to report an issue?
             </span>
-            <h3 className="text-display-sm text-ink font-semibold mt-1">
+            <h3 className="text-display-sm text-ink mt-1 font-semibold">
               Register your complaint in under two minutes
             </h3>
             <p className="text-body-sm text-muted-text mt-2 leading-relaxed">
-              Lodge emergency breakdowns, report faulty equipment, or track your active tickets directly across all subdivisions.
+              Lodge emergency breakdowns, report faulty equipment, or track your
+              active tickets directly across all subdivisions.
             </p>
           </div>
 
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-                  <Link href="/complaints/new" className="w-full sm:w-auto">
-                    <Button
-                      variant="accent"
-                      size="lg"
-                      className="w-full sm:w-auto"
-                      rightIcon={<ArrowRight className="h-4 w-4" />}
-                    >
-                      <span>Register complaint</span>
-                    </Button>
-                  </Link>
-                  <Link href="/login" className="w-full sm:w-auto">
-                    <Button
-                      variant="secondary"
-                      size="lg"
-                      className="w-full sm:w-auto"
-                    >
-                      <span>Sign in to Dashboard</span>
-                    </Button>
-                  </Link>
-                </div>
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <Link href="/complaints/new" className="w-full sm:w-auto">
+                <Button
+                  variant="accent"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                  rightIcon={<ArrowRight className="h-4 w-4" />}
+                >
+                  <span>Register complaint</span>
+                </Button>
+              </Link>
+              <Link href="/login" className="w-full sm:w-auto">
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  className="w-full sm:w-auto"
+                >
+                  <span>Sign in to Dashboard</span>
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
       </section>

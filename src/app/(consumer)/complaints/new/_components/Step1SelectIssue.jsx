@@ -76,7 +76,6 @@ export function Step1SelectIssue({
                           >
                             {item.title}
                           </h3>
-
                         </div>
                         <p
                           className={cn(
@@ -175,8 +174,6 @@ export function Step1SelectIssue({
                     {item.desc}
                   </p>
                 </div>
-
-
               </div>
             );
           })}

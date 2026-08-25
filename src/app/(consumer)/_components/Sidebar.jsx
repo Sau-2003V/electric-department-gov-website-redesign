@@ -52,7 +52,11 @@ export default function Sidebar() {
     >
       {/* Brand Header */}
       <div className="border-hairline-soft flex h-16 items-center justify-between border-b px-4">
-        <Link href="/" aria-label="Vidhyut Portal Home" className="flex min-w-0 items-center gap-3">
+        <Link
+          href="/"
+          aria-label="Vidhyut Portal Home"
+          className="flex min-w-0 items-center gap-3"
+        >
           <Image
             src="/image/logo.svg"
             alt="Vidhyut Portal Logo"

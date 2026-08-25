@@ -48,8 +48,9 @@ export async function createComplaint(payload) {
   const supabase = await createClient();
   const supabaseAdmin = await createAdminClient();
 
-
-  const { data: { user } } = await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
   if (!user) {
     return {
@@ -85,9 +86,11 @@ export async function createComplaint(payload) {
 
   if (insertError) {
     console.error("❌ COMPLAINT INSERT FAILED", insertError);
-    return { success: false, error: "Could not submit your complaint. Please try again." };
+    return {
+      success: false,
+      error: "Could not submit your complaint. Please try again.",
+    };
   }
-
 
   return {
     success: true,

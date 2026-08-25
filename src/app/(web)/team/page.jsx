@@ -94,10 +94,14 @@ export default function TeamsPage() {
     <div className="bg-canvas text-ink min-h-screen">
       {/* 1. HERO HEADER */}
       <section className="border-hairline bg-surface-card/60 relative overflow-hidden border-b py-12 md:py-16">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(var(--hairline)_1px,transparent_1px)] background-size:[24px_24px] opacity-60" />
+        <div className="background-size:[24px_24px] pointer-events-none absolute inset-0 bg-[radial-gradient(var(--hairline)_1px,transparent_1px)] opacity-60" />
 
         <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
-          <Badge variant="accent-subtle" size="pill" className="mx-auto mb-4 gap-1.5">
+          <Badge
+            variant="accent-subtle"
+            size="pill"
+            className="mx-auto mb-4 gap-1.5"
+          >
             <span>Digital Infrastructure &amp; Innovation</span>
           </Badge>
 
@@ -106,19 +110,21 @@ export default function TeamsPage() {
           </h1>
 
           <p className="text-body-md text-muted-text mx-auto mt-4 max-w-2xl leading-relaxed">
-            The software engineers, architects, and designers building modern, accessible, and high-reliability public utility services for the state electricity portal.
+            The software engineers, architects, and designers building modern,
+            accessible, and high-reliability public utility services for the
+            state electricity portal.
           </p>
         </div>
       </section>
 
       {/* 2. TEAM MEMBERS GRID */}
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
-        <div className="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div className="mb-8 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
           <div>
-            <span className="text-caption text-muted-text font-medium uppercase tracking-wider">
+            <span className="text-caption text-muted-text font-medium tracking-wider uppercase">
               Core Contributors
             </span>
-            <h2 className="text-display-md text-ink font-semibold tracking-tight mt-1">
+            <h2 className="text-display-md text-ink mt-1 font-semibold tracking-tight">
               Engineering members
             </h2>
           </div>
@@ -137,7 +143,7 @@ export default function TeamsPage() {
                 {/* Avatar & Header */}
                 <div className="flex items-center gap-4">
                   <div
-                    className={`flex size-14 shrink-0 items-center justify-center rounded-full border border-hairline ${member.avatarBg}`}
+                    className={`border-hairline flex size-14 shrink-0 items-center justify-center rounded-full border ${member.avatarBg}`}
                   >
                     <UserRound className="size-7" strokeWidth={1.8} />
                   </div>
@@ -146,7 +152,11 @@ export default function TeamsPage() {
                       {member.name}
                     </h3>
                     <div className="mt-1">
-                      <Badge variant={member.badgeVariant} size="sm" shape="pill">
+                      <Badge
+                        variant={member.badgeVariant}
+                        size="sm"
+                        shape="pill"
+                      >
                         {member.role}
                       </Badge>
                     </div>
@@ -159,13 +169,13 @@ export default function TeamsPage() {
                 </p>
 
                 {/* Divider */}
-                <div className="my-6 border-t border-hairline-soft" />
+                <div className="border-hairline-soft my-6 border-t" />
 
                 {/* Contact & Social Links List */}
-                <div className="space-y-3 text-body-sm">
+                <div className="text-body-sm space-y-3">
                   {/* Email */}
-                  <div className="flex items-center gap-3 text-muted-text">
-                    <Mail className="size-4 text-brand-accent shrink-0" />
+                  <div className="text-muted-text flex items-center gap-3">
+                    <Mail className="text-brand-accent size-4 shrink-0" />
                     <a
                       href={`mailto:${member.email}`}
                       className="text-ink hover:text-brand-accent truncate transition-colors"
@@ -175,9 +185,9 @@ export default function TeamsPage() {
                   </div>
 
                   {/* GitHub */}
-                  <div className="flex items-center gap-3 text-muted-text">
+                  <div className="text-muted-text flex items-center gap-3">
                     <svg
-                      className="size-4 text-ink fill-current shrink-0"
+                      className="text-ink size-4 shrink-0 fill-current"
                       viewBox="0 0 24 24"
                       aria-hidden="true"
                     >
@@ -191,17 +201,19 @@ export default function TeamsPage() {
                       href={member.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-ink hover:text-brand-accent truncate transition-colors inline-flex items-center gap-1"
+                      className="text-ink hover:text-brand-accent inline-flex items-center gap-1 truncate transition-colors"
                     >
-                      <span className="truncate">{member.github.replace("https://", "")}</span>
-                      <ExternalLink className="size-3 opacity-60 shrink-0" />
+                      <span className="truncate">
+                        {member.github.replace("https://", "")}
+                      </span>
+                      <ExternalLink className="size-3 shrink-0 opacity-60" />
                     </a>
                   </div>
 
                   {/* LinkedIn */}
-                  <div className="flex items-center gap-3 text-muted-text">
+                  <div className="text-muted-text flex items-center gap-3">
                     <svg
-                      className="size-4 text-brand-accent fill-current shrink-0"
+                      className="text-brand-accent size-4 shrink-0 fill-current"
                       viewBox="0 0 24 24"
                       aria-hidden="true"
                     >
@@ -211,38 +223,45 @@ export default function TeamsPage() {
                       href={member.linkedIn}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-ink hover:text-brand-accent truncate transition-colors inline-flex items-center gap-1"
+                      className="text-ink hover:text-brand-accent inline-flex items-center gap-1 truncate transition-colors"
                     >
                       <span className="truncate">LinkedIn Profile</span>
-                      <ExternalLink className="size-3 opacity-60 shrink-0" />
+                      <ExternalLink className="size-3 shrink-0 opacity-60" />
                     </a>
                   </div>
 
                   {/* Portfolio */}
-                  <div className="flex items-center gap-3 text-muted-text">
-                    <Globe className="size-4 text-success shrink-0" />
+                  <div className="text-muted-text flex items-center gap-3">
+                    <Globe className="text-success size-4 shrink-0" />
                     <a
                       href={member.portfolio}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-ink hover:text-brand-accent truncate transition-colors inline-flex items-center gap-1"
+                      className="text-ink hover:text-brand-accent inline-flex items-center gap-1 truncate transition-colors"
                     >
-                      <span className="truncate">{member.portfolio.replace("https://", "")}</span>
-                      <ExternalLink className="size-3 opacity-60 shrink-0" />
+                      <span className="truncate">
+                        {member.portfolio.replace("https://", "")}
+                      </span>
+                      <ExternalLink className="size-3 shrink-0 opacity-60" />
                     </a>
                   </div>
 
                   {/* Location */}
-                  <div className="flex items-center gap-3 text-muted-text">
-                    <MapPin className="size-4 text-muted-soft shrink-0" />
-                    <span className="truncate text-muted-text">{member.location}</span>
+                  <div className="text-muted-text flex items-center gap-3">
+                    <MapPin className="text-muted-soft size-4 shrink-0" />
+                    <span className="text-muted-text truncate">
+                      {member.location}
+                    </span>
                   </div>
                 </div>
               </div>
 
               {/* Action Button */}
-              <div className="mt-8 pt-4 border-t border-hairline-soft">
-                <a href={`mailto:${member.email}`} className="inline-flex w-full">
+              <div className="border-hairline-soft mt-8 border-t pt-4">
+                <a
+                  href={`mailto:${member.email}`}
+                  className="inline-flex w-full"
+                >
                   <Button
                     variant="primary"
                     size="default"
@@ -259,17 +278,18 @@ export default function TeamsPage() {
       </section>
 
       {/* 3. TECHNOLOGY STACK & ARCHITECTURE SECTION */}
-      <section className="border-t border-hairline bg-surface-soft py-12 md:py-16">
+      <section className="border-hairline bg-surface-soft border-t py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-10">
+          <div className="mx-auto mb-10 max-w-3xl text-center">
             <Badge variant="secondary" size="pill">
               Architecture &amp; Stack
             </Badge>
-            <h2 className="text-display-md text-ink font-semibold tracking-tight mt-2">
+            <h2 className="text-display-md text-ink mt-2 font-semibold tracking-tight">
               Modern government tech infrastructure
             </h2>
             <p className="text-body-sm text-muted-text mt-2">
-              Engineered for high availability, zero latency bottlenecks, strict accessibility compliance, and enterprise-grade data security.
+              Engineered for high availability, zero latency bottlenecks, strict
+              accessibility compliance, and enterprise-grade data security.
             </p>
           </div>
 
@@ -279,16 +299,16 @@ export default function TeamsPage() {
               return (
                 <div
                   key={tech.name}
-                  className="border-hairline bg-canvas shadow-subtle rounded-xl border p-6 flex flex-col justify-between"
+                  className="border-hairline bg-canvas shadow-subtle flex flex-col justify-between rounded-xl border p-6"
                 >
                   <div>
-                    <div className="border-hairline bg-surface-soft text-ink flex size-10 items-center justify-center rounded-lg border mb-4">
+                    <div className="border-hairline bg-surface-soft text-ink mb-4 flex size-10 items-center justify-center rounded-lg border">
                       <Icon className="size-5" />
                     </div>
-                    <span className="text-caption text-brand-accent font-semibold uppercase tracking-wider block">
+                    <span className="text-caption text-brand-accent block font-semibold tracking-wider uppercase">
                       {tech.role}
                     </span>
-                    <h3 className="text-title-sm text-ink font-semibold mt-1">
+                    <h3 className="text-title-sm text-ink mt-1 font-semibold">
                       {tech.name}
                     </h3>
                     <p className="text-body-sm text-muted-text mt-2 leading-relaxed">

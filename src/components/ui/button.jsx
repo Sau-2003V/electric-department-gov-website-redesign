@@ -183,23 +183,30 @@ const legacySizeAliases = {
 const activeVariantClasses = {
   primary: "bg-primary-active text-on-primary ring-2 ring-primary/20",
   default: "bg-primary-active text-on-primary ring-2 ring-primary/20",
-  secondary: "bg-surface-strong text-ink ring-2 ring-hairline dark:bg-surface-soft dark:ring-hairline",
-  tertiary: "bg-surface-strong text-ink ring-2 ring-hairline dark:bg-surface-soft dark:ring-hairline",
+  secondary:
+    "bg-surface-strong text-ink ring-2 ring-hairline dark:bg-surface-soft dark:ring-hairline",
+  tertiary:
+    "bg-surface-strong text-ink ring-2 ring-hairline dark:bg-surface-soft dark:ring-hairline",
   soft: "bg-surface-strong text-ink ring-2 ring-hairline dark:bg-surface-soft dark:ring-hairline",
-  surface: "bg-surface-strong text-ink ring-2 ring-hairline dark:bg-surface-soft dark:ring-hairline",
-  outline: "bg-surface-card text-ink ring-2 ring-hairline dark:bg-surface-soft dark:ring-hairline",
-  "outline-muted": "bg-surface-card text-ink ring-2 ring-hairline dark:bg-surface-soft dark:ring-hairline",
-  ghost:
-    "bg-surface-card text-ink dark:bg-surface-soft dark:text-ink",
+  surface:
+    "bg-surface-strong text-ink ring-2 ring-hairline dark:bg-surface-soft dark:ring-hairline",
+  outline:
+    "bg-surface-card text-ink ring-2 ring-hairline dark:bg-surface-soft dark:ring-hairline",
+  "outline-muted":
+    "bg-surface-card text-ink ring-2 ring-hairline dark:bg-surface-soft dark:ring-hairline",
+  ghost: "bg-surface-card text-ink dark:bg-surface-soft dark:text-ink",
   link: "underline text-ink dark:text-ink",
   "text-link": "underline text-ink dark:text-ink",
   accent: "bg-brand-accent/90 ring-2 ring-brand-accent/30 text-white",
   brand: "bg-brand-accent/90 ring-2 ring-brand-accent/30 text-white",
   "brand-accent": "bg-brand-accent/90 ring-2 ring-brand-accent/30 text-white",
   fin: "bg-brand-accent/90 ring-2 ring-brand-accent/30 text-white",
-  "accent-subtle": "bg-brand-accent/25 ring-2 ring-brand-accent/30 text-brand-accent",
-  "brand-subtle": "bg-brand-accent/25 ring-2 ring-brand-accent/30 text-brand-accent",
-  "fin-subtle": "bg-brand-accent/25 ring-2 ring-brand-accent/30 text-brand-accent",
+  "accent-subtle":
+    "bg-brand-accent/25 ring-2 ring-brand-accent/30 text-brand-accent",
+  "brand-subtle":
+    "bg-brand-accent/25 ring-2 ring-brand-accent/30 text-brand-accent",
+  "fin-subtle":
+    "bg-brand-accent/25 ring-2 ring-brand-accent/30 text-brand-accent",
   destructive: "bg-error/90 ring-2 ring-error/30 text-white",
   error: "bg-error/90 ring-2 ring-error/30 text-white",
   "destructive-subtle": "bg-error/25 ring-2 ring-error/30 text-error",
@@ -209,16 +216,22 @@ const activeVariantClasses = {
   "success-subtle": "bg-success/25 ring-2 ring-success/30 text-success",
   warning: "bg-warning/90 ring-2 ring-warning/30 text-white",
   "warning-subtle": "bg-warning/25 ring-2 ring-warning/30 text-warning",
-  "badge-orange": "bg-badge-orange/30 ring-2 ring-badge-orange/40 text-[#c2410c] dark:text-badge-orange",
-  "badge-pink": "bg-badge-pink/30 ring-2 ring-badge-pink/40 text-[#be185d] dark:text-badge-pink",
-  "badge-violet": "bg-badge-violet/30 ring-2 ring-badge-violet/40 text-[#6d28d9] dark:text-badge-violet",
-  "badge-emerald": "bg-badge-emerald/30 ring-2 ring-badge-emerald/40 text-[#047857] dark:text-badge-emerald",
-  inverse: "bg-surface-dark-elevated text-on-dark ring-2 ring-surface-strong dark:bg-surface-soft dark:text-ink",
+  "badge-orange":
+    "bg-badge-orange/30 ring-2 ring-badge-orange/40 text-[#c2410c] dark:text-badge-orange",
+  "badge-pink":
+    "bg-badge-pink/30 ring-2 ring-badge-pink/40 text-[#be185d] dark:text-badge-pink",
+  "badge-violet":
+    "bg-badge-violet/30 ring-2 ring-badge-violet/40 text-[#6d28d9] dark:text-badge-violet",
+  "badge-emerald":
+    "bg-badge-emerald/30 ring-2 ring-badge-emerald/40 text-[#047857] dark:text-badge-emerald",
+  inverse:
+    "bg-surface-dark-elevated text-on-dark ring-2 ring-surface-strong dark:bg-surface-soft dark:text-ink",
   dark: "bg-surface-dark-elevated text-on-dark ring-2 ring-surface-strong dark:bg-surface-soft dark:text-ink",
   "surface-dark":
     "bg-surface-dark-elevated text-on-dark ring-2 ring-surface-strong dark:bg-surface-soft dark:text-ink",
   tab: "bg-canvas text-ink shadow-subtle ring-1 ring-hairline dark:bg-surface-card dark:text-ink",
-  "category-tab": "bg-canvas text-ink shadow-subtle ring-1 ring-hairline dark:bg-surface-card dark:text-ink",
+  "category-tab":
+    "bg-canvas text-ink shadow-subtle ring-1 ring-hairline dark:bg-surface-card dark:text-ink",
 };
 
 function renderIcon(Icon, { size, className }) {

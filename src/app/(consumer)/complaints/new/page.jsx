@@ -26,7 +26,8 @@ export default function NewComplaintPage() {
   // docket shown after successful DB insert
   const [docket, setDocket] = useState(null);
 
-  const currentIssue = ISSUES.find((i) => i.id === selectedIssueId) || ISSUES[0];
+  const currentIssue =
+    ISSUES.find((i) => i.id === selectedIssueId) || ISSUES[0];
 
   // ── File upload helpers (passed into Step2 if needed later) ─
   const handleFileUpload = (input) => {
@@ -58,14 +59,15 @@ export default function NewComplaintPage() {
     setFiles((prev) => {
       const target = prev[index];
       if (target?.previewUrl && typeof URL !== "undefined") {
-        try { URL.revokeObjectURL(target.previewUrl); } catch {}
+        try {
+          URL.revokeObjectURL(target.previewUrl);
+        } catch {}
       }
       return prev.filter((_, idx) => idx !== index);
     });
   };
 
-  const handleAddMediaLink = (url) =>
-    setMediaLinks((prev) => [...prev, url]);
+  const handleAddMediaLink = (url) => setMediaLinks((prev) => [...prev, url]);
 
   const handleRemoveMediaLink = (index) =>
     setMediaLinks((prev) => prev.filter((_, idx) => idx !== index));

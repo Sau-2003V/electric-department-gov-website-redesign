@@ -68,27 +68,62 @@ export const TABS_CONFIG = [
 ];
 
 export const STATUS_CONFIG = {
+  registered: {
+    label: "Registered",
+    icon: Inbox,
+    variant: "canvas",
+    dot: "bg-muted-text",
+  },
+  assigned: {
+    label: "Assigned",
+    icon: Clock,
+    variant: "info",
+    dot: "bg-brand-accent",
+  },
+  in_progress: {
+    label: "In progress",
+    icon: Loader2,
+    variant: "warning",
+    dot: "bg-warning",
+  },
+  resolved: {
+    label: "Resolved",
+    icon: CheckCircle2,
+    variant: "success",
+    dot: "bg-success",
+  },
+  closed: {
+    label: "Closed",
+    icon: CheckCircle2,
+    variant: "secondary",
+    dot: "bg-muted-text",
+  },
   Registered: {
+    label: "Registered",
     icon: Inbox,
     variant: "canvas",
     dot: "bg-muted-text",
   },
   Assigned: {
+    label: "Assigned",
     icon: Clock,
     variant: "info",
     dot: "bg-brand-accent",
   },
   "In progress": {
+    label: "In progress",
     icon: Loader2,
     variant: "warning",
     dot: "bg-warning",
   },
   Resolved: {
+    label: "Resolved",
     icon: CheckCircle2,
     variant: "success",
     dot: "bg-success",
   },
   Closed: {
+    label: "Closed",
     icon: CheckCircle2,
     variant: "secondary",
     dot: "bg-muted-text",

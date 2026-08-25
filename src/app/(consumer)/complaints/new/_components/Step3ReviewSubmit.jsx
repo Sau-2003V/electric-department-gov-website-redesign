@@ -189,8 +189,6 @@ export function Step3ReviewSubmit({
         )}
       </div>
 
-
-
       {/* Actions */}
       <div className="flex items-center justify-between pt-4">
         <Button

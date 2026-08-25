@@ -82,7 +82,7 @@ export function Step2LocationDetails({ onBack, onNext }) {
       </div>
 
       {/* ── GPS Card ─────────────────────────────────────────── */}
-      <div className="border-hairline bg-surface-card shadow-subtle rounded-lg border p-4 sm:p-5 transition-all duration-150">
+      <div className="border-hairline bg-surface-card shadow-subtle rounded-lg border p-4 transition-all duration-150 sm:p-5">
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
           <div className="flex items-start gap-3.5">
             <div className="border-badge-orange/30 bg-badge-orange/15 shadow-subtle flex size-10 shrink-0 items-center justify-center rounded-md border text-[#c2410c] dark:text-orange-300">
@@ -125,7 +125,9 @@ export function Step2LocationDetails({ onBack, onNext }) {
       <div className="relative flex items-center py-1">
         <div className="bg-hairline-soft h-px flex-1" />
         <span className="text-muted-text px-3 text-[11px] font-medium tracking-wider uppercase">
-          {gpsTagged ? "Verify or add address (optional)" : "Or type address manually"}
+          {gpsTagged
+            ? "Verify or add address (optional)"
+            : "Or type address manually"}
         </span>
         <div className="bg-hairline-soft h-px flex-1" />
       </div>
@@ -141,7 +143,9 @@ export function Step2LocationDetails({ onBack, onNext }) {
               <Input
                 {...field}
                 id="fault-address"
-                label={gpsTagged ? "Fault address (optional)" : "Fault address *"}
+                label={
+                  gpsTagged ? "Fault address (optional)" : "Fault address *"
+                }
                 required={!gpsTagged}
                 aria-invalid={fieldState.invalid}
                 placeholder="e.g. House No., Street, Area, Mohalla, City"
@@ -174,7 +178,7 @@ export function Step2LocationDetails({ onBack, onNext }) {
 
       {/* Root-level validation error (e.g. neither GPS nor address) */}
       {errors.address && !watch("address") && !gpsTagged && (
-        <p className="text-error text-xs font-medium -mt-2" role="alert">
+        <p className="text-error -mt-2 text-xs font-medium" role="alert">
           {errors.address.message}
         </p>
       )}

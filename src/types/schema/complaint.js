@@ -35,10 +35,7 @@ export const locationSchema = z
 // Full complaint submission schema (used by server action)
 // ─────────────────────────────────────────────────────────────
 export const complaintSchema = z.object({
-  issue: z
-    .string()
-    .min(1, "Issue is required.")
-    .max(200, "Issue is too long."),
+  issue: z.string().min(1, "Issue is required.").max(200, "Issue is too long."),
 
   description: z
     .string()
@@ -46,25 +43,13 @@ export const complaintSchema = z.object({
     .optional()
     .nullable(),
 
-  address: z
-    .string()
-    .max(500, "Address is too long.")
-    .optional()
-    .nullable(),
+  address: z.string().max(500, "Address is too long.").optional().nullable(),
 
-  landmark: z
-    .string()
-    .max(200, "Landmark is too long.")
-    .optional()
-    .nullable(),
+  landmark: z.string().max(200, "Landmark is too long.").optional().nullable(),
 
   longitude: z.number().optional().nullable(),
 
   latitude: z.number().optional().nullable(),
 
-  location: z
-    .string()
-    .max(500, "Location is too long.")
-    .optional()
-    .nullable(),
+  location: z.string().max(500, "Location is too long.").optional().nullable(),
 });
