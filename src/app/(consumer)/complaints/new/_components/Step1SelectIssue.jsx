@@ -1,9 +1,9 @@
 "use client";
 
 import { ArrowRight, Check, AlertTriangle, Clock } from "lucide-react";
-import { ISSUES } from "./constants";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { ISSUES } from "@/constants";
 
 export function Step1SelectIssue({
   selectedIssueId,

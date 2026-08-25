@@ -1,4 +1,3 @@
-export { ISSUES, STEPS } from "./constants";
 export { ComplaintHeader } from "./ComplaintHeader";
 export { ComplaintStepper } from "./ComplaintStepper";
 export { Step1SelectIssue } from "./Step1SelectIssue";

@@ -2,8 +2,8 @@
 
 import React from "react";
 import { Check } from "lucide-react";
-import { STEPS } from "./constants";
 import { cn } from "@/lib/utils";
+import { STEPS } from "@/constants";
 
 export function ComplaintStepper({ step, onStepChange }) {
   return (

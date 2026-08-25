@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import {
-  ISSUES,
   ComplaintHeader,
   ComplaintStepper,
   Step1SelectIssue,
@@ -10,6 +9,7 @@ import {
   Step3ReviewSubmit,
   DocketSuccessReceipt,
 } from "./_components";
+import { ISSUES } from "@/constants";
 
 export default function NewComplaintPage() {
   const [step, setStep] = useState(1);
