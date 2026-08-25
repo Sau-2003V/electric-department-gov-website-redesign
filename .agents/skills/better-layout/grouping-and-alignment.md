@@ -121,7 +121,7 @@ Readers scan top-to-bottom and leading-to-trailing. Place content accordingly:
 ```html
 <!-- Good: primary fact first, detail demoted -->
 <div>
-  <p class="text-2xl font-semibold">$4,320.00</p>
+  <p class="text-2xl font-medium">$4,320.00</p>
   <p class="text-sm text-zinc-500">Available balance</p>
 </div>
 

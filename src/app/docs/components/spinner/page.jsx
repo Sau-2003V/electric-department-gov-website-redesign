@@ -26,7 +26,7 @@ export default function SpinnerDocsPage() {
       {/* Header */}
       <div className="border-hairline space-y-2 border-b pb-6">
         <div className="flex items-center gap-3">
-          <h1 className="text-ink text-3xl font-semibold tracking-tight">
+          <h1 className="text-ink text-3xl font-medium tracking-tight">
             Spinner
           </h1>
           <Badge variant="accent" size="sm" shape="tag">
@@ -48,7 +48,7 @@ export default function SpinnerDocsPage() {
       {/* 1. Size Ladder */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">1. Sizing Ladder</h2>
+          <h2 className="text-ink text-lg font-medium">1. Sizing Ladder</h2>
           <p className="text-muted-text text-xs">
             Spinners scale through 5 steps from 12px inline badges to 40px
             dashboard loaders.
@@ -96,7 +96,7 @@ export default function SpinnerDocsPage() {
       {/* 2. Color Variants */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">2. Color Variants</h2>
+          <h2 className="text-ink text-lg font-medium">2. Color Variants</h2>
           <p className="text-muted-text text-xs">
             Available in monochrome, brand accent blue, status colors, and
             pastel badge tones.
@@ -139,7 +139,7 @@ export default function SpinnerDocsPage() {
       {/* 3. Animation Types */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">3. Animation Types</h2>
+          <h2 className="text-ink text-lg font-medium">3. Animation Types</h2>
           <p className="text-muted-text text-xs">
             Smooth continuous circular ring loader vs staggered pulsing dots.
           </p>
@@ -149,7 +149,7 @@ export default function SpinnerDocsPage() {
           <div className="bg-canvas border-hairline shadow-subtle flex flex-col items-center justify-center gap-3 rounded-xl border p-6">
             <Spinner type="ring" size="lg" variant="accent" />
             <div className="text-center">
-              <div className="text-ink text-sm font-semibold">
+              <div className="text-ink text-sm font-medium">
                 Smooth Ring (type=&quot;ring&quot;)
               </div>
               <div className="text-muted-text text-xs">
@@ -161,7 +161,7 @@ export default function SpinnerDocsPage() {
           <div className="bg-canvas border-hairline shadow-subtle flex flex-col items-center justify-center gap-3 rounded-xl border p-6">
             <Spinner type="dots" size="lg" variant="accent" />
             <div className="text-center">
-              <div className="text-ink text-sm font-semibold">
+              <div className="text-ink text-sm font-medium">
                 Pulsing Dots (type=&quot;dots&quot;)
               </div>
               <div className="text-muted-text text-xs">
@@ -175,7 +175,7 @@ export default function SpinnerDocsPage() {
       {/* 4. Practical In-Context Usages */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">
+          <h2 className="text-ink text-lg font-medium">
             4. In-Context Usages
           </h2>
           <p className="text-muted-text text-xs">
@@ -187,7 +187,7 @@ export default function SpinnerDocsPage() {
           {/* Button Loading State */}
           <div className="bg-canvas border-hairline shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="space-y-1">
-              <h3 className="text-ink text-sm font-semibold">
+              <h3 className="text-ink text-sm font-medium">
                 Button Async Action
               </h3>
               <p className="text-muted-text text-xs">

@@ -176,7 +176,7 @@ const SelectTrigger = forwardRef(
     return (
       <div className="flex flex-col gap-1.5 text-left">
         {label && (
-          <label className="text-muted-text dark:text-on-dark-soft text-xs font-semibold">
+          <label className="text-muted-text dark:text-on-dark-soft text-xs font-medium">
             {label}
           </label>
         )}
@@ -524,7 +524,7 @@ const SelectItem = forwardRef(
               className={cn(
                 "min-w-0 flex-1 truncate text-left",
                 isChecked
-                  ? "text-ink dark:text-on-dark font-semibold"
+                  ? "text-ink dark:text-on-dark font-medium"
                   : "font-medium"
               )}
             />
@@ -577,7 +577,7 @@ const SelectLabel = forwardRef(({ className, ...props }, ref) => {
     <div
       ref={ref}
       className={cn(
-        "text-muted-text dark:text-on-dark-soft shrink-0 px-2.5 py-1.5 text-[11px] font-semibold tracking-wider uppercase select-none",
+        "text-muted-text dark:text-on-dark-soft shrink-0 px-2.5 py-1.5 text-[11px] font-medium tracking-wider uppercase select-none",
         className
       )}
       {...props}

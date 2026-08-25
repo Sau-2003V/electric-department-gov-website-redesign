@@ -65,7 +65,7 @@ export default function OutageAlert({
           {/* Header Row */}
           <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3">
             <div className="flex flex-wrap items-center gap-2 sm:gap-3">
-              <h2 className="text-title-sm text-ink font-semibold">
+              <h2 className="text-title-sm text-ink font-medium">
                 Outage affecting your area
               </h2>
               <Badge variant={config.badgeVariant} size="sm">

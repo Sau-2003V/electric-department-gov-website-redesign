@@ -38,7 +38,7 @@ export default function DropdownDocsPage() {
       {/* Header */}
       <div className="border-hairline space-y-2 border-b pb-6">
         <div className="flex items-center gap-3">
-          <h1 className="text-ink text-3xl font-semibold tracking-tight">
+          <h1 className="text-ink text-3xl font-medium tracking-tight">
             Dropdown Menu
           </h1>
           <Badge variant="accent" size="sm" shape="tag">
@@ -61,7 +61,7 @@ export default function DropdownDocsPage() {
       {/* 1. Interactive Demos */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">
+          <h2 className="text-ink text-lg font-medium">
             1. Interactive Menus
           </h2>
           <p className="text-muted-text text-xs">
@@ -73,7 +73,7 @@ export default function DropdownDocsPage() {
           {/* User Account Menu */}
           <div className="bg-canvas border-hairline shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="space-y-1">
-              <h3 className="text-ink text-sm font-semibold">
+              <h3 className="text-ink text-sm font-medium">
                 Account & Navigation
               </h3>
               <p className="text-muted-text text-xs">
@@ -113,7 +113,7 @@ export default function DropdownDocsPage() {
           {/* Radio Item Selection */}
           <div className="bg-canvas border-hairline shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="space-y-1">
-              <h3 className="text-ink text-sm font-semibold">
+              <h3 className="text-ink text-sm font-medium">
                 Radio Select Menu
               </h3>
               <p className="text-muted-text text-xs">
@@ -163,7 +163,7 @@ export default function DropdownDocsPage() {
           {/* Quick Actions Menu */}
           <div className="bg-canvas border-hairline shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5">
             <div className="space-y-1">
-              <h3 className="text-ink text-sm font-semibold">
+              <h3 className="text-ink text-sm font-medium">
                 Row Actions Context
               </h3>
               <p className="text-muted-text text-xs">

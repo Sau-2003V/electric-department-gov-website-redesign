@@ -129,7 +129,7 @@ export default function RecentNotices({
             strokeWidth={2.2}
             aria-hidden="true"
           />
-          <p className="text-caption text-muted-text font-semibold tracking-wider uppercase">
+          <p className="text-caption text-muted-text font-medium tracking-wider uppercase">
             Notices &amp; Circulars
           </p>
         </div>

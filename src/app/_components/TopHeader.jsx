@@ -160,7 +160,7 @@ export default function TopHeader() {
               className="h-10 w-auto rounded-md bg-transparent object-contain transition-transform duration-200 group-hover:scale-105"
             />
             <div className="flex flex-col">
-              <span className="text-ink text-title-md dark:text-on-dark font-semibold tracking-tight transition-opacity group-hover:opacity-80">
+              <span className="text-ink text-title-md dark:text-on-dark font-medium tracking-tight transition-opacity group-hover:opacity-80">
                 Vidhyut Portal
               </span>
             </div>
@@ -175,9 +175,9 @@ export default function TopHeader() {
                 className={cn(
                   "text-nav-link rounded-md px-3 py-1.5 font-medium transition-colors active:scale-[0.98]",
                   item.highlight
-                    ? "bg-primary text-on-primary hover:bg-primary-active shadow-subtle ml-1 font-semibold"
+                    ? "bg-primary text-on-primary hover:bg-primary-active shadow-subtle ml-1 font-medium"
                     : item.active
-                      ? "bg-surface-card text-ink dark:bg-surface-dark-elevated dark:text-on-dark shadow-subtle font-semibold"
+                      ? "bg-surface-card text-ink dark:bg-surface-dark-elevated dark:text-on-dark shadow-subtle font-medium"
                       : "text-muted-text hover:bg-surface-card hover:text-ink dark:text-on-dark-soft dark:hover:bg-surface-dark-elevated dark:hover:text-on-dark"
                 )}
               >
@@ -286,15 +286,15 @@ export default function TopHeader() {
                       className={cn(
                         "text-nav-link flex items-center justify-between rounded-md px-3.5 py-2.5 font-medium transition-all active:scale-[0.98]",
                         item.highlight
-                          ? "bg-primary text-on-primary hover:bg-primary-active shadow-subtle font-semibold"
+                          ? "bg-primary text-on-primary hover:bg-primary-active shadow-subtle font-medium"
                           : item.active
-                            ? "bg-surface-card text-ink dark:bg-surface-dark-elevated dark:text-on-dark border-hairline border font-semibold"
+                            ? "bg-surface-card text-ink dark:bg-surface-dark-elevated dark:text-on-dark border-hairline border font-medium"
                             : "text-muted-text hover:bg-surface-card hover:text-ink dark:text-on-dark-soft dark:hover:bg-surface-dark-elevated dark:hover:text-on-dark"
                       )}
                     >
                       <span>{item.label}</span>
                       {item.highlight && (
-                        <span className="bg-on-primary/20 text-on-primary rounded-pill text-caption px-2 py-0.5 font-semibold">
+                        <span className="bg-on-primary/20 text-on-primary rounded-pill text-caption px-2 py-0.5 font-medium">
                           Quick Action
                         </span>
                       )}
@@ -314,7 +314,7 @@ export default function TopHeader() {
                   }}
                   className="border-hairline mt-2 border-t pt-3"
                 >
-                  <p className="text-muted-text dark:text-on-dark-soft px-1 pb-2 text-[11px] font-semibold tracking-wider uppercase">
+                  <p className="text-muted-text dark:text-on-dark-soft px-1 pb-2 text-[11px] font-medium tracking-wider uppercase">
                     Preferences & Accessibility
                   </p>
                   <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
@@ -422,7 +422,7 @@ export default function TopHeader() {
                         <p className="text-muted-text dark:text-on-dark-soft text-[11px] font-medium tracking-wide uppercase">
                           24x7 Helpline
                         </p>
-                        <p className="text-ink text-caption dark:text-on-dark mt-0.5 font-mono leading-tight font-semibold">
+                        <p className="text-ink text-caption dark:text-on-dark mt-0.5 font-mono leading-tight font-medium">
                           1912 / 1800-180-1912
                         </p>
                       </div>

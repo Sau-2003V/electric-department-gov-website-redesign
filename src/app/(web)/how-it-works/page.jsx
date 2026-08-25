@@ -184,7 +184,7 @@ export default function HowItWorksPage() {
             <span>Transparent Citizen Redressal Flow</span>
           </Badge>
 
-          <h1 className="text-display-md sm:text-display-lg lg:text-display-xl text-ink font-semibold tracking-tight">
+          <h1 className="text-display-md sm:text-display-lg lg:text-display-xl text-ink font-medium tracking-tight">
             How the electricity grievance system works
           </h1>
 
@@ -227,7 +227,7 @@ export default function HowItWorksPage() {
           <span className="text-caption text-muted-text font-medium tracking-wider uppercase">
             Step-By-Step Process
           </span>
-          <h2 className="text-display-md text-ink mt-1 font-semibold tracking-tight">
+          <h2 className="text-display-md text-ink mt-1 font-medium tracking-tight">
             The 7-step citizen journey
           </h2>
           <p className="text-body-sm text-muted-text mx-auto mt-2 max-w-xl">
@@ -256,7 +256,7 @@ export default function HowItWorksPage() {
                     </Badge>
                   </div>
 
-                  <h3 className="text-title-md text-ink mt-4 font-semibold">
+                  <h3 className="text-title-md text-ink mt-4 font-medium">
                     {step.title}
                   </h3>
 
@@ -295,7 +295,7 @@ export default function HowItWorksPage() {
             <Badge variant="secondary" size="pill">
               Behind The Scenes
             </Badge>
-            <h2 className="text-display-md text-ink mt-2 font-semibold tracking-tight">
+            <h2 className="text-display-md text-ink mt-2 font-medium tracking-tight">
               How the department resolves issues
             </h2>
             <p className="text-body-sm text-muted-text mt-2">
@@ -323,7 +323,7 @@ export default function HowItWorksPage() {
                       </span>
                     </div>
 
-                    <h3 className="text-title-sm text-ink font-semibold">
+                    <h3 className="text-title-sm text-ink font-medium">
                       {stage.title}
                     </h3>
                     <p className="text-body-sm text-muted-text mt-2 leading-relaxed">
@@ -342,10 +342,10 @@ export default function HowItWorksPage() {
         <div className="border-hairline bg-canvas shadow-card rounded-2xl border p-6 sm:p-10">
           <div className="border-hairline flex flex-col gap-6 border-b pb-6 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <span className="text-caption text-brand-accent font-semibold tracking-wider uppercase">
+              <span className="text-caption text-brand-accent font-medium tracking-wider uppercase">
                 Statutory Redressal Standards
               </span>
-              <h3 className="text-title-lg text-ink mt-1 font-semibold">
+              <h3 className="text-title-lg text-ink mt-1 font-medium">
                 Citizen Charter SLA Guarantees
               </h3>
             </div>
@@ -361,7 +361,7 @@ export default function HowItWorksPage() {
               <div className="text-caption text-muted-soft">
                 Urban Power Outages
               </div>
-              <div className="text-title-md text-ink mt-1 font-semibold">
+              <div className="text-title-md text-ink mt-1 font-medium">
                 Max 4 Hours
               </div>
               <div className="text-caption text-muted-text mt-1">
@@ -373,7 +373,7 @@ export default function HowItWorksPage() {
               <div className="text-caption text-muted-soft">
                 Rural Power Outages
               </div>
-              <div className="text-title-md text-ink mt-1 font-semibold">
+              <div className="text-title-md text-ink mt-1 font-medium">
                 Max 12 Hours
               </div>
               <div className="text-caption text-muted-text mt-1">
@@ -385,7 +385,7 @@ export default function HowItWorksPage() {
               <div className="text-caption text-muted-soft">
                 Burnt / Defective Meter
               </div>
-              <div className="text-title-md text-ink mt-1 font-semibold">
+              <div className="text-title-md text-ink mt-1 font-medium">
                 Max 7 Days
               </div>
               <div className="text-caption text-muted-text mt-1">
@@ -397,7 +397,7 @@ export default function HowItWorksPage() {
               <div className="text-caption text-muted-soft">
                 Billing Discrepancy
               </div>
-              <div className="text-title-md text-ink mt-1 font-semibold">
+              <div className="text-title-md text-ink mt-1 font-medium">
                 3-5 Working Days
               </div>
               <div className="text-caption text-muted-text mt-1">
@@ -415,7 +415,7 @@ export default function HowItWorksPage() {
             <span className="text-caption text-muted-text font-medium tracking-wider uppercase">
               Common Questions
             </span>
-            <h2 className="text-display-md text-ink mt-1 font-semibold tracking-tight">
+            <h2 className="text-display-md text-ink mt-1 font-medium tracking-tight">
               Grievance portal FAQs
             </h2>
           </div>
@@ -450,7 +450,7 @@ export default function HowItWorksPage() {
             <span className="text-caption text-muted-text font-medium tracking-wider uppercase">
               Ready to report an issue?
             </span>
-            <h3 className="text-display-sm text-ink mt-1 font-semibold">
+            <h3 className="text-display-sm text-ink mt-1 font-medium">
               Register your complaint in under two minutes
             </h3>
             <p className="text-body-sm text-muted-text mt-2 leading-relaxed">

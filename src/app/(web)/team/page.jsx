@@ -105,7 +105,7 @@ export default function TeamsPage() {
             <span>Digital Infrastructure &amp; Innovation</span>
           </Badge>
 
-          <h1 className="text-display-md sm:text-display-lg lg:text-display-xl text-ink font-semibold tracking-tight">
+          <h1 className="text-display-md sm:text-display-lg lg:text-display-xl text-ink font-medium tracking-tight">
             Meet the engineering team
           </h1>
 
@@ -124,7 +124,7 @@ export default function TeamsPage() {
             <span className="text-caption text-muted-text font-medium tracking-wider uppercase">
               Core Contributors
             </span>
-            <h2 className="text-display-md text-ink mt-1 font-semibold tracking-tight">
+            <h2 className="text-display-md text-ink mt-1 font-medium tracking-tight">
               Engineering members
             </h2>
           </div>
@@ -148,7 +148,7 @@ export default function TeamsPage() {
                     <UserRound className="size-7" strokeWidth={1.8} />
                   </div>
                   <div>
-                    <h3 className="text-title-md text-ink font-semibold">
+                    <h3 className="text-title-md text-ink font-medium">
                       {member.name}
                     </h3>
                     <div className="mt-1">
@@ -284,7 +284,7 @@ export default function TeamsPage() {
             <Badge variant="secondary" size="pill">
               Architecture &amp; Stack
             </Badge>
-            <h2 className="text-display-md text-ink mt-2 font-semibold tracking-tight">
+            <h2 className="text-display-md text-ink mt-2 font-medium tracking-tight">
               Modern government tech infrastructure
             </h2>
             <p className="text-body-sm text-muted-text mt-2">
@@ -305,10 +305,10 @@ export default function TeamsPage() {
                     <div className="border-hairline bg-surface-soft text-ink mb-4 flex size-10 items-center justify-center rounded-lg border">
                       <Icon className="size-5" />
                     </div>
-                    <span className="text-caption text-brand-accent block font-semibold tracking-wider uppercase">
+                    <span className="text-caption text-brand-accent block font-medium tracking-wider uppercase">
                       {tech.role}
                     </span>
-                    <h3 className="text-title-sm text-ink mt-1 font-semibold">
+                    <h3 className="text-title-sm text-ink mt-1 font-medium">
                       {tech.name}
                     </h3>
                     <p className="text-body-sm text-muted-text mt-2 leading-relaxed">

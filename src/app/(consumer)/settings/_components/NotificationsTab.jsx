@@ -53,7 +53,7 @@ export default function NotificationsTab() {
       <div className="border-hairline bg-canvas shadow-subtle space-y-6 rounded-xl border p-5 sm:p-7">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="text-title-md text-ink font-semibold">
+            <h3 className="text-title-md text-ink font-medium">
               Outage & Billing Notification Channels
             </h3>
             <Badge variant="accent-subtle" size="sm" text="Real-time Feed" />
@@ -72,7 +72,7 @@ export default function NotificationsTab() {
                 <ZapOff className="text-warning size-4.5" />
               </div>
               <div className="space-y-0.5">
-                <p className="text-title-sm text-ink font-semibold">
+                <p className="text-title-sm text-ink font-medium">
                   Scheduled Maintenance Outage Alerts
                 </p>
                 <p className="text-body-sm text-muted-text">
@@ -98,7 +98,7 @@ export default function NotificationsTab() {
                 <ReceiptText className="text-brand-accent size-4.5" />
               </div>
               <div className="space-y-0.5">
-                <p className="text-title-sm text-ink font-semibold">
+                <p className="text-title-sm text-ink font-medium">
                   Bill Generation & Due Date Reminders
                 </p>
                 <p className="text-body-sm text-muted-text">
@@ -124,7 +124,7 @@ export default function NotificationsTab() {
                 <TrendingUp className="text-badge-orange size-4.5" />
               </div>
               <div className="space-y-0.5">
-                <p className="text-title-sm text-ink font-semibold">
+                <p className="text-title-sm text-ink font-medium">
                   High Consumption & Surge Alert
                 </p>
                 <p className="text-body-sm text-muted-text">
@@ -150,7 +150,7 @@ export default function NotificationsTab() {
                 <Check className="text-success size-4.5" />
               </div>
               <div className="space-y-0.5">
-                <p className="text-title-sm text-ink font-semibold">
+                <p className="text-title-sm text-ink font-medium">
                   Instant Payment Confirmation & PDF Receipt
                 </p>
                 <p className="text-body-sm text-muted-text">
@@ -176,7 +176,7 @@ export default function NotificationsTab() {
                 <ShieldAlert className="text-error size-4.5" />
               </div>
               <div className="space-y-0.5">
-                <p className="text-title-sm text-ink font-semibold">
+                <p className="text-title-sm text-ink font-medium">
                   Grid Breakdown & Restoration Broadcasts
                 </p>
                 <p className="text-body-sm text-muted-text">
@@ -198,7 +198,7 @@ export default function NotificationsTab() {
 
         {/* Channel Deliverability Hub */}
         <div className="border-hairline border-t pt-4">
-          <h4 className="text-title-sm text-ink mb-3 font-semibold">
+          <h4 className="text-title-sm text-ink mb-3 font-medium">
             Active Delivery Gateways
           </h4>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
@@ -212,11 +212,11 @@ export default function NotificationsTab() {
             >
               <div className="mb-1.5 flex items-center justify-between">
                 <MessageSquare className="text-success size-4" />
-                <span className="text-xs font-semibold">
+                <span className="text-xs font-medium">
                   {preferences.channelWhatsapp ? "Active" : "Paused"}
                 </span>
               </div>
-              <p className="text-sm font-semibold">WhatsApp Gateway</p>
+              <p className="text-sm font-medium">WhatsApp Gateway</p>
               <p className="text-muted-text text-[11px]">
                 Direct PDF & status cards
               </p>
@@ -232,11 +232,11 @@ export default function NotificationsTab() {
             >
               <div className="mb-1.5 flex items-center justify-between">
                 <PhoneCall className="text-brand-accent size-4" />
-                <span className="text-xs font-semibold">
+                <span className="text-xs font-medium">
                   {preferences.channelSms ? "Active" : "Paused"}
                 </span>
               </div>
-              <p className="text-sm font-semibold">Official SMS Gateway</p>
+              <p className="text-sm font-medium">Official SMS Gateway</p>
               <p className="text-muted-text text-[11px]">Header: GOV-ELECIN</p>
             </div>
 
@@ -250,11 +250,11 @@ export default function NotificationsTab() {
             >
               <div className="mb-1.5 flex items-center justify-between">
                 <Mail className="text-ink size-4" />
-                <span className="text-xs font-semibold">
+                <span className="text-xs font-medium">
                   {preferences.channelEmail ? "Active" : "Paused"}
                 </span>
               </div>
-              <p className="text-sm font-semibold">Email Invoicing</p>
+              <p className="text-sm font-medium">Email Invoicing</p>
               <p className="text-muted-text text-[11px]">
                 Monthly detailed e-statements
               </p>

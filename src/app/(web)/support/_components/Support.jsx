@@ -309,7 +309,7 @@ export default function SupportPage() {
             <Badge variant="accent-subtle" size="pill" className="gap-2">
               <span>Consumer Redressal &amp; Support Hub</span>
             </Badge>
-            <h1 className="text-display-md sm:text-display-lg lg:text-display-xl text-ink font-semibold tracking-tight">
+            <h1 className="text-display-md sm:text-display-lg lg:text-display-xl text-ink font-medium tracking-tight">
               How can we assist your electricity service today?
             </h1>
 
@@ -371,7 +371,7 @@ export default function SupportPage() {
                 </div>
                 <div>
                   <div className="flex items-center gap-2">
-                    <h3 className="text-title-md text-ink font-semibold">
+                    <h3 className="text-title-md text-ink font-medium">
                       24x7 Central Emergency Hotline:{" "}
                       <span className="text-error">1912</span>
                     </h3>
@@ -441,7 +441,7 @@ export default function SupportPage() {
             <span className="text-caption text-muted-text font-medium tracking-wider uppercase">
               Assistance Categories
             </span>
-            <h2 className="text-display-md text-ink mt-1 font-semibold tracking-tight">
+            <h2 className="text-display-md text-ink mt-1 font-medium tracking-tight">
               Select your service domain
             </h2>
           </div>
@@ -473,7 +473,7 @@ export default function SupportPage() {
                     </Badge>
                   </div>
 
-                  <h3 className="text-title-md text-ink mt-4 font-semibold">
+                  <h3 className="text-title-md text-ink mt-4 font-medium">
                     {category.title}
                   </h3>
                   <p className="text-body-sm text-muted-text mt-2 leading-relaxed">
@@ -539,10 +539,10 @@ export default function SupportPage() {
             <div className="border-hairline bg-canvas shadow-card rounded-xl border p-6 sm:p-8 lg:col-span-7">
               <div className="border-hairline flex items-center justify-between border-b pb-4">
                 <div>
-                  <span className="text-caption text-brand-accent font-semibold tracking-wide uppercase">
+                  <span className="text-caption text-brand-accent font-medium tracking-wide uppercase">
                     Live Grievance Redressal
                   </span>
-                  <h3 className="text-title-lg text-ink mt-0.5 font-semibold">
+                  <h3 className="text-title-lg text-ink mt-0.5 font-medium">
                     Track Complaint or Outage Docket
                   </h3>
                 </div>
@@ -614,7 +614,7 @@ export default function SupportPage() {
                   >
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <div className="flex items-center gap-2">
-                        <span className="text-title-sm text-ink font-semibold">
+                        <span className="text-title-sm text-ink font-medium">
                           Docket: {trackerResult.docketId}
                         </span>
                         <Badge variant="success-subtle" size="sm" shape="pill">
@@ -659,7 +659,7 @@ export default function SupportPage() {
             {/* Right: Key Support Metrics & Officer Directory */}
             <div className="flex flex-col gap-4 lg:col-span-5">
               <div className="border-hairline bg-canvas shadow-subtle rounded-xl border p-6">
-                <h4 className="text-title-sm text-ink flex items-center gap-2 font-semibold">
+                <h4 className="text-title-sm text-ink flex items-center gap-2 font-medium">
                   <Clock3 className="text-brand-accent size-4" />
                   <span>Citizen Charter Resolution SLA</span>
                 </h4>
@@ -668,7 +668,7 @@ export default function SupportPage() {
                     <span className="text-body-sm text-muted-text">
                       Urban Outage Restoration
                     </span>
-                    <span className="text-body-sm text-ink font-semibold">
+                    <span className="text-body-sm text-ink font-medium">
                       Within 4 Hours
                     </span>
                   </div>
@@ -676,7 +676,7 @@ export default function SupportPage() {
                     <span className="text-body-sm text-muted-text">
                       Rural Outage Restoration
                     </span>
-                    <span className="text-body-sm text-ink font-semibold">
+                    <span className="text-body-sm text-ink font-medium">
                       Within 12 Hours
                     </span>
                   </div>
@@ -684,7 +684,7 @@ export default function SupportPage() {
                     <span className="text-body-sm text-muted-text">
                       Burnt Meter Replacement
                     </span>
-                    <span className="text-body-sm text-ink font-semibold">
+                    <span className="text-body-sm text-ink font-medium">
                       Within 7 Days
                     </span>
                   </div>
@@ -692,7 +692,7 @@ export default function SupportPage() {
                     <span className="text-body-sm text-muted-text">
                       Billing Dispute Assessment
                     </span>
-                    <span className="text-body-sm text-ink font-semibold">
+                    <span className="text-body-sm text-ink font-medium">
                       3-5 Working Days
                     </span>
                   </div>
@@ -700,10 +700,10 @@ export default function SupportPage() {
               </div>
 
               <div className="border-surface-dark-elevated bg-surface-dark text-on-dark shadow-card rounded-xl border p-6">
-                <span className="text-caption text-brand-accent font-semibold tracking-wider uppercase">
+                <span className="text-caption text-brand-accent font-medium tracking-wider uppercase">
                   Direct Escalation
                 </span>
-                <h4 className="text-title-md text-on-dark mt-1 font-semibold">
+                <h4 className="text-title-md text-on-dark mt-1 font-medium">
                   Need Help from Subdivision Officer?
                 </h4>
                 <p className="text-body-sm text-on-dark-soft mt-2 leading-relaxed">
@@ -737,7 +737,7 @@ export default function SupportPage() {
           <Badge variant="secondary" size="pill">
             Statutory Transparency
           </Badge>
-          <h2 className="text-display-md text-ink mt-3 font-semibold tracking-tight">
+          <h2 className="text-display-md text-ink mt-3 font-medium tracking-tight">
             Consumer Grievance Escalation Matrix
           </h2>
           <p className="text-body-md text-muted-text mt-2">
@@ -763,7 +763,7 @@ export default function SupportPage() {
                   </span>
                 </div>
 
-                <h3 className="text-title-md text-ink mt-4 font-semibold">
+                <h3 className="text-title-md text-ink mt-4 font-medium">
                   {tier.role}
                 </h3>
                 <div className="border-brand-accent/20 bg-brand-accent/10 text-brand-accent text-caption mt-2 inline-block rounded px-2 py-0.5 font-medium">
@@ -795,7 +795,7 @@ export default function SupportPage() {
             <span className="text-caption text-muted-text font-medium tracking-wider uppercase">
               Frequently Answered Questions
             </span>
-            <h2 className="text-display-md text-ink mt-1 font-semibold tracking-tight">
+            <h2 className="text-display-md text-ink mt-1 font-medium tracking-tight">
               Find quick answers to common queries
             </h2>
             <p className="text-body-sm text-muted-text mt-2">
@@ -823,7 +823,7 @@ export default function SupportPage() {
                     className={cn(
                       "text-caption rounded-full px-3.5 py-1.5 font-medium transition-all",
                       isActive
-                        ? "bg-canvas text-ink shadow-subtle font-semibold"
+                        ? "bg-canvas text-ink shadow-subtle font-medium"
                         : "text-muted-text hover:text-ink"
                     )}
                   >
@@ -894,7 +894,7 @@ export default function SupportPage() {
             <span className="text-caption text-muted-text font-medium tracking-wider uppercase">
               Still Need Help?
             </span>
-            <h3 className="text-display-sm text-ink mt-1 font-semibold">
+            <h3 className="text-display-sm text-ink mt-1 font-medium">
               File a formal grievance or request an officer callback
             </h3>
             <p className="text-body-sm text-muted-text mt-2 leading-relaxed">

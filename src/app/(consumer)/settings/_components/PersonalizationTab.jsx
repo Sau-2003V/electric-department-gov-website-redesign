@@ -80,7 +80,7 @@ export default function PersonalizationTab() {
       <div className="border-hairline bg-canvas shadow-subtle space-y-5 rounded-xl border p-5 sm:p-7">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="text-title-md text-ink font-semibold">
+            <h3 className="text-title-md text-ink font-medium">
               Interface Theme & Color Mode
             </h3>
             <Badge
@@ -124,7 +124,7 @@ export default function PersonalizationTab() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Sun className="text-warning size-4" />
-                <span className="text-ink text-sm font-semibold">
+                <span className="text-ink text-sm font-medium">
                   Light Mode
                 </span>
               </div>
@@ -166,7 +166,7 @@ export default function PersonalizationTab() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Moon className="text-brand-accent size-4" />
-                <span className="text-ink text-sm font-semibold">
+                <span className="text-ink text-sm font-medium">
                   Dark Mode
                 </span>
               </div>
@@ -206,7 +206,7 @@ export default function PersonalizationTab() {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Laptop className="text-muted-text size-4" />
-                <span className="text-ink text-sm font-semibold">
+                <span className="text-ink text-sm font-medium">
                   System Sync
                 </span>
               </div>
@@ -229,7 +229,7 @@ export default function PersonalizationTab() {
         <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="text-title-md text-ink font-semibold">
+              <h3 className="text-title-md text-ink font-medium">
                 Text Scaling & Font Size
               </h3>
               <Badge
@@ -250,7 +250,7 @@ export default function PersonalizationTab() {
             <button
               type="button"
               onClick={() => handleFontSizeChange("90")}
-              className={`rounded-md px-2.5 py-1 text-xs font-semibold transition-colors ${
+              className={`rounded-md px-2.5 py-1 text-xs font-medium transition-colors ${
                 fontSize === "90"
                   ? "bg-canvas text-ink shadow-subtle"
                   : "text-muted-text hover:text-ink"
@@ -262,7 +262,7 @@ export default function PersonalizationTab() {
             <button
               type="button"
               onClick={() => handleFontSizeChange("100")}
-              className={`rounded-md px-2.5 py-1 text-xs font-semibold transition-colors ${
+              className={`rounded-md px-2.5 py-1 text-xs font-medium transition-colors ${
                 fontSize === "100"
                   ? "bg-canvas text-ink shadow-subtle"
                   : "text-muted-text hover:text-ink"
@@ -274,7 +274,7 @@ export default function PersonalizationTab() {
             <button
               type="button"
               onClick={() => handleFontSizeChange("110")}
-              className={`rounded-md px-2.5 py-1 text-xs font-semibold transition-colors ${
+              className={`rounded-md px-2.5 py-1 text-xs font-medium transition-colors ${
                 fontSize === "110"
                   ? "bg-canvas text-ink shadow-subtle"
                   : "text-muted-text hover:text-ink"
@@ -286,7 +286,7 @@ export default function PersonalizationTab() {
             <button
               type="button"
               onClick={() => handleFontSizeChange("120")}
-              className={`rounded-md px-2.5 py-1 text-xs font-semibold transition-colors ${
+              className={`rounded-md px-2.5 py-1 text-xs font-medium transition-colors ${
                 fontSize === "120"
                   ? "bg-canvas text-ink shadow-subtle"
                   : "text-muted-text hover:text-ink"
@@ -330,7 +330,7 @@ export default function PersonalizationTab() {
               onClick={() => handleFontSizeChange(item.value)}
               className={`cursor-pointer rounded-lg border p-3.5 transition-all ${
                 fontSize === item.value
-                  ? "border-primary bg-surface-card text-ink ring-primary font-semibold ring-1"
+                  ? "border-primary bg-surface-card text-ink ring-primary font-medium ring-1"
                   : "border-hairline bg-canvas text-muted-text hover:border-hairline/80 hover:bg-surface-soft"
               }`}
             >
@@ -342,7 +342,7 @@ export default function PersonalizationTab() {
                   <Check className="text-primary size-3.5" />
                 )}
               </div>
-              <p className="text-ink text-sm font-semibold">{item.label}</p>
+              <p className="text-ink text-sm font-medium">{item.label}</p>
               <p className="text-muted-text mt-0.5 text-[11px]">{item.desc}</p>
             </div>
           ))}
@@ -350,7 +350,7 @@ export default function PersonalizationTab() {
 
         {/* Live Preview Sample */}
         <div className="bg-surface-card border-hairline rounded-lg border p-4">
-          <p className="text-caption text-muted-soft mb-1 font-semibold tracking-wider uppercase">
+          <p className="text-caption text-muted-soft mb-1 font-medium tracking-wider uppercase">
             Live Typography Preview:
           </p>
           <p className="text-body-md text-ink font-medium">
@@ -368,7 +368,7 @@ export default function PersonalizationTab() {
       <div className="border-hairline bg-canvas shadow-subtle space-y-5 rounded-xl border p-5 sm:p-7">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="text-title-md text-ink font-semibold">
+            <h3 className="text-title-md text-ink font-medium">
               Portal Language & Script
             </h3>
             <Badge
@@ -387,7 +387,7 @@ export default function PersonalizationTab() {
         <div className="border-hairline grid grid-cols-1 gap-5 border-t pt-5 sm:grid-cols-2">
           {/* Main Language Selector */}
           <div className="space-y-1.5">
-            <label className="text-ink text-xs font-semibold">
+            <label className="text-ink text-xs font-medium">
               Active Display Language
             </label>
             <Select
@@ -426,7 +426,7 @@ export default function PersonalizationTab() {
 
           {/* Quick Language Chips */}
           <div className="space-y-1.5">
-            <label className="text-ink text-xs font-semibold">
+            <label className="text-ink text-xs font-medium">
               Frequently Used Languages
             </label>
             <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
@@ -444,7 +444,7 @@ export default function PersonalizationTab() {
                   onClick={() => handleLanguageChange(lang.name)}
                   className={`flex flex-col rounded-md border p-2 text-left text-xs transition-all ${
                     selectedLang === lang.name
-                      ? "border-ink bg-surface-card text-ink ring-ink font-semibold ring-1"
+                      ? "border-ink bg-surface-card text-ink ring-ink font-medium ring-1"
                       : "border-hairline bg-canvas text-muted-text hover:bg-surface-soft hover:text-ink"
                   }`}
                 >

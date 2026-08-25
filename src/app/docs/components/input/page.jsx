@@ -121,7 +121,7 @@ export default function InputDocsPage() {
       {/* Header */}
       <div className="border-hairline space-y-2 border-b pb-6">
         <div className="flex items-center gap-3">
-          <h1 className="text-ink text-3xl font-semibold tracking-tight">
+          <h1 className="text-ink text-3xl font-medium tracking-tight">
             Input
           </h1>
           <Badge variant="accent" size="sm" shape="tag">
@@ -143,7 +143,7 @@ export default function InputDocsPage() {
       {/* 1. Core Surfaces */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">
+          <h2 className="text-ink text-lg font-medium">
             1. Core Surfaces & Monochrome
           </h2>
           <p className="text-muted-text text-xs">
@@ -175,7 +175,7 @@ export default function InputDocsPage() {
       {/* 2. Brand & Semantic */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">
+          <h2 className="text-ink text-lg font-medium">
             2. Brand Accent & Semantic Statuses
           </h2>
           <p className="text-muted-text text-xs">
@@ -206,7 +206,7 @@ export default function InputDocsPage() {
       {/* 3. Badge Pastel Ramps */}
       <section className="space-y-4">
         <div>
-          <h2 className="text-ink text-lg font-semibold">
+          <h2 className="text-ink text-lg font-medium">
             3. Badge Pastel Themed Focus Ramps
           </h2>
           <p className="text-muted-text text-xs">
@@ -238,7 +238,7 @@ export default function InputDocsPage() {
 
       {/* 4. Sizes Ladder */}
       <section className="space-y-4">
-        <h2 className="text-ink text-lg font-semibold">4. Size Ladder</h2>
+        <h2 className="text-ink text-lg font-medium">4. Size Ladder</h2>
         <div className="border-hairline bg-surface-card shadow-subtle space-y-5 rounded-xl border p-6">
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
@@ -288,7 +288,7 @@ export default function InputDocsPage() {
 
       {/* 5. Shapes (Border Radii) */}
       <section className="space-y-4">
-        <h2 className="text-ink text-lg font-semibold">
+        <h2 className="text-ink text-lg font-medium">
           5. Shapes & Border Radii
         </h2>
         <div className="border-hairline bg-surface-card shadow-subtle grid grid-cols-1 gap-4 rounded-xl border p-6 sm:grid-cols-2">
@@ -324,7 +324,7 @@ export default function InputDocsPage() {
 
       {/* 6. Icons, Prefixes, Suffixes & Labels */}
       <section className="space-y-4">
-        <h2 className="text-ink text-lg font-semibold">
+        <h2 className="text-ink text-lg font-medium">
           6. Icons, Prefixes, Suffixes & Labels
         </h2>
         <div className="border-hairline bg-surface-card shadow-subtle grid grid-cols-1 gap-5 rounded-xl border p-6 sm:grid-cols-2">
@@ -375,7 +375,7 @@ export default function InputDocsPage() {
 
       {/* 7. Validation & Disabled States */}
       <section className="space-y-4">
-        <h2 className="text-ink text-lg font-semibold">
+        <h2 className="text-ink text-lg font-medium">
           7. Validation & Disabled States
         </h2>
         <div className="border-hairline bg-surface-card shadow-subtle grid grid-cols-1 gap-5 rounded-xl border p-6 sm:grid-cols-2">

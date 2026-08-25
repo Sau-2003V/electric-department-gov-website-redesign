@@ -110,7 +110,7 @@ const badgeVariants = cva(
         default:
           "h-5 px-2.5 py-0.5 text-xs gap-1.5 [&>svg]:size-3 [&_svg]:size-3",
         sm: "h-4 px-1.5 py-0 text-[10px] gap-1 [&>svg]:size-2.5 [&_svg]:size-2.5",
-        lg: "h-6 px-3 py-0.5 text-xs font-semibold gap-1.5 [&>svg]:size-3.5 [&_svg]:size-3.5",
+        lg: "h-6 px-3 py-0.5 text-xs font-medium gap-1.5 [&>svg]:size-3.5 [&_svg]:size-3.5",
         pill: "h-6 px-3 py-1 text-caption gap-1.5 [&>svg]:size-3.5 [&_svg]:size-3.5", // design.md: 4px x 12px / caption 13px
       },
       shape: {

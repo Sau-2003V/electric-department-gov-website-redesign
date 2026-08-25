@@ -64,7 +64,7 @@ export default function ContactCard({ channel }) {
 
         {/* Title & Label */}
         <div className="mt-4">
-          <p className="text-title-md text-ink font-semibold tracking-tight">
+          <p className="text-title-md text-ink font-medium tracking-tight">
             {channel.title}
           </p>
           <p className="text-body-sm text-muted-text mt-0.5 font-medium">

@@ -14,13 +14,13 @@ A hairline icon beside semibold text reads as broken; a heavy icon beside regula
 
 ```html
 <!-- Good: stroke tuned to the label weight -->
-<button class="flex items-center gap-2 font-semibold">
+<button class="flex items-center gap-2 font-medium">
   <PlusIcon stroke-width="2" class="size-4" />
   New project
 </button>
 
 <!-- Bad: default 1.5px stroke against a bold label -->
-<button class="flex items-center gap-2 font-bold">
+<button class="flex items-center gap-2 font-normal">
   <PlusIcon stroke-width="1.5" class="size-4" />
   New project
 </button>

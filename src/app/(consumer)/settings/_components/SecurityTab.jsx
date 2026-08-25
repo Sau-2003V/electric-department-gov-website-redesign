@@ -88,7 +88,7 @@ export default function SecurityTab() {
       >
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="text-title-md text-ink font-semibold">
+            <h3 className="text-title-md text-ink font-medium">
               Security Credentials & Password
             </h3>
             <Badge
@@ -209,7 +209,7 @@ export default function SecurityTab() {
             </div>
             <div className="space-y-0.5">
               <div className="flex items-center gap-2">
-                <p className="text-title-sm text-ink font-semibold">
+                <p className="text-title-sm text-ink font-medium">
                   Two-Factor Authentication (OTP on Login & High-Impact Actions)
                 </p>
                 <Badge variant="success" size="sm" text="Recommended" />
@@ -233,7 +233,7 @@ export default function SecurityTab() {
       <div className="border-hairline bg-canvas shadow-subtle space-y-4 rounded-xl border p-5 sm:p-7">
         <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
           <div>
-            <h3 className="text-title-sm text-ink font-semibold">
+            <h3 className="text-title-sm text-ink font-medium">
               Active Authorized Sessions
             </h3>
             <p className="text-body-sm text-muted-text">
@@ -260,7 +260,7 @@ export default function SecurityTab() {
                 <Laptop className="text-brand-accent size-4" />
               </div>
               <div>
-                <p className="text-ink flex items-center gap-2 text-sm font-semibold">
+                <p className="text-ink flex items-center gap-2 text-sm font-medium">
                   Chrome on Windows 11
                   <Badge variant="secondary" size="sm" text="Current Session" />
                 </p>
@@ -278,7 +278,7 @@ export default function SecurityTab() {
                 <Smartphone className="text-muted-text size-4" />
               </div>
               <div>
-                <p className="text-ink text-sm font-semibold">
+                <p className="text-ink text-sm font-medium">
                   Vidhyut Consumer App · Samsung Galaxy S23
                 </p>
                 <p className="text-muted-soft font-mono text-xs">
@@ -293,7 +293,7 @@ export default function SecurityTab() {
       {/* Data Export & GDPR/DPDP Statement Card */}
       <div className="border-hairline bg-surface-card shadow-subtle flex flex-col justify-between gap-4 rounded-xl border p-5 sm:flex-row sm:items-center sm:p-6">
         <div>
-          <h4 className="text-title-sm text-ink font-semibold">
+          <h4 className="text-title-sm text-ink font-medium">
             Consumer Data Portability & Ledger Export
           </h4>
           <p className="text-body-sm text-muted-text mt-0.5">

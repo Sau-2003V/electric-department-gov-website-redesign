@@ -34,7 +34,7 @@ export default function CredentialsPage() {
               height={36}
               className="size-9 rounded-md object-contain"
             />
-            <span className="text-title-sm text-ink font-semibold tracking-tight">
+            <span className="text-title-sm text-ink font-medium tracking-tight">
               Vidhyut Portal
             </span>
           </Link>
@@ -52,7 +52,7 @@ export default function CredentialsPage() {
 
         {/* Title */}
         <div className="mb-6 space-y-1">
-          <h1 className="text-title-lg text-ink font-semibold tracking-tight">
+          <h1 className="text-title-lg text-ink font-medium tracking-tight">
             Demo Credentials
           </h1>
           <p className="text-body-sm text-muted-text leading-relaxed">
@@ -76,7 +76,7 @@ export default function CredentialsPage() {
                     <Hash className="text-muted-soft size-3" />
                     Meter:
                   </span>
-                  <span className="text-body-sm text-code text-ink font-semibold">
+                  <span className="text-body-sm text-code text-ink font-medium">
                     {cred.meter}
                   </span>
                 </div>

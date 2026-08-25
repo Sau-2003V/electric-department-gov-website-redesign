@@ -116,7 +116,7 @@ function DonutChart({ data }) {
       </svg>
       {/* Center label */}
       <div className="absolute flex flex-col items-center">
-        <span className="text-ink text-title-lg font-mono font-bold">
+        <span className="text-ink text-title-lg font-mono font-normal">
           88.4%
         </span>
         <span className="text-caption text-muted-text">Resolved</span>
@@ -234,7 +234,7 @@ export default function ComplaintAnalytics() {
                   </span>
                   <Icon className="text-ink h-4 w-4" strokeWidth={1.5} />
                 </div>
-                <span className="text-ink text-display-sm font-mono font-semibold">
+                <span className="text-ink text-display-sm font-mono font-medium">
                   {s.value}
                 </span>
                 <span className="text-caption text-muted-text mt-1">
@@ -249,7 +249,7 @@ export default function ComplaintAnalytics() {
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {/* Donut — resolution status */}
           <div className="border-hairline bg-canvas shadow-subtle rounded-lg border p-6">
-            <h3 className="text-caption text-ink mb-4 font-semibold uppercase">
+            <h3 className="text-caption text-ink mb-4 font-medium uppercase">
               Status distribution
             </h3>
             <DonutChart data={STATUS_DISTRIBUTION} />
@@ -276,7 +276,7 @@ export default function ComplaintAnalytics() {
 
           {/* Category bars */}
           <div className="border-hairline bg-canvas shadow-subtle rounded-lg border p-6">
-            <h3 className="text-caption text-ink mb-4 font-semibold uppercase">
+            <h3 className="text-caption text-ink mb-4 font-medium uppercase">
               By category (today)
             </h3>
             <div className="space-y-4">
@@ -288,7 +288,7 @@ export default function ComplaintAnalytics() {
 
           {/* 7-day trend sparkline */}
           <div className="border-hairline bg-canvas shadow-subtle flex flex-col rounded-lg border p-6">
-            <h3 className="text-caption text-ink mb-1 font-semibold uppercase">
+            <h3 className="text-caption text-ink mb-1 font-medium uppercase">
               7-day complaint trend
             </h3>
             <p className="text-caption text-muted-text mb-4">
@@ -299,7 +299,7 @@ export default function ComplaintAnalytics() {
             </div>
             <div className="mt-4 flex items-end justify-between">
               <div>
-                <span className="text-ink text-title-lg font-mono font-semibold">
+                <span className="text-ink text-title-lg font-mono font-medium">
                   1,284
                 </span>
                 <p className="text-caption text-muted-text">Today</p>

@@ -54,7 +54,7 @@ export function Step3ReviewSubmit({
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <h2 className="text-title-lg text-ink font-semibold tracking-tight">
+        <h2 className="text-title-lg text-ink font-medium tracking-tight">
           Review &amp; confirm complaint
         </h2>
         <p className="text-body-sm text-muted-text mt-1">
@@ -70,7 +70,7 @@ export function Step3ReviewSubmit({
             <span className="text-muted-text text-[11px] font-medium tracking-wider uppercase">
               Issue Category
             </span>
-            <div className="text-ink text-base font-semibold tracking-tight">
+            <div className="text-ink text-base font-medium tracking-tight">
               {currentIssue.title}
             </div>
             <div className="text-muted-text mt-0.5 text-xs">
