@@ -25,9 +25,8 @@ export default function TopHeader() {
   const navLinks = [
     { label: "Home", href: "/" },
     { label: "Register Complaint", href: "/complaints/new" },
-    { label: "Consumer Services", href: "#consumer-services" },
-    { label: "Video Guides", href: "#video-guides" },
-    { label: "Updates", href: "#notices" },
+    { label: "How it Works", href: "/how-it-works" },
+    { label: "Team", href: "/team" },
     { label: "Support", href: "/support" },
   ];
 

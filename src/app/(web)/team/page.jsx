@@ -1,13 +1,33 @@
-"use client";
+import {
+  Mail,
+  MapPin,
+  UserRound,
+  Globe,
+  ExternalLink,
+  Code2,
+  Cpu,
+  Layers,
+  Database,
+  ShieldCheck,
+  Zap,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
-import { Mail, MapPin, UserRound, GitBranch, Globe } from "lucide-react";
+export const metadata = {
+  title: "Engineering Team · Vidhyut Electricity Portal",
+  description:
+    "Meet the engineering and product team responsible for building and maintaining the Vidhyut electricity grievance and consumer service portal.",
+};
 
 const teamMembers = [
   {
     name: "Shivansh Tiwari",
     role: "Full Stack Developer",
+    badgeVariant: "accent-subtle",
+    avatarBg: "bg-brand-accent/15 text-brand-accent",
     description:
-      "Works on the portal frontend, backend APIs, creating model schema using PostgreSQL, database integration, and overall application development.",
+      "Leads full-stack architecture, Next.js App Router orchestration, Supabase backend integration, database schema modeling, and core component engineering.",
     email: "shivans0018@gmail.com",
     github: "https://github.com/shivans-16",
     linkedIn: "https://www.linkedin.com/in/shivansh-tiwari-a329a3364/",
@@ -16,9 +36,11 @@ const teamMembers = [
   },
   {
     name: "Aditya Kumar",
-    role: "Backend Developer",
+    role: "Backend & Systems Developer",
+    badgeVariant: "badge-orange",
+    avatarBg: "bg-badge-orange/20 text-[#c2410c] dark:text-badge-orange",
     description:
-      "Handles backend services, database management, API development, and complaint management workflows.",
+      "Specializes in scalable backend services, database migrations, server actions, REST APIs, and automated complaint triage workflows.",
     email: "aditya@adibitz.com",
     github: "https://github.com/adibitz/",
     linkedIn: "https://www.linkedin.com/in/aaditya-kumar-anand",
@@ -27,9 +49,11 @@ const teamMembers = [
   },
   {
     name: "Saurabh Vishwakarma",
-    role: "Frontend Developer",
+    role: "Frontend & UI/UX Developer",
+    badgeVariant: "success-subtle",
+    avatarBg: "bg-success/15 text-emerald-700 dark:text-emerald-400",
     description:
-      "Focuses on responsive UI development, user experience, and building clean portal components.",
+      "Focuses on responsive design execution, accessibility (WCAG AA), motion design, and high-performance citizen-facing portal interfaces.",
     email: "saurabh.temp@gmail.com",
     github: "https://github.com/saurabh-vishwakarma",
     linkedIn: "https://www.linkedin.com/in/saurabh-vishwakarma",
@@ -38,119 +62,246 @@ const teamMembers = [
   },
 ];
 
+const portalStack = [
+  {
+    name: "Next.js 16 (App Router)",
+    role: "Framework",
+    desc: "React Server Components, server actions, and Turbopack.",
+    icon: Code2,
+  },
+  {
+    name: "Tailwind CSS v4",
+    role: "Styling Engine",
+    desc: "Design token system with strict dark/light mode parity.",
+    icon: Layers,
+  },
+  {
+    name: "Supabase & PostgreSQL",
+    role: "Database & Auth",
+    desc: "Row Level Security (RLS) and real-time grievance tracking.",
+    icon: Database,
+  },
+  {
+    name: "TanStack React Query v5",
+    role: "State Management",
+    desc: "Client-side query caching, optimistic UI, and mutations.",
+    icon: Cpu,
+  },
+];
+
 export default function TeamsPage() {
   return (
-    <main className="min-h-screen bg-[#f5f2ec] text-[#171717]">
-      <section className="mx-auto max-w-[1315px] px-5 pt-10 pb-14">
-        <div className="mb-8">
-          <p className="mb-1 text-[13px] font-bold tracking-[0.3px] text-[#ef5b28] uppercase">
-            Our Team
-          </p>
-          <h1 className="text-[30px] leading-[1.15] font-bold tracking-[-0.8px] text-[#111]">
-            Meet the team
+    <div className="bg-canvas text-ink min-h-screen">
+      {/* 1. HERO HEADER */}
+      <section className="border-hairline bg-surface-card/60 relative overflow-hidden border-b py-12 md:py-16">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(var(--hairline)_1px,transparent_1px)] [background-size:24px_24px] opacity-60" />
+
+        <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
+          <Badge variant="accent-subtle" size="pill" className="mx-auto mb-4 gap-1.5">
+            <Zap className="size-3.5" />
+            <span>Digital Infrastructure &amp; Innovation</span>
+          </Badge>
+
+          <h1 className="text-display-md sm:text-display-lg lg:text-display-xl text-ink font-semibold tracking-tight">
+            Meet the engineering team
           </h1>
-          <p className="mt-2 max-w-[650px] text-[14px] leading-6 text-[#686868]">
-            The people working together to build and maintain the electricity
-            service portal.
+
+          <p className="text-body-md text-muted-text mx-auto mt-4 max-w-2xl leading-relaxed">
+            The software engineers, architects, and designers building modern, accessible, and high-reliability public utility services for the state electricity portal.
           </p>
         </div>
+      </section>
 
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+      {/* 2. TEAM MEMBERS GRID */}
+      <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
+        <div className="mb-8 flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <span className="text-caption text-muted-text font-medium uppercase tracking-wider">
+              Core Contributors
+            </span>
+            <h2 className="text-display-md text-ink font-semibold tracking-tight mt-1">
+              Engineering members
+            </h2>
+          </div>
+          <Badge variant="secondary" size="sm" shape="pill">
+            3 Active Maintainers
+          </Badge>
+        </div>
+
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {teamMembers.map((member) => (
-            <TeamCard key={member.name} member={member} />
+            <div
+              key={member.name}
+              className="border-hairline bg-surface-card hover:bg-canvas shadow-subtle hover:shadow-card flex flex-col justify-between rounded-2xl border p-6 transition-all duration-150 sm:p-8"
+            >
+              <div>
+                {/* Avatar & Header */}
+                <div className="flex items-center gap-4">
+                  <div
+                    className={`flex size-14 shrink-0 items-center justify-center rounded-full border border-hairline ${member.avatarBg}`}
+                  >
+                    <UserRound className="size-7" strokeWidth={1.8} />
+                  </div>
+                  <div>
+                    <h3 className="text-title-md text-ink font-semibold">
+                      {member.name}
+                    </h3>
+                    <div className="mt-1">
+                      <Badge variant={member.badgeVariant} size="sm" shape="pill">
+                        {member.role}
+                      </Badge>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bio Description */}
+                <p className="text-body-sm text-muted-text mt-6 leading-relaxed">
+                  {member.description}
+                </p>
+
+                {/* Divider */}
+                <div className="my-6 border-t border-hairline-soft" />
+
+                {/* Contact & Social Links List */}
+                <div className="space-y-3 text-body-sm">
+                  {/* Email */}
+                  <div className="flex items-center gap-3 text-muted-text">
+                    <Mail className="size-4 text-brand-accent shrink-0" />
+                    <a
+                      href={`mailto:${member.email}`}
+                      className="text-ink hover:text-brand-accent truncate transition-colors"
+                    >
+                      {member.email}
+                    </a>
+                  </div>
+
+                  {/* GitHub */}
+                  <div className="flex items-center gap-3 text-muted-text">
+                    <svg
+                      className="size-4 text-ink fill-current shrink-0"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                      />
+                    </svg>
+                    <a
+                      href={member.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-ink hover:text-brand-accent truncate transition-colors inline-flex items-center gap-1"
+                    >
+                      <span className="truncate">{member.github.replace("https://", "")}</span>
+                      <ExternalLink className="size-3 opacity-60 shrink-0" />
+                    </a>
+                  </div>
+
+                  {/* LinkedIn */}
+                  <div className="flex items-center gap-3 text-muted-text">
+                    <svg
+                      className="size-4 text-brand-accent fill-current shrink-0"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2m1.39 9.74v-8.37H5.07v8.37h2.78z" />
+                    </svg>
+                    <a
+                      href={member.linkedIn}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-ink hover:text-brand-accent truncate transition-colors inline-flex items-center gap-1"
+                    >
+                      <span className="truncate">LinkedIn Profile</span>
+                      <ExternalLink className="size-3 opacity-60 shrink-0" />
+                    </a>
+                  </div>
+
+                  {/* Portfolio */}
+                  <div className="flex items-center gap-3 text-muted-text">
+                    <Globe className="size-4 text-success shrink-0" />
+                    <a
+                      href={member.portfolio}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-ink hover:text-brand-accent truncate transition-colors inline-flex items-center gap-1"
+                    >
+                      <span className="truncate">{member.portfolio.replace("https://", "")}</span>
+                      <ExternalLink className="size-3 opacity-60 shrink-0" />
+                    </a>
+                  </div>
+
+                  {/* Location */}
+                  <div className="flex items-center gap-3 text-muted-text">
+                    <MapPin className="size-4 text-muted-soft shrink-0" />
+                    <span className="truncate text-muted-text">{member.location}</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Action Button */}
+              <div className="mt-8 pt-4 border-t border-hairline-soft">
+                <a href={`mailto:${member.email}`} className="inline-flex w-full">
+                  <Button
+                    variant="primary"
+                    size="default"
+                    className="w-full justify-center"
+                    leftIcon={<Mail className="size-4" />}
+                  >
+                    <span>Contact {member.name.split(" ")[0]}</span>
+                  </Button>
+                </a>
+              </div>
+            </div>
           ))}
         </div>
       </section>
-    </main>
-  );
-}
 
-function TeamCard({ member }) {
-  return (
-    <div className="flex min-h-[420px] flex-col rounded-[19px] border border-[#ddd9d2] bg-[#fffdfa] p-6 shadow-[0_1px_2px_rgba(0,0,0,0.02)] transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_8px_25px_rgba(0,0,0,0.06)]">
-      <div className="flex items-center gap-4">
-        <div className="flex h-[58px] w-[58px] shrink-0 items-center justify-center rounded-full bg-[#171717] text-white">
-          <UserRound size={27} strokeWidth={1.8} />
+      {/* 3. TECHNOLOGY STACK & ARCHITECTURE SECTION */}
+      <section className="border-t border-hairline bg-surface-soft py-12 md:py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-10">
+            <Badge variant="secondary" size="pill">
+              Architecture &amp; Stack
+            </Badge>
+            <h2 className="text-display-md text-ink font-semibold tracking-tight mt-2">
+              Modern government tech infrastructure
+            </h2>
+            <p className="text-body-sm text-muted-text mt-2">
+              Engineered for high availability, zero latency bottlenecks, strict accessibility compliance, and enterprise-grade data security.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {portalStack.map((tech) => {
+              const Icon = tech.icon;
+              return (
+                <div
+                  key={tech.name}
+                  className="border-hairline bg-canvas shadow-subtle rounded-xl border p-6 flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="border-hairline bg-surface-soft text-ink flex size-10 items-center justify-center rounded-lg border mb-4">
+                      <Icon className="size-5" />
+                    </div>
+                    <span className="text-caption text-brand-accent font-semibold uppercase tracking-wider block">
+                      {tech.role}
+                    </span>
+                    <h3 className="text-title-sm text-ink font-semibold mt-1">
+                      {tech.name}
+                    </h3>
+                    <p className="text-body-sm text-muted-text mt-2 leading-relaxed">
+                      {tech.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
-        <div>
-          <h2 className="text-[17px] font-semibold text-[#171717]">
-            {member.name}
-          </h2>
-          <p className="mt-1 text-[13px] font-medium text-[#ef5b28]">
-            {member.role}
-          </p>
-        </div>
-      </div>
-
-      <p className="mt-6 min-h-[72px] text-[14px] leading-6 text-[#626262]">
-        {member.description}
-      </p>
-
-      <div className="my-5 border-t border-[#e3dfd8]" />
-
-      <div className="space-y-4">
-        <ContactItem
-          icon={<Mail size={17} strokeWidth={1.8} className="text-[#ef5b28]" />}
-          text={member.email}
-        />
-        <ContactItem
-          icon={
-            <GitBranch size={17} strokeWidth={1.8} className="text-[#171717]" />
-          }
-          text={member.github}
-          link
-        />
-        <ContactItem
-          icon={
-            <Globe size={17} strokeWidth={1.8} className="text-[#0077b5]" />
-          }
-          text={member.linkedIn}
-          link
-        />
-        <ContactItem
-          icon={
-            <Globe size={17} strokeWidth={1.8} className="text-[#ef5b28]" />
-          }
-          text={member.portfolio}
-          link
-        />
-        <ContactItem
-          icon={
-            <MapPin size={17} strokeWidth={1.8} className="text-[#ef5b28]" />
-          }
-          text={member.location}
-        />
-      </div>
-
-      <div className="mt-auto pt-6">
-        <a
-          href={`mailto:${member.email}`}
-          className="flex w-full items-center justify-center gap-2 rounded-[10px] bg-[#171717] px-4 py-2.5 text-[13px] font-semibold text-white transition-colors hover:bg-[#ef5b28]"
-        >
-          <Mail size={15} />
-          Contact member
-        </a>
-      </div>
-    </div>
-  );
-}
-
-function ContactItem({ icon, text, link }) {
-  return (
-    <div className="flex items-center gap-3 truncate text-[13px] text-[#5f5f5f]">
-      {icon}
-      {link ? (
-        <a
-          href={text}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="truncate hover:text-[#ef5b28]"
-        >
-          {text}
-        </a>
-      ) : (
-        <span className="truncate">{text}</span>
-      )}
+      </section>
     </div>
   );
 }
