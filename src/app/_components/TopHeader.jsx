@@ -25,7 +25,6 @@ export default function TopHeader() {
   const navLinks = [
     { label: "Home", href: "/" },
     { label: "Register Complaint", href: "/complaints/new" },
-    { label: "Track Complaint", href: "/complaints" },
     { label: "Consumer Services", href: "#consumer-services" },
     { label: "Video Guides", href: "#video-guides" },
     { label: "Updates", href: "#notices" },
@@ -55,7 +54,7 @@ export default function TopHeader() {
   return (
     <header className="w-full font-sans">
       {/* 1. Top Utility & Accessibility Bar */}
-      <div className="border-surface-dark-elevated bg-surface-dark text-on-dark-soft text-caption border-b px-4 py-1.5 sm:py-2">
+      <div className="border-hairline bg-surface-soft text-caption dark:border-hairline dark:bg-surface-dark-elevated border-b px-4 py-1.5 max-sm:hidden sm:py-2">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           {/* Left: Emblem */}
           <div className="flex items-center gap-2.5">
@@ -64,11 +63,11 @@ export default function TopHeader() {
               alt="Government of India Emblem"
               width={20}
               height={20}
-              className="h-5 w-auto object-contain"
+              className="h-5 w-auto object-contain dark:brightness-110"
             />
-            <span className="text-on-dark text-caption font-medium tracking-wide">
+            <span className="text-ink text-caption dark:text-on-dark font-medium tracking-wide">
               <span className="hidden sm:inline">Government of India / </span>
-              <span className="text-on-dark-soft sm:text-caption text-xs">
+              <span className="text-muted-text dark:text-on-dark-soft sm:text-caption text-xs">
                 भारत सरकार
               </span>
             </span>
@@ -86,7 +85,7 @@ export default function TopHeader() {
                 variant="ghost"
                 size="compact"
                 icon={Globe}
-                className="text-on-dark-soft hover:bg-surface-dark-elevated hover:text-on-dark dark:text-on-dark-soft dark:hover:bg-surface-dark-elevated dark:hover:text-on-dark h-7 min-w-[110px] border-none px-2 text-xs font-medium focus:ring-0"
+                className="text-muted-text hover:bg-surface-card hover:text-ink dark:text-on-dark-soft dark:hover:bg-surface-dark dark:hover:text-on-dark h-7 min-w-[110px] border-none px-2 text-xs font-medium focus:ring-0"
                 aria-label="Select Language"
               />
               <SelectContent className="z-[100] max-h-72 min-w-[170px]">
@@ -101,7 +100,7 @@ export default function TopHeader() {
               </SelectContent>
             </Select>
 
-            <div className="bg-surface-dark-elevated h-3 w-px" />
+            <div className="bg-hairline dark:bg-surface-strong h-3 w-px" />
 
             {/* Font Size Selector */}
             <Select
@@ -113,7 +112,7 @@ export default function TopHeader() {
                 variant="ghost"
                 size="compact"
                 icon={Type}
-                className="text-on-dark-soft hover:bg-surface-dark-elevated hover:text-on-dark dark:text-on-dark-soft dark:hover:bg-surface-dark-elevated dark:hover:text-on-dark h-7 min-w-[105px] border-none px-2 text-xs font-medium focus:ring-0"
+                className="text-muted-text hover:bg-surface-card hover:text-ink dark:text-on-dark-soft dark:hover:bg-surface-dark dark:hover:text-on-dark h-7 min-w-[105px] border-none px-2 text-xs font-medium focus:ring-0"
                 aria-label="Select Font Size"
               />
               <SelectContent className="z-[100] min-w-[140px]">
@@ -124,7 +123,7 @@ export default function TopHeader() {
               </SelectContent>
             </Select>
 
-            <div className="bg-surface-dark-elevated h-3 w-px" />
+            <div className="bg-hairline dark:bg-surface-strong h-3 w-px" />
 
             {/* Theme Selector */}
             <Select
@@ -136,7 +135,7 @@ export default function TopHeader() {
                 variant="ghost"
                 size="compact"
                 icon={SunMoon}
-                className="text-on-dark-soft hover:bg-surface-dark-elevated hover:text-on-dark dark:text-on-dark-soft dark:hover:bg-surface-dark-elevated dark:hover:text-on-dark h-7 min-w-[95px] border-none px-2 text-xs font-medium capitalize focus:ring-0"
+                className="text-muted-text hover:bg-surface-card hover:text-ink dark:text-on-dark-soft dark:hover:bg-surface-dark dark:hover:text-on-dark h-7 min-w-[95px] border-none px-2 text-xs font-medium capitalize focus:ring-0"
                 aria-label="Select Theme"
               />
               <SelectContent className="z-[100] min-w-[130px]">
@@ -150,19 +149,19 @@ export default function TopHeader() {
       </div>
 
       {/* 2. Main Navigation Bar */}
-      <nav className="border-hairline bg-canvas/95 sticky top-0 z-50 border-b backdrop-blur-xs">
+      <nav className="border-hairline bg-canvas/95 dark:bg-surface-dark/95 sticky top-0 z-50 border-b backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between py-3">
           {/* Logo & Org Title */}
           <Link href="/" className="group flex items-center gap-3">
             <Image
-              src="/image/logo.svg.svg"
+              src="/image/logo.svg"
               alt="Vidhyut Logo"
               width={40}
               height={40}
-              className="h-10 w-auto bg-transparent object-contain mix-blend-multiply transition-transform duration-200 group-hover:scale-105"
+              className="h-10 w-auto rounded-md bg-transparent object-contain transition-transform duration-200 group-hover:scale-105"
             />
             <div className="flex flex-col">
-              <span className="text-ink text-title-md font-semibold tracking-tight transition-opacity group-hover:opacity-80">
+              <span className="text-ink text-title-md dark:text-on-dark font-semibold tracking-tight transition-opacity group-hover:opacity-80">
                 Vidhyut Portal
               </span>
             </div>
@@ -177,10 +176,10 @@ export default function TopHeader() {
                 className={cn(
                   "text-nav-link rounded-md px-3 py-1.5 font-medium transition-colors active:scale-[0.98]",
                   item.highlight
-                    ? "bg-primary text-on-primary hover:bg-primary-active"
+                    ? "bg-primary text-on-primary hover:bg-primary-active shadow-subtle ml-1 font-semibold"
                     : item.active
-                      ? "bg-surface-card text-ink shadow-subtle font-semibold"
-                      : "text-muted-text hover:bg-surface-card hover:text-ink"
+                      ? "bg-surface-card text-ink dark:bg-surface-dark-elevated dark:text-on-dark shadow-subtle font-semibold"
+                      : "text-muted-text hover:bg-surface-card hover:text-ink dark:text-on-dark-soft dark:hover:bg-surface-dark-elevated dark:hover:text-on-dark"
                 )}
               >
                 {item.label}
@@ -193,7 +192,7 @@ export default function TopHeader() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
-              className="text-ink hover:bg-surface-card border-hairline bg-canvas focus-visible:ring-primary shadow-subtle relative flex h-10 w-10 items-center justify-center rounded-md border transition-colors focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]"
+              className="text-ink hover:bg-surface-card border-hairline bg-canvas focus-visible:ring-brand-accent dark:border-hairline dark:bg-surface-dark-elevated dark:text-on-dark dark:hover:bg-surface-dark shadow-subtle relative flex h-10 w-10 items-center justify-center rounded-md border transition-colors focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]"
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-navigation-drawer"
               aria-label={
@@ -254,7 +253,7 @@ export default function TopHeader() {
                   opacity: { duration: 0.16, ease: "easeOut" },
                 },
               }}
-              className="border-hairline bg-canvas/98 overflow-hidden border-t backdrop-blur-md lg:hidden"
+              className="border-hairline bg-canvas/98 dark:bg-surface-dark/98 overflow-hidden border-t backdrop-blur-md lg:hidden"
             >
               <motion.div
                 variants={{
@@ -268,7 +267,7 @@ export default function TopHeader() {
                 }}
                 initial="hidden"
                 animate="show"
-                className="mx-auto flex max-w-7xl flex-col space-y-1.5 px-4 pt-3 pb-5"
+                className="mx-auto flex max-w-7xl flex-col space-y-1.5 px-4 pt-3 pb-5 sm:px-6"
               >
                 {navLinks.map((item) => (
                   <motion.div
@@ -288,10 +287,10 @@ export default function TopHeader() {
                       className={cn(
                         "text-nav-link flex items-center justify-between rounded-md px-3.5 py-2.5 font-medium transition-all active:scale-[0.98]",
                         item.highlight
-                          ? "bg-primary text-on-primary hover:bg-primary-active"
+                          ? "bg-primary text-on-primary hover:bg-primary-active shadow-subtle font-semibold"
                           : item.active
-                            ? "bg-surface-card text-ink border-hairline border font-semibold"
-                            : "text-muted-text hover:bg-surface-card hover:text-ink"
+                            ? "bg-surface-card text-ink dark:bg-surface-dark-elevated dark:text-on-dark border-hairline border font-semibold"
+                            : "text-muted-text hover:bg-surface-card hover:text-ink dark:text-on-dark-soft dark:hover:bg-surface-dark-elevated dark:hover:text-on-dark"
                       )}
                     >
                       <span>{item.label}</span>
@@ -316,20 +315,23 @@ export default function TopHeader() {
                   }}
                   className="border-hairline mt-2.5 border-t pt-3"
                 >
-                  <div className="bg-surface-dark text-on-dark shadow-subtle flex items-center justify-between rounded-lg p-3">
+                  <div className="bg-surface-card border-hairline text-ink dark:bg-surface-dark-elevated dark:border-hairline dark:text-on-dark shadow-subtle flex items-center justify-between rounded-lg border p-3">
                     <div className="flex min-w-0 items-center gap-2.5">
-                      <div className="border-surface-dark-elevated bg-surface-dark-elevated text-on-dark flex h-8 w-8 shrink-0 items-center justify-center rounded-md border">
+                      <div className="border-hairline bg-canvas dark:bg-surface-dark dark:border-hairline text-ink dark:text-on-dark flex h-8 w-8 shrink-0 items-center justify-center rounded-md border">
                         <PhoneCall className="h-4 w-4" strokeWidth={1.5} />
                       </div>
                       <div className="truncate">
-                        <p className="text-on-dark text-caption mt-0.5 leading-tight font-semibold">
+                        <p className="text-muted-text dark:text-on-dark-soft text-[11px] font-medium tracking-wide uppercase">
+                          24x7 Helpline
+                        </p>
+                        <p className="text-ink text-caption dark:text-on-dark mt-0.5 font-mono leading-tight font-semibold">
                           1912 / 1800-180-1912
                         </p>
                       </div>
                     </div>
                     <a
                       href="tel:1912"
-                      className="bg-primary text-on-primary text-button ml-2 shrink-0 rounded-md px-3 py-1.5 font-medium transition-transform active:scale-[0.98]"
+                      className="bg-primary text-on-primary hover:bg-primary-active text-button shadow-subtle ml-2 shrink-0 rounded-md px-3 py-1.5 font-medium transition-transform active:scale-[0.98]"
                     >
                       Call
                     </a>

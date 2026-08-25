@@ -2,13 +2,13 @@
 
 import { useState, Suspense } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
   ArrowLeft,
   ArrowRight,
-  Zap,
   Hash,
   Phone,
   AlertCircle,
@@ -50,18 +50,22 @@ function LoginForm({
   };
 
   return (
-    <div className="border-hairline w-full max-w-115 rounded-2xl border bg-white p-6 sm:p-8">
+    <div className="border-hairline bg-canvas shadow-subtle w-full max-w-md rounded-2xl border p-6 sm:p-8">
       {/* Portal Header */}
       <div className="border-hairline-soft mb-6 flex items-center justify-between border-b pb-5">
         <Link
           href="/"
           aria-label="Vidhyut Portal home"
-          className="text-ink focus-visible:ring-ring/50 flex items-center gap-2.5 rounded-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+          className="text-ink focus-visible:ring-ring flex items-center gap-2.5 rounded-lg focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
         >
-          <span className="bg-ink text-on-primary flex size-9 items-center justify-center rounded-xl shadow-2xs">
-            <Zap size={18} fill="currentColor" aria-hidden="true" />
-          </span>
-          <span className="text-base font-semibold tracking-tight">
+          <Image
+            src="/image/logo.svg"
+            alt="Vidhyut Portal Logo"
+            width={36}
+            height={36}
+            className="size-9 rounded-md object-contain"
+          />
+          <span className="text-title-sm font-semibold tracking-tight text-ink">
             Vidhyut Portal
           </span>
         </Link>
@@ -78,11 +82,11 @@ function LoginForm({
       </div>
 
       {/* Title */}
-      <div className="mb-6 space-y-1.5">
-        <h1 className="text-headline text-ink font-semibold tracking-tight">
+      <div className="mb-6 space-y-1">
+        <h1 className="text-title-lg font-semibold tracking-tight text-ink">
           Consumer Login
         </h1>
-        <p className="text-body-sm text-ink-muted leading-relaxed">
+        <p className="text-body-sm text-muted-text leading-relaxed">
           Enter your meter number and registered phone number to access your
           account.
         </p>
@@ -140,7 +144,7 @@ function LoginForm({
 
         {/* General Error Alert */}
         {serverError && (
-          <div className="border-semantic-error/20 bg-semantic-error/10 text-semantic-error flex items-center gap-2 rounded-lg border p-3 text-xs font-medium">
+          <div className="border-error/20 bg-error/10 text-error flex items-center gap-2.5 rounded-lg border p-3 text-body-sm font-medium">
             <AlertCircle className="size-4 shrink-0" />
             <span>{serverError}</span>
           </div>
@@ -151,8 +155,10 @@ function LoginForm({
           <Button
             type="submit"
             variant="primary"
+            size="default"
+            shape="md"
             loading={form.formState.isSubmitting}
-            className="w-full text-base"
+            className="w-full"
           >
             {form.formState.isSubmitting ? "Logging in..." : "Login to Portal"}
           </Button>
@@ -162,23 +168,23 @@ function LoginForm({
       {/* Demo Credentials Link Card */}
       <Link
         href="/credentials"
-        className="group border-hairline bg-surface-2/40 hover:bg-surface-2/80 hover:border-hairline focus-visible:ring-ring/50 mt-6 flex items-center justify-between gap-3 rounded-xl border p-3.5 transition-all focus-visible:ring-2 focus-visible:outline-none"
+        className="group border-hairline bg-surface-card hover:bg-surface-soft hover:border-hairline focus-visible:ring-ring mt-6 flex items-center justify-between gap-3 rounded-xl border p-3.5 transition-all focus-visible:ring-2 focus-visible:outline-none"
       >
         <div className="flex min-w-0 flex-1 items-center gap-3">
-          <div className="border-hairline bg-surface-1 text-ink flex size-9 shrink-0 items-center justify-center rounded-lg border shadow-2xs transition-transform group-hover:scale-105">
+          <div className="border-hairline bg-canvas text-ink shadow-subtle flex size-9 shrink-0 items-center justify-center rounded-lg border">
             <KeyRound className="size-4" />
           </div>
           <div className="min-w-0 flex-1">
-            <p className="text-ink text-xs font-semibold transition-colors">
+            <p className="text-title-sm text-ink font-semibold">
               Use Demo Credentials
             </p>
-            <p className="text-ink-muted text-[11px] leading-tight">
+            <p className="text-caption text-muted-text leading-tight">
               Select a sample account to test and log in instantly
             </p>
           </div>
         </div>
 
-        <div className="border-hairline bg-surface-1 text-ink group-hover:border-ink/20 flex shrink-0 items-center gap-1 rounded-md border px-2.5 py-1 text-xs font-medium shadow-2xs transition-all">
+        <div className="border-hairline bg-canvas text-ink shadow-subtle group-hover:border-ink/30 flex shrink-0 items-center gap-1 rounded-md border px-2.5 py-1 text-caption font-medium transition-colors">
           <span>Use</span>
           <ArrowRight className="size-3 transition-transform group-hover:translate-x-0.5" />
         </div>
@@ -205,14 +211,18 @@ function LoginFormContainer() {
 
 export default function LoginPage() {
   return (
-    <div className="text-ink flex min-h-screen w-full items-center justify-center p-4 sm:p-6 lg:p-8">
+    <div className="bg-canvas text-ink flex min-h-screen w-full items-center justify-center p-4 sm:p-6 lg:p-8">
       <Suspense
         fallback={
-          <div className="border-hairline bg-surface-1 w-full max-w-[460px] rounded-2xl border p-8 text-center shadow-xs">
-            <div className="bg-ink text-on-primary mx-auto mb-4 flex size-10 items-center justify-center rounded-xl">
-              <Zap size={20} />
-            </div>
-            <p className="text-ink-muted text-sm">Loading login portal...</p>
+          <div className="border-hairline bg-canvas shadow-subtle w-full max-w-md rounded-2xl border p-8 text-center">
+            <Image
+              src="/image/logo.svg"
+              alt="Vidhyut Portal Logo"
+              width={40}
+              height={40}
+              className="mx-auto mb-4 size-10 object-contain"
+            />
+            <p className="text-muted-text text-body-sm">Loading login portal...</p>
           </div>
         }
       >
@@ -221,3 +231,5 @@ export default function LoginPage() {
     </div>
   );
 }
+
+

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { PhoneCall, Mail, MapPin } from "lucide-react";
 
 const footerColumns = [
@@ -83,9 +84,13 @@ export default function Footer() {
           {/* Logo & Office Details */}
           <div className="flex flex-col items-start pr-4 lg:col-span-4">
             <div className="mb-4 flex items-center gap-3">
-              <div className="border-surface-dark-elevated bg-surface-dark-elevated text-on-dark flex h-10 w-10 items-center justify-center rounded-lg border text-lg font-semibold">
-                ⚡
-              </div>
+              <Image
+                src="/image/logo.svg"
+                alt="Vidhyut Logo"
+                width={40}
+                height={40}
+                className="size-10 rounded-md object-contain bg-white p-1"
+              />
               <div>
                 <p className="text-on-dark-soft text-caption font-medium tracking-wider uppercase">
                   Electric Department
@@ -95,6 +100,7 @@ export default function Footer() {
                 </p>
               </div>
             </div>
+
 
             <p className="text-on-dark-soft text-body-sm mb-4 leading-relaxed">
               Official centralized grievance redressal and electricity consumer

@@ -157,14 +157,7 @@
     monospace
   );
 
-  /* Spacing Tokens (from design.md: base unit 4px) */
-  --spacing-xxs: 4px;
-  --spacing-xs: 8px;
-  --spacing-sm: 12px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-  --spacing-xxl: 48px;
+  /* Custom Spacing Tokens (from design.md) */
   --spacing-section: 96px;
 
   /* Border Radius Scale (from design.md) */
