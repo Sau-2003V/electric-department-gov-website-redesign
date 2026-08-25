@@ -86,7 +86,7 @@ export default function Sidebar({ mobileOpen = false, onClose }) {
         <div>
           <Button
             asChild
-            variant="default"
+            variant="accent"
             size="default"
             shape="default"
             className="w-full justify-center"

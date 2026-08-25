@@ -98,7 +98,6 @@ export function Step2LocationDetails({
           <Button
             type="button"
             onClick={onGps}
-            variant={formData.gpsCoords ? "secondary" : "accent"}
             size="default"
             shape="md"
             leftIcon={formData.gpsCoords ? <Check /> : <MapPin />}
@@ -310,7 +309,6 @@ export function Step2LocationDetails({
           type="button"
           onClick={onNext}
           disabled={!formData.address.trim()}
-          variant="accent"
           size="default"
           shape="md"
           rightIcon={<ArrowRight />}

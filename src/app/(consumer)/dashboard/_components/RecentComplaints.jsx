@@ -93,7 +93,6 @@ function ComplaintRow({ complaint }) {
         <div className="flex flex-wrap items-center gap-2">
           <p className="text-body-sm text-ink font-medium">{complaint.title}</p>
           <Badge variant={sc.badgeVariant} size="sm">
-            <Icon className="size-2.5" strokeWidth={2.2} />
             {complaint.status}
           </Badge>
         </div>

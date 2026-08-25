@@ -189,7 +189,6 @@ export function Step1SelectIssue({
                     shape="tag"
                     className="text-[10px]"
                   >
-                    <Clock className="size-2.5" />
                     <span>{item.sla}</span>
                   </Badge>
                 </div>
@@ -221,7 +220,6 @@ export function Step1SelectIssue({
         <Button
           type="button"
           onClick={onNext}
-          variant="accent"
           size="default"
           shape="md"
           rightIcon={<ArrowRight />}

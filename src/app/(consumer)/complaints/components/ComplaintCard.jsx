@@ -39,7 +39,6 @@ export default function ComplaintCard({ complaint, isCopied, onCopyId }) {
               shape="tag"
               className="font-medium"
             >
-              <AlertTriangle className="size-3" />
               <span>{complaint.priority}</span>
             </Badge>
           ) : complaint.priority ? (
@@ -90,13 +89,6 @@ export default function ComplaintCard({ complaint, isCopied, onCopyId }) {
           shape="tag"
           className="font-medium"
         >
-          <StatusIcon
-            className={cn(
-              "size-3.5",
-              complaint.status === "In progress" && "animate-spin"
-            )}
-            strokeWidth={2.2}
-          />
           <span>{complaint.status}</span>
         </Badge>
 

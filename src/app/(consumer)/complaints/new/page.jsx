@@ -171,7 +171,7 @@ export default function NewComplaintPage() {
   // STEPPER FORM (3 SIMPLE STEPS)
   return (
     <div className="bg-canvas text-ink min-h-screen">
-      <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+      <div className="max-w-4xl px-4 py-8 sm:px-6">
         <ComplaintHeader />
         <ComplaintStepper step={step} onStepChange={setStep} />
 

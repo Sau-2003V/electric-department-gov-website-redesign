@@ -20,23 +20,7 @@ export function ComplaintHeader() {
           <h1 className="text-display-sm text-ink font-semibold tracking-tight">
             Register a complaint
           </h1>
-          <p className="text-body-sm text-muted-text mt-0.5">
-            Official grievance intake with statutory SLA tracking under UPERC
-            guidelines.
-          </p>
         </div>
-
-        <a href="tel:1912" className="shrink-0">
-          <Button
-            variant="accent"
-            size="compact"
-            shape="md"
-            leftIcon={<PhoneCall className="size-3.5" />}
-            className="transition-transform active:scale-[0.96]"
-          >
-            <span>Call 1912 (Emergency)</span>
-          </Button>
-        </a>
       </div>
     </div>
   );

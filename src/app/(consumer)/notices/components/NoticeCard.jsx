@@ -49,7 +49,6 @@ export default function NoticeCard({ notice, isCopied, onCopyId, onDownload }) {
               shape="tag"
               className="font-medium"
             >
-              <PriorityIcon className="size-3" />
               <span>{notice.priority}</span>
             </Badge>
           )}
@@ -114,7 +113,6 @@ export default function NoticeCard({ notice, isCopied, onCopyId, onDownload }) {
           shape="tag"
           className="font-medium"
         >
-          <span className={cn("size-1.5 rounded-full", statusCfg.dot)} />
           <span>{notice.status}</span>
         </Badge>
 

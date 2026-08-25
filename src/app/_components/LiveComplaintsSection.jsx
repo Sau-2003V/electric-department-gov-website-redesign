@@ -134,12 +134,10 @@ function ComplaintRow({ complaint, copiedId, onCopy }) {
             {complaint.title}
           </span>
           <Badge variant={sc.variant} size="sm">
-            <Icon className="size-2.5" strokeWidth={1.5} />
             {complaint.status}
           </Badge>
           {complaint.priority === "Safety critical" && (
             <Badge variant="destructive" size="sm">
-              <AlertTriangle className="size-2.5" strokeWidth={1.5} />
               Critical
             </Badge>
           )}
