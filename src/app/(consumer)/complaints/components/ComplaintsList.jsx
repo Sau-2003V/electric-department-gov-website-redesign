@@ -10,7 +10,7 @@ export default function ComplaintsList({
   onClearSearch,
 }) {
   return (
-    <div className="border-hairline bg-surface-1 divide-hairline-soft divide-y overflow-hidden rounded-2xl border shadow-2xs">
+    <div className="border-hairline bg-surface-card divide-hairline-soft shadow-subtle divide-y overflow-hidden rounded-lg border">
       {complaints.length > 0 ? (
         complaints.map((complaint) => (
           <ComplaintCard

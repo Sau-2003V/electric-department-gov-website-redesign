@@ -6,7 +6,7 @@ export default function ComplaintsHeader() {
   return (
     <div className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
       <div>
-        <h1 className="text-headline text-ink font-medium tracking-tight">
+        <h1 className="text-display-sm text-ink font-semibold tracking-tight">
           Complaints
         </h1>
       </div>

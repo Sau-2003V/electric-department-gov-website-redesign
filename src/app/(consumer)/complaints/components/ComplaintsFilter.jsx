@@ -14,7 +14,7 @@ export default function ComplaintsFilter({
       {/* Search Input */}
       <div className="relative">
         <Search
-          className="text-ink-subtle pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2"
+          className="text-muted-text pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2"
           strokeWidth={2}
         />
         <input
@@ -22,13 +22,13 @@ export default function ComplaintsFilter({
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
           placeholder="Search by Docket ID (e.g. VVNL-240001) or fault description..."
-          className="border-hairline bg-surface-1 text-ink placeholder:text-ink-subtle focus:border-ink focus:ring-ink/20 h-10 w-full rounded-lg border pr-3 pl-9 text-sm shadow-2xs transition-all focus:ring-2 focus:outline-none"
+          className="border-hairline bg-surface-card text-ink placeholder:text-muted-text focus:border-ink focus:ring-ring shadow-subtle h-10 w-full rounded-md border pr-3 pl-9 text-sm transition-all focus:ring-1 focus:outline-none"
         />
         {searchQuery && (
           <button
             type="button"
             onClick={() => onSearchChange("")}
-            className="text-caption text-ink-muted hover:text-ink absolute top-1/2 right-3 -translate-y-1/2 font-medium"
+            className="text-caption text-muted-text hover:text-ink absolute top-1/2 right-3 -translate-y-1/2 font-medium"
           >
             Clear
           </button>
@@ -38,7 +38,7 @@ export default function ComplaintsFilter({
       {/* Filter Tabs */}
       <div className="no-scrollbar overflow-x-auto pb-1">
         <Tabs value={activeTab} onValueChange={onTabChange}>
-          <TabsList className="border-hairline bg-surface-1 border">
+          <TabsList className="border-hairline bg-surface-soft border">
             {TABS_CONFIG.map((tab) => (
               <TabItem
                 key={tab.id}

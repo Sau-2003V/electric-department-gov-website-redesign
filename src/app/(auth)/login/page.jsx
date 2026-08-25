@@ -65,7 +65,7 @@ function LoginForm({
             height={36}
             className="size-9 rounded-md object-contain"
           />
-          <span className="text-title-sm font-semibold tracking-tight text-ink">
+          <span className="text-title-sm text-ink font-semibold tracking-tight">
             Vidhyut Portal
           </span>
         </Link>
@@ -83,7 +83,7 @@ function LoginForm({
 
       {/* Title */}
       <div className="mb-6 space-y-1">
-        <h1 className="text-title-lg font-semibold tracking-tight text-ink">
+        <h1 className="text-title-lg text-ink font-semibold tracking-tight">
           Consumer Login
         </h1>
         <p className="text-body-sm text-muted-text leading-relaxed">
@@ -144,7 +144,7 @@ function LoginForm({
 
         {/* General Error Alert */}
         {serverError && (
-          <div className="border-error/20 bg-error/10 text-error flex items-center gap-2.5 rounded-lg border p-3 text-body-sm font-medium">
+          <div className="border-error/20 bg-error/10 text-error text-body-sm flex items-center gap-2.5 rounded-lg border p-3 font-medium">
             <AlertCircle className="size-4 shrink-0" />
             <span>{serverError}</span>
           </div>
@@ -184,7 +184,7 @@ function LoginForm({
           </div>
         </div>
 
-        <div className="border-hairline bg-canvas text-ink shadow-subtle group-hover:border-ink/30 flex shrink-0 items-center gap-1 rounded-md border px-2.5 py-1 text-caption font-medium transition-colors">
+        <div className="border-hairline bg-canvas text-ink shadow-subtle group-hover:border-ink/30 text-caption flex shrink-0 items-center gap-1 rounded-md border px-2.5 py-1 font-medium transition-colors">
           <span>Use</span>
           <ArrowRight className="size-3 transition-transform group-hover:translate-x-0.5" />
         </div>
@@ -222,7 +222,9 @@ export default function LoginPage() {
               height={40}
               className="mx-auto mb-4 size-10 object-contain"
             />
-            <p className="text-muted-text text-body-sm">Loading login portal...</p>
+            <p className="text-muted-text text-body-sm">
+              Loading login portal...
+            </p>
           </div>
         }
       >
@@ -231,5 +233,3 @@ export default function LoginPage() {
     </div>
   );
 }
-
-

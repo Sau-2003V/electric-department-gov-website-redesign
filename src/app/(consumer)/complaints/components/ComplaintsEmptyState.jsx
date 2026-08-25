@@ -8,12 +8,12 @@ export default function ComplaintsEmptyState({
   onClearSearch,
 }) {
   return (
-    <div className="gap-xs text-ink-subtle flex flex-col items-center justify-center py-14 text-center">
-      <div className="border-hairline bg-surface-2 text-ink-muted mb-3 flex size-12 items-center justify-center rounded-full border">
+    <div className="text-muted-text flex flex-col items-center justify-center gap-2 py-14 text-center">
+      <div className="border-hairline bg-surface-soft text-muted-text mb-3 flex size-12 items-center justify-center rounded-full border">
         <Inbox className="size-6" strokeWidth={1.5} />
       </div>
       <p className="text-body-sm text-ink font-medium">No complaints found</p>
-      <p className="text-caption text-ink-muted mt-0.5 max-w-xs">
+      <p className="text-caption text-muted-text mt-0.5 max-w-xs">
         {searchQuery
           ? `No grievances matching "${searchQuery}". Try a different keyword or reset filters.`
           : `There are currently no tickets in "${currentTabLabel}".`}

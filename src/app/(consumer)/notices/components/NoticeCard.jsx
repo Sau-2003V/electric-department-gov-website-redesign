@@ -20,11 +20,11 @@ export default function NoticeCard({ notice, isCopied, onCopyId, onDownload }) {
   const statusCfg = STATUS_CONFIG[notice.status] || STATUS_CONFIG.Active;
 
   return (
-    <div className="group hover:bg-surface-2/40 relative flex flex-col justify-between gap-4 p-4 transition-colors duration-150 sm:flex-row sm:items-start sm:p-5">
+    <div className="group hover:bg-surface-soft relative flex flex-col justify-between gap-4 p-4 transition-colors duration-150 sm:flex-row sm:items-start sm:p-5">
       <div className="min-w-0 flex-1">
         {/* Notice Reference & Badges */}
         <div className="mb-2 flex flex-wrap items-center gap-2">
-          <div className="border-hairline bg-surface-2/60 flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs">
+          <div className="border-hairline bg-surface-soft flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs">
             <span className="text-ink font-mono text-[11px] font-medium">
               {notice.id}
             </span>
@@ -32,10 +32,10 @@ export default function NoticeCard({ notice, isCopied, onCopyId, onDownload }) {
               type="button"
               onClick={(e) => onCopyId(e, notice.id)}
               aria-label={`Copy ${notice.id}`}
-              className="text-ink-subtle hover:text-ink p-0.5 transition-colors"
+              className="text-muted-text hover:text-ink p-0.5 transition-colors"
             >
               {isCopied ? (
-                <Check className="text-semantic-success size-3" />
+                <Check className="text-success size-3" />
               ) : (
                 <Copy className="size-3" />
               )}
@@ -78,17 +78,17 @@ export default function NoticeCard({ notice, isCopied, onCopyId, onDownload }) {
         </div>
 
         {/* Notice Title */}
-        <h2 className="text-body text-ink group-hover:text-ink font-medium tracking-tight">
+        <h2 className="text-title-sm text-ink group-hover:text-ink font-semibold tracking-tight">
           {notice.title}
         </h2>
 
         {/* Description */}
-        <p className="text-caption text-ink-muted mt-1 line-clamp-2 leading-relaxed">
+        <p className="text-caption text-muted-text mt-1 line-clamp-2 leading-relaxed">
           {notice.description}
         </p>
 
         {/* Metadata Details */}
-        <div className="text-caption text-ink-subtle mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5">
+        <div className="text-caption text-muted-text mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5">
           <div className="flex items-center gap-1.5">
             <Building2 className="size-3 shrink-0" />
             <span>{notice.department}</span>
@@ -100,14 +100,14 @@ export default function NoticeCard({ notice, isCopied, onCopyId, onDownload }) {
           </div>
 
           <div className="text-ink flex items-center gap-1.5 font-medium">
-            <Clock className="text-fin-orange size-3 shrink-0" />
+            <Clock className="text-warning size-3 shrink-0" />
             <span>Effective: {notice.effectiveDate}</span>
           </div>
         </div>
       </div>
 
       {/* Action / Status Section */}
-      <div className="border-hairline-soft/60 flex shrink-0 items-center justify-between border-t pt-3 sm:flex-col sm:items-end sm:justify-start sm:gap-3 sm:border-t-0 sm:pt-0">
+      <div className="border-hairline-soft flex shrink-0 items-center justify-between border-t pt-3 sm:flex-col sm:items-end sm:justify-start sm:gap-3 sm:border-t-0 sm:pt-0">
         <Badge
           variant={statusCfg.variant}
           size="default"

@@ -71,26 +71,26 @@ export const STATUS_CONFIG = {
   Registered: {
     icon: Inbox,
     variant: "canvas",
-    dot: "bg-ink-tertiary",
+    dot: "bg-muted-text",
   },
   Assigned: {
     icon: Clock,
     variant: "info",
-    dot: "bg-report-blue",
+    dot: "bg-brand-accent",
   },
   "In progress": {
     icon: Loader2,
     variant: "warning",
-    dot: "bg-report-orange",
+    dot: "bg-warning",
   },
   Resolved: {
     icon: CheckCircle2,
     variant: "success",
-    dot: "bg-semantic-success",
+    dot: "bg-success",
   },
   Closed: {
     icon: CheckCircle2,
     variant: "secondary",
-    dot: "bg-ink-muted",
+    dot: "bg-muted-text",
   },
 };

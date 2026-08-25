@@ -37,7 +37,7 @@ export default function ConsumerLayout({ children }) {
       />
 
       {/* Main Content Surface */}
-      <div className="relative flex min-h-screen flex-col pb-20 md:pl-72 md:pb-0">
+      <div className="relative flex min-h-screen flex-col pb-20 md:pb-0 md:pl-72">
         <main className="flex flex-1 flex-col">{children}</main>
       </div>
 

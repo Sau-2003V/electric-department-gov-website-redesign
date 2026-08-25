@@ -38,13 +38,13 @@ export default function OutageAlert({
     <section
       aria-label="Power outage alert"
       className={cn(
-        "p-4 sm:p-5 shadow-subtle overflow-hidden rounded-lg border transition-all",
+        "shadow-subtle overflow-hidden rounded-lg border p-4 transition-all sm:p-5",
         config.containerBorder,
         config.containerBg,
         className
       )}
     >
-      <div className="gap-4 flex items-start">
+      <div className="flex items-start gap-4">
         {/* Leading Alert Icon */}
         <div
           className={cn(
@@ -63,8 +63,8 @@ export default function OutageAlert({
         {/* Content Body */}
         <div className="min-w-0 flex-1">
           {/* Header Row */}
-          <div className="gap-2 sm:gap-3 flex flex-wrap items-center justify-between">
-            <div className="gap-2 sm:gap-3 flex flex-wrap items-center">
+          <div className="flex flex-wrap items-center justify-between gap-2 sm:gap-3">
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3">
               <h2 className="text-title-sm text-ink font-semibold">
                 Outage affecting your area
               </h2>
@@ -76,7 +76,7 @@ export default function OutageAlert({
 
           {/* Area & Details */}
           <div className="mt-1 space-y-0.5">
-            <div className="gap-1.5 text-body-sm text-ink flex items-center font-medium">
+            <div className="text-body-sm text-ink flex items-center gap-1.5 font-medium">
               <MapPin
                 className="text-muted-text size-3.5 shrink-0"
                 aria-hidden="true"
@@ -89,7 +89,7 @@ export default function OutageAlert({
           </div>
 
           {/* Timing Chip */}
-          <div className="mt-3 gap-1.5 border-hairline/70 bg-canvas/80 px-2.5 py-1 inline-flex flex-wrap items-center rounded-full border shadow-2xs backdrop-blur-xs">
+          <div className="border-hairline/70 bg-canvas/80 mt-3 inline-flex flex-wrap items-center gap-1.5 rounded-full border px-2.5 py-1 shadow-2xs backdrop-blur-xs">
             <span
               className={cn(
                 "h-2 w-2 animate-pulse rounded-full",

@@ -46,12 +46,12 @@ export default function Sidebar({ mobileOpen = false, onClose }) {
   return (
     <aside
       className={cn(
-        "fixed inset-y-0 left-0 z-40 flex w-72 flex-col border-r border-hairline bg-canvas transition-transform duration-200 ease-out",
+        "border-hairline bg-canvas fixed inset-y-0 left-0 z-40 flex w-72 flex-col border-r transition-transform duration-200 ease-out",
         mobileOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
       )}
     >
       {/* Brand Header */}
-      <div className="flex h-16 items-center justify-between border-b border-hairline-soft px-4">
+      <div className="border-hairline-soft flex h-16 items-center justify-between border-b px-4">
         <Link
           href="/dashboard"
           className="flex min-w-0 items-center gap-3"
@@ -63,10 +63,10 @@ export default function Sidebar({ mobileOpen = false, onClose }) {
             className="h-8 w-8 object-contain"
           />
           <div className="min-w-0">
-            <p className="truncate text-sm font-semibold tracking-tight text-ink">
+            <p className="text-ink truncate text-sm font-semibold tracking-tight">
               Vidhyut Portal
             </p>
-            <p className="text-[11px] text-muted">Consumer Portal</p>
+            <p className="text-muted text-[11px]">Consumer Portal</p>
           </div>
         </Link>
 
@@ -74,7 +74,7 @@ export default function Sidebar({ mobileOpen = false, onClose }) {
         <button
           type="button"
           onClick={() => onClose?.()}
-          className="flex h-8 w-8 items-center justify-center rounded-md text-muted transition-colors hover:bg-surface-card hover:text-ink md:hidden"
+          className="text-muted hover:bg-surface-card hover:text-ink flex h-8 w-8 items-center justify-center rounded-md transition-colors md:hidden"
           aria-label="Close sidebar"
         >
           <X size={18} />
@@ -121,7 +121,7 @@ export default function Sidebar({ mobileOpen = false, onClose }) {
                 className={cn(
                   "flex h-10 items-center gap-2.5 rounded-md px-3 text-sm transition-colors",
                   isActive
-                    ? "bg-surface-card font-medium text-ink"
+                    ? "bg-surface-card text-ink font-medium"
                     : "text-muted hover:bg-surface-soft hover:text-ink"
                 )}
               >
@@ -138,35 +138,37 @@ export default function Sidebar({ mobileOpen = false, onClose }) {
       </div>
 
       {/* Bottom Footer: Sign out & User Profile Box */}
-      <div className="space-y-2 border-t border-hairline-soft p-3">
+      <div className="border-hairline-soft space-y-2 border-t p-3">
         {/* Sign out Action */}
         <button
           type="button"
           onClick={handleSignOut}
-          className="flex h-10 w-full cursor-pointer items-center gap-2.5 rounded-md px-3 text-sm text-muted transition-colors hover:bg-surface-card hover:text-error"
+          className="text-muted hover:bg-surface-card hover:text-error flex h-10 w-full cursor-pointer items-center gap-2.5 rounded-md px-3 text-sm transition-colors"
         >
           <LogOut size={16} strokeWidth={1.8} className="shrink-0" />
           <span>Sign out</span>
         </button>
 
         {/* User Card */}
-        <div className="rounded-xl border border-hairline-soft bg-surface-card p-3">
+        <div className="border-hairline-soft bg-surface-card rounded-xl border p-3">
           {isLoading ? (
             <div className="flex animate-pulse items-center gap-3">
-              <div className="h-10 w-10 rounded-full bg-surface-strong" />
+              <div className="bg-surface-strong h-10 w-10 rounded-full" />
               <div className="flex-1 space-y-1.5">
-                <div className="h-3.5 w-24 rounded bg-surface-strong" />
-                <div className="h-3 w-16 rounded bg-surface-strong" />
+                <div className="bg-surface-strong h-3.5 w-24 rounded" />
+                <div className="bg-surface-strong h-3 w-16 rounded" />
               </div>
             </div>
           ) : (
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-on-primary">
+              <div className="bg-primary text-on-primary flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-sm font-semibold">
                 {initials}
               </div>
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-semibold text-ink">{name}</p>
-                <p className="truncate text-xs text-muted">
+                <p className="text-ink truncate text-sm font-semibold">
+                  {name}
+                </p>
+                <p className="text-muted truncate text-xs">
                   {meterNumber ? `Meter ${meterNumber}` : "Meter not linked"}
                 </p>
               </div>

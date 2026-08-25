@@ -67,7 +67,7 @@ function NoticeRow({ notice }) {
   return (
     <Link
       href={`/notices/${notice.id}`}
-      className="group flex items-start gap-4 border-b border-hairline-soft px-4 py-3.5 sm:px-6 transition-colors hover:bg-surface-soft last:border-b-0"
+      className="group border-hairline-soft hover:bg-surface-soft flex items-start gap-4 border-b px-4 py-3.5 transition-colors last:border-b-0 sm:px-6"
     >
       {/* Type icon */}
       <div
@@ -86,22 +86,22 @@ function NoticeRow({ notice }) {
       {/* Content */}
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2">
-          <p className="text-body-sm font-medium text-ink">{notice.title}</p>
+          <p className="text-body-sm text-ink font-medium">{notice.title}</p>
           {notice.isNew && (
             <Badge variant="accent" size="sm">
               New
             </Badge>
           )}
         </div>
-        <p className="mt-0.5 text-caption text-muted-text line-clamp-2 leading-relaxed">
+        <p className="text-caption text-muted-text mt-0.5 line-clamp-2 leading-relaxed">
           {notice.summary}
         </p>
-        <p className="mt-1 text-caption text-muted-text">{notice.date}</p>
+        <p className="text-caption text-muted-text mt-1">{notice.date}</p>
       </div>
 
       {/* Chevron */}
       <ChevronRight
-        className="mt-1 size-4 shrink-0 text-muted-text transition-transform group-hover:translate-x-0.5 group-hover:text-ink"
+        className="text-muted-text group-hover:text-ink mt-1 size-4 shrink-0 transition-transform group-hover:translate-x-0.5"
         aria-hidden="true"
       />
     </Link>
@@ -117,19 +117,19 @@ export default function RecentNotices({
     <section
       aria-label="Notices and Circulars"
       className={cn(
-        "overflow-hidden rounded-lg border border-hairline bg-surface-card shadow-subtle",
+        "border-hairline bg-surface-card shadow-subtle overflow-hidden rounded-lg border",
         className
       )}
     >
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-hairline-soft px-4 py-3.5 sm:px-6">
+      <div className="border-hairline-soft flex items-center justify-between border-b px-4 py-3.5 sm:px-6">
         <div className="flex items-center gap-1.5">
           <Bell
             className="text-primary size-4"
             strokeWidth={2.2}
             aria-hidden="true"
           />
-          <p className="text-caption font-semibold uppercase tracking-wider text-muted-text">
+          <p className="text-caption text-muted-text font-semibold tracking-wider uppercase">
             Notices &amp; Circulars
           </p>
         </div>
@@ -143,7 +143,7 @@ export default function RecentNotices({
 
       {/* Rows */}
       {notices.length === 0 ? (
-        <div className="flex flex-col items-center justify-center gap-2 py-10 text-muted-text">
+        <div className="text-muted-text flex flex-col items-center justify-center gap-2 py-10">
           <Bell className="size-7" strokeWidth={1.5} />
           <p className="text-body-sm">No notices available</p>
         </div>

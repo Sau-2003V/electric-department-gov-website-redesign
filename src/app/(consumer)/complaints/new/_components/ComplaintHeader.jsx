@@ -9,7 +9,7 @@ export function ComplaintHeader() {
     <div className="mb-6 space-y-3">
       <Link
         href="/complaints"
-        className="text-caption text-ink-muted hover:text-ink inline-flex items-center gap-1.5 font-medium transition-colors"
+        className="text-caption text-muted-text hover:text-ink inline-flex items-center gap-1.5 font-medium transition-colors"
       >
         <ArrowLeft className="size-3.5" />
         <span>Back to All Complaints</span>
@@ -17,10 +17,10 @@ export function ComplaintHeader() {
 
       <div className="flex flex-col justify-between gap-3 sm:flex-row sm:items-center">
         <div>
-          <h1 className="text-headline text-ink font-medium tracking-tight">
+          <h1 className="text-display-sm text-ink font-semibold tracking-tight">
             Register a complaint
           </h1>
-          <p className="text-body-sm text-ink-muted mt-0.5">
+          <p className="text-body-sm text-muted-text mt-0.5">
             Official grievance intake with statutory SLA tracking under UPERC
             guidelines.
           </p>

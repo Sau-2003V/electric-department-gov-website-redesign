@@ -34,7 +34,7 @@ export default function CredentialsPage() {
               height={36}
               className="size-9 rounded-md object-contain"
             />
-            <span className="text-title-sm font-semibold tracking-tight text-ink">
+            <span className="text-title-sm text-ink font-semibold tracking-tight">
               Vidhyut Portal
             </span>
           </Link>
@@ -52,11 +52,12 @@ export default function CredentialsPage() {
 
         {/* Title */}
         <div className="mb-6 space-y-1">
-          <h1 className="text-title-lg font-semibold tracking-tight text-ink">
+          <h1 className="text-title-lg text-ink font-semibold tracking-tight">
             Demo Credentials
           </h1>
           <p className="text-body-sm text-muted-text leading-relaxed">
-            Click any sample account below to auto-fill the login form instantly.
+            Click any sample account below to auto-fill the login form
+            instantly.
           </p>
         </div>
 
@@ -67,31 +68,31 @@ export default function CredentialsPage() {
               key={`${cred.meter}-${idx}`}
               type="button"
               onClick={() => handleSelect(cred.meter, cred.phone)}
-              className="group border-hairline bg-surface-soft hover:bg-canvas hover:border-ink/30 hover:shadow-subtle active:scale-[0.99] flex w-full cursor-pointer items-center justify-between rounded-xl border p-3.5 sm:p-4 text-left transition-all"
+              className="group border-hairline bg-surface-soft hover:bg-canvas hover:border-ink/30 hover:shadow-subtle flex w-full cursor-pointer items-center justify-between rounded-xl border p-3.5 text-left transition-all active:scale-[0.99] sm:p-4"
             >
               <div className="flex min-w-0 flex-1 flex-col gap-1.5">
                 <div className="flex items-center gap-2">
                   <span className="text-caption text-muted-text flex items-center gap-1">
-                    <Hash className="size-3 text-muted-soft" />
+                    <Hash className="text-muted-soft size-3" />
                     Meter:
                   </span>
-                  <span className="text-body-sm text-code font-semibold text-ink">
+                  <span className="text-body-sm text-code text-ink font-semibold">
                     {cred.meter}
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="text-caption text-muted-text flex items-center gap-1">
-                    <Phone className="size-3 text-muted-soft" />
+                    <Phone className="text-muted-soft size-3" />
                     Phone:
                   </span>
-                  <span className="text-body-sm font-medium text-ink">
+                  <span className="text-body-sm text-ink font-medium">
                     {cred.phone}
                   </span>
                 </div>
               </div>
 
-              <div className="pl-2 shrink-0">
-                <span className="border-hairline bg-canvas text-ink shadow-subtle group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 text-caption font-medium transition-all">
+              <div className="shrink-0 pl-2">
+                <span className="border-hairline bg-canvas text-ink shadow-subtle group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary text-caption inline-flex items-center gap-1.5 rounded-md border px-2.5 py-1 font-medium transition-all">
                   <span>Use</span>
                   <ArrowRight className="size-3 transition-transform group-hover:translate-x-0.5" />
                 </span>
@@ -113,4 +114,3 @@ export default function CredentialsPage() {
     </div>
   );
 }
-

@@ -35,12 +35,12 @@ export default function SubdivisionSection({
     <section
       aria-label="Subdivision Contacts"
       className={cn(
-        "overflow-hidden rounded-lg border border-hairline bg-surface-card shadow-subtle",
+        "border-hairline bg-surface-card shadow-subtle overflow-hidden rounded-lg border",
         className
       )}
     >
       {/* Subdivision Header */}
-      <div className="border-b border-hairline-soft p-4 sm:px-6 sm:py-4 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
+      <div className="border-hairline-soft flex flex-col items-start justify-between gap-3 border-b p-4 sm:flex-row sm:items-center sm:px-6 sm:py-4">
         <div>
           <div className="flex items-center gap-1.5">
             <MapPin
@@ -48,11 +48,11 @@ export default function SubdivisionSection({
               strokeWidth={2.2}
               aria-hidden="true"
             />
-            <p className="text-caption font-semibold uppercase tracking-wider text-muted-text">
+            <p className="text-caption text-muted-text font-semibold tracking-wider uppercase">
               Your Subdivision
             </p>
           </div>
-          <p className="mt-0.5 text-body-sm font-medium text-ink">{location}</p>
+          <p className="text-body-sm text-ink mt-0.5 font-medium">{location}</p>
         </div>
 
         <a href={`tel:${helpline}`} className="self-start sm:self-auto">
@@ -68,10 +68,10 @@ export default function SubdivisionSection({
         {contacts.map((contact) => (
           <div
             key={contact.phone}
-            className="flex items-center justify-between gap-3 rounded-lg border border-hairline-soft bg-canvas p-3 transition-colors hover:bg-surface-soft"
+            className="border-hairline-soft bg-canvas hover:bg-surface-soft flex items-center justify-between gap-3 rounded-lg border p-3 transition-colors"
           >
             {/* Avatar initial */}
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-surface-soft text-caption font-semibold text-ink border border-hairline-soft">
+            <div className="bg-surface-soft text-caption text-ink border-hairline-soft flex h-9 w-9 shrink-0 items-center justify-center rounded-full border font-semibold">
               {contact.name
                 .split(" ")
                 .map((n) => n[0])
@@ -80,10 +80,10 @@ export default function SubdivisionSection({
             </div>
 
             <div className="min-w-0 flex-1">
-              <p className="text-body-sm font-medium text-ink truncate">
+              <p className="text-body-sm text-ink truncate font-medium">
                 {contact.name}
               </p>
-              <p className="mt-0.5 text-caption text-muted-text truncate">
+              <p className="text-caption text-muted-text mt-0.5 truncate">
                 {contact.role}
               </p>
             </div>

@@ -40,21 +40,21 @@ export default function DashboardHeader() {
       {/* Greeting row */}
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-caption font-semibold tracking-wider uppercase text-muted-text">
+          <p className="text-caption text-muted-text font-semibold tracking-wider uppercase">
             Namaste,
           </p>
 
           {isLoading ? (
-            <div className="mt-2 space-y-2 animate-pulse">
+            <div className="mt-2 animate-pulse space-y-2">
               <div className="bg-surface-card h-10 w-64 rounded-md sm:h-12 sm:w-80" />
               <div className="bg-surface-card h-5 w-44 rounded-md" />
             </div>
           ) : (
             <>
-              <h1 className="mt-1 text-display-md text-ink sm:text-display-lg font-semibold">
+              <h1 className="text-display-md text-ink sm:text-display-lg mt-1 font-semibold">
                 {name}
               </h1>
-              <div className="mt-2 flex items-center gap-2 text-body-sm sm:text-body text-muted-text font-normal">
+              <div className="text-body-sm sm:text-body text-muted-text mt-2 flex items-center gap-2 font-normal">
                 <span>Meter No.</span>
                 <span className="text-ink font-semibold">
                   {meterNumber ?? "—"}

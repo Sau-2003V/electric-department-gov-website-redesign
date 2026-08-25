@@ -39,15 +39,15 @@ export default function ContactCard({ channel }) {
   };
 
   return (
-    <div className="bg-surface-1 border-hairline hover:border-ink/20 flex flex-col justify-between rounded-xl border p-5 shadow-xs transition-all duration-150">
+    <div className="bg-surface-card border-hairline hover:border-ink/30 shadow-subtle flex flex-col justify-between rounded-lg border p-5 transition-all duration-150">
       <div>
         {/* Top bar: Icon + Badge */}
         <div className="flex items-center justify-between gap-2">
           <div
-            className={`flex size-10 items-center justify-center rounded-lg ${
+            className={`flex size-10 items-center justify-center rounded-md ${
               channel.isEmergency
-                ? "bg-fin-orange/10 text-fin-orange"
-                : "bg-surface-2 text-ink"
+                ? "bg-badge-orange/15 text-[#c2410c] dark:text-orange-300"
+                : "bg-surface-soft text-ink"
             }`}
           >
             <Icon className="size-5" strokeWidth={1.8} />
@@ -64,22 +64,22 @@ export default function ContactCard({ channel }) {
 
         {/* Title & Label */}
         <div className="mt-4">
-          <p className="text-card-title text-ink font-medium tracking-tight">
+          <p className="text-title-md text-ink font-semibold tracking-tight">
             {channel.title}
           </p>
-          <p className="text-body-sm text-ink-muted mt-0.5 font-medium">
+          <p className="text-body-sm text-muted-text mt-0.5 font-medium">
             {channel.label}
           </p>
         </div>
 
         {/* Description */}
-        <p className="text-body-sm text-ink-subtle mt-2 line-clamp-2 leading-relaxed">
+        <p className="text-body-sm text-muted-text mt-2 line-clamp-2 leading-relaxed">
           {channel.description}
         </p>
       </div>
 
       {/* Action Footer */}
-      <div className="border-hairline-soft mt-5 flex items-center gap-2 border-t pt-2">
+      <div className="border-hairline-soft mt-5 flex items-center gap-2 border-t pt-3">
         {channel.href ? (
           <a
             href={channel.href}
@@ -115,10 +115,10 @@ export default function ContactCard({ channel }) {
             onClick={handleCopy}
             title={`Copy ${channel.copyValue}`}
             aria-label={`Copy ${channel.copyValue}`}
-            className="text-ink-muted hover:text-ink shrink-0 transition-transform duration-150 active:scale-[0.96]"
+            className="text-muted-text hover:text-ink shrink-0 transition-transform duration-150 active:scale-[0.96]"
           >
             {copied ? (
-              <Check className="text-semantic-success size-3.5" />
+              <Check className="text-success size-3.5" />
             ) : (
               <Copy className="size-3.5" />
             )}

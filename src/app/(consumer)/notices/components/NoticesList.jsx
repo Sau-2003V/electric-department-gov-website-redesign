@@ -11,7 +11,7 @@ export default function NoticesList({
   onClearSearch,
 }) {
   return (
-    <div className="border-hairline bg-surface-1 divide-hairline-soft divide-y overflow-hidden rounded-2xl border shadow-2xs">
+    <div className="border-hairline bg-surface-card divide-hairline-soft shadow-subtle divide-y overflow-hidden rounded-lg border">
       {notices.length > 0 ? (
         notices.map((notice) => (
           <NoticeCard

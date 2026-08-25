@@ -60,20 +60,20 @@ export function Step2LocationDetails({
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <h2 className="text-card-title text-ink font-medium tracking-tight">
+        <h2 className="text-title-lg text-ink font-semibold tracking-tight">
           Where is the problem?
         </h2>
-        <p className="text-body-sm text-ink-muted mt-1">
+        <p className="text-body-sm text-muted-text mt-1">
           Provide the fault location and optional photo/video evidence for
           quickest dispatch.
         </p>
       </div>
 
       {/* GPS Location Auto-Detection */}
-      <div className="border-hairline bg-surface-2/60 rounded-xl border p-4 transition-all duration-150 sm:p-5">
+      <div className="border-hairline bg-surface-card shadow-subtle rounded-lg border p-4 transition-all duration-150 sm:p-5">
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
           <div className="flex items-start gap-3.5">
-            <div className="border-fin-orange/20 bg-fin-orange/10 text-fin-orange flex size-10 shrink-0 items-center justify-center rounded-lg border shadow-2xs">
+            <div className="border-badge-orange/30 bg-badge-orange/15 shadow-subtle flex size-10 shrink-0 items-center justify-center rounded-md border text-[#c2410c] dark:text-orange-300">
               <Navigation className="size-5" />
             </div>
             <div>
@@ -87,7 +87,7 @@ export function Step2LocationDetails({
                   </Badge>
                 )}
               </div>
-              <p className="text-ink-muted mt-0.5 text-xs leading-relaxed">
+              <p className="text-muted-text mt-0.5 text-xs leading-relaxed">
                 {formData.gpsCoords
                   ? `Tagged coordinates: ${formData.gpsCoords}`
                   : "Pinpoint your exact fault coordinates for quickest crew dispatch"}
@@ -115,7 +115,7 @@ export function Step2LocationDetails({
       {/* Section Divider */}
       <div className="relative flex items-center py-1">
         <div className="bg-hairline-soft h-px flex-1" />
-        <span className="text-ink-subtle px-3 text-[11px] font-medium tracking-wider uppercase">
+        <span className="text-muted-text px-3 text-[11px] font-medium tracking-wider uppercase">
           {formData.gpsCoords
             ? "Verify or adjust address"
             : "Or type address manually"}
@@ -148,13 +148,13 @@ export function Step2LocationDetails({
         </div>
 
         {/* Proof & Evidence Section */}
-        <div className="border-hairline bg-surface-2/30 space-y-3 rounded-xl border p-4 sm:p-5">
+        <div className="border-hairline bg-surface-card shadow-subtle space-y-3 rounded-lg border p-4 sm:p-5">
           <div className="flex items-center justify-between">
             <div>
               <span className="text-ink text-xs font-semibold sm:text-sm">
                 Proof & evidence (optional)
               </span>
-              <p className="text-ink-muted mt-0.5 text-xs">
+              <p className="text-muted-text mt-0.5 text-xs">
                 Attach fault photos, meter readings, or video links.
               </p>
             </div>
@@ -173,15 +173,15 @@ export function Step2LocationDetails({
           {/* Simple Dropzone / Upload Area */}
           <div
             onClick={() => fileInputRef.current?.click()}
-            className="border-hairline bg-surface-1 hover:border-hairline/80 hover:bg-surface-2/50 flex cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed px-3 py-4 text-center transition-all duration-150 active:scale-[0.99]"
+            className="border-hairline bg-surface-soft hover:border-hairline/80 hover:bg-surface-strong flex cursor-pointer flex-col items-center justify-center rounded-md border border-dashed px-3 py-4 text-center transition-all duration-150 active:scale-[0.99]"
           >
-            <div className="bg-surface-2 text-ink-muted mb-1.5 flex size-9 items-center justify-center rounded-full">
+            <div className="bg-surface-card text-muted-text mb-1.5 flex size-9 items-center justify-center rounded-full">
               <Upload className="text-ink size-4" />
             </div>
             <span className="text-ink text-xs font-medium">
               Click or drag to upload photos or documents
             </span>
-            <span className="text-ink-subtle mt-0.5 text-[11px]">
+            <span className="text-muted-text mt-0.5 text-[11px]">
               PNG, JPG, PDF up to 10MB (max 5 files)
             </span>
             <input
@@ -225,19 +225,17 @@ export function Step2LocationDetails({
               </Button>
             </div>
             {linkError && (
-              <p className="text-semantic-error text-[11px] font-medium">
-                {linkError}
-              </p>
+              <p className="text-error text-[11px] font-medium">{linkError}</p>
             )}
           </div>
 
           {/* Clean List of Attached Files & Links */}
           {(files.length > 0 || mediaLinks.length > 0) && (
-            <div className="border-hairline/60 space-y-1.5 border-t pt-2">
+            <div className="border-hairline-soft space-y-1.5 border-t pt-2">
               {files.map((file, idx) => (
                 <div
                   key={`file-${idx}`}
-                  className="border-hairline bg-surface-1 text-ink flex items-center justify-between gap-2 rounded-md border px-3 py-1.5 text-xs shadow-2xs"
+                  className="border-hairline bg-canvas text-ink shadow-subtle flex items-center justify-between gap-2 rounded-md border px-3 py-1.5 text-xs"
                 >
                   <div className="flex min-w-0 items-center gap-2">
                     {file.previewUrl ? (
@@ -247,10 +245,10 @@ export function Step2LocationDetails({
                         className="size-7 shrink-0 rounded object-cover ring-1 ring-black/10 dark:ring-white/10"
                       />
                     ) : (
-                      <FileText className="text-semantic-error size-4 shrink-0" />
+                      <FileText className="text-error size-4 shrink-0" />
                     )}
                     <span className="truncate font-medium">{file.name}</span>
-                    <span className="text-ink-subtle shrink-0 text-[11px]">
+                    <span className="text-muted-text shrink-0 text-[11px]">
                       ({file.size})
                     </span>
                   </div>
@@ -258,7 +256,7 @@ export function Step2LocationDetails({
                     type="button"
                     onClick={() => onRemoveFile(idx)}
                     aria-label={`Remove file ${file.name}`}
-                    className="text-ink-muted hover:text-semantic-error p-1 transition-colors"
+                    className="text-muted-text hover:text-error p-1 transition-colors"
                   >
                     <X className="size-3.5" />
                   </button>
@@ -270,11 +268,11 @@ export function Step2LocationDetails({
                 return (
                   <div
                     key={`link-${idx}`}
-                    className="border-hairline bg-surface-1 text-ink flex items-center justify-between gap-2 rounded-md border px-3 py-1.5 text-xs shadow-2xs"
+                    className="border-hairline bg-canvas text-ink shadow-subtle flex items-center justify-between gap-2 rounded-md border px-3 py-1.5 text-xs"
                   >
                     <div className="flex min-w-0 items-center gap-2">
-                      <Link2 className="text-brand-blue size-4 shrink-0" />
-                      <span className="text-ink-muted truncate">{urlStr}</span>
+                      <Link2 className="text-brand-accent size-4 shrink-0" />
+                      <span className="text-muted-text truncate">{urlStr}</span>
                     </div>
                     <button
                       type="button"
@@ -282,7 +280,7 @@ export function Step2LocationDetails({
                         onRemoveMediaLink && onRemoveMediaLink(idx)
                       }
                       aria-label={`Remove link`}
-                      className="text-ink-muted hover:text-semantic-error p-1 transition-colors"
+                      className="text-muted-text hover:text-error p-1 transition-colors"
                     >
                       <X className="size-3.5" />
                     </button>

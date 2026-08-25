@@ -19,9 +19,9 @@ export function DocketSuccessReceipt({ docket, onReset }) {
 
   return (
     <div className="mx-auto max-w-2xl px-4 py-8 sm:px-6">
-      <div className="border-hairline bg-surface-1 rounded-2xl border p-6 shadow-2xs sm:p-8">
+      <div className="border-hairline bg-surface-card shadow-subtle rounded-lg border p-6 sm:p-8">
         <div className="text-center">
-          <div className="border-semantic-success/20 bg-semantic-success/10 text-semantic-success mx-auto mb-3 flex size-12 items-center justify-center rounded-xl border">
+          <div className="border-success/30 bg-success/10 text-success mx-auto mb-3 flex size-12 items-center justify-center rounded-md border">
             <CheckCircle2 className="size-6" />
           </div>
 
@@ -31,11 +31,11 @@ export function DocketSuccessReceipt({ docket, onReset }) {
             </Badge>
           </div>
 
-          <h1 className="text-headline text-ink mt-3 font-semibold tracking-tight">
+          <h1 className="text-display-sm text-ink mt-3 font-semibold tracking-tight">
             Docket #{docket.id}
           </h1>
 
-          <p className="text-body-sm text-ink-muted mt-1">
+          <p className="text-body-sm text-muted-text mt-1">
             Assigned directly to{" "}
             <span className="text-ink font-semibold">
               {docket.issue.authority}
@@ -44,9 +44,9 @@ export function DocketSuccessReceipt({ docket, onReset }) {
         </div>
 
         {/* Receipt table / card */}
-        <div className="border-hairline bg-surface-2/40 mt-6 space-y-3 rounded-xl border p-4 text-xs sm:p-5">
-          <div className="border-hairline/80 flex items-center justify-between border-b pb-2.5">
-            <span className="text-ink-muted">Docket ID:</span>
+        <div className="border-hairline bg-surface-soft mt-6 space-y-3 rounded-lg border p-4 text-xs sm:p-5">
+          <div className="border-hairline-soft flex items-center justify-between border-b pb-2.5">
+            <span className="text-muted-text">Docket ID:</span>
             <div className="flex items-center gap-2">
               <span className="text-ink font-mono font-semibold">
                 {docket.id}
@@ -55,10 +55,10 @@ export function DocketSuccessReceipt({ docket, onReset }) {
                 type="button"
                 onClick={handleCopy}
                 aria-label="Copy Docket Number"
-                className="text-ink-subtle hover:text-ink transition-colors active:scale-[0.96]"
+                className="text-muted-text hover:text-ink transition-colors active:scale-[0.96]"
               >
                 {copied ? (
-                  <Check className="text-semantic-success size-3.5" />
+                  <Check className="text-success size-3.5" />
                 ) : (
                   <Copy className="size-3.5" />
                 )}
@@ -66,25 +66,23 @@ export function DocketSuccessReceipt({ docket, onReset }) {
             </div>
           </div>
 
-          <div className="border-hairline/80 flex items-center justify-between border-b pb-2.5">
-            <span className="text-ink-muted">Issue Category:</span>
+          <div className="border-hairline-soft flex items-center justify-between border-b pb-2.5">
+            <span className="text-muted-text">Issue Category:</span>
             <span className="text-ink font-medium">{docket.issue.title}</span>
           </div>
 
-          <div className="border-hairline/80 flex items-center justify-between border-b pb-2.5">
-            <span className="text-ink-muted">Statutory SLA Target:</span>
-            <span className="text-semantic-success font-medium">
-              {docket.issue.sla}
-            </span>
+          <div className="border-hairline-soft flex items-center justify-between border-b pb-2.5">
+            <span className="text-muted-text">Statutory SLA Target:</span>
+            <span className="text-success font-medium">{docket.issue.sla}</span>
           </div>
 
-          <div className="border-hairline/80 flex items-center justify-between border-b pb-2.5">
-            <span className="text-ink-muted">Lodged Timestamp:</span>
+          <div className="border-hairline-soft flex items-center justify-between border-b pb-2.5">
+            <span className="text-muted-text">Lodged Timestamp:</span>
             <span className="text-ink font-normal">{docket.time}</span>
           </div>
 
           <div className="flex items-start justify-between">
-            <span className="text-ink-muted shrink-0">Fault Location:</span>
+            <span className="text-muted-text shrink-0">Fault Location:</span>
             <span className="text-ink max-w-[280px] text-right leading-relaxed font-normal">
               {docket.location.address}
               {docket.location.landmark

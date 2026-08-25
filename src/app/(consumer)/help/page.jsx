@@ -14,7 +14,7 @@ export const metadata = {
 export default function HelpPage() {
   return (
     <div className="bg-canvas text-ink min-h-screen">
-      <div className="mx-auto w-full space-y-8 px-4 py-8 sm:px-6">
+      <div className="mx-auto w-full max-w-7xl space-y-8 px-4 py-8 sm:px-6">
         {/* Page Header with Action CTAs */}
         <HelpHeader />
 

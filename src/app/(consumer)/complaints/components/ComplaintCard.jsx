@@ -10,11 +10,11 @@ export default function ComplaintCard({ complaint, isCopied, onCopyId }) {
   const isMet = complaint.sla === "SLA met";
 
   return (
-    <div className="group hover:bg-surface-2/40 relative flex flex-col justify-between gap-4 p-4 transition-colors duration-150 sm:flex-row sm:items-center sm:p-5">
+    <div className="group hover:bg-surface-soft relative flex flex-col justify-between gap-4 p-4 transition-colors duration-150 sm:flex-row sm:items-center sm:p-5">
       <div className="min-w-0 flex-1">
         {/* Docket ID & Priority Badges */}
         <div className="mb-2 flex flex-wrap items-center gap-2">
-          <div className="border-hairline bg-surface-2/60 flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs">
+          <div className="border-hairline bg-surface-soft flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs">
             <span className="text-ink font-mono text-[11px] font-medium">
               {complaint.id}
             </span>
@@ -22,10 +22,10 @@ export default function ComplaintCard({ complaint, isCopied, onCopyId }) {
               type="button"
               onClick={(e) => onCopyId(e, complaint.id)}
               aria-label={`Copy ${complaint.id}`}
-              className="text-ink-subtle hover:text-ink p-0.5 transition-colors"
+              className="text-muted-text hover:text-ink p-0.5 transition-colors"
             >
               {isCopied ? (
-                <Check className="text-semantic-success size-3" />
+                <Check className="text-success size-3" />
               ) : (
                 <Copy className="size-3" />
               )}
@@ -66,24 +66,24 @@ export default function ComplaintCard({ complaint, isCopied, onCopyId }) {
         </div>
 
         {/* Complaint Title */}
-        <h2 className="text-body-sm text-ink group-hover:text-ink font-medium tracking-tight">
+        <h2 className="text-title-sm text-ink group-hover:text-ink font-semibold tracking-tight">
           {complaint.title}
         </h2>
 
         {/* Description */}
-        <p className="text-caption text-ink-muted mt-1 line-clamp-2 leading-relaxed">
+        <p className="text-caption text-muted-text mt-1 line-clamp-2 leading-relaxed">
           {complaint.description}
         </p>
 
         {/* Registered Date */}
-        <div className="text-caption text-ink-subtle mt-2 flex items-center gap-1.5">
+        <div className="text-caption text-muted-text mt-2 flex items-center gap-1.5">
           <Clock className="size-3 shrink-0" />
           <span>Registered: {complaint.date}</span>
         </div>
       </div>
 
       {/* Status & SLA Indicators */}
-      <div className="border-hairline-soft/60 flex shrink-0 items-center justify-between border-t pt-3 sm:flex-col sm:items-end sm:justify-center sm:gap-2 sm:border-t-0 sm:pt-0">
+      <div className="border-hairline-soft flex shrink-0 items-center justify-between border-t pt-3 sm:flex-col sm:items-end sm:justify-center sm:gap-2 sm:border-t-0 sm:pt-0">
         <Badge
           variant={sc.variant}
           size="default"
@@ -104,21 +104,17 @@ export default function ComplaintCard({ complaint, isCopied, onCopyId }) {
           <span
             className={cn(
               "size-1.5 rounded-full",
-              isBreached
-                ? "bg-semantic-error"
-                : isMet
-                  ? "bg-semantic-success"
-                  : "bg-report-orange"
+              isBreached ? "bg-error" : isMet ? "bg-success" : "bg-warning"
             )}
           />
           <span
             className={cn(
               "text-caption font-medium",
               isBreached
-                ? "text-semantic-error"
+                ? "text-error"
                 : isMet
-                  ? "text-semantic-success"
-                  : "text-report-orange"
+                  ? "text-success"
+                  : "text-warning"
             )}
           >
             {complaint.sla}

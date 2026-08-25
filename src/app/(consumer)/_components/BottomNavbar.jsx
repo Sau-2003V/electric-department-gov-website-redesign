@@ -27,7 +27,7 @@ export default function BottomNavbar() {
   return (
     <nav
       aria-label="Bottom Navigation"
-      className="bg-surface-1/95 fixed inset-x-0 bottom-0 z-40 backdrop-blur-md md:hidden"
+      className="bg-canvas/95 border-hairline fixed inset-x-0 bottom-0 z-40 border-t backdrop-blur-md md:hidden"
     >
       <div className="mx-auto flex h-16 w-full items-center justify-between px-2 py-1.5">
         {CONSUMER_BOTTOM_NAV_LINKS.map((item) => {
@@ -45,8 +45,8 @@ export default function BottomNavbar() {
                 className={cn(
                   "flex h-8 w-14 items-center justify-center rounded-full transition-all duration-200",
                   isActive
-                    ? "bg-surface-2 text-ink font-semibold shadow-2xs"
-                    : "text-ink-muted group-hover:bg-surface-2/60 group-hover:text-ink"
+                    ? "bg-surface-soft text-ink shadow-subtle font-semibold"
+                    : "text-muted-text group-hover:bg-surface-soft/80 group-hover:text-ink"
                 )}
               >
                 <Icon
@@ -56,7 +56,7 @@ export default function BottomNavbar() {
                     "shrink-0 transition-all duration-150",
                     isActive
                       ? "text-ink"
-                      : "text-ink-muted group-hover:text-ink"
+                      : "text-muted-text group-hover:text-ink"
                   )}
                 />
               </div>
@@ -65,7 +65,7 @@ export default function BottomNavbar() {
               <span
                 className={cn(
                   "mt-1 block w-full truncate px-0.5 text-center text-[11px] leading-tight tracking-tight transition-colors duration-150",
-                  isActive ? "text-ink" : "text-ink-muted group-hover:text-ink"
+                  isActive ? "text-ink" : "text-muted-text group-hover:text-ink"
                 )}
               >
                 {item.shortLabel || item.label}

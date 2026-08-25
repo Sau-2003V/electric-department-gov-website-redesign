@@ -89,7 +89,7 @@ export default function Footer() {
                 alt="Vidhyut Logo"
                 width={40}
                 height={40}
-                className="size-10 rounded-md object-contain bg-white p-1"
+                className="size-10 rounded-md bg-white object-contain p-1"
               />
               <div>
                 <p className="text-on-dark-soft text-caption font-medium tracking-wider uppercase">
@@ -100,7 +100,6 @@ export default function Footer() {
                 </p>
               </div>
             </div>
-
 
             <p className="text-on-dark-soft text-body-sm mb-4 leading-relaxed">
               Official centralized grievance redressal and electricity consumer

@@ -35,10 +35,10 @@ export function ComplaintStepper({ step, onStepChange }) {
                     className={cn(
                       "flex size-7 shrink-0 items-center justify-center rounded-md text-xs font-medium transition-all duration-150",
                       isCompleted
-                        ? "border-hairline bg-surface-2 text-ink group-hover:border-ink/40 group-hover:bg-surface-2/80 border"
+                        ? "border-hairline bg-surface-soft text-ink group-hover:border-ink/40 group-hover:bg-surface-strong border"
                         : isCurrent
-                          ? "bg-ink text-on-primary ring-ink/20 shadow-xs ring-2"
-                          : "border-hairline-soft bg-surface-2/60 text-ink-tertiary border"
+                          ? "bg-primary text-on-primary ring-primary/20 shadow-subtle ring-2"
+                          : "border-hairline-soft bg-surface-soft text-muted-text border"
                     )}
                   >
                     {isCompleted ? (
@@ -55,7 +55,7 @@ export function ComplaintStepper({ step, onStepChange }) {
                           ? "text-ink"
                           : isCompleted
                             ? "text-ink group-hover:text-ink/80"
-                            : "text-ink-tertiary"
+                            : "text-muted-text"
                       )}
                     >
                       {s.label}

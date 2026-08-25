@@ -36,7 +36,7 @@ export async function generateMetadata() {
 export default function DashboardPage() {
   return (
     <div className="bg-canvas text-ink min-h-screen">
-      <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 space-y-6 sm:space-y-8">
+      <div className="mx-auto w-full max-w-7xl space-y-6 px-4 py-8 sm:space-y-8 sm:px-6">
         {/* Greeting + quick stats (client component — fetches user itself) */}
         <DashboardHeader />
 

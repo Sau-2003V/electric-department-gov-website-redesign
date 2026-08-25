@@ -170,49 +170,51 @@ export default function NewComplaintPage() {
 
   // STEPPER FORM (3 SIMPLE STEPS)
   return (
-    <div className="max-w-3xl px-4 py-8 sm:px-6">
-      <ComplaintHeader />
-      <ComplaintStepper step={step} onStepChange={setStep} />
+    <div className="bg-canvas text-ink min-h-screen">
+      <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6">
+        <ComplaintHeader />
+        <ComplaintStepper step={step} onStepChange={setStep} />
 
-      {/* Form Container Card */}
-      <div className="pt-6">
-        {step === 1 && (
-          <Step1SelectIssue
-            selectedIssueId={selectedIssueId}
-            onSelectIssue={setSelectedIssueId}
-            notes={formData.notes}
-            onNotesChange={(notes) => handleFormFieldChange("notes", notes)}
-            onNext={() => setStep(2)}
-          />
-        )}
+        {/* Form Container Card */}
+        <div className="pt-6">
+          {step === 1 && (
+            <Step1SelectIssue
+              selectedIssueId={selectedIssueId}
+              onSelectIssue={setSelectedIssueId}
+              notes={formData.notes}
+              onNotesChange={(notes) => handleFormFieldChange("notes", notes)}
+              onNext={() => setStep(2)}
+            />
+          )}
 
-        {step === 2 && (
-          <Step2LocationDetails
-            formData={formData}
-            onFormChange={handleFormFieldChange}
-            onGps={handleGps}
-            files={files}
-            onFileUpload={handleFileUpload}
-            onRemoveFile={handleRemoveFile}
-            mediaLinks={formData.mediaLinks}
-            onAddMediaLink={handleAddMediaLink}
-            onRemoveMediaLink={handleRemoveMediaLink}
-            onBack={() => setStep(1)}
-            onNext={() => setStep(3)}
-          />
-        )}
+          {step === 2 && (
+            <Step2LocationDetails
+              formData={formData}
+              onFormChange={handleFormFieldChange}
+              onGps={handleGps}
+              files={files}
+              onFileUpload={handleFileUpload}
+              onRemoveFile={handleRemoveFile}
+              mediaLinks={formData.mediaLinks}
+              onAddMediaLink={handleAddMediaLink}
+              onRemoveMediaLink={handleRemoveMediaLink}
+              onBack={() => setStep(1)}
+              onNext={() => setStep(3)}
+            />
+          )}
 
-        {step === 3 && (
-          <Step3ReviewSubmit
-            currentIssue={currentIssue}
-            formData={formData}
-            files={files}
-            mediaLinks={formData.mediaLinks}
-            isSubmitting={isSubmitting}
-            onSubmit={handleSubmit}
-            onBack={() => setStep(2)}
-          />
-        )}
+          {step === 3 && (
+            <Step3ReviewSubmit
+              currentIssue={currentIssue}
+              formData={formData}
+              files={files}
+              mediaLinks={formData.mediaLinks}
+              isSubmitting={isSubmitting}
+              onSubmit={handleSubmit}
+              onBack={() => setStep(2)}
+            />
+          )}
+        </div>
       </div>
     </div>
   );

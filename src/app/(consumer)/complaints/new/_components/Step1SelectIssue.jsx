@@ -19,10 +19,10 @@ export function Step1SelectIssue({
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-card-title text-ink font-medium tracking-tight">
+        <h2 className="text-title-lg text-ink font-semibold tracking-tight">
           What problem are you facing?
         </h2>
-        <p className="text-body-sm text-ink-muted mt-1">
+        <p className="text-body-sm text-muted-text mt-1">
           Select your issue category to proceed with lodging your complaint.
         </p>
       </div>
@@ -30,7 +30,7 @@ export function Step1SelectIssue({
       {/* Hazardous & Emergency Section */}
       {emergencyIssues.length > 0 && (
         <div className="space-y-2.5">
-          <div className="text-semantic-error flex items-center gap-1.5 text-xs font-semibold">
+          <div className="text-error flex items-center gap-1.5 text-xs font-semibold">
             <AlertTriangle className="size-3.5 shrink-0" />
             <span>Hazard & Emergency (Highest Priority)</span>
           </div>
@@ -52,10 +52,10 @@ export function Step1SelectIssue({
                     }
                   }}
                   className={cn(
-                    "group focus-visible:ring-ink relative flex cursor-pointer flex-col justify-between rounded-xl border p-4 text-left transition-all duration-150 select-none focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]",
+                    "group focus-visible:ring-ring relative flex cursor-pointer flex-col justify-between rounded-lg border p-4 text-left transition-all duration-150 select-none focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]",
                     isSelected
-                      ? "border-ink bg-ink text-on-primary shadow-xs"
-                      : "border-semantic-error/30 bg-semantic-error/5 text-ink hover:border-semantic-error/50 hover:bg-semantic-error/10"
+                      ? "border-primary bg-primary text-on-primary shadow-subtle"
+                      : "border-error/30 bg-error/5 text-ink hover:border-error/50 hover:bg-error/10"
                   )}
                 >
                   <div className="flex items-start justify-between gap-3">
@@ -63,7 +63,7 @@ export function Step1SelectIssue({
                       <AlertTriangle
                         className={cn(
                           "mt-0.5 size-4 shrink-0",
-                          isSelected ? "text-fin-orange" : "text-semantic-error"
+                          isSelected ? "text-warning" : "text-error"
                         )}
                       />
                       <div>
@@ -87,9 +87,7 @@ export function Step1SelectIssue({
                         <p
                           className={cn(
                             "mt-1 text-xs leading-relaxed",
-                            isSelected
-                              ? "text-inverse-ink/80"
-                              : "text-ink-muted"
+                            isSelected ? "text-on-dark-soft" : "text-muted-text"
                           )}
                         >
                           {item.desc}
@@ -101,8 +99,8 @@ export function Step1SelectIssue({
                       className={cn(
                         "flex size-4 shrink-0 items-center justify-center rounded-full border transition-all duration-150",
                         isSelected
-                          ? "border-fin-orange bg-fin-orange text-white"
-                          : "border-semantic-error/40 bg-surface-1 group-hover:border-semantic-error"
+                          ? "border-brand-accent bg-brand-accent text-white"
+                          : "border-error/40 bg-surface-card group-hover:border-error"
                       )}
                     >
                       {isSelected && (
@@ -119,7 +117,7 @@ export function Step1SelectIssue({
 
       {/* General Service Issues Section */}
       <div className="space-y-2.5">
-        <div className="text-caption text-ink-muted font-medium">
+        <div className="text-caption text-muted-text font-medium">
           General Service Issues
         </div>
 
@@ -143,10 +141,10 @@ export function Step1SelectIssue({
                   }
                 }}
                 className={cn(
-                  "group focus-visible:ring-ink relative flex cursor-pointer flex-col justify-between rounded-xl border p-4 text-left transition-all duration-150 select-none focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]",
+                  "group focus-visible:ring-ring relative flex cursor-pointer flex-col justify-between rounded-lg border p-4 text-left transition-all duration-150 select-none focus-visible:ring-2 focus-visible:outline-none active:scale-[0.98]",
                   isSelected
-                    ? "border-ink bg-ink text-on-primary shadow-xs"
-                    : "border-hairline bg-surface-1 text-ink hover:border-ink/30 hover:bg-surface-2/40"
+                    ? "border-primary bg-primary text-on-primary shadow-subtle"
+                    : "border-hairline bg-surface-card text-ink hover:border-ink/30 hover:bg-surface-soft"
                 )}
               >
                 <div>
@@ -164,8 +162,8 @@ export function Step1SelectIssue({
                       className={cn(
                         "flex size-4 shrink-0 items-center justify-center rounded-full border transition-all duration-150",
                         isSelected
-                          ? "border-fin-orange bg-fin-orange text-white"
-                          : "border-hairline bg-surface-1 group-hover:border-ink/40"
+                          ? "border-brand-accent bg-brand-accent text-white"
+                          : "border-hairline bg-surface-card group-hover:border-ink/40"
                       )}
                     >
                       {isSelected && (
@@ -177,7 +175,7 @@ export function Step1SelectIssue({
                   <p
                     className={cn(
                       "mt-1 text-xs leading-relaxed",
-                      isSelected ? "text-inverse-ink/80" : "text-ink-muted"
+                      isSelected ? "text-on-dark-soft" : "text-muted-text"
                     )}
                   >
                     {item.desc}
@@ -215,7 +213,7 @@ export function Step1SelectIssue({
           value={notes}
           onChange={(e) => onNotesChange(e.target.value)}
           placeholder="Provide any specific details (e.g., 'Power tripping since 3:00 PM', 'Near pole #42')..."
-          className="border-hairline bg-surface-1 text-ink placeholder:text-ink-subtle hover:border-hairline/80 focus-visible:border-ink focus-visible:ring-ink w-full rounded-md border p-3 text-sm transition-all duration-150 focus:outline-none focus-visible:ring-1"
+          className="border-hairline bg-surface-card text-ink placeholder:text-muted-text hover:border-hairline/80 focus-visible:border-ink focus-visible:ring-ring w-full rounded-md border p-3 text-sm transition-all duration-150 focus:outline-none focus-visible:ring-1"
         />
       </div>
 
