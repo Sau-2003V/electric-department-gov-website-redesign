@@ -18,7 +18,7 @@ export default async function login(data) {
 
   const { meterNumber, phoneNumber } = checkFields.data;
   const cookieStore = await cookies();
-  const supabase = createClient(cookieStore);
+  const supabase = await createClient(cookieStore);
 
   // Ponytail: Map phone number to email and meter number to password for Supabase Auth
   const email = `${phoneNumber}@mail.com`;

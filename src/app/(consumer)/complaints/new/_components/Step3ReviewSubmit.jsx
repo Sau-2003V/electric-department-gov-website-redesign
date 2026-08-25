@@ -1,6 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
+import { useState } from "react";
+import { toast } from "sonner";
 import {
   ArrowLeft,
   ArrowRight,
@@ -9,24 +11,51 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { createComplaint } from "@/app/(action)/complaint";
 
 export function Step3ReviewSubmit({
   currentIssue,
-  formData,
+  locationData,
+  notes,
   files = [],
   mediaLinks = [],
-  isSubmitting,
-  onSubmit,
   onBack,
+  onSuccess,
 }) {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const totalProofs = files.length + mediaLinks.length;
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const payload = {
+      issue: currentIssue.title,
+      description: notes || null,
+      address: locationData?.address || null,
+      landmark: locationData?.landmark || null,
+      latitude: locationData?.latitude ?? null,
+      longitude: locationData?.longitude ?? null,
+    };
+
+    const result = await createComplaint(payload);
+
+    setIsSubmitting(false);
+
+    if (!result.success) {
+      toast.error(result.error ?? "Something went wrong. Please try again.");
+      return;
+    }
+
+    onSuccess(result.complaint);
+  };
+
   return (
-    <form onSubmit={onSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <div>
         <h2 className="text-title-lg text-ink font-semibold tracking-tight">
-          Review & confirm complaint
+          Review &amp; confirm complaint
         </h2>
         <p className="text-body-sm text-muted-text mt-1">
           Verify your complaint summary before generating the official grievance
@@ -48,64 +77,61 @@ export function Step3ReviewSubmit({
               Assigned Authority: {currentIssue.authority}
             </div>
           </div>
-
-          <div className="flex flex-col sm:items-end">
-            <span className="text-muted-text text-[11px] font-medium tracking-wider uppercase">
-              Statutory Resolution SLA
-            </span>
-            <div className="mt-1">
-              <Badge variant="success" size="lg" shape="tag">
-                {currentIssue.sla}
-              </Badge>
-            </div>
-          </div>
         </div>
 
         <div className="grid grid-cols-1 gap-3 text-xs sm:grid-cols-2">
-          <div>
-            <span className="text-muted-text block font-medium">
-              Fault Address:
-            </span>
-            <span className="text-ink mt-0.5 block leading-relaxed font-normal">
-              {formData.address || "Not specified"}
-            </span>
-          </div>
+          {/* GPS */}
+          {locationData?.latitude != null &&
+            locationData?.longitude != null && (
+              <div>
+                <span className="text-muted-text block font-medium">
+                  GPS Location:
+                </span>
+                <span className="text-success mt-0.5 block font-mono leading-relaxed font-normal">
+                  {locationData.latitude.toFixed(4)}° N,{" "}
+                  {locationData.longitude.toFixed(4)}° E
+                </span>
+              </div>
+            )}
 
-          {formData.landmark && (
+          {/* Address */}
+          {locationData?.address && (
+            <div>
+              <span className="text-muted-text block font-medium">
+                Fault Address:
+              </span>
+              <span className="text-ink mt-0.5 block leading-relaxed font-normal">
+                {locationData.address}
+              </span>
+            </div>
+          )}
+
+          {/* Landmark */}
+          {locationData?.landmark && (
             <div>
               <span className="text-muted-text block font-medium">
                 Landmark / Pole:
               </span>
               <span className="text-ink mt-0.5 block leading-relaxed font-normal">
-                {formData.landmark}
+                {locationData.landmark}
               </span>
             </div>
           )}
 
-          {formData.gpsCoords && (
-            <div>
-              <span className="text-muted-text block font-medium">
-                GPS Location:
-              </span>
-              <span className="text-success mt-0.5 block font-mono leading-relaxed font-normal">
-                {formData.gpsCoords}
-              </span>
-            </div>
-          )}
-
-          {formData.notes && (
+          {/* Notes */}
+          {notes && (
             <div className="sm:col-span-2">
               <span className="text-muted-text block font-medium">
                 Additional Notes:
               </span>
               <span className="text-ink bg-canvas border-hairline-soft mt-0.5 block rounded-md border p-2.5 leading-relaxed font-normal">
-                {formData.notes}
+                {notes}
               </span>
             </div>
           )}
         </div>
 
-        {/* Attached Evidence Summary in Review */}
+        {/* Attached Evidence */}
         {totalProofs > 0 && (
           <div className="border-hairline-soft space-y-2 border-t pt-3">
             <span className="text-muted-text block text-xs font-medium">
@@ -163,6 +189,8 @@ export function Step3ReviewSubmit({
         )}
       </div>
 
+
+
       {/* Actions */}
       <div className="flex items-center justify-between pt-4">
         <Button
@@ -196,5 +224,3 @@ export function Step3ReviewSubmit({
     </form>
   );
 }
-
-

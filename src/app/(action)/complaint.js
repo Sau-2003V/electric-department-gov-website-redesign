@@ -1,346 +1,103 @@
 "use server";
 
-import { createClient } from "@/lib/supabase/server";
-import { z } from "zod";
+import { complaintSchema } from "@/types/schema/complaint";
+import { ISSUES } from "@/constants/issues";
+import { createClient } from "@/database/supabase/server";
+import { createAdminClient } from "@/database/supabase/admin";
+
+// ── Derive priority from issue title ────────────────────────────────────────
+// Looks up the canonical priority from shared ISSUES data so the client
+// never has to send it (and can't spoof it).
+function derivePriority(issueTitle) {
+  const match = ISSUES.find(
+    (i) => i.title.toLowerCase() === issueTitle?.toLowerCase()
+  );
+  return match?.priority ?? "normal";
+}
+
+// ── Build a human-readable location string from lat/lng or address ─────────
+function buildLocationString({ latitude, longitude, address }) {
+  if (latitude != null && longitude != null) {
+    const base = `${Number(latitude).toFixed(4)}° N, ${Number(longitude).toFixed(4)}° E`;
+    return address ? `${base} — ${address}` : base;
+  }
+  return address ?? null;
+}
 
 // ============================================================
-// PART 1: VALIDATION
+// CREATE COMPLAINT
+// Accepts a plain JS object (from React Hook Form).
+// priority and location are derived server-side.
 // ============================================================
 
-const complaintSchema = z.object({
-  issue: z
-    .string()
-    .min(1, "Issue is required.")
-    .max(200, "Issue is too long."),
-
-  description: z
-    .string()
-    .max(1000, "Description must be under 1000 characters.")
-    .optional()
-    .nullable(),
-
-  address: z
-    .string()
-    .min(5, "Address must be at least 5 characters.")
-    .optional()
-    .nullable(),
-
-  landmark: z
-    .string()
-    .max(200, "Landmark is too long.")
-    .optional()
-    .nullable(),
-
-  longitude: z.number().optional().nullable(),
-
-  latitude: z.number().optional().nullable(),
-
-  location: z
-    .string()
-    .max(500, "Location is too long.")
-    .optional()
-    .nullable(),
-
-  priority: z
-    .enum(["low", "normal", "high", "critical"])
-    .default("normal"),
-});
-
-
-// ============================================================
-// PART 2: CREATE COMPLAINT
-// ============================================================
-
-export async function createComplaint(prevState, formData) {
-  console.log("========================================");
-  console.log("🚀 CREATE COMPLAINT STARTED");
-  console.log("========================================");
-
-  try {
-    // ========================================================
-    // PART 3: SUPABASE CLIENT
-    // ========================================================
-
-    const supabase = await createClient();
-
-    console.log("✅ Supabase client created");
-
-    console.log(
-      "🔗 Supabase URL:",
-      process.env.NEXT_PUBLIC_SUPABASE_URL
-    );
-
-    console.log(
-      "🔑 Supabase Publishable Key exists:",
-      !!process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
-    );
-
-
-    // ========================================================
-    // PART 4: AUTH CHECK
-    // ========================================================
-
-    const {
-      data: { user },
-      error: authError,
-    } = await supabase.auth.getUser();
-
-    console.log("👤 AUTH USER:", user);
-    console.log("❌ AUTH ERROR:", authError);
-
-    if (authError) {
-      console.error("❌ Authentication error:", authError);
-
-      return {
-        success: false,
-        error: "Authentication failed.",
-      };
-    }
-
-    if (!user) {
-      console.error("❌ No logged-in user found.");
-
-      return {
-        success: false,
-        error: "You must be logged in to file a complaint.",
-      };
-    }
-
-    console.log("✅ Logged-in user ID:", user.id);
-
-
-    // ========================================================
-    // PART 5: GET FORM DATA
-    // ========================================================
-
-    const rawData = {
-      issue: formData.get("issue"),
-
-      description: formData.get("description") || null,
-
-      address: formData.get("address") || null,
-
-      landmark: formData.get("landmark") || null,
-
-      longitude:
-        formData.get("longitude") !== null &&
-        formData.get("longitude") !== ""
-          ? Number(formData.get("longitude"))
-          : null,
-
-      latitude:
-        formData.get("latitude") !== null &&
-        formData.get("latitude") !== ""
-          ? Number(formData.get("latitude"))
-          : null,
-
-      location: formData.get("location") || null,
-
-      priority: formData.get("priority") || "normal",
-    };
-
-
-    console.log("📦 RAW FORM DATA:");
-    console.log(rawData);
-
-
-    // ========================================================
-    // PART 6: VALIDATION
-    // ========================================================
-
-    const validation = complaintSchema.safeParse(rawData);
-
-    if (!validation.success) {
-      console.error("❌ VALIDATION FAILED");
-
-      console.error(
-        "Validation errors:",
-        validation.error.flatten()
-      );
-
-      return {
-        success: false,
-        error:
-          validation.error.issues[0]?.message ||
-          "Validation failed.",
-        fieldErrors: validation.error.flatten().fieldErrors,
-      };
-    }
-
-    const data = validation.data;
-
-    console.log("✅ VALIDATION PASSED");
-    console.log("Validated data:", data);
-
-
-    // ========================================================
-    // PART 7: CHECK USER EXISTS IN `users` TABLE
-    // ========================================================
-    // IMPORTANT:
-    // complaints.uid -> users.id foreign key hai.
-    //
-    // Isliye auth.users ka ID `public.users.id` mein hona
-    // zaroori hai.
-
-    console.log("🔍 Checking user in public.users...");
-
-    const {
-      data: dbUser,
-      error: dbUserError,
-    } = await supabase
-      .from("users")
-      .select("id")
-      .eq("id", user.id)
-      .maybeSingle();
-
-    console.log("👤 public.users result:", dbUser);
-    console.log("❌ public.users error:", dbUserError);
-
-    if (dbUserError) {
-      console.error(
-        "❌ Failed to check public.users:",
-        dbUserError
-      );
-
-      return {
-        success: false,
-        error: "Could not verify your user account.",
-      };
-    }
-
-    if (!dbUser) {
-      console.error(
-        "❌ Auth user exists but public.users row does not exist."
-      );
-
-      console.error(
-        "Auth UID:",
-        user.id
-      );
-
-      return {
-        success: false,
-        error:
-          "Your user profile does not exist in the users table.",
-      };
-    }
-
-    console.log("✅ User exists in public.users");
-
-
-    // ========================================================
-    // PART 8: INSERT COMPLAINT
-    // ========================================================
-
-    const complaintPayload = {
-      uid: user.id,
-      issue: data.issue,
-      description: data.description,
-      address: data.address,
-      landmark: data.landmark,
-      longitude: data.longitude,
-      latitude: data.latitude,
-      location: data.location,
-      priority: data.priority,
-
-      // status ka default DB handle karega:
-      // registered
-    };
-
-    console.log("========================================");
-    console.log("📤 INSERTING COMPLAINT");
-    console.log("========================================");
-
-    console.log("Complaint payload:");
-    console.log(complaintPayload);
-
-
-    const {
-      data: complaint,
-      error: insertError,
-    } = await supabase
-      .from("complaints")
-      .insert(complaintPayload)
-      .select()
-      .single();
-
-
-    // ========================================================
-    // PART 9: INSERT RESULT
-    // ========================================================
-
-    console.log("========================================");
-    console.log("📥 INSERT RESULT");
-    console.log("========================================");
-
-    console.log("Inserted complaint:", complaint);
-    console.log("Insert error:", insertError);
-
-
-    if (insertError) {
-      console.error("❌ COMPLAINT INSERT FAILED");
-      console.error("Error message:", insertError.message);
-      console.error("Error details:", insertError.details);
-      console.error("Error hint:", insertError.hint);
-      console.error("Error code:", insertError.code);
-
-      return {
-        success: false,
-        error: insertError.message,
-      };
-    }
-
-
-    // ========================================================
-    // PART 10: SUCCESS
-    // ========================================================
-
-    console.log("========================================");
-    console.log("🎉 COMPLAINT CREATED SUCCESSFULLY");
-    console.log("========================================");
-
-    console.log("Complaint ID:", complaint.id);
-    console.log("User ID:", complaint.uid);
-    console.log("Issue:", complaint.issue);
-    console.log("Priority:", complaint.priority);
-    console.log("Status:", complaint.status);
-    console.log("Created At:", complaint.created_at);
-
-    console.log("========================================");
-
-
-    return {
-      success: true,
-
-      complaint: {
-        id: complaint.id,
-        issue: complaint.issue,
-        status: complaint.status,
-        priority: complaint.priority,
-        created_at: complaint.created_at,
-      },
-
-      message: "Complaint submitted successfully.",
-    };
-
-  } catch (error) {
-    // ========================================================
-    // PART 11: UNEXPECTED ERROR
-    // ========================================================
-
-    console.error("========================================");
-    console.error("💥 UNEXPECTED ERROR");
-    console.error("========================================");
-
-    console.error(error);
-    console.error("Message:", error?.message);
-    console.error("Stack:", error?.stack);
-
+export async function createComplaint(payload) {
+  // ── Validate first (no I/O) ───────────────────────────────
+  const validation = complaintSchema.safeParse(payload);
+
+  if (!validation.success) {
     return {
       success: false,
-      error:
-        error?.message ||
-        "Something went wrong while creating complaint.",
+      error: validation.error.issues[0]?.message ?? "Validation failed.",
+      fieldErrors: validation.error.flatten().fieldErrors,
     };
   }
+
+  const data = validation.data;
+
+  // ── Auth (JWT claims — no network round-trip) ─────────────
+  const supabase = await createClient();
+  const supabaseAdmin = await createAdminClient();
+
+
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    return {
+      success: false,
+      error: "You must be logged in to file a complaint.",
+    };
+  }
+
+  // ── Derive server-side fields ─────────────────────────────
+  const priority = derivePriority(data.issue);
+  const location = buildLocationString({
+    latitude: data.latitude,
+    longitude: data.longitude,
+    address: data.address,
+  });
+
+  // ── Insert ────────────────────────────────────────────────
+  const { data: complaint, error: insertError } = await supabaseAdmin
+    .from("complaints")
+    .insert({
+      uid: user.id,
+      issue: data.issue,
+      description: data.description ?? null,
+      address: data.address ?? null,
+      landmark: data.landmark ?? null,
+      longitude: data.longitude ?? null,
+      latitude: data.latitude ?? null,
+      location,
+      priority,
+    })
+    .select()
+    .single();
+
+  if (insertError) {
+    console.error("❌ COMPLAINT INSERT FAILED", insertError);
+    return { success: false, error: "Could not submit your complaint. Please try again." };
+  }
+
+
+  return {
+    success: true,
+    complaint: {
+      id: complaint.id,
+      issue: complaint.issue,
+      status: complaint.status,
+      priority: complaint.priority,
+      created_at: complaint.created_at,
+    },
+    message: "Complaint submitted successfully.",
+  };
 }

@@ -71,10 +71,7 @@ export function DocketSuccessReceipt({ docket, onReset }) {
             <span className="text-ink font-medium">{docket.issue.title}</span>
           </div>
 
-          <div className="border-hairline-soft flex items-center justify-between border-b pb-2.5">
-            <span className="text-muted-text">Statutory SLA Target:</span>
-            <span className="text-success font-medium">{docket.issue.sla}</span>
-          </div>
+
 
           <div className="border-hairline-soft flex items-center justify-between border-b pb-2.5">
             <span className="text-muted-text">Lodged Timestamp:</span>

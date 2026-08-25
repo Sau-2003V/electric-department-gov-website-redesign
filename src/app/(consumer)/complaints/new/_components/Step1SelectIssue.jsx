@@ -76,13 +76,7 @@ export function Step1SelectIssue({
                           >
                             {item.title}
                           </h3>
-                          <Badge
-                            variant={isSelected ? "accent" : "destructive"}
-                            size="sm"
-                            shape="tag"
-                          >
-                            {item.sla}
-                          </Badge>
+
                         </div>
                         <p
                           className={cn(
@@ -182,16 +176,7 @@ export function Step1SelectIssue({
                   </p>
                 </div>
 
-                <div className="mt-3 flex items-center gap-1.5">
-                  <Badge
-                    variant={isSelected ? "accent" : "surface"}
-                    size="sm"
-                    shape="tag"
-                    className="text-[10px]"
-                  >
-                    <span>{item.sla}</span>
-                  </Badge>
-                </div>
+
               </div>
             );
           })}
