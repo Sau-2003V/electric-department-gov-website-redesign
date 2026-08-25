@@ -173,11 +173,10 @@ export default function HowItWorksPage() {
     <div className="bg-canvas text-ink min-h-screen">
       {/* 1. HERO SECTION */}
       <section className="border-hairline bg-surface-card/60 relative overflow-hidden border-b py-12 md:py-16">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(var(--hairline)_1px,transparent_1px)] [background-size:24px_24px] opacity-60" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(var(--hairline)_1px,transparent_1px)] background-size:[24px_24px] opacity-60" />
 
         <div className="relative mx-auto max-w-5xl px-4 text-center sm:px-6 lg:px-8">
           <Badge variant="accent-subtle" size="pill" className="mx-auto mb-4 gap-1.5">
-            <ShieldCheck className="size-3.5" />
             <span>Transparent Citizen Redressal Flow</span>
           </Badge>
 

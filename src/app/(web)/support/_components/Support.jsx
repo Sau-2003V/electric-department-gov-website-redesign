@@ -296,15 +296,13 @@ export default function SupportPage() {
       {/* 1. TOP HERO SECTION */}
       <section className="border-hairline bg-surface-card/60 relative overflow-hidden border-b py-12 md:py-16">
         {/* Subtle grid pattern background */}
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(var(--hairline)_1px,transparent_1px)] [background-size:24px_24px] opacity-60" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(var(--hairline)_1px,transparent_1px)] background-size:[24px_24px] opacity-60" />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col items-start gap-4">
             <Badge variant="accent-subtle" size="pill" className="gap-2">
-              <ShieldCheck className="size-3.5" />
               <span>Consumer Redressal &amp; Support Hub</span>
             </Badge>
-
             <h1 className="text-display-md sm:text-display-lg lg:text-display-xl text-ink font-semibold tracking-tight">
               How can we assist your electricity service today?
             </h1>
