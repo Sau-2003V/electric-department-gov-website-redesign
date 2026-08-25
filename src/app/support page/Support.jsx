@@ -57,7 +57,7 @@ const supportChannels = [
   },
   {
     title: "Customer care",
-    detail: "Mon–Sat · 8:00 AM – 8:00 PM",
+    detail: "Mon to nSat · 8:00 AM to 8:00 PM",
     description:
       "Speak with a representative for billing, metering, and service requests.",
     icon: Headphones,
@@ -189,7 +189,7 @@ export default function SupportPage() {
                 value={item.question}
                 className="rounded-xl border-none px-2"
               >
-                <AccordionTrigger className="text-body text-ink py-4 text-left font-medium hover:no-underline">
+                <AccordionTrigger className="text-body py-4 text-left font-medium hover:no-underline">
                   {item.question}
                 </AccordionTrigger>
                 <AccordionContent className="text-body-sm text-ink-muted pr-8 pb-4 leading-relaxed">

@@ -393,7 +393,7 @@ export default function TopHeader() {
   return (
     <header className="w-full font-sans">
       {/* 1. Top Accessibility & Emergency Helpline Bar */}
-      <div className="border-surface-dark-elevated bg-surface-dark text-on-dark-soft text-caption border-b px-4 py-1.5">
+      <div className="border-surface-dark-elevated bg-surface-dark text-on-dark-soft text-caption border-b px-4 py-3">
         <div className="mx-auto flex max-w-7xl items-center justify-between">
           <div className="flex items-center gap-4">
             <span className="inline-flex items-center gap-1.5">
@@ -421,6 +421,14 @@ export default function TopHeader() {
                 </a>
               </span>
             </span>
+          </div>
+
+          <div>
+            <img
+              src="/image/emblem.png"
+              alt="Ashoka Emblem"
+              className="h-6 w-6"
+            />
           </div>
 
           <div className="flex items-center gap-3 sm:gap-4">
@@ -501,7 +509,7 @@ export default function TopHeader() {
 
       {/* 2. Main Navigation Bar */}
       <nav className="border-hairline bg-canvas/95 sticky top-0 z-50 border-b backdrop-blur-xs">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-3 py-3 sm:px-6 lg:px-8">
           {/* Logo & Org Title */}
           <Link href="/" className="group flex items-center gap-3">
             <img 
