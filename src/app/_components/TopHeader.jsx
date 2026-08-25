@@ -84,10 +84,10 @@ export default function TopHeader() {
                 variant="ghost"
                 size="compact"
                 icon={Globe}
-                className="text-muted-text hover:bg-surface-card hover:text-ink dark:text-on-dark-soft dark:hover:bg-surface-dark dark:hover:text-on-dark h-7 min-w-[110px] border-none px-2 text-xs font-medium focus:ring-0"
+                className="text-muted-text hover:bg-surface-card hover:text-ink dark:text-on-dark-soft dark:hover:bg-surface-dark dark:hover:text-on-dark h-7 min-w-28.75  border-none px-2 text-xs font-medium focus:ring-0"
                 aria-label="Select Language"
               />
-              <SelectContent className="z-[100] max-h-72 min-w-[170px]">
+              <SelectContent className="z-100 max-h-72 min-w-42.5">
                 {INDIAN_LANGUAGES.map((lang) => (
                   <SelectItem key={lang.code} value={lang.name}>
                     {lang.name}
@@ -111,10 +111,10 @@ export default function TopHeader() {
                 variant="ghost"
                 size="compact"
                 icon={Type}
-                className="text-muted-text hover:bg-surface-card hover:text-ink dark:text-on-dark-soft dark:hover:bg-surface-dark dark:hover:text-on-dark h-7 min-w-[105px] border-none px-2 text-xs font-medium focus:ring-0"
+                className="text-muted-text hover:bg-surface-card hover:text-ink dark:text-on-dark-soft dark:hover:bg-surface-dark dark:hover:text-on-dark h-7 min-w-26.75 border-none px-2 text-xs font-medium focus:ring-0"
                 aria-label="Select Font Size"
               />
-              <SelectContent className="z-[100] min-w-[140px]">
+              <SelectContent className="z-100 min-w-42.5">
                 <SelectItem value="90">Small (90%)</SelectItem>
                 <SelectItem value="100">Default (100%)</SelectItem>
                 <SelectItem value="110">Large (110%)</SelectItem>
@@ -134,10 +134,10 @@ export default function TopHeader() {
                 variant="ghost"
                 size="compact"
                 icon={SunMoon}
-                className="text-muted-text hover:bg-surface-card hover:text-ink dark:text-on-dark-soft dark:hover:bg-surface-dark dark:hover:text-on-dark h-7 min-w-[95px] border-none px-2 text-xs font-medium capitalize focus:ring-0"
+                className="text-muted-text hover:bg-surface-card hover:text-ink dark:text-on-dark-soft dark:hover:bg-surface-dark dark:hover:text-on-dark h-7 min-w-23.75 border-none px-2 text-xs font-medium capitalize focus:ring-0"
                 aria-label="Select Theme"
               />
-              <SelectContent className="z-[100] min-w-[130px]">
+              <SelectContent className="z-100 min-w-42.5">
                 <SelectItem value="light">Light</SelectItem>
                 <SelectItem value="dark">Dark</SelectItem>
                 <SelectItem value="system">System</SelectItem>
@@ -332,10 +332,10 @@ export default function TopHeader() {
                         <SelectTrigger
                           variant="secondary"
                           size="compact"
-                          className="h-8 min-w-[115px] text-xs font-medium"
+                          className="h-8 min-w-28.75 text-xs font-medium"
                           aria-label="Select Language"
                         />
-                        <SelectContent className="z-[100] max-h-72 min-w-[170px]">
+                        <SelectContent className="z-100 max-h-72 min-w-42.5">
                           {INDIAN_LANGUAGES.map((lang) => (
                             <SelectItem key={lang.code} value={lang.name}>
                               {lang.name}
@@ -362,10 +362,10 @@ export default function TopHeader() {
                         <SelectTrigger
                           variant="secondary"
                           size="compact"
-                          className="h-8 min-w-[105px] text-xs font-medium"
+                          className="h-8 min-w-26.75 text-xs font-medium"
                           aria-label="Select Font Size"
                         />
-                        <SelectContent className="z-[100] min-w-[140px]">
+                        <SelectContent className="z-100 min-w-42.5">
                           <SelectItem value="90">Small (90%)</SelectItem>
                           <SelectItem value="100">Default (100%)</SelectItem>
                           <SelectItem value="110">Large (110%)</SelectItem>
@@ -388,10 +388,10 @@ export default function TopHeader() {
                         <SelectTrigger
                           variant="secondary"
                           size="compact"
-                          className="h-8 min-w-[95px] text-xs font-medium capitalize"
+                          className="h-8 min-w-26.75 text-xs font-medium capitalize"
                           aria-label="Select Theme"
                         />
-                        <SelectContent className="z-[100] min-w-[130px]">
+                        <SelectContent className="z-100 min-w-42.5">
                           <SelectItem value="light">Light</SelectItem>
                           <SelectItem value="dark">Dark</SelectItem>
                           <SelectItem value="system">System</SelectItem>
