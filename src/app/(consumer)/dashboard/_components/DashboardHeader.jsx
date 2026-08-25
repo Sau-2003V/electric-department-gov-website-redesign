@@ -36,25 +36,25 @@ export default function DashboardHeader() {
   };
 
   return (
-    <section className="mb-lg sm:mb-xl">
+    <section className="mb-6 sm:mb-8">
       {/* Greeting row */}
-      <div className="mb-md flex items-start justify-between">
+      <div className="flex items-start justify-between">
         <div>
-          <p className="text-body sm:text-body-lg text-ink-subtle font-medium tracking-wider uppercase">
+          <p className="text-caption font-semibold tracking-wider uppercase text-muted-text">
             Namaste,
           </p>
 
           {isLoading ? (
-            <div className="mt-xs space-y-xs animate-pulse">
-              <div className="bg-surface-2 h-10 w-64 rounded-xl sm:h-14 sm:w-80" />
-              <div className="bg-surface-2 h-5 w-44 rounded-lg" />
+            <div className="mt-2 space-y-2 animate-pulse">
+              <div className="bg-surface-card h-10 w-64 rounded-md sm:h-12 sm:w-80" />
+              <div className="bg-surface-card h-5 w-44 rounded-md" />
             </div>
           ) : (
             <>
-              <h1 className="mt-xxs text-display-md text-ink sm:text-display-lg font-medium">
+              <h1 className="mt-1 text-display-md text-ink sm:text-display-lg font-semibold">
                 {name}
               </h1>
-              <div className="mt-xs gap-xs text-body text-ink-muted sm:mt-sm sm:gap-sm sm:text-body-lg flex items-center font-normal">
+              <div className="mt-2 flex items-center gap-2 text-body-sm sm:text-body text-muted-text font-normal">
                 <span>Meter No.</span>
                 <span className="text-ink font-semibold">
                   {meterNumber ?? "—"}
@@ -65,7 +65,7 @@ export default function DashboardHeader() {
                     variant="ghost"
                     size="icon-compact"
                     onClick={handleCopy}
-                    className="text-ink-muted hover:bg-surface-2 hover:text-ink focus-visible:ring-ink/20 relative focus-visible:ring-1"
+                    className="text-muted-text hover:bg-surface-soft hover:text-ink relative"
                     aria-label={
                       copied ? "Copied meter number" : "Copy meter number"
                     }
@@ -74,7 +74,7 @@ export default function DashboardHeader() {
                     <span
                       className={`inline-flex items-center justify-center transition-all duration-150 ${
                         copied
-                          ? "text-semantic-success scale-100 opacity-100"
+                          ? "text-success scale-100 opacity-100"
                           : "absolute scale-0 opacity-0"
                       }`}
                     >
@@ -84,7 +84,7 @@ export default function DashboardHeader() {
                       className={`inline-flex items-center justify-center transition-all duration-150 ${
                         copied
                           ? "absolute scale-0 opacity-0"
-                          : "text-ink-muted group-hover:text-ink scale-100 opacity-100"
+                          : "text-muted-text group-hover:text-ink scale-100 opacity-100"
                       }`}
                     >
                       <Copy className="size-4" strokeWidth={2} />

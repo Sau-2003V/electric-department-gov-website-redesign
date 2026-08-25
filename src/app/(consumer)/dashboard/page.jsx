@@ -35,20 +35,22 @@ export async function generateMetadata() {
 
 export default function DashboardPage() {
   return (
-    <div className="px-md pt-lg pb-xxl sm:px-xl sm:pt-xl min-h-[calc(100vh-61px)]">
-      {/* Greeting + quick stats (client component — fetches user itself) */}
-      <DashboardHeader />
+    <div className="bg-canvas text-ink min-h-screen">
+      <div className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 space-y-6 sm:space-y-8">
+        {/* Greeting + quick stats (client component — fetches user itself) */}
+        <DashboardHeader />
 
-      {/* Outage banner — full width */}
-      <OutageAlert />
+        {/* Outage banner — full width */}
+        <OutageAlert />
 
-      {/* Subdivision contacts — full width */}
-      <SubdivisionSection />
+        {/* Subdivision contacts — full width */}
+        <SubdivisionSection />
 
-      {/* Complaints + Notices — side-by-side on large screens */}
-      <div className="gap-lg grid grid-cols-1 lg:grid-cols-2">
-        <RecentComplaints />
-        <RecentNotices />
+        {/* Complaints + Notices — side-by-side on large screens */}
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+          <RecentComplaints />
+          <RecentNotices />
+        </div>
       </div>
     </div>
   );

@@ -35,28 +35,28 @@ export default function SubdivisionSection({
     <section
       aria-label="Subdivision Contacts"
       className={cn(
-        "mb-lg sm:mb-xl bg-surface-1 overflow-hidden rounded-2xl",
+        "overflow-hidden rounded-lg border border-hairline bg-surface-card shadow-subtle",
         className
       )}
     >
       {/* Subdivision Header */}
-      <div className="gap-sm border-hairline-soft p-md sm:px-lg sm:py-md flex flex-col items-start justify-between border-b sm:flex-row sm:items-center">
+      <div className="border-b border-hairline-soft p-4 sm:px-6 sm:py-4 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
         <div>
-          <div className="gap-xs flex items-center">
+          <div className="flex items-center gap-1.5">
             <MapPin
               className="text-primary size-4"
               strokeWidth={2.2}
               aria-hidden="true"
             />
-            <p className="text-eyebrow text-ink-subtle font-medium uppercase">
+            <p className="text-caption font-semibold uppercase tracking-wider text-muted-text">
               Your Subdivision
             </p>
           </div>
-          <p className="mt-xxs text-body-sm text-ink font-medium">{location}</p>
+          <p className="mt-0.5 text-body-sm font-medium text-ink">{location}</p>
         </div>
 
         <a href={`tel:${helpline}`} className="self-start sm:self-auto">
-          <Button type="button" variant="accent-subtle" size="compact">
+          <Button type="button" variant="accent-subtle" size="sm">
             <Phone className="size-3.5" strokeWidth={2.2} aria-hidden="true" />
             <span>Helpline {helpline}</span>
           </Button>
@@ -64,14 +64,14 @@ export default function SubdivisionSection({
       </div>
 
       {/* Contact Cards */}
-      <div className="gap-xs p-sm sm:gap-sm sm:p-md grid grid-cols-1 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-3 p-4 sm:grid-cols-2 sm:p-6">
         {contacts.map((contact) => (
           <div
             key={contact.phone}
-            className="gap-sm border-hairline-soft bg-surface-1 p-sm hover:bg-surface-2/40 flex items-center justify-between rounded-xl border transition-colors"
+            className="flex items-center justify-between gap-3 rounded-lg border border-hairline-soft bg-canvas p-3 transition-colors hover:bg-surface-soft"
           >
             {/* Avatar initial */}
-            <div className="bg-surface-2 text-caption text-ink flex h-9 w-9 shrink-0 items-center justify-center rounded-full font-medium">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-surface-soft text-caption font-semibold text-ink border border-hairline-soft">
               {contact.name
                 .split(" ")
                 .map((n) => n[0])
@@ -80,10 +80,10 @@ export default function SubdivisionSection({
             </div>
 
             <div className="min-w-0 flex-1">
-              <p className="text-body-sm text-ink truncate font-medium">
+              <p className="text-body-sm font-medium text-ink truncate">
                 {contact.name}
               </p>
-              <p className="mt-xxs text-caption text-ink-muted truncate">
+              <p className="mt-0.5 text-caption text-muted-text truncate">
                 {contact.role}
               </p>
             </div>
@@ -95,6 +95,7 @@ export default function SubdivisionSection({
             >
               <Button
                 type="button"
+                variant="secondary"
                 size="icon-compact"
                 aria-label={`Call ${contact.name}`}
               >

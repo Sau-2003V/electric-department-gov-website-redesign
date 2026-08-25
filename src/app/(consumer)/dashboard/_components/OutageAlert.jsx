@@ -5,23 +5,23 @@ import { cn } from "@/lib/utils";
 const TYPE_CONFIG = {
   planned: {
     label: "Planned Outage",
-    badgeVariant: "warning",
-    containerBg: "bg-surface-1",
-    containerBorder: "border-report-orange",
-    iconBg: "bg-report-orange/10",
-    iconRing: "ring-1 ring-report-orange/20",
-    iconColor: "text-report-orange",
-    pulseDot: "bg-report-orange",
+    badgeVariant: "badge-orange",
+    containerBg: "bg-badge-orange/10 dark:bg-badge-orange/15",
+    containerBorder: "border-badge-orange/30",
+    iconBg: "bg-badge-orange/20",
+    iconRing: "ring-1 ring-badge-orange/30",
+    iconColor: "text-[#c2410c] dark:text-orange-300",
+    pulseDot: "bg-badge-orange",
   },
   unplanned: {
     label: "Unplanned Outage",
     badgeVariant: "destructive",
-    containerBg: "bg-surface-1",
-    containerBorder: "border-semantic-error/30",
-    iconBg: "bg-semantic-error/10",
-    iconRing: "ring-1 ring-semantic-error/20",
-    iconColor: "text-semantic-error",
-    pulseDot: "bg-semantic-error",
+    containerBg: "bg-error/10 dark:bg-error/15",
+    containerBorder: "border-error/30",
+    iconBg: "bg-error/20",
+    iconRing: "ring-1 ring-error/30",
+    iconColor: "text-error",
+    pulseDot: "bg-error",
   },
 };
 
@@ -38,17 +38,17 @@ export default function OutageAlert({
     <section
       aria-label="Power outage alert"
       className={cn(
-        "mb-lg sm:mb-xl p-md sm:p-lg shadow-surface-1 overflow-hidden rounded-2xl border transition-all",
+        "p-4 sm:p-5 shadow-subtle overflow-hidden rounded-lg border transition-all",
         config.containerBorder,
         config.containerBg,
         className
       )}
     >
-      <div className="gap-md flex items-start">
+      <div className="gap-4 flex items-start">
         {/* Leading Alert Icon */}
         <div
           className={cn(
-            "mt-xxs flex h-9 w-9 shrink-0 items-center justify-center rounded-xl",
+            "mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-md",
             config.iconBg,
             config.iconRing
           )}
@@ -63,9 +63,9 @@ export default function OutageAlert({
         {/* Content Body */}
         <div className="min-w-0 flex-1">
           {/* Header Row */}
-          <div className="gap-xs sm:gap-sm flex flex-wrap items-center justify-between">
-            <div className="gap-xs sm:gap-sm flex flex-wrap items-center">
-              <h2 className="text-body-sm sm:text-body text-ink font-medium">
+          <div className="gap-2 sm:gap-3 flex flex-wrap items-center justify-between">
+            <div className="gap-2 sm:gap-3 flex flex-wrap items-center">
+              <h2 className="text-title-sm text-ink font-semibold">
                 Outage affecting your area
               </h2>
               <Badge variant={config.badgeVariant} size="sm">
@@ -75,21 +75,21 @@ export default function OutageAlert({
           </div>
 
           {/* Area & Details */}
-          <div className="mt-xs space-y-xxs">
-            <div className="gap-xs text-body-sm text-ink flex items-center font-medium">
+          <div className="mt-1 space-y-0.5">
+            <div className="gap-1.5 text-body-sm text-ink flex items-center font-medium">
               <MapPin
-                className="text-ink-subtle size-3.5 shrink-0"
+                className="text-muted-text size-3.5 shrink-0"
                 aria-hidden="true"
               />
               <span>{area}</span>
             </div>
-            <p className="text-body-sm text-ink-muted leading-relaxed">
+            <p className="text-body-sm text-muted-text leading-relaxed">
               {details}
             </p>
           </div>
 
           {/* Timing Chip */}
-          <div className="mt-sm gap-xs border-hairline bg-surface-2/60 px-sm py-xxs inline-flex flex-wrap items-center rounded-full border">
+          <div className="mt-3 gap-1.5 border-hairline/70 bg-canvas/80 px-2.5 py-1 inline-flex flex-wrap items-center rounded-full border shadow-2xs backdrop-blur-xs">
             <span
               className={cn(
                 "h-2 w-2 animate-pulse rounded-full",
@@ -97,8 +97,8 @@ export default function OutageAlert({
               )}
               aria-hidden="true"
             />
-            <Clock className="text-ink-subtle size-3" aria-hidden="true" />
-            <span className="text-caption text-ink-muted font-medium">
+            <Clock className="text-muted-text size-3" aria-hidden="true" />
+            <span className="text-caption text-muted-text font-medium">
               {timestamp}
             </span>
           </div>

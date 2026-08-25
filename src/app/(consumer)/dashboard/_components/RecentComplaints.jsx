@@ -51,36 +51,36 @@ const STATUS_CONFIG = {
   Assigned: {
     icon: Clock,
     badgeVariant: "info",
-    dot: "bg-report-blue",
+    dot: "bg-brand-accent",
   },
   "In progress": {
     icon: Loader2,
     badgeVariant: "warning",
-    dot: "bg-report-orange",
+    dot: "bg-warning",
   },
   Closed: {
     icon: CheckCircle2,
     badgeVariant: "success",
-    dot: "bg-semantic-success",
+    dot: "bg-success",
   },
 };
 
 const PRIORITY_CONFIG = {
-  "SLA breached": "text-semantic-error font-medium",
-  "Due soon": "text-report-orange font-medium",
-  "SLA met": "text-semantic-success font-medium",
+  "SLA breached": "text-error font-medium",
+  "Due soon": "text-warning font-medium",
+  "SLA met": "text-success font-medium",
 };
 
 /* ─── Single row ─────────────────────────────────────────────────────── */
 function ComplaintRow({ complaint }) {
   const sc = STATUS_CONFIG[complaint.status] ?? STATUS_CONFIG["Assigned"];
-  const pc = PRIORITY_CONFIG[complaint.priority] ?? "text-ink-muted";
+  const pc = PRIORITY_CONFIG[complaint.priority] ?? "text-muted-text";
   const Icon = sc.icon;
 
   return (
     <Link
       href={`/complaints/${complaint.id}`}
-      className="group gap-md border-hairline-soft px-lg py-md hover:bg-surface-2/40 flex items-start border-b transition-colors last:border-b-0"
+      className="group flex items-start gap-4 border-b border-hairline-soft px-4 py-3.5 sm:px-6 transition-colors hover:bg-surface-soft last:border-b-0"
     >
       {/* Status dot */}
       <span
@@ -90,17 +90,17 @@ function ComplaintRow({ complaint }) {
 
       {/* Main content */}
       <div className="min-w-0 flex-1">
-        <div className="gap-xs flex flex-wrap items-center">
-          <p className="text-body-sm text-ink font-medium">{complaint.title}</p>
+        <div className="flex flex-wrap items-center gap-2">
+          <p className="text-body-sm font-medium text-ink">{complaint.title}</p>
           <Badge variant={sc.badgeVariant} size="sm">
             <Icon className="size-2.5" strokeWidth={2.2} />
             {complaint.status}
           </Badge>
         </div>
-        <p className="mt-xxs text-caption text-ink-muted line-clamp-1 leading-relaxed">
+        <p className="mt-0.5 text-caption text-muted-text line-clamp-1 leading-relaxed">
           {complaint.description}
         </p>
-        <div className="mt-xs gap-xs text-caption text-ink-subtle flex flex-wrap items-center">
+        <div className="mt-2 flex flex-wrap items-center gap-2 text-caption text-muted-text">
           <span>{complaint.id}</span>
           <span className="text-hairline">·</span>
           <span>{complaint.date}</span>
@@ -111,7 +111,7 @@ function ComplaintRow({ complaint }) {
 
       {/* Chevron */}
       <ChevronRight
-        className="text-ink-tertiary group-hover:text-ink mt-1 size-4 shrink-0 transition-transform group-hover:translate-x-0.5"
+        className="mt-1 size-4 shrink-0 text-muted-text transition-transform group-hover:translate-x-0.5 group-hover:text-ink"
         aria-hidden="true"
       />
     </Link>
@@ -126,17 +126,20 @@ export default function RecentComplaints({
   return (
     <section
       aria-label="Recent Complaints"
-      className={cn("bg-surface-1 overflow-hidden rounded-2xl", className)}
+      className={cn(
+        "overflow-hidden rounded-lg border border-hairline bg-surface-card shadow-subtle",
+        className
+      )}
     >
       {/* Header */}
-      <div className="border-hairline-soft px-lg py-md flex items-center justify-between border-b">
-        <div className="gap-xs flex items-center">
+      <div className="flex items-center justify-between border-b border-hairline-soft px-4 py-3.5 sm:px-6">
+        <div className="flex items-center gap-1.5">
           <AlertCircle
             className="text-primary size-4"
             strokeWidth={2.2}
             aria-hidden="true"
           />
-          <p className="text-eyebrow text-ink font-medium uppercase">
+          <p className="text-caption font-semibold uppercase tracking-wider text-muted-text">
             Recent Complaints
           </p>
         </div>
@@ -151,7 +154,7 @@ export default function RecentComplaints({
 
       {/* Rows */}
       {complaints.length === 0 ? (
-        <div className="gap-xs py-xl text-ink-subtle flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center gap-2 py-10 text-muted-text">
           <CheckCircle2 className="size-7" strokeWidth={1.5} />
           <p className="text-body-sm">No complaints filed</p>
         </div>
