@@ -149,6 +149,8 @@ export default function NewComplaintPage() {
     }, 700);
   };
 
+
+
   const handleReset = () => {
     setDocket(null);
     setStep(1);
