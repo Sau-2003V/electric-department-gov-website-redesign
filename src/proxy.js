@@ -11,5 +11,11 @@ export const config = {
     "/complaints/new",
     "/help",
     "/notices",
+    "/settings",
+    "/staff/dashboard",
+    "/staff/complaints",
+    "/staff/engineers",
+    "/staff/notices",
+    "/staff/settings",
   ],
 };
