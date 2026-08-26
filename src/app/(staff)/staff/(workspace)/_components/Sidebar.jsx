@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LogOut, Plus, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { CONSUMER_SIDEBAR_LINKS } from "@/constants/nav-links";
+import { LogOut } from "lucide-react";
+import { STAFF_SIDEBAR_LINKS } from "@/constants/nav-links";
 import { useGetUser, useInvalidateUser } from "@/database/query/getUser";
 import { supabase } from "@/database/supabase/supabase";
 import { cn } from "@/lib/utils";
@@ -21,9 +20,7 @@ export default function Sidebar() {
     appMetadata.name ||
     user?.user_metadata?.name ||
     user?.email?.split("@")[0] ||
-    "Consumer";
-  const meterNumber =
-    appMetadata.meter_number || user?.user_metadata?.meter_number || null;
+    "Staff";
 
   const initials =
     name
@@ -31,13 +28,13 @@ export default function Sidebar() {
       .filter(Boolean)
       .slice(0, 2)
       .map((part) => part[0]?.toUpperCase() || "")
-      .join("") || "C";
+      .join("") || "S";
 
   const handleSignOut = async () => {
     try {
       await supabase.auth.signOut();
       invalidateUser();
-      router.push("/login");
+      router.push("/staff/login");
       router.refresh();
     } catch (error) {
       console.error("Sign out error:", error);
@@ -52,8 +49,8 @@ export default function Sidebar() {
     >
       <div className="border-hairline-soft flex h-16 items-center justify-between border-b px-4">
         <Link
-          href="/"
-          aria-label="Vidhyut Portal Home"
+          href="/staff"
+          aria-label="Staff Workspace Home"
           className="flex min-w-0 items-center gap-3"
         >
           <Image
@@ -67,39 +64,19 @@ export default function Sidebar() {
             <p className="text-ink truncate text-sm font-medium tracking-tight">
               Vidhyut Portal
             </p>
-            <p className="text-muted text-[11px]">Consumer Portal</p>
+            <p className="text-muted text-[11px]">Staff Portal</p>
           </div>
         </Link>
       </div>
 
-      {/* CTA Button & Navigation Links */}
       <div className="flex-1 space-y-4 overflow-y-auto px-3 py-4">
-        <div>
-          <Button
-            asChild
-            variant="accent"
-            size="default"
-            shape="default"
-            className="w-full justify-center"
-          >
-            <Link
-              href="/complaints/new"
-              aria-label="Register a new complaint"
-              className="flex items-center justify-center gap-2"
-            >
-              <Plus size={16} strokeWidth={2.5} className="shrink-0" />
-              <span>New complaint</span>
-            </Link>
-          </Button>
-        </div>
-
-        <nav className="space-y-1" aria-label="Consumer Navigation">
-          {CONSUMER_SIDEBAR_LINKS.map((item) => {
+        <nav className="space-y-1" aria-label="Staff Navigation">
+          {STAFF_SIDEBAR_LINKS.map((item) => {
             const Icon = item.icon;
             const isExactMatch = pathname === item.href;
             const isChildMatch =
-              item.href !== "/dashboard" &&
-              item.href !== "/complaints" &&
+              item.href !== "/staff/dashboard" &&
+              item.href !== "/staff/complaints" &&
               pathname?.startsWith(`${item.href}/`);
             const isActive = isExactMatch || isChildMatch;
 
@@ -126,9 +103,7 @@ export default function Sidebar() {
         </nav>
       </div>
 
-      {/* Bottom Footer: Sign out & User Profile Box */}
       <div className="border-hairline-soft space-y-2 border-t p-3">
-        {/* Sign out Action */}
         <button
           type="button"
           onClick={handleSignOut}
@@ -138,9 +113,8 @@ export default function Sidebar() {
           <span>Sign out</span>
         </button>
 
-        {/* User Card */}
         <Link
-          href="/settings"
+          href="/staff/settings"
           className="border-hairline-soft bg-surface-card hover:bg-surface-soft block rounded-xl border p-3 transition-colors"
           title="Account Settings"
         >
@@ -159,9 +133,7 @@ export default function Sidebar() {
               </div>
               <div className="min-w-0 flex-1">
                 <p className="text-ink truncate text-sm font-medium">{name}</p>
-                <p className="text-muted truncate text-xs">
-                  {meterNumber ? `Meter ${meterNumber}` : "Meter not linked"}
-                </p>
+                <p className="text-muted truncate text-xs">Staff account</p>
               </div>
             </div>
           )}

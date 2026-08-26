@@ -67,9 +67,7 @@ export default function SubdivisionSection({
 
               {/* Bottom: Contact Details */}
               <div className="min-w-0">
-                <p className="text-body text-ink truncate font-medium">
-                  {contact.name}
-                </p>
+                <p className="text-ink truncate font-medium">{contact.name}</p>
                 <p className="text-caption text-muted-text mt-0.5 line-clamp-2 leading-relaxed">
                   {contact.role}
                 </p>

@@ -71,3 +71,50 @@ export const CONSUMER_SIDEBAR_LINKS = CONSUMER_NAV_ITEMS.filter(
 export const CONSUMER_BOTTOM_NAV_LINKS = CONSUMER_NAV_ITEMS.filter(
   (item) => !item.isSidebarOnly
 );
+
+export const STAFF_NAV_ITEMS = [
+  {
+    id: "overview",
+    label: "Overview",
+    shortLabel: "Overview",
+    href: "/staff",
+    icon: Grid2X2,
+  },
+  {
+    id: "dashboard",
+    label: "Dashboard",
+    shortLabel: "Dashboard",
+    href: "/staff/dashboard",
+    icon: Grid2X2,
+  },
+  {
+    id: "complaints",
+    label: "Complaints",
+    shortLabel: "Complaints",
+    href: "/staff/complaints",
+    icon: Ticket,
+  },
+  {
+    id: "notices",
+    label: "Notices",
+    shortLabel: "Notices",
+    href: "/staff/notices",
+    icon: Bell,
+  },
+  {
+    id: "engineers",
+    label: "Engineers",
+    shortLabel: "Engineers",
+    href: "/staff/engineers",
+    icon: Settings,
+  },
+  {
+    id: "settings",
+    label: "Settings",
+    shortLabel: "Settings",
+    href: "/staff/settings",
+    icon: Settings,
+  },
+];
+
+export const STAFF_SIDEBAR_LINKS = STAFF_NAV_ITEMS;
