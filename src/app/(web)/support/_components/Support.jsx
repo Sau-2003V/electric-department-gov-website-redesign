@@ -338,8 +338,9 @@ export default function SupportPage() {
                   type="button"
                   text="sm"
                   onClick={() => setSearchTerm("")}
+                  className="text-muted-soft hover:text-ink mr-4 p-1.5"
                 >
-                  Clear
+                  X
                 </button>
               )}
             </div>

@@ -54,9 +54,8 @@ const teamMembers = [
     avatarBg: "bg-success/15 text-emerald-700 dark:text-emerald-400",
     description:
       "Focuses on responsive design execution, accessibility (WCAG AA), motion design, and high-performance citizen-facing portal interfaces.",
-    email: "saurabh.temp@gmail.com",
-    github: "https://github.com/saurabh-vishwakarma",
-    linkedIn: "https://www.linkedin.com/in/saurabh-vishwakarma",
+    email: "saurabhsir1680@gmail.com",
+    github: "https://github.com/Sau-2003V",
     portfolio: "https://svraptorX.com",
     location: "Lucknow, Uttar Pradesh",
   },
