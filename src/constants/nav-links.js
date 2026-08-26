@@ -74,13 +74,6 @@ export const CONSUMER_BOTTOM_NAV_LINKS = CONSUMER_NAV_ITEMS.filter(
 
 export const STAFF_NAV_ITEMS = [
   {
-    id: "overview",
-    label: "Overview",
-    shortLabel: "Overview",
-    href: "/staff",
-    icon: Grid2X2,
-  },
-  {
     id: "dashboard",
     label: "Dashboard",
     shortLabel: "Dashboard",
