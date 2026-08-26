@@ -33,7 +33,6 @@ const requests = [
 export default function SubdivisionSection() {
   return (
     <section className="space-y-4">
-      {/* Contact Cards (Square Boxes in 4 Columns) */}
       <div className="grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-4">
         <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {stats.map((item) => (

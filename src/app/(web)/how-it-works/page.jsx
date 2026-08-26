@@ -44,81 +44,45 @@ const consumerSteps = [
     badge: "Step 01",
     badgeVariant: "accent-subtle",
     description:
-      "Enter your 10-digit Consumer Account (CA) number or registered mobile number to receive a secure one-time passcode (OTP).",
+      "Log in using your account details. Your account is automatically created when your electricity connection is set up.",
     highlight:
-      "New consumers are enrolled automatically upon first OTP verification—zero passwords, paperwork, or physical registration required.",
+      "No separate signup needed — just verify with an OTP sent to your registered mobile number.",
   },
   {
     step: "02",
-    title: "View your connection",
-    heading: "Unified consumer dashboard",
-    icon: LayoutDashboard,
-    badge: "Step 02",
-    badgeVariant: "secondary",
-    description:
-      "Access your real-time account summary to inspect connection sanction status, recent billed units, payment history, and substation feed details.",
-    highlight:
-      "Seamlessly switch between multiple domestic, commercial, agricultural, or industrial meters linked to your account.",
-  },
-  {
-    step: "03",
     title: "Lodge your grievance",
     heading: "Select category & precise location",
     icon: FileText,
     badge: "Step 03",
     badgeVariant: "destructive-subtle",
     description:
-      "Select your issue category—such as power breakdown, low voltage, sparking line, defective meter, or incorrect billing assessment.",
+      "File a new complaint with all required details, including location, images, and attachments.",
     highlight:
       "Every submission instantly generates a unique SMS Tracking Docket ID and alerts the local subdivision Junior Engineer (JE).",
   },
   {
-    step: "04",
+    step: "03",
     title: "Smart dispatch & tracking",
     heading: "Lineman dispatched in real-time",
     icon: Clock,
     badge: "Step 04",
     badgeVariant: "badge-orange",
     description:
-      "The system routes your ticket to the nearest field lineman van. View assigned technician details, contact number, and live status updates.",
+      "Once registered, your complaint is automatically assigned to a supervisor with a set response time. If there is no response, it is automatically assigned to an available electrician.",
     highlight:
       "Substation feeder monitoring systems automatically cross-verify if the issue is local or an upstream 33kV/11kV grid outage.",
   },
   {
-    step: "05",
+    step: "04",
     title: "On-site repair & alerts",
     heading: "Live SMS & portal progress notes",
     icon: MessageSquare,
     badge: "Step 05",
     badgeVariant: "secondary",
     description:
-      "Receive real-time text notifications as the technical team inspects the pole, replaces damaged jumpers, or repairs the distribution transformer.",
+      "The electrician handles the issue and updates the complaint status.",
     highlight:
       "All inspection observations, replaced hardware serials, and lineman logs remain permanently stored on your ticket audit trail.",
-  },
-  {
-    step: "06",
-    title: "Confirm resolution",
-    heading: "Consumer verification & OTP close",
-    icon: CheckCircle,
-    badge: "Step 06",
-    badgeVariant: "success-subtle",
-    description:
-      "Once physical repairs are concluded, confirm supply restoration. Tickets cannot be closed without consumer confirmation or field inspection audit.",
-    highlight:
-      "If dissatisfied, reopen your docket with one click within 72 hours for direct review by the Divisional Executive Engineer (XEN).",
-  },
-  {
-    step: "07",
-    title: "Citizen rating & feedback",
-    heading: "Rate service quality & speed",
-    icon: Star,
-    badge: "Step 07",
-    badgeVariant: "accent-subtle",
-    description:
-      "Rate response promptness and technician conduct. Citizen feedback is directly factored into contractor appraisal and departmental audits.",
-    highlight:
-      "Empowering transparent public service delivery in strict compliance with the State Electricity Regulatory Commission charter.",
   },
 ];
 
@@ -146,25 +110,6 @@ const operationsSteps = [
     title: "SLA Compliance & CGRF Audit",
     desc: "Every resolved case is recorded against statutory citizen charter deadlines, preventing unmonitored delays.",
     icon: FileCheck2,
-  },
-];
-
-const faqs = [
-  {
-    q: "Can I report an emergency power breakdown without logging in?",
-    a: "Yes. Emergency outages, live wire hazards, and transformer sparking can be reported instantly by dialing 24x7 toll-free 1912 or submitting a quick complaint docket on the portal without prior login.",
-  },
-  {
-    q: "What is a Docket Number and why is it important?",
-    a: "A Docket Number (e.g. DOC-98421) is a permanent, cryptographically verifiable tracking identifier issued via SMS immediately upon complaint registration. It is used to track live progress, escalate delays, and cite cases before the Consumer Grievance Redressal Forum (CGRF).",
-  },
-  {
-    q: "What happens if a technician marks my complaint resolved, but power is still out?",
-    a: "You have a 72-hour protection window to click 'Reopen Ticket' on your dashboard. Reopened tickets automatically escalate to Level 2 (Divisional Executive Engineer) and are highlighted as priority SLA violations.",
-  },
-  {
-    q: "How are the resolution SLA timelines enforced?",
-    a: "Under the State Citizen Charter, urban supply must be restored within 4 hours, and rural within 12 hours. Any unresolved ticket exceeding the statutory timeline triggers automated alerts to circle leadership.",
   },
 ];
 
@@ -405,41 +350,6 @@ export default function HowItWorksPage() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* 5. FAQS ON REDRESSAL PROCESS */}
-      <section className="border-hairline bg-surface-card/40 border-t py-12 md:py-16">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-8 text-center">
-            <span className="text-caption text-muted-text font-medium tracking-wider uppercase">
-              Common Questions
-            </span>
-            <h2 className="text-display-md text-ink mt-1 font-medium tracking-tight">
-              Grievance portal FAQs
-            </h2>
-          </div>
-
-          <Accordion
-            type="single"
-            collapsible
-            className="border-hairline bg-canvas shadow-subtle divide-hairline divide-y rounded-xl border"
-          >
-            {faqs.map((faq, idx) => (
-              <AccordionItem
-                key={idx}
-                value={`faq-${idx}`}
-                className="px-5 py-1.5"
-              >
-                <AccordionTrigger className="text-title-sm text-ink py-3 font-medium hover:no-underline">
-                  {faq.q}
-                </AccordionTrigger>
-                <AccordionContent className="text-body-sm text-muted-text pr-6 pb-4 leading-relaxed">
-                  {faq.a}
-                </AccordionContent>
-              </AccordionItem>
-            ))}
-          </Accordion>
         </div>
       </section>
 
