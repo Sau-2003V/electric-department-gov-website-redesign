@@ -8,3 +8,4 @@ export { ComplaintEvidenceSection } from "./ComplaintEvidenceSection";
 export { ComplaintEscalationMatrix } from "./ComplaintEscalationMatrix";
 export { ComplaintDetailSkeleton } from "./ComplaintDetailSkeleton";
 export { ComplaintNotFound } from "./ComplaintNotFound";
+export { default as ComplaintDetailClient } from "./ComplaintDetailClient";
