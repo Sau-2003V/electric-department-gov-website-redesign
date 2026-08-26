@@ -1,89 +1,84 @@
 "use server";
 
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { createClient } from "@/database/supabase/server";
-import { z } from "zod";
+import { staffLoginSchema, loginSchema } from "@/types/schema/login";
 
-// Staff/simple login schema (sirf phone number)
-const phoneOnlySchema = z.object({
-  phoneNumber: z
-    .string()
-    .length(10, "Phone number must be exactly 10 digits")
-    .regex(/^\d+$/, "Phone number must contain only digits"),
-  next: z.string().optional(),
-});
+// ─── Login Action ────────────────────────────────────────────────────────────
 
-// Consumer login schema (meter + phone)
-export const loginSchema = z.object({
-  meterNumber: z
-    .string()
-    .min(5, "Meter number must be at least 5 digits")
-    .regex(/^\d+$/, "Meter number must contain only digits"),
-  phoneNumber: z
-    .string()
-    .length(10, "Phone number must be exactly 10 digits")
-    .regex(/^\d+$/, "Phone number must contain only digits"),
-  next: z.string().optional(),
-});
-
+/**
+ * Unified login server action.
+ *
+ * @param {Object} data
+ * @param {"staff" | "consumer"} data.loginType - Determines which flow to run.
+ * @param {string}  [data.phoneNumber]           - Required for both flows.
+ * @param {string}  [data.meterNumber]           - Required for consumer flow only.
+ */
 export default async function login(data) {
   const cookieStore = await cookies();
   const supabase = await createClient(cookieStore);
 
-  // ⚡ Case 1: Sirf phone number diya gaya (staff/simple login)
-  if (data?.meterNumber === undefined || data?.meterNumber === "") {
-    const checkFields = phoneOnlySchema.safeParse(data);
+  // URL se pata karo — /staff/login se aaya hai ya /login se
+  const headersList = await headers();
+  const referer = headersList.get("referer") ?? "";
+  const isStaff = referer.includes("/staff/login");
 
-    if (!checkFields.success) {
+  // ── Staff Login (/staff/login) ─────────────────────────────────────────────
+  if (isStaff) {
+    const parsed = staffLoginSchema.safeParse(data);
+
+    if (!parsed.success) {
       return {
         success: false,
-        errors: checkFields.error.flatten().fieldErrors,
+        errors: parsed.error.flatten().fieldErrors,
         message: "Please provide a valid 10-digit phone number.",
       };
     }
 
-    const { phoneNumber } = checkFields.data;
+    const { phoneNumber } = parsed.data;
 
-    // Email/password mapping for staff/simple login
-    const email = `${phoneNumber}@staff.com`;
-    const password = phoneNumber;
-
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    // email = phone@mail.com  |  password = phoneNumber
+    const { error } = await supabase.auth.signInWithPassword({
+      email: `${phoneNumber}@mail.com`,
+      password: phoneNumber,
+    });
 
     if (error) {
-      return { success: false, message: "Invalid phone number." };
+      return {
+        success: false,
+        message: "Invalid phone number. Please try again.",
+      };
     }
 
-    // ✅ Redirect to home page
-    redirect("/");
+    redirect("/staff/dashboard");
   }
 
-  // ⚡ Case 2: Consumer login (meter + phone)
-  const checkFields = loginSchema.safeParse(data);
+  // ── Consumer Login (/login) ────────────────────────────────────────────────
+  const parsed = loginSchema.safeParse(data);
 
-  if (!checkFields.success) {
+  if (!parsed.success) {
     return {
       success: false,
-      errors: checkFields.error.flatten().fieldErrors,
-      message: "Please provide valid numeric Meter Number and Phone Number.",
+      errors: parsed.error.flatten().fieldErrors,
+      message: "Please provide a valid Meter Number and Phone Number.",
     };
   }
 
-  const { meterNumber, phoneNumber } = checkFields.data;
+  const { meterNumber, phoneNumber } = parsed.data;
 
-  const email = `${phoneNumber}@mail.com`;
-  const password = meterNumber;
-
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  // email = phone@mail.com  |  password = meterNumber
+  const { error } = await supabase.auth.signInWithPassword({
+    email: `${phoneNumber}@mail.com`,
+    password: meterNumber,
+  });
 
   if (error) {
     return {
       success: false,
-      message: "Invalid Meter Number or Phone Number.",
+      message: "Invalid Meter Number or Phone Number. Please try again.",
     };
   }
 
-  // ✅ Redirect to dashboard for consumer
-  redirect(data?.next || "/dashboard");
+  redirect("/dashboard");
 }

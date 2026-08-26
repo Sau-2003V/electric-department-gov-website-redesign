@@ -1,45 +1,39 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { ArrowLeft, Hash, Phone, AlertCircle, KeyRound } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
+import { ArrowLeft, ArrowRight, Phone, KeyRound } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { staffLoginSchema } from "@/types/schema/login";
+import login from "@/app/(action)/login";
 
 function StaffLoginForm() {
   const searchParams = useSearchParams();
 
-  const initialPhone = searchParams.get("phone") || "";
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm({
+    resolver: zodResolver(staffLoginSchema),
+    defaultValues: {
+      phoneNumber: searchParams.get("phone") || "",
+    },
+  });
 
-  const [phoneNumber, setPhoneNumber] = useState(initialPhone);
-  const [serverError, setServerError] = useState("");
+  const onSubmit = async (data) => {
+    const result = await login(data);
 
-  const handlePhoneChange = (e) => {
-    const value = e.target.value.replace(/\D/g, "").slice(0, 10);
-    setPhoneNumber(value);
-    setServerError("");
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setServerError("");
-
-    if (!phoneNumber) {
-      setServerError("Please enter your phone number.");
-      return;
+    if (result?.success === false) {
+      toast.error(result.message || "Login failed. Please try again.");
     }
-
-    if (phoneNumber.length !== 10) {
-      setServerError("Please enter a valid 10-digit phone number.");
-      return;
-    }
-
-    // TODO:
-    // Yahan actual staff authentication / Supabase login add karna hai.
-
-    console.log("Staff Login:", phoneNumber);
+    // On success, the server action redirects — no extra handling needed.
   };
 
   return (
@@ -87,31 +81,28 @@ function StaffLoginForm() {
       </div>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
         {/* Phone Number */}
         <Input
           id="phone-number"
           type="tel"
           label="Phone Number"
           placeholder="10-digit mobile number"
-          value={phoneNumber}
-          onChange={handlePhoneChange}
-          maxLength={10}
           inputMode="numeric"
           autoComplete="tel"
+          maxLength={10}
           leadingIcon={Phone}
           variant="canvas"
           size="default"
           shape="md"
+          error={errors.phoneNumber?.message}
+          {...register("phoneNumber", {
+            onChange: (e) => {
+              // Strip non-digits on the fly
+              e.target.value = e.target.value.replace(/\D/g, "").slice(0, 10);
+            },
+          })}
         />
-
-        {/* Server Error */}
-        {serverError && (
-          <div className="border-error/20 bg-error/10 text-error text-body-sm flex items-center gap-2.5 rounded-lg border p-3 font-medium">
-            <AlertCircle className="size-4 shrink-0" />
-            <span>{serverError}</span>
-          </div>
-        )}
 
         {/* Login Button */}
         <div className="pt-2">
@@ -121,6 +112,7 @@ function StaffLoginForm() {
             size="default"
             shape="md"
             className="w-full"
+            loading={isSubmitting}
           >
             Login to Staff Portal
           </Button>
@@ -150,7 +142,7 @@ function StaffLoginForm() {
 
         <div className="border-hairline bg-canvas text-ink shadow-subtle group-hover:border-ink/30 text-caption flex shrink-0 items-center gap-1 rounded-md border px-2.5 py-1 font-medium transition-colors">
           <span>Use</span>
-          <Hash className="size-3" />
+          <ArrowRight className="size-3" />
         </div>
       </Link>
     </div>
