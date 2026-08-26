@@ -17,7 +17,6 @@ function SkeletonRow() {
 export default function ComplaintsList({
   complaints = [],
   searchQuery,
-  currentTabLabel,
   onClearSearch,
   isLoading,
   isError,
@@ -37,7 +36,6 @@ export default function ComplaintsList({
       ) : (
         <ComplaintsEmptyState
           searchQuery={searchQuery}
-          currentTabLabel={currentTabLabel}
           onClearSearch={onClearSearch}
         />
       )}

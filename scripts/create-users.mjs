@@ -24,15 +24,6 @@ const meterData = [
 async function seedUsers() {
   const supabase = createAdminClient();
 
-  console.log("🧹 Cleaning up existing users...");
-  const { data: listData, error: listError } =
-    await supabase.auth.admin.listUsers({ perPage: 100 });
-  if (!listError && listData?.users) {
-    for (const user of listData.users) {
-      await supabase.auth.admin.deleteUser(user.id);
-    }
-  }
-
   console.log(`🚀 Adding ${meterData.length} users to Supabase Auth DB...`);
   const results = [];
 
@@ -45,13 +36,12 @@ async function seedUsers() {
       password,
       email_confirm: true,
       app_metadata: {
-        name: user.name,
         meter_number: user.meterNumber,
+        phone: user.phoneNumber,
+        role: "consumer",
       },
       user_metadata: {
         name: user.name,
-        meter_number: user.meterNumber,
-        phone_number: user.phoneNumber,
       },
     });
 

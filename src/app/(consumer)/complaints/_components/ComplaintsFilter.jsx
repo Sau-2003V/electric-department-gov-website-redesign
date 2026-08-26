@@ -1,16 +1,8 @@
 import { Search } from "lucide-react";
-import { Tabs, TabsList, TabItem } from "@/components/ui/tabs";
-import { TABS_CONFIG } from "./constants";
 
-export default function ComplaintsFilter({
-  searchQuery,
-  onSearchChange,
-  activeTab,
-  onTabChange,
-  tabCounts = {},
-}) {
+export default function ComplaintsFilter({ searchQuery, onSearchChange }) {
   return (
-    <div className="mb-5 space-y-3">
+    <div className="mb-5">
       {/* Search Input */}
       <div className="relative">
         <Search
@@ -33,21 +25,6 @@ export default function ComplaintsFilter({
             Clear
           </button>
         )}
-      </div>
-
-      {/* Filter Tabs */}
-      <div className="no-scrollbar overflow-x-auto pb-1">
-        <Tabs value={activeTab} onValueChange={onTabChange}>
-          <TabsList className="border-hairline bg-surface-soft border">
-            {TABS_CONFIG.map((tab) => (
-              <TabItem
-                key={tab.id}
-                value={tab.id}
-                label={`${tab.label} (${tabCounts[tab.id] ?? 0})`}
-              />
-            ))}
-          </TabsList>
-        </Tabs>
       </div>
     </div>
   );

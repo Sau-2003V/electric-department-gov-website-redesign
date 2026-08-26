@@ -1,4 +1,5 @@
-import { Clock } from "lucide-react";
+import Link from "next/link";
+import { Clock, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { STATUS_CONFIG } from "./constants";
 
@@ -19,10 +20,13 @@ export default function ComplaintCard({ complaint }) {
     : complaint?.date;
 
   return (
-    <div className="group hover:bg-surface-soft relative flex flex-col justify-between gap-4 p-4 transition-colors duration-150 sm:flex-row sm:items-center sm:p-5">
+    <Link
+      href={`/complaints/${complaint.id}`}
+      className="group hover:bg-surface-soft relative flex flex-col justify-between gap-4 p-4 transition-colors duration-150 sm:flex-row sm:items-center sm:p-5"
+    >
       <div className="min-w-0 flex-1">
         {/* Issue Title */}
-        <h2 className="text-title-sm text-ink group-hover:text-ink font-medium tracking-tight">
+        <h2 className="text-title-sm text-ink group-hover:text-primary-active font-medium tracking-tight">
           {complaint.issue || complaint.title}
         </h2>
 
@@ -49,8 +53,8 @@ export default function ComplaintCard({ complaint }) {
         </div>
       </div>
 
-      {/* Status Badge */}
-      <div className="border-hairline-soft flex shrink-0 items-center justify-between border-t pt-3 sm:flex-col sm:items-end sm:justify-center sm:gap-2 sm:border-t-0 sm:pt-0">
+      {/* Status Badge & Chevron */}
+      <div className="border-hairline-soft flex shrink-0 items-center justify-between border-t pt-3 sm:flex-row sm:items-center sm:gap-3 sm:border-t-0 sm:pt-0">
         <Badge
           variant={sc.variant || "default"}
           size="default"
@@ -59,7 +63,8 @@ export default function ComplaintCard({ complaint }) {
         >
           <span>{statusLabel}</span>
         </Badge>
+        <ChevronRight className="text-muted-text group-hover:text-ink size-4 shrink-0 transition-transform group-hover:translate-x-0.5" />
       </div>
-    </div>
+    </Link>
   );
 }

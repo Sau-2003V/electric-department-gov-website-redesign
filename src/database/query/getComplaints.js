@@ -5,6 +5,7 @@ export const complaintKeys = {
   all: ["complaints"],
   list: () => [...complaintKeys.all, "list"],
   byUser: (uid) => [...complaintKeys.all, "user", uid],
+  detail: (id) => [...complaintKeys.all, "detail", id],
 };
 
 /**
@@ -28,6 +29,32 @@ export async function getComplaints(uid) {
   return data ?? [];
 }
 
+/**
+ * Fetches a single complaint by ID from public.complaints.
+ * Falls back to mock complaints if not found or if mock ID format is used.
+ * @param {string} id - Complaint UUID or mock identifier
+ * @returns {Promise<object|null>}
+ */
+export async function getComplaintById(id) {
+  if (!id) return null;
+
+  try {
+    const { data, error } = await supabase
+      .from("complaints")
+      .select("*")
+      .eq("id", id)
+      .maybeSingle();
+
+    if (!error && data) {
+      return data;
+    }
+  } catch (err) {
+    console.warn("Could not query DB by ID directly:", err?.message || err);
+  }
+
+  return null;
+}
+
 export const getComplaintsQueryOptions = (uid, options = {}) =>
   queryOptions({
     queryKey: uid ? complaintKeys.byUser(uid) : complaintKeys.list(),
@@ -40,4 +67,19 @@ export const getComplaintsQueryOptions = (uid, options = {}) =>
 
 export function useGetComplaints(uid, options = {}) {
   return useQuery(getComplaintsQueryOptions(uid, options));
+}
+
+export const getComplaintByIdQueryOptions = (id, options = {}) =>
+  queryOptions({
+    queryKey: complaintKeys.detail(id),
+    queryFn: () => getComplaintById(id),
+    enabled: Boolean(id),
+    staleTime: 1000 * 60 * 2,
+    gcTime: 1000 * 60 * 10,
+    refetchOnWindowFocus: false,
+    ...options,
+  });
+
+export function useGetComplaint(id, options = {}) {
+  return useQuery(getComplaintByIdQueryOptions(id, options));
 }
