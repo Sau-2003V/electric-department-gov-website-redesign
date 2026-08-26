@@ -8,8 +8,6 @@ import {
   Cpu,
   Layers,
   Database,
-  ShieldCheck,
-  Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -34,19 +32,19 @@ const teamMembers = [
     portfolio: "https://shivansh-portfolio-w.netlify.app/",
     location: "Lucknow, Uttar Pradesh",
   },
-  {
-    name: "Aditya Kumar",
-    role: "Backend & Systems Developer",
-    badgeVariant: "badge-orange",
-    avatarBg: "bg-badge-orange/20 text-[#c2410c] dark:text-badge-orange",
-    description:
-      "Specializes in scalable backend services, database migrations, server actions, REST APIs, and automated complaint triage workflows.",
-    email: "aditya@adibitz.com",
-    github: "https://github.com/adibitz/",
-    linkedIn: "https://www.linkedin.com/in/aaditya-kumar-anand",
-    portfolio: "https://adibitz.com",
-    location: "Lucknow, Uttar Pradesh",
-  },
+  // {
+  //   name: "Aditya Kumar",
+  //   role: "Backend & Systems Developer",
+  //   badgeVariant: "badge-orange",
+  //   avatarBg: "bg-badge-orange/20 text-[#c2410c] dark:text-badge-orange",
+  //   description:
+  //     "Specializes in scalable backend services, database migrations, server actions, REST APIs, and automated complaint triage workflows.",
+  //   email: "aditya@adibitz.com",
+  //   github: "https://github.com/adibitz/",
+  //   linkedIn: "https://www.linkedin.com/in/aaditya-kumar-anand",
+  //   portfolio: "https://adibitz.com",
+  //   location: "Lucknow, Uttar Pradesh",
+  // },
   {
     name: "Saurabh Vishwakarma",
     role: "Frontend & UI/UX Developer",
