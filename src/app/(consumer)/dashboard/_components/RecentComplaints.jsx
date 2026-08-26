@@ -1,114 +1,68 @@
+"use client";
+
 import Link from "next/link";
-import {
-  ChevronRight,
-  Clock,
-  AlertCircle,
-  CheckCircle2,
-  Loader2,
-} from "lucide-react";
+import { AlertCircle, CheckCircle2, ChevronRight } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { useGetRecentComplaints } from "@/database/query/getComplaints";
 
-const DEFAULT_COMPLAINTS = [
-  {
-    id: "VVNL-240001",
-    title: "Sparking / safety hazard",
-    description:
-      "Live wire sparking near the school gate, heavy sparking every few minutes.",
-    status: "Assigned",
-    priority: "Due soon",
-    date: "23 Aug 2026",
-  },
-  {
-    id: "VVNL-240002",
-    title: "Power outage",
-    description: "No supply in the entire block since last night.",
-    status: "In progress",
-    priority: "SLA breached",
-    date: "22 Aug 2026",
-  },
-  {
-    id: "VVNL-240005",
-    title: "Street light not working",
-    description: "Street lights on the main road stay off all night.",
-    status: "Closed",
-    priority: "SLA met",
-    date: "19 Aug 2026",
-  },
-  {
-    id: "VVNL-240007",
-    title: "Voltage fluctuation",
-    description: "Severe voltage fluctuation, appliances tripping repeatedly.",
-    status: "Assigned",
-    priority: "SLA breached",
-    date: "18 Aug 2026",
-  },
-];
-
-/* ─── Status config ─────────────────────────────────────────────────── */
-const STATUS_CONFIG = {
-  Assigned: {
-    icon: Clock,
-    badgeVariant: "info",
-    dot: "bg-brand-accent",
-  },
-  "In progress": {
-    icon: Loader2,
-    badgeVariant: "warning",
-    dot: "bg-warning",
-  },
-  Closed: {
-    icon: CheckCircle2,
-    badgeVariant: "success",
-    dot: "bg-success",
-  },
+const STATUS_MAP = {
+  registered: { label: "Registered", variant: "canvas", dot: "bg-muted-text" },
+  assigned: { label: "Assigned", variant: "info", dot: "bg-brand-accent" },
+  in_progress: { label: "In progress", variant: "warning", dot: "bg-warning" },
+  resolved: { label: "Resolved", variant: "success", dot: "bg-success" },
+  closed: { label: "Closed", variant: "secondary", dot: "bg-muted-text" },
 };
 
-const PRIORITY_CONFIG = {
-  "SLA breached": "text-error font-medium",
-  "Due soon": "text-warning font-medium",
-  "SLA met": "text-success font-medium",
-};
-
-/* ─── Single row ─────────────────────────────────────────────────────── */
 function ComplaintRow({ complaint }) {
-  const sc = STATUS_CONFIG[complaint.status] ?? STATUS_CONFIG["Assigned"];
-  const pc = PRIORITY_CONFIG[complaint.priority] ?? "text-muted-text";
-  const Icon = sc.icon;
+  const status =
+    STATUS_MAP[complaint.status?.toLowerCase()] || STATUS_MAP.registered;
+  const displayId =
+    complaint.id?.length > 20
+      ? `#${complaint.id.slice(0, 8).toUpperCase()}`
+      : complaint.id;
+  const displayDate = complaint.created_at
+    ? new Date(complaint.created_at).toLocaleDateString("en-IN", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+      })
+    : complaint.date;
 
   return (
     <Link
       href={`/complaints/${complaint.id}`}
       className="group border-hairline-soft hover:bg-surface-soft flex items-start gap-4 border-b px-4 py-3.5 transition-colors last:border-b-0 sm:px-6"
     >
-      {/* Status dot */}
       <span
-        className={cn("mt-2 h-2 w-2 shrink-0 rounded-full", sc.dot)}
+        className={cn("mt-2 h-2 w-2 shrink-0 rounded-full", status.dot)}
         aria-hidden="true"
       />
 
-      {/* Main content */}
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2">
-          <p className="text-body-sm text-ink font-medium">{complaint.title}</p>
-          <Badge variant={sc.badgeVariant} size="sm">
-            {complaint.status}
+          <p className="text-body-sm text-ink font-medium">
+            {complaint.issue || complaint.title || "Electrical Complaint"}
+          </p>
+          <Badge variant={status.variant} size="sm">
+            {status.label}
           </Badge>
         </div>
         <p className="text-caption text-muted-text mt-0.5 line-clamp-1 leading-relaxed">
-          {complaint.description}
+          {complaint.description ||
+            complaint.landmark ||
+            complaint.location ||
+            complaint.address ||
+            "No details provided."}
         </p>
         <div className="text-caption text-muted-text mt-2 flex flex-wrap items-center gap-2">
-          <span>{complaint.id}</span>
-          <span className="text-hairline">·</span>
-          <span>{complaint.date}</span>
-          <span className="text-hairline">·</span>
-          <span className={pc}>{complaint.priority}</span>
+          {displayId && <span>{displayId}</span>}
+          {displayId && displayDate && <span className="text-hairline">·</span>}
+          {displayDate && <span>{displayDate}</span>}
         </div>
       </div>
 
-      {/* Chevron */}
       <ChevronRight
         className="text-muted-text group-hover:text-ink mt-1 size-4 shrink-0 transition-transform group-hover:translate-x-0.5"
         aria-hidden="true"
@@ -117,11 +71,43 @@ function ComplaintRow({ complaint }) {
   );
 }
 
-/* ─── Section ────────────────────────────────────────────────────────── */
+function SkeletonRows() {
+  return (
+    <div className="divide-hairline-soft divide-y">
+      {[1, 2, 3, 4].map((i) => (
+        <div
+          key={i}
+          className="flex animate-pulse items-start gap-4 px-4 py-3.5 sm:px-6"
+        >
+          <div className="bg-surface-strong mt-2 h-2 w-2 shrink-0 rounded-full" />
+          <div className="min-w-0 flex-1 space-y-2">
+            <div className="flex items-center gap-2">
+              <div className="bg-surface-strong h-4 w-44 rounded" />
+              <div className="bg-surface-soft h-4 w-16 rounded-full" />
+            </div>
+            <div className="bg-surface-soft h-3.5 w-3/4 rounded" />
+            <div className="bg-surface-soft h-3 w-28 rounded" />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function RecentComplaints({
-  complaints = DEFAULT_COMPLAINTS,
+  complaints: propComplaints,
   className,
 }) {
+  const {
+    data: fetchedComplaints,
+    isLoading,
+    isError,
+  } = useGetRecentComplaints(4, {
+    enabled: !propComplaints,
+  });
+
+  const complaints = propComplaints ?? fetchedComplaints ?? [];
+
   return (
     <section
       aria-label="Recent Complaints"
@@ -130,15 +116,9 @@ export default function RecentComplaints({
         className
       )}
     >
-      {/* Header */}
       <div className="border-hairline-soft flex items-center justify-between border-b px-4 py-3.5 sm:px-6">
         <div className="flex items-center gap-1.5">
-          <AlertCircle
-            className="text-primary size-4"
-            strokeWidth={2.2}
-            aria-hidden="true"
-          />
-          <p className="text-caption text-muted-text font-medium tracking-wider uppercase">
+          <p className="text-caption text-muted-text font-medium tracking-wider">
             Recent Complaints
           </p>
         </div>
@@ -151,8 +131,14 @@ export default function RecentComplaints({
         </Link>
       </div>
 
-      {/* Rows */}
-      {complaints.length === 0 ? (
+      {isLoading && !propComplaints ? (
+        <SkeletonRows />
+      ) : isError && !propComplaints ? (
+        <div className="text-muted-text flex flex-col items-center justify-center gap-2 py-10">
+          <AlertCircle className="text-error size-7" strokeWidth={1.5} />
+          <p className="text-body-sm text-error">Failed to load complaints</p>
+        </div>
+      ) : complaints.length === 0 ? (
         <div className="text-muted-text flex flex-col items-center justify-center gap-2 py-10">
           <CheckCircle2 className="size-7" strokeWidth={1.5} />
           <p className="text-body-sm">No complaints filed</p>
