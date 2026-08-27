@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { LogOut, Plus, X } from "lucide-react";
@@ -9,12 +10,14 @@ import { useGetUser, useInvalidateUser } from "@/database/query/getUser";
 import { supabase } from "@/database/supabase/supabase";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose, DialogTrigger } from "@/components/ui/dialog";
 
 export default function Sidebar() {
   const pathname = usePathname();
   const router = useRouter();
   const { data: user, isLoading } = useGetUser();
   const invalidateUser = useInvalidateUser();
+  const [signOutOpen, setSignOutOpen] = useState(false);
 
   const appMetadata = user?.app_metadata || user?.raw_app_meta_data || {};
   const name =
@@ -129,14 +132,33 @@ export default function Sidebar() {
       {/* Bottom Footer: Sign out & User Profile Box */}
       <div className="border-hairline-soft space-y-2 border-t p-3">
         {/* Sign out Action */}
-        <button
-          type="button"
-          onClick={handleSignOut}
-          className="text-muted hover:bg-surface-card hover:text-error flex h-10 w-full cursor-pointer items-center gap-2.5 rounded-md px-3 text-sm transition-colors"
-        >
-          <LogOut size={16} strokeWidth={1.8} className="shrink-0" />
-          <span>Sign out</span>
-        </button>
+        <Dialog open={signOutOpen} onOpenChange={setSignOutOpen}>
+          <DialogTrigger
+            render={
+              <button
+                type="button"
+                className="text-muted hover:bg-surface-card hover:text-error flex h-10 w-full cursor-pointer items-center gap-2.5 rounded-md px-3 text-sm transition-colors"
+              >
+                <LogOut size={16} strokeWidth={1.8} className="shrink-0" />
+                <span>Sign out</span>
+              </button>
+            }
+          />
+          <DialogContent size="sm">
+            <DialogHeader>
+              <DialogTitle>Sign out</DialogTitle>
+              <DialogDescription>
+                Are you sure you want to sign out of your account?
+              </DialogDescription>
+            </DialogHeader>
+            <DialogFooter>
+              <DialogClose render={<Button variant="ghost">Cancel</Button>} />
+              <Button variant="destructive" onClick={handleSignOut}>
+                Sign out
+              </Button>
+            </DialogFooter>
+          </DialogContent>
+        </Dialog>
 
         {/* User Card */}
         <Link

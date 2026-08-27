@@ -1,9 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { User, Sparkles, Shield } from "lucide-react";
-import { useGetUser, useGetUserProfile } from "@/database/query/getUser";
+import { User, Sparkles, Shield, LogOut } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useGetUser, useGetUserProfile, useInvalidateUser } from "@/database/query/getUser";
+import { supabase } from "@/database/supabase/supabase";
 import { Tabs, TabsList, TabItem, TabPanel } from "@/components/ui/tabs";
+import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose, DialogTrigger } from "@/components/ui/dialog";
 import SettingsHeader from "./_components/SettingsHeader";
 import ProfileCard from "./_components/ProfileCard";
 import PersonalDetailsTab from "./_components/PersonalDetailsTab";
@@ -17,6 +21,20 @@ export default function SettingsPage() {
   );
   const isLoading = isAuthLoading || isProfileLoading;
   const [activeTab, setActiveTab] = useState("profile");
+  const [signOutOpen, setSignOutOpen] = useState(false);
+  const router = useRouter();
+  const invalidateUser = useInvalidateUser();
+
+  const handleSignOut = async () => {
+    try {
+      await supabase.auth.signOut();
+      invalidateUser();
+      router.push("/login");
+      router.refresh();
+    } catch (error) {
+      console.error("Sign out error:", error);
+    }
+  };
 
   return (
     <div className="bg-canvas text-ink min-h-screen">
@@ -58,6 +76,33 @@ export default function SettingsPage() {
               <SecurityTab />
             </TabPanel>
           </Tabs>
+        </div>
+
+        <div className="mt-12 flex justify-start">
+          <Dialog open={signOutOpen} onOpenChange={setSignOutOpen}>
+            <DialogTrigger
+              render={
+                <Button variant="ghost" className="text-error hover:bg-error/10 hover:text-error">
+                  <LogOut size={16} className="mr-2" />
+                  Sign out of Vidhyut Portal
+                </Button>
+              }
+            />
+            <DialogContent size="sm">
+              <DialogHeader>
+                <DialogTitle>Sign out</DialogTitle>
+                <DialogDescription>
+                  Are you sure you want to sign out? You will need to log back in to access your account.
+                </DialogDescription>
+              </DialogHeader>
+              <DialogFooter>
+                <DialogClose render={<Button variant="ghost">Cancel</Button>} />
+                <Button variant="destructive" onClick={handleSignOut}>
+                  Sign out
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
         </div>
       </div>
     </div>
