@@ -33,7 +33,7 @@ export default function ComplaintDetailClient() {
 
   return (
     <div className="bg-canvas text-ink min-h-screen">
-      <div className="w-full max-w-4xl px-4 py-8 sm:px-6">
+      <div className="w-full max-w-3xl px-4 py-8 sm:px-6">
         {/* 1. Issue as Title, Description (if exists), Date filed, ID & Status */}
         <ComplaintDetailHeader complaint={complaint} />
 

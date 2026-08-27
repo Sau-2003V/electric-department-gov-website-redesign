@@ -65,14 +65,12 @@ export function ComplaintStatusTracker({ complaint }) {
       : null;
 
   return (
-    <div className="border-hairline bg-surface-card shadow-subtle mb-6 rounded-lg border p-4 sm:p-5">
+    <div className="mb-8">
       {/* Header */}
-      <div className="border-hairline-soft flex flex-wrap items-center justify-between gap-2 border-b pb-3.5">
-        <div>
-          <h2 className="text-title-sm text-ink font-semibold tracking-tight">
-            Status progress
-          </h2>
-        </div>
+      <div className="border-hairline-soft flex flex-wrap items-center justify-between gap-2 border-b pb-3">
+        <h2 className="text-title-sm text-ink font-semibold tracking-tight">
+          Status progress
+        </h2>
 
         {updatedTime && (
           <Badge
@@ -163,15 +161,13 @@ export function ComplaintStatusTracker({ complaint }) {
             })}
           </div>
         ) : (
-          /* Collapsed: Active Current Step Summary */
-          <div className="bg-surface-soft border-hairline flex items-start gap-3 rounded-lg border p-3.5">
-            <span className="bg-brand-accent mt-1.5 size-2 shrink-0 rounded-full" />
+          /* Collapsed: Active Current Step Summary — flat, no box */
+          <div className="flex items-start gap-3 pt-1">
+            <span className="bg-brand-accent mt-2 size-2 shrink-0 rounded-full" />
             <div className="min-w-0 flex-1">
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="text-body-sm text-ink font-semibold">
-                  {currentStep.label}
-                </span>
-              </div>
+              <span className="text-body-sm text-ink font-semibold">
+                {currentStep.label}
+              </span>
               <p className="text-caption text-muted-text mt-0.5 text-xs leading-relaxed">
                 {currentStep.desc}
               </p>

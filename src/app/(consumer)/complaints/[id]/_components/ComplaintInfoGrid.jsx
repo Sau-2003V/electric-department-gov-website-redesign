@@ -8,8 +8,8 @@ export function ComplaintLocationSection({ complaint }) {
   const hasGps = !isNaN(lat) && !isNaN(lng);
 
   return (
-    <div className="border-hairline bg-surface-card shadow-subtle mb-6 rounded-lg border p-4 sm:p-5">
-      <div className="border-hairline-soft flex items-center justify-between border-b pb-3.5">
+    <div className="mb-8">
+      <div className="border-hairline-soft border-b pb-3">
         <h2 className="text-title-sm text-ink font-semibold tracking-tight">
           Location
         </h2>
@@ -28,28 +28,36 @@ export function ComplaintLocationSection({ complaint }) {
           </div>
         )}
 
-        {/* Interactive Google Map Embed when GPS coords exist */}
-        {hasGps ? (
+        {/* Address if present */}
+        {complaint?.address && (
           <div>
-            {/* Google Map iframe */}
-            <div className="border-hairline bg-surface-soft relative h-60 w-full overflow-hidden rounded-lg border shadow-inner sm:h-72">
-              <iframe
-                title={`Google Map showing location for complaint #${complaint.id}`}
-                width="100%"
-                height="100%"
-                className="size-full border-0"
-                loading="lazy"
-                allowFullScreen
-                referrerPolicy="no-referrer-when-downgrade"
-                src={`https://maps.google.com/maps?q=${lat},${lng}&hl=en&z=15&output=embed`}
-              />
+            <span className="text-caption text-muted-text block text-xs font-medium tracking-wider uppercase">
+              Address
+            </span>
+            <div className="text-body-sm text-ink mt-1 font-normal">
+              {complaint.address}
             </div>
           </div>
-        ) : (
-          /* Fallback when no GPS coords */
-          <div className="border-hairline bg-surface-soft text-caption text-muted-text rounded-lg border p-3.5">
-            <span>No GPS coordinates recorded for this complaint.</span>
+        )}
+
+        {/* Map */}
+        {hasGps ? (
+          <div className="border-hairline bg-surface-soft relative h-60 w-full overflow-hidden rounded-lg border sm:h-72">
+            <iframe
+              title={`Map for complaint #${complaint.id}`}
+              width="100%"
+              height="100%"
+              className="size-full border-0"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+              src={`https://maps.google.com/maps?q=${lat},${lng}&hl=en&z=15&output=embed`}
+            />
           </div>
+        ) : (
+          <p className="text-caption text-muted-text text-xs">
+            No GPS coordinates recorded for this complaint.
+          </p>
         )}
       </div>
     </div>
