@@ -1,151 +1,139 @@
-// Server Component — no "use client" needed; hover effect is pure CSS
-import { TrendingUp, BarChart3, Users } from "lucide-react";
+"use client";
+
+import * as React from "react";
+import {
+  Area,
+  AreaChart,
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  Label,
+  LabelList,
+  Pie,
+  PieChart,
+  XAxis,
+  YAxis,
+} from "recharts";
+import { TrendingUp, BarChart3, Users, AlertCircle } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
 import { cn } from "@/lib/utils";
 
-/* ── Donut SVG chart ─────────────────────────────────────────────────── */
-function DonutChart({ data, resolvedPct }) {
-  const size = 140;
-  const r = 52;
-  const cx = size / 2;
-  const cy = size / 2;
-  const circumference = 2 * Math.PI * r;
+/* ── Chart Configurations ────────────────────────────────────────────── */
+const trendChartConfig = {
+  complaints: {
+    label: "Complaints",
+    color: "var(--chart-1)",
+  },
+};
 
-  let offset = 0;
-  const segments = data.map((d) => {
-    const dash = (d.value / 100) * circumference;
-    const gap = circumference - dash;
-    const seg = { ...d, dash, gap, offset };
-    offset += dash;
-    return seg;
-  });
+const statusChartConfig = {
+  resolved: {
+    label: "Resolved",
+    color: "var(--chart-1)",
+  },
+  in_progress: {
+    label: "In progress",
+    color: "var(--chart-2)",
+  },
+  pending: {
+    label: "Pending",
+    color: "var(--chart-3)",
+  },
+};
 
-  return (
-    <div className="relative flex items-center justify-center">
-      <svg width={size} height={size} className="-rotate-90">
-        {/* Track */}
-        <circle
-          cx={cx}
-          cy={cy}
-          r={r}
-          fill="none"
-          stroke="currentColor"
-          strokeWidth={14}
-          className="text-hairline"
-        />
-        {segments.map((seg) => (
-          <circle
-            key={seg.label}
-            cx={cx}
-            cy={cy}
-            r={r}
-            fill="none"
-            stroke={seg.stroke}
-            strokeWidth={14}
-            strokeDasharray={`${seg.dash} ${seg.gap}`}
-            strokeDashoffset={-seg.offset}
-            strokeLinecap="butt"
-          />
-        ))}
-      </svg>
-      {/* Center label */}
-      <div className="absolute flex flex-col items-center">
-        <span className="text-ink text-title-lg font-mono font-normal">
-          {resolvedPct}%
-        </span>
-        <span className="text-caption text-muted-text">Resolved</span>
-      </div>
-    </div>
-  );
-}
+const categoryChartConfig = {
+  count: {
+    label: "Complaints",
+    color: "var(--chart-1)",
+  },
+  label: {
+    color: "var(--background)",
+  },
+};
 
-/* ── Bar row for category breakdown ──────────────────────────────────── */
-function CategoryBar({ label, count, max }) {
-  const pct = max > 0 ? Math.round((count / max) * 100) : 0;
-  return (
-    <div className="flex items-center gap-3">
-      <span className="text-caption text-muted-text w-28 shrink-0">
-        {label}
-      </span>
-      <div className="bg-surface-soft flex-1 overflow-hidden rounded-full">
-        <div
-          className="bg-primary h-2 rounded-full transition-all"
-          style={{ width: `${pct}%` }}
-        />
-      </div>
-      <span className="text-caption text-ink w-8 text-right font-mono font-medium">
-        {count}
-      </span>
-    </div>
-  );
-}
-
-/* ── Trend Sparkline ─────────────────────────────────────────────────── */
-function Sparkline({ points }) {
-  const w = 200;
-  const h = 48;
-  const max = Math.max(...points);
-  const min = Math.min(...points);
-  const range = max - min || 1;
-  const pts = points.map((v, i) => {
-    const x = (i / (points.length - 1)) * w;
-    const y = h - ((v - min) / range) * h * 0.85 - h * 0.075;
-    return `${x},${y}`;
-  });
-  const polyline = pts.join(" ");
-  const area = `0,${h} ${polyline} ${w},${h}`;
-
-  return (
-    <svg
-      width={w}
-      height={h}
-      viewBox={`0 0 ${w} ${h}`}
-      preserveAspectRatio="none"
-      className="w-full"
-    >
-      <polyline points={area} fill="rgba(17,17,17,0.04)" stroke="none" />
-      <polyline
-        points={polyline}
-        fill="none"
-        stroke="#111111"
-        strokeWidth="2"
-        strokeLinejoin="round"
-        strokeLinecap="round"
-      />
-      {/* Last point dot */}
-      <circle
-        cx={w}
-        cy={parseFloat(pts[pts.length - 1].split(",")[1])}
-        r="3"
-        fill="#111111"
-      />
-    </svg>
-  );
-}
-
-/* ── Main export ─────────────────────────────────────────────────────── */
+/* ── Main Component ─────────────────────────────────────────────────── */
 /**
  * @param {{ data: {
- *   todayCount: number,
- *   todayDelta: string,
- *   staffActive: number,
- *   statusDist: Array<{ label: string, value: number, color: string, stroke: string }>,
- *   categoryData: Array<{ label: string, count: number, max: number }>,
- *   trendPoints: number[],
+ *   todayCount?: number,
+ *   todayDelta?: string,
+ *   staffActive?: number,
+ *   statusDist?: Array<{ label: string, value: number, color?: string, stroke?: string }>,
+ *   categoryData?: Array<{ label: string, count: number, max?: number }>,
+ *   trendPoints?: number[],
  * }}} props
  */
 export default function ComplaintAnalytics({ data }) {
   const {
-    todayCount,
-    todayDelta,
-    staffActive,
-    statusDist,
-    categoryData,
-    trendPoints,
-  } = data;
+    todayCount = 0,
+    todayDelta = "",
+    staffActive = 0,
+    statusDist = [],
+    categoryData = [],
+    trendPoints = [],
+  } = data || {};
 
   const resolvedPct = statusDist[0]?.value ?? 0;
-  const todayDisplay = todayCount.toLocaleString("en-IN");
-  const staffDisplay = staffActive.toLocaleString("en-IN");
+  const todayDisplay = Number(todayCount).toLocaleString("en-IN");
+  const staffDisplay = Number(staffActive).toLocaleString("en-IN");
+
+  // ponytail: 7-day trend rolling window; ceiling = range picker (30d/90d/custom)
+  const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  const trendChartData = (
+    trendPoints.length === 7 ? trendPoints : Array(7).fill(0)
+  ).map((count, i) => {
+    const d = new Date();
+    d.setDate(d.getDate() - (6 - i));
+    return {
+      day: dayNames[d.getDay()],
+      date: d.toLocaleDateString("en-IN", { month: "short", day: "numeric" }),
+      complaints: count,
+    };
+  });
+
+  // Shape status data for Shadcn Pie / Donut chart
+  const statusChartData = (
+    statusDist.length > 0
+      ? statusDist
+      : [
+          { label: "Resolved", value: 0 },
+          { label: "In progress", value: 0 },
+          { label: "Pending", value: 100 },
+        ]
+  ).map((item, idx) => {
+    const key = item.label.toLowerCase().replace(/\s+/g, "_");
+    const fillColors = [
+      "var(--chart-1)",
+      "var(--chart-2)",
+      "var(--chart-3)",
+      "var(--chart-4)",
+      "var(--chart-5)",
+    ];
+    return {
+      status: key,
+      label: item.label,
+      value: item.value,
+      fill: fillColors[idx % fillColors.length],
+    };
+  });
+
+  // Shape category data for Shadcn horizontal Bar chart
+  const categoryChartData = (categoryData || []).map((c) => ({
+    category: c.label,
+    count: c.count,
+    fill: "var(--chart-1)",
+  }));
 
   const stats = [
     {
@@ -185,11 +173,9 @@ export default function ComplaintAnalytics({ data }) {
           {stats.map((s) => {
             const Icon = s.icon;
             return (
-              <div
+              <Card
                 key={s.label}
-                className={cn(
-                  "border-hairline bg-canvas shadow-subtle hover:shadow-card flex flex-col rounded-lg border p-5 transition-shadow"
-                )}
+                className="border-hairline bg-canvas shadow-subtle hover:shadow-card p-5 transition-shadow"
               >
                 <div className="mb-3 flex items-center justify-between">
                   <span className="text-caption text-muted-text font-medium uppercase">
@@ -205,82 +191,308 @@ export default function ComplaintAnalytics({ data }) {
                     {s.delta}
                   </span>
                 )}
-              </div>
+              </Card>
             );
           })}
         </div>
 
-        {/* Charts row */}
+        {/* Charts row — 3 Shadcn UI Chart Cards */}
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {/* Donut — resolution status */}
-          <div className="border-hairline bg-canvas shadow-subtle rounded-lg border p-6">
-            <h3 className="text-caption text-ink mb-4 font-medium uppercase">
-              Status distribution
-            </h3>
-            <DonutChart data={statusDist} resolvedPct={resolvedPct} />
-            {/* Legend */}
-            <div className="mt-4 space-y-2">
-              {statusDist.map((d) => (
-                <div
-                  key={d.label}
-                  className="flex items-center justify-between"
-                >
-                  <div className="flex items-center gap-2">
-                    <span className={`h-2.5 w-2.5 rounded-full ${d.color}`} />
-                    <span className="text-body-sm text-muted-text">
-                      {d.label}
+          {/* 1. Status Distribution (Donut Chart) */}
+          <Card className="border-hairline bg-canvas shadow-subtle flex flex-col p-6">
+            <CardHeader className="p-0 pb-4">
+              <CardTitle className="text-caption text-ink font-medium tracking-wide uppercase">
+                Status distribution
+              </CardTitle>
+              <CardDescription className="text-caption text-muted-text">
+                Resolution performance (30 days)
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="flex flex-1 flex-col items-center justify-center p-0">
+              <ChartContainer
+                config={statusChartConfig}
+                className="mx-auto aspect-square h-[170px] w-full"
+              >
+                <PieChart>
+                  <ChartTooltip
+                    cursor={false}
+                    content={
+                      <ChartTooltipContent
+                        hideLabel
+                        formatter={(val, name, item) => (
+                          <div className="flex items-center gap-2">
+                            <span className="text-muted-foreground">
+                              {item?.payload?.label ?? name}:
+                            </span>
+                            <span className="text-foreground font-mono font-medium">
+                              {val}%
+                            </span>
+                          </div>
+                        )}
+                      />
+                    }
+                  />
+                  <Pie
+                    data={statusChartData}
+                    dataKey="value"
+                    nameKey="status"
+                    innerRadius={50}
+                    outerRadius={72}
+                    strokeWidth={2}
+                    stroke="var(--canvas)"
+                  >
+                    {statusChartData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.fill} />
+                    ))}
+                    <Label
+                      content={({ viewBox }) => {
+                        if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                          return (
+                            <text
+                              x={viewBox.cx}
+                              y={viewBox.cy}
+                              textAnchor="middle"
+                              dominantBaseline="middle"
+                            >
+                              <tspan
+                                x={viewBox.cx}
+                                y={(viewBox.cy || 0) - 2}
+                                className="fill-ink font-mono text-xl font-semibold"
+                              >
+                                {resolvedPct}%
+                              </tspan>
+                              <tspan
+                                x={viewBox.cx}
+                                y={(viewBox.cy || 0) + 16}
+                                className="fill-muted-text text-[11px] font-medium"
+                              >
+                                Resolved
+                              </tspan>
+                            </text>
+                          );
+                        }
+                        return null;
+                      }}
+                    />
+                  </Pie>
+                </PieChart>
+              </ChartContainer>
+
+              {/* Status Legend */}
+              <div className="border-hairline mt-4 w-full space-y-2 border-t pt-3">
+                {statusChartData.map((d) => (
+                  <div
+                    key={d.label}
+                    className="text-body-sm flex items-center justify-between"
+                  >
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="h-2.5 w-2.5 rounded-full"
+                        style={{ backgroundColor: d.fill }}
+                      />
+                      <span className="text-muted-text">{d.label}</span>
+                    </div>
+                    <span className="text-ink font-mono font-medium">
+                      {d.value}%
                     </span>
                   </div>
-                  <span className="text-body-sm text-ink font-mono font-medium">
-                    {d.value}%
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Category bars */}
-          <div className="border-hairline bg-canvas shadow-subtle rounded-lg border p-6">
-            <h3 className="text-caption text-ink mb-4 font-medium uppercase">
-              By category (today)
-            </h3>
-            {categoryData.length > 0 ? (
-              <div className="space-y-4">
-                {categoryData.map((c) => (
-                  <CategoryBar key={c.label} {...c} />
                 ))}
               </div>
-            ) : (
-              <p className="text-caption text-muted-text">
-                No complaints logged today.
-              </p>
-            )}
-          </div>
+            </CardContent>
+          </Card>
 
-          {/* 7-day trend sparkline */}
-          <div className="border-hairline bg-canvas shadow-subtle flex flex-col rounded-lg border p-6">
-            <h3 className="text-caption text-ink mb-1 font-medium uppercase">
-              7-day complaint trend
-            </h3>
-            <p className="text-caption text-muted-text mb-4">All categories</p>
-            <div className="flex-1">
-              <Sparkline points={trendPoints} />
-            </div>
-            <div className="mt-4 flex items-end justify-between">
-              <div>
-                <span className="text-ink text-title-lg font-mono font-medium">
-                  {todayDisplay}
-                </span>
-                <p className="text-caption text-muted-text">Today</p>
-              </div>
-              {todayDelta && (
-                <div className="text-caption text-ink flex items-center gap-1 font-medium">
-                  <TrendingUp className="h-3.5 w-3.5" strokeWidth={1.5} />
-                  <span>{todayDelta}</span>
+          {/* 2. By Category (Shadcn Horizontal Bar Chart with Custom Labels) */}
+          <Card className="border-hairline bg-canvas shadow-subtle flex flex-col p-6">
+            <CardHeader className="p-0 pb-4">
+              <CardTitle className="text-caption text-ink font-medium tracking-wide uppercase">
+                By category (today)
+              </CardTitle>
+              <CardDescription className="text-caption text-muted-text">
+                Top issue breakdowns logged today
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="flex flex-1 flex-col justify-between p-0">
+              {categoryChartData.length > 0 ? (
+                <ChartContainer
+                  config={categoryChartConfig}
+                  className="aspect-auto h-[180px] w-full"
+                >
+                  <BarChart
+                    accessibilityLayer
+                    data={categoryChartData}
+                    layout="vertical"
+                    margin={{
+                      right: 28,
+                      left: 0,
+                      top: 4,
+                      bottom: 4,
+                    }}
+                  >
+                    <CartesianGrid
+                      horizontal={false}
+                      stroke="var(--hairline)"
+                      strokeDasharray="3 3"
+                    />
+                    <YAxis
+                      dataKey="category"
+                      type="category"
+                      tickLine={false}
+                      tickMargin={10}
+                      axisLine={false}
+                      hide
+                    />
+                    <XAxis dataKey="count" type="number" hide />
+                    <ChartTooltip
+                      cursor={false}
+                      content={<ChartTooltipContent indicator="line" />}
+                    />
+                    <Bar dataKey="count" fill="var(--color-count)" radius={4}>
+                      <LabelList
+                        dataKey="category"
+                        position="insideLeft"
+                        offset={8}
+                        className="fill-(--color-label) font-sans font-medium"
+                        fontSize={11}
+                      />
+                      <LabelList
+                        dataKey="count"
+                        position="right"
+                        offset={8}
+                        className="fill-ink font-mono font-medium"
+                        fontSize={12}
+                      />
+                    </Bar>
+                  </BarChart>
+                </ChartContainer>
+              ) : (
+                <div className="flex flex-1 flex-col items-center justify-center py-8 text-center">
+                  <AlertCircle className="text-muted-soft mb-2 h-8 w-8" />
+                  <p className="text-caption text-muted-text">
+                    No complaints logged today.
+                  </p>
                 </div>
               )}
-            </div>
-          </div>
+
+              <div className="border-hairline mt-4 flex items-end justify-between border-t pt-3">
+                <div>
+                  <span className="text-ink text-title-lg font-mono font-medium">
+                    {categoryChartData.reduce(
+                      (acc, curr) => acc + (curr.count || 0),
+                      0
+                    )}
+                  </span>
+                  <p className="text-caption text-muted-text">
+                    Active category logs
+                  </p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* 3. 7-Day Complaint Trend (Shadcn Area Chart) */}
+          <Card className="border-hairline bg-canvas shadow-subtle flex flex-col p-6">
+            <CardHeader className="p-0 pb-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="text-caption text-ink font-medium tracking-wide uppercase">
+                    7-day complaint trend
+                  </CardTitle>
+                  <CardDescription className="text-caption text-muted-text">
+                    Daily complaint volume
+                  </CardDescription>
+                </div>
+                {todayDelta && (
+                  <div className="border-hairline bg-surface-soft text-caption text-ink inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 font-medium">
+                    <TrendingUp className="h-3 w-3" strokeWidth={1.5} />
+                    <span>{todayDelta}</span>
+                  </div>
+                )}
+              </div>
+            </CardHeader>
+            <CardContent className="flex flex-1 flex-col justify-between p-0">
+              <ChartContainer
+                config={trendChartConfig}
+                className="aspect-auto h-[180px] w-full"
+              >
+                <AreaChart
+                  data={trendChartData}
+                  margin={{ left: 8, right: 8, top: 10, bottom: 0 }}
+                >
+                  <defs>
+                    <linearGradient
+                      id="fillComplaints"
+                      x1="0"
+                      y1="0"
+                      x2="0"
+                      y2="1"
+                    >
+                      <stop
+                        offset="5%"
+                        stopColor="var(--chart-1)"
+                        stopOpacity={0.4}
+                      />
+                      <stop
+                        offset="95%"
+                        stopColor="var(--chart-1)"
+                        stopOpacity={0.02}
+                      />
+                    </linearGradient>
+                  </defs>
+                  <CartesianGrid
+                    vertical={false}
+                    strokeDasharray="3 3"
+                    stroke="var(--hairline)"
+                  />
+                  <XAxis
+                    dataKey="day"
+                    tickLine={false}
+                    axisLine={false}
+                    tickMargin={8}
+                    className="text-caption fill-muted-text font-sans"
+                  />
+                  <ChartTooltip
+                    cursor={false}
+                    content={
+                      <ChartTooltipContent
+                        indicator="line"
+                        labelFormatter={(_, payload) => {
+                          const date = payload?.[0]?.payload?.date;
+                          return date ? `${date}` : undefined;
+                        }}
+                      />
+                    }
+                  />
+                  <Area
+                    dataKey="complaints"
+                    type="natural"
+                    fill="url(#fillComplaints)"
+                    fillOpacity={0.4}
+                    stroke="var(--chart-1)"
+                    strokeWidth={2}
+                  />
+                </AreaChart>
+              </ChartContainer>
+
+              <div className="border-hairline mt-4 flex items-end justify-between border-t pt-3">
+                <div>
+                  <span className="text-ink text-title-lg font-mono font-medium">
+                    {todayDisplay}
+                  </span>
+                  <p className="text-caption text-muted-text">
+                    Complaints today
+                  </p>
+                </div>
+                <div className="text-caption text-muted-text text-right">
+                  <span>Last 7 days total: </span>
+                  <span className="text-ink font-mono font-medium">
+                    {trendPoints
+                      .reduce((acc, curr) => acc + (curr || 0), 0)
+                      .toLocaleString("en-IN")}
+                  </span>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </div>
     </section>
