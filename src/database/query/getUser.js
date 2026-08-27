@@ -88,3 +88,76 @@ export function useInvalidateUser() {
   const queryClient = useQueryClient();
   return () => queryClient.invalidateQueries({ queryKey: userKeys.all });
 }
+
+// ─── public.users profile ────────────────────────────────────────────────────
+
+/** @returns {Promise<object|null>} Row from public.users or null if not found */
+export async function getUserProfile(userId) {
+  if (!userId) return null;
+  const { data, error } = await supabase
+    .from("users")
+    .select(
+      "id, phone, address, pincode, district, state, join_date, updated_at, role, meter_number, location, sub_division"
+    )
+    .eq("id", userId)
+    .single();
+  if (error) {
+    if (error.code === "PGRST116") return null; // no row → not yet onboarded
+    throw error;
+  }
+  return data;
+}
+
+export const getUserProfileQueryOptions = (userId, options = {}) =>
+  queryOptions({
+    queryKey: [...userKeys.detail(userId), "profile"],
+    queryFn: () => getUserProfile(userId),
+    enabled: !!userId,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 30,
+    refetchOnWindowFocus: false,
+    ...options,
+  });
+
+/**
+ * Hook to fetch the current user's public.users profile row.
+ *
+ * @param {string|undefined} userId  — pass `useGetUser().data?.id`
+ * @param {import("@tanstack/react-query").UseQueryOptions} [options]
+ */
+export function useGetUserProfile(userId, options = {}) {
+  return useQuery(getUserProfileQueryOptions(userId, options));
+}
+
+// ─── Available staff by location ─────────────────────────────────────────────
+
+/**
+ * Calls get_available_staff_details(p_lat, p_lng) RPC.
+ * @param {number|null} lat
+ * @param {number|null} lng
+ * @returns {Promise<Array<{id:string,name:string,phone:string,role:string,designation:string}>>}
+ */
+export async function getAvailableStaff(lat, lng) {
+  const { data, error } = await supabase.rpc("get_available_staff_details", {
+    p_lat: lat,
+    p_lng: lng,
+  });
+  if (error) throw error;
+  return data ?? [];
+}
+
+/**
+ * Hook to fetch available staff near the user's coordinates.
+ * @param {number|null|undefined} lat
+ * @param {number|null|undefined} lng
+ */
+export function useGetAvailableStaff(lat, lng) {
+  return useQuery({
+    queryKey: ["staff", "available", lat, lng],
+    queryFn: () => getAvailableStaff(lat, lng),
+    enabled: lat != null && lng != null,
+    staleTime: 1000 * 60 * 5,
+    gcTime: 1000 * 60 * 30,
+    refetchOnWindowFocus: false,
+  });
+}
