@@ -45,7 +45,7 @@ export default function ComplaintDetailClient() {
 
         {/* 4. Attached Documents, Photos & Links */}
         <ComplaintEvidenceSection complaint={complaint} />
-
+         
         {/* 5. Assigned Team & Support */}
         <ComplaintEscalationMatrix complaint={complaint} />
       </div>
