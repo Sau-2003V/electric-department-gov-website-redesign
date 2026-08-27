@@ -429,16 +429,6 @@ export default function SupportPage() {
                       <span>Call 1800-123-4567</span>
                     </Button>
                   </Link>
-                  <Link href="/staff/dashboard" className="w-full sm:w-auto">
-                    <Button
-                      variant="accent"
-                      size="md"
-                      className="w-full sm:w-auto"
-                      leftIcon={<Phone className="size-4" />}
-                    >
-                      <span>workspace</span>
-                    </Button>
-                  </Link>
                   <Link href="/complaints/new" className="w-full sm:w-auto">
                     <Button
                       variant="secondary"

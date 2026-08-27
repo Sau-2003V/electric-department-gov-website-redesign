@@ -54,6 +54,7 @@ const teamMembers = [
       "Focuses on responsive design execution, accessibility (WCAG AA), motion design, and high-performance citizen-facing portal interfaces.",
     email: "saurabhsir1680@gmail.com",
     github: "https://github.com/Sau-2003V",
+    linkedIn: "https://www.linkedin.com/in/saurabh-vishwakarma-a25777330",
     portfolio: "https://svraptorX.com",
     location: "Lucknow, Uttar Pradesh",
   },
@@ -126,7 +127,7 @@ export default function TeamsPage() {
             </h2>
           </div>
           <Badge variant="secondary" size="sm" shape="pill">
-            3 Active Maintainers
+            2 Active Maintainers
           </Badge>
         </div>
 
