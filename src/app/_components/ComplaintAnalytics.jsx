@@ -1,76 +1,9 @@
-"use client";
-
-import { useState } from "react";
-import { TrendingUp, Clock, ShieldCheck, Users, BarChart3 } from "lucide-react";
+// Server Component — no "use client" needed; hover effect is pure CSS
+import { TrendingUp, BarChart3, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-/* ── Static analytics data ──────────────────────────────────────────── */
-// ponytail: static snapshot — upgrade to Supabase realtime when dashboard is ready
-
-const STATS = [
-  {
-    label: "Complaints today",
-    value: "1,284",
-    delta: "+12% vs yesterday",
-    icon: BarChart3,
-    positive: false,
-  },
-  {
-    label: "Avg. resolution time",
-    value: "3.4 hrs",
-    delta: "SLA target: 4 hrs",
-    icon: Clock,
-    positive: true,
-  },
-  {
-    label: "SLA met rate",
-    value: "96.2%",
-    delta: "+1.4pp this week",
-    icon: ShieldCheck,
-    positive: true,
-  },
-  {
-    label: "Field teams active",
-    value: "482",
-    delta: "Across 18 circles",
-    icon: Users,
-    positive: true,
-  },
-];
-
-// Status distribution (percentages must sum to 100)
-const STATUS_DISTRIBUTION = [
-  {
-    label: "Resolved",
-    value: 88.4,
-    color: "bg-ink",
-    stroke: "#111111",
-  },
-  {
-    label: "In progress",
-    value: 7.8,
-    color: "bg-muted-text",
-    stroke: "#6b7280",
-  },
-  {
-    label: "Assigned",
-    value: 3.8,
-    color: "bg-surface-strong",
-    stroke: "#e5e7eb",
-  },
-];
-
-// Category breakdown data
-const CATEGORY_DATA = [
-  { label: "Power Outage", count: 421, max: 421 },
-  { label: "Transformer", count: 298, max: 421 },
-  { label: "Low Voltage", count: 267, max: 421 },
-  { label: "Meter Fault", count: 189, max: 421 },
-  { label: "Billing", count: 109, max: 421 },
-];
-
 /* ── Donut SVG chart ─────────────────────────────────────────────────── */
-function DonutChart({ data }) {
+function DonutChart({ data, resolvedPct }) {
   const size = 140;
   const r = 52;
   const cx = size / 2;
@@ -117,7 +50,7 @@ function DonutChart({ data }) {
       {/* Center label */}
       <div className="absolute flex flex-col items-center">
         <span className="text-ink text-title-lg font-mono font-normal">
-          88.4%
+          {resolvedPct}%
         </span>
         <span className="text-caption text-muted-text">Resolved</span>
       </div>
@@ -127,7 +60,7 @@ function DonutChart({ data }) {
 
 /* ── Bar row for category breakdown ──────────────────────────────────── */
 function CategoryBar({ label, count, max }) {
-  const pct = Math.round((count / max) * 100);
+  const pct = max > 0 ? Math.round((count / max) * 100) : 0;
   return (
     <div className="flex items-center gap-3">
       <span className="text-caption text-muted-text w-28 shrink-0">
@@ -147,17 +80,14 @@ function CategoryBar({ label, count, max }) {
 }
 
 /* ── Trend Sparkline ─────────────────────────────────────────────────── */
-// 7-day complaint count trend (mock)
-const TREND_POINTS = [980, 1102, 1045, 1189, 1312, 1098, 1284];
-
-function Sparkline() {
+function Sparkline({ points }) {
   const w = 200;
   const h = 48;
-  const max = Math.max(...TREND_POINTS);
-  const min = Math.min(...TREND_POINTS);
+  const max = Math.max(...points);
+  const min = Math.min(...points);
   const range = max - min || 1;
-  const pts = TREND_POINTS.map((v, i) => {
-    const x = (i / (TREND_POINTS.length - 1)) * w;
+  const pts = points.map((v, i) => {
+    const x = (i / (points.length - 1)) * w;
     const y = h - ((v - min) / range) * h * 0.85 - h * 0.075;
     return `${x},${y}`;
   });
@@ -193,8 +123,44 @@ function Sparkline() {
 }
 
 /* ── Main export ─────────────────────────────────────────────────────── */
-export default function ComplaintAnalytics() {
-  const [hoveredStat, setHoveredStat] = useState(null);
+/**
+ * @param {{ data: {
+ *   todayCount: number,
+ *   todayDelta: string,
+ *   staffActive: number,
+ *   statusDist: Array<{ label: string, value: number, color: string, stroke: string }>,
+ *   categoryData: Array<{ label: string, count: number, max: number }>,
+ *   trendPoints: number[],
+ * }}} props
+ */
+export default function ComplaintAnalytics({ data }) {
+  const {
+    todayCount,
+    todayDelta,
+    staffActive,
+    statusDist,
+    categoryData,
+    trendPoints,
+  } = data;
+
+  const resolvedPct = statusDist[0]?.value ?? 0;
+  const todayDisplay = todayCount.toLocaleString("en-IN");
+  const staffDisplay = staffActive.toLocaleString("en-IN");
+
+  const stats = [
+    {
+      label: "Complaints today",
+      value: todayDisplay,
+      delta: todayDelta,
+      icon: BarChart3,
+    },
+    {
+      label: "Field teams active",
+      value: staffDisplay,
+      delta: "Available now",
+      icon: Users,
+    },
+  ];
 
   return (
     <section
@@ -214,18 +180,15 @@ export default function ComplaintAnalytics() {
           </div>
         </div>
 
-        {/* KPI row */}
-        <div className="mb-8 grid grid-cols-2 gap-4 lg:grid-cols-4">
-          {STATS.map((s) => {
+        {/* KPI row — 2 cards */}
+        <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {stats.map((s) => {
             const Icon = s.icon;
             return (
               <div
                 key={s.label}
-                onMouseEnter={() => setHoveredStat(s.label)}
-                onMouseLeave={() => setHoveredStat(null)}
                 className={cn(
-                  "border-hairline bg-canvas shadow-subtle flex flex-col rounded-lg border p-5 transition-shadow",
-                  hoveredStat === s.label && "shadow-card"
+                  "border-hairline bg-canvas shadow-subtle hover:shadow-card flex flex-col rounded-lg border p-5 transition-shadow"
                 )}
               >
                 <div className="mb-3 flex items-center justify-between">
@@ -237,9 +200,11 @@ export default function ComplaintAnalytics() {
                 <span className="text-ink text-display-sm font-mono font-medium">
                   {s.value}
                 </span>
-                <span className="text-caption text-muted-text mt-1">
-                  {s.delta}
-                </span>
+                {s.delta && (
+                  <span className="text-caption text-muted-text mt-1">
+                    {s.delta}
+                  </span>
+                )}
               </div>
             );
           })}
@@ -252,10 +217,10 @@ export default function ComplaintAnalytics() {
             <h3 className="text-caption text-ink mb-4 font-medium uppercase">
               Status distribution
             </h3>
-            <DonutChart data={STATUS_DISTRIBUTION} />
+            <DonutChart data={statusDist} resolvedPct={resolvedPct} />
             {/* Legend */}
             <div className="mt-4 space-y-2">
-              {STATUS_DISTRIBUTION.map((d) => (
+              {statusDist.map((d) => (
                 <div
                   key={d.label}
                   className="flex items-center justify-between"
@@ -279,11 +244,17 @@ export default function ComplaintAnalytics() {
             <h3 className="text-caption text-ink mb-4 font-medium uppercase">
               By category (today)
             </h3>
-            <div className="space-y-4">
-              {CATEGORY_DATA.map((c) => (
-                <CategoryBar key={c.label} {...c} />
-              ))}
-            </div>
+            {categoryData.length > 0 ? (
+              <div className="space-y-4">
+                {categoryData.map((c) => (
+                  <CategoryBar key={c.label} {...c} />
+                ))}
+              </div>
+            ) : (
+              <p className="text-caption text-muted-text">
+                No complaints logged today.
+              </p>
+            )}
           </div>
 
           {/* 7-day trend sparkline */}
@@ -291,23 +262,23 @@ export default function ComplaintAnalytics() {
             <h3 className="text-caption text-ink mb-1 font-medium uppercase">
               7-day complaint trend
             </h3>
-            <p className="text-caption text-muted-text mb-4">
-              Mon – Sun • All categories
-            </p>
+            <p className="text-caption text-muted-text mb-4">All categories</p>
             <div className="flex-1">
-              <Sparkline />
+              <Sparkline points={trendPoints} />
             </div>
             <div className="mt-4 flex items-end justify-between">
               <div>
                 <span className="text-ink text-title-lg font-mono font-medium">
-                  1,284
+                  {todayDisplay}
                 </span>
                 <p className="text-caption text-muted-text">Today</p>
               </div>
-              <div className="text-caption text-ink flex items-center gap-1 font-medium">
-                <TrendingUp className="h-3.5 w-3.5" strokeWidth={1.5} />
-                <span>+12% vs yesterday</span>
-              </div>
+              {todayDelta && (
+                <div className="text-caption text-ink flex items-center gap-1 font-medium">
+                  <TrendingUp className="h-3.5 w-3.5" strokeWidth={1.5} />
+                  <span>{todayDelta}</span>
+                </div>
+              )}
             </div>
           </div>
         </div>

@@ -9,7 +9,7 @@ export default function StaffWorkspaceLayout({ children }) {
 
         <div className="relative flex min-h-0 min-w-0 flex-1 flex-col pb-20 md:pb-0 md:pl-72">
           <main className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
-            <div className="flex-1 overflow-y-auto overflow-x-hidden">
+            <div className="flex-1 overflow-x-hidden overflow-y-auto">
               <div className="mx-auto w-full max-w-7xl min-w-0 px-3 py-5 sm:px-6 sm:py-8">
                 <header className="border-hairline bg-surface-card shadow-subtle mb-5 rounded-xl border p-4 sm:mb-6 sm:p-6">
                   <div className="flex flex-col gap-3 sm:gap-4 md:flex-row md:items-center md:justify-between">

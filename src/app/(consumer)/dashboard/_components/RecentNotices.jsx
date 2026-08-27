@@ -105,9 +105,7 @@ function NoticeRow({ notice }) {
       {/* Content */}
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-center gap-2">
-          <p className="text-body-sm text-ink font-medium">
-            {notice.title}
-          </p>
+          <p className="text-body-sm text-ink font-medium">{notice.title}</p>
 
           {notice.isNew && (
             <Badge variant="accent" size="sm">
@@ -120,9 +118,7 @@ function NoticeRow({ notice }) {
           {notice.summary}
         </p>
 
-        <p className="text-caption text-muted-text mt-1">
-          {notice.date}
-        </p>
+        <p className="text-caption text-muted-text mt-1">{notice.date}</p>
       </div>
 
       {/* Chevron */}
@@ -203,10 +199,7 @@ export default function RecentNotices({ className }) {
           <Button variant="ghost" size="sm">
             <span>View all</span>
 
-            <ChevronRight
-              className="size-3.5"
-              aria-hidden="true"
-            />
+            <ChevronRight className="size-3.5" aria-hidden="true" />
           </Button>
         </Link>
       </div>
@@ -214,30 +207,18 @@ export default function RecentNotices({ className }) {
       {/* Loading */}
       {loading ? (
         <div className="text-muted-text flex items-center justify-center py-10">
-          <p className="text-body-sm">
-            Loading notices...
-          </p>
+          <p className="text-body-sm">Loading notices...</p>
         </div>
       ) : notices.length === 0 ? (
         /* Empty state */
         <div className="text-muted-text flex flex-col items-center justify-center gap-2 py-10">
-          <Bell
-            className="size-7"
-            strokeWidth={1.5}
-          />
+          <Bell className="size-7" strokeWidth={1.5} />
 
-          <p className="text-body-sm">
-            No notices available
-          </p>
+          <p className="text-body-sm">No notices available</p>
         </div>
       ) : (
         /* Rows */
-        notices.map((notice) => (
-          <NoticeRow
-            key={notice.id}
-            notice={notice}
-          />
-        ))
+        notices.map((notice) => <NoticeRow key={notice.id} notice={notice} />)
       )}
     </section>
   );

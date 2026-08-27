@@ -4,7 +4,6 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import {
   Search,
-  ChevronRight,
   Copy,
   Check,
   Clock,
@@ -12,79 +11,9 @@ import {
   CheckCircle2,
   Inbox,
   ArrowRight,
-  AlertTriangle,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-
-/* ── Data ────────────────────────────────────────────────────────────── */
-// ponytail: same data as (consumer)/complaints — single source of truth later
-const COMPLAINTS = [
-  {
-    id: "VVNL-240001",
-    priority: "Safety critical",
-    title: "Sparking / safety hazard",
-    description:
-      "Live wire sparking near the school gate, heavy sparking every few minutes.",
-    date: "22 Aug 2026",
-    status: "Assigned",
-    sla: "SLA breached",
-    category: "Hazard",
-  },
-  {
-    id: "VVNL-240002",
-    priority: "High",
-    title: "Power outage — Block 7",
-    description:
-      "No supply in the entire block since last night. Transformer may be blown.",
-    date: "22 Aug 2026",
-    status: "In progress",
-    sla: "SLA breached",
-    category: "Outage",
-  },
-  {
-    id: "VVNL-240007",
-    priority: "Medium",
-    title: "Voltage fluctuation",
-    description: "Severe voltage fluctuation, appliances tripping repeatedly.",
-    date: "21 Aug 2026",
-    status: "Assigned",
-    sla: "SLA breached",
-    category: "Voltage",
-  },
-  {
-    id: "VVNL-240009",
-    priority: "Low",
-    title: "Meter display blank",
-    description:
-      "Digital smart meter screen is unresponsive after power surge.",
-    date: "14 Aug 2026",
-    status: "Resolved",
-    sla: "SLA met",
-    category: "Meter",
-  },
-  {
-    id: "VVNL-240005",
-    priority: "Low",
-    title: "Street light not working",
-    description: "Street lights on the main road stay off all night.",
-    date: "17 Aug 2026",
-    status: "Closed",
-    sla: "SLA met",
-    category: "Street Light",
-  },
-  {
-    id: "VVNL-240011",
-    priority: "Medium",
-    title: "High billing discrepancy",
-    description:
-      "Bill amount doubled despite no change in consumption pattern.",
-    date: "20 Aug 2026",
-    status: "In progress",
-    sla: "SLA met",
-    category: "Billing",
-  },
-];
 
 const TABS = [
   { id: "all", label: "All" },
@@ -99,11 +28,6 @@ const STATUS_CONFIG = {
   "In progress": { icon: Loader2, variant: "warning" },
   Resolved: { icon: CheckCircle2, variant: "success" },
   Closed: { icon: CheckCircle2, variant: "secondary" },
-};
-
-const SLA_CLASS = {
-  "SLA breached": "text-error",
-  "SLA met": "text-success",
 };
 
 /* ── Single complaint row ─────────────────────────────────────────────── */
@@ -161,26 +85,28 @@ function ComplaintRow({ complaint, copiedId, onCopy }) {
           </button>
           <span className="text-hairline">·</span>
           <span>{complaint.date}</span>
-          <span className="text-hairline">·</span>
-          <span className={cn("font-medium", SLA_CLASS[complaint.sla])}>
-            {complaint.sla}
-          </span>
+          {complaint.category && (
+            <>
+              <span className="text-hairline">·</span>
+              <span className="text-muted-text max-w-[160px] truncate">
+                {complaint.category}
+              </span>
+            </>
+          )}
         </div>
       </div>
-
-      <Link
-        href={`/complaints?search=${complaint.id}`}
-        className="text-muted-soft hover:text-ink shrink-0 transition-colors"
-        aria-label={`View complaint ${complaint.id}`}
-      >
-        <ChevronRight className="h-4 w-4" />
-      </Link>
     </div>
   );
 }
 
 /* ── Main export ─────────────────────────────────────────────────────── */
-export default function LiveComplaintsSection() {
+/**
+ * @param {{ initialComplaints: Array<{
+ *   id: string, _uuid?: string, title: string, description: string,
+ *   date: string, status: string, priority: string, category: string, sla: string|null
+ * }> }} props
+ */
+export default function LiveComplaintsSection({ initialComplaints }) {
   const [activeTab, setActiveTab] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [copiedId, setCopiedId] = useState(null);
@@ -194,7 +120,7 @@ export default function LiveComplaintsSection() {
   };
 
   const filtered = useMemo(() => {
-    return COMPLAINTS.filter((c) => {
+    return initialComplaints.filter((c) => {
       const matchesTab =
         activeTab === "all" ||
         (activeTab === "active" &&
@@ -208,11 +134,11 @@ export default function LiveComplaintsSection() {
         !q ||
         c.id.toLowerCase().includes(q) ||
         c.title.toLowerCase().includes(q) ||
-        c.category.toLowerCase().includes(q);
+        (c.category ?? "").toLowerCase().includes(q);
 
       return matchesTab && matchesQuery;
     });
-  }, [activeTab, searchQuery]);
+  }, [activeTab, searchQuery, initialComplaints]);
 
   return (
     <section
@@ -278,7 +204,11 @@ export default function LiveComplaintsSection() {
           </div>
 
           {/* Rows */}
-          {filtered.length === 0 ? (
+          {initialComplaints.length === 0 ? (
+            <div className="text-body-sm text-muted-text py-12 text-center">
+              No complaints on record yet.
+            </div>
+          ) : filtered.length === 0 ? (
             <div className="text-body-sm text-muted-text py-12 text-center">
               No complaints match your search.{" "}
               <button
@@ -306,7 +236,7 @@ export default function LiveComplaintsSection() {
           {/* Footer CTA */}
           <div className="border-hairline-soft bg-surface-soft/60 flex items-center justify-between border-t px-5 py-3">
             <span className="text-caption text-muted-text">
-              Showing {filtered.length} of {COMPLAINTS.length} complaints
+              Showing {filtered.length} of {initialComplaints.length} complaints
             </span>
             <Link
               href="/complaints/new"

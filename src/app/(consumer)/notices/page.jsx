@@ -138,11 +138,7 @@ function getFileInfo(attachmentUrl) {
 
   const url = String(attachmentUrl);
 
-  const extension = url
-    .split("?")[0]
-    .split(".")
-    .pop()
-    ?.toUpperCase();
+  const extension = url.split("?")[0].split(".").pop()?.toUpperCase();
 
   return {
     fileType: extension || "FILE",
@@ -162,10 +158,7 @@ function mapNotice(row) {
 
     date: formatDate(row.updated_at || row.start_time),
 
-    effectiveDate: formatEffectiveDate(
-      row.start_time,
-      row.end_time
-    ),
+    effectiveDate: formatEffectiveDate(row.start_time, row.end_time),
 
     category: row.sub_type || row.category || "notice",
 
@@ -247,9 +240,7 @@ export default function NoticesPage() {
 
       setCopiedId(id);
 
-      toast.success(
-        `Reference ${id} copied to clipboard`
-      );
+      toast.success(`Reference ${id} copied to clipboard`);
 
       setTimeout(() => {
         setCopiedId(null);
@@ -266,11 +257,7 @@ export default function NoticesPage() {
       return;
     }
 
-    window.open(
-      notice.attachmentUrl,
-      "_blank",
-      "noopener,noreferrer"
-    );
+    window.open(notice.attachmentUrl, "_blank", "noopener,noreferrer");
   };
 
   const filteredNotices = useMemo(() => {
@@ -280,8 +267,7 @@ export default function NoticesPage() {
       let matchesTab = true;
 
       if (activeTab !== "all") {
-        matchesTab =
-          notice.category === activeTab;
+        matchesTab = notice.category === activeTab;
       }
 
       const matchesQuery =
@@ -300,24 +286,18 @@ export default function NoticesPage() {
     return {
       all: notices.length,
 
-      power: notices.filter(
-        (notice) => notice.category === "power"
-      ).length,
+      power: notices.filter((notice) => notice.category === "power").length,
 
       emergency_outage: notices.filter(
-        (notice) =>
-          notice.category === "emergency_outage"
+        (notice) => notice.category === "emergency_outage"
       ).length,
 
-      advisory: notices.filter(
-        (notice) => notice.category === "advisory"
-      ).length,
+      advisory: notices.filter((notice) => notice.category === "advisory")
+        .length,
     };
   }, [notices]);
 
-  const currentTabObj = TABS_CONFIG.find(
-    (tab) => tab.id === activeTab
-  );
+  const currentTabObj = TABS_CONFIG.find((tab) => tab.id === activeTab);
 
   const currentTabLabel = currentTabObj
     ? currentTabObj.label
@@ -338,9 +318,7 @@ export default function NoticesPage() {
 
         {loading ? (
           <div className="border-hairline bg-surface-card shadow-subtle rounded-lg border p-10 text-center">
-            <p className="text-muted-text">
-              Loading notices...
-            </p>
+            <p className="text-muted-text">Loading notices...</p>
           </div>
         ) : error ? (
           <div className="border-hairline bg-surface-card shadow-subtle rounded-lg border p-10 text-center">
@@ -348,9 +326,7 @@ export default function NoticesPage() {
               Failed to load notices
             </p>
 
-            <p className="text-muted-text mt-2 text-sm">
-              {error}
-            </p>
+            <p className="text-muted-text mt-2 text-sm">{error}</p>
           </div>
         ) : (
           <NoticesList

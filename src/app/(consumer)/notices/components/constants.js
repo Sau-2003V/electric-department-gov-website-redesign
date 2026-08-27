@@ -1,9 +1,4 @@
-import {
-  AlertTriangle,
-  Flame,
-  Info,
-  Sparkles,
-} from "lucide-react";
+import { AlertTriangle, Flame, Info, Sparkles } from "lucide-react";
 
 export const TABS_CONFIG = [
   { id: "all", label: "All Notices" },

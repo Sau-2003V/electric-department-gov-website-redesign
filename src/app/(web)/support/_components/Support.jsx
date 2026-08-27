@@ -225,8 +225,7 @@ const supportFaqs = [
   {
     category: "connections",
     categoryLabel: "Connections",
-    question:
-      "What is a Docket Number and why is it important?",
+    question: "What is a Docket Number and why is it important?",
     answer:
       "A Docket Number (e.g. DOC-98421) is a permanent, cryptographically verifiable tracking identifier issued via SMS immediately upon complaint registration. It is used to track live progress, escalate delays, and cite cases before the Consumer Grievance Redressal Forum (CGRF).",
   },
@@ -238,11 +237,12 @@ const supportFaqs = [
     answer:
       "Call emergency toll-free 1912 immediately. Emergency lines take top dispatch priority, triggering instant feeder trip and dispatching the emergency rapid-response mobile van to the site.",
   },
-   {
+  {
     category: "safety",
     categoryLabel: "Safety",
     question:
-      "Can I report an emergency power breakdown without logging in?" + " How do I report a life-threatening electrical emergency (live wire, sparking transformer)?",
+      "Can I report an emergency power breakdown without logging in?" +
+      " How do I report a life-threatening electrical emergency (live wire, sparking transformer)?",
     answer:
       "Yes. Emergency outages, live wire hazards, and transformer sparking can be reported instantly by dialing 24x7 toll-free 1912 or submitting a quick complaint docket on the portal without prior login.",
   },
@@ -254,7 +254,7 @@ const supportFaqs = [
     answer:
       "Under the Citizen Charter, supply restoration is mandatory within 4-12 hours depending on urban/rural classification. If unresolved after Tier 1 escalation, you can file a formal complaint before the Consumer Grievance Redressal Forum (CGRF) for compensation.",
   },
-   {
+  {
     category: "grievance",
     categoryLabel: "Rights & CGRF",
     question:
@@ -262,11 +262,10 @@ const supportFaqs = [
     answer:
       "You have a 72-hour protection window to click 'Reopen Ticket' on your dashboard. Reopened tickets automatically escalate to Level 2 (Divisional Executive Engineer) and are highlighted as priority SLA violations for immediate field re-dispatch.",
   },
-    {
+  {
     category: "grievance",
     categoryLabel: "Rights & CGRF",
-    question:
-      "How are the resolution SLA timelines enforced?",
+    question: "How are the resolution SLA timelines enforced?",
     answer:
       "Under the State Citizen Charter, urban supply must be restored within 4 hours, and rural within 12 hours. Any unresolved ticket exceeding the statutory timeline triggers automated alerts to circle leadership.",
   },
@@ -431,7 +430,7 @@ export default function SupportPage() {
                       <span>Dial 1912 Now</span>
                     </Button>
                   </Link>
-                   <Link href="/staff/dashboard" className="w-full sm:w-auto">
+                  <Link href="/staff/dashboard" className="w-full sm:w-auto">
                     <Button
                       variant="accent"
                       size="md"

@@ -185,7 +185,9 @@ export default function DashboardPage() {
                     key={item.id}
                     className="border-hairline bg-canvas border-t"
                   >
-                    <td className="text-ink px-4 py-3 font-medium">{item.id}</td>
+                    <td className="text-ink px-4 py-3 font-medium">
+                      {item.id}
+                    </td>
                     <td className="text-body px-4 py-3">{item.location}</td>
                     <td className="text-body px-4 py-3">{item.issue}</td>
                     <td className="px-4 py-3">
@@ -321,7 +323,9 @@ export default function DashboardPage() {
                   key={request.id}
                   className="border-hairline bg-canvas border-t"
                 >
-                  <td className="text-ink px-4 py-3 font-medium">{request.id}</td>
+                  <td className="text-ink px-4 py-3 font-medium">
+                    {request.id}
+                  </td>
                   <td className="text-body px-4 py-3">{request.issue}</td>
                   <td className="text-body px-4 py-3">{request.zone}</td>
                   <td className="px-4 py-3">

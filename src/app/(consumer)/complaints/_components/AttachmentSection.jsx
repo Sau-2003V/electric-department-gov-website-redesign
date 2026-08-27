@@ -83,7 +83,9 @@ export default function AttachmentSection({ complaintId, complaint }) {
   }
 
   // 3. Categorize storage files
-  const images = files.filter((f) => f.name.match(/\.(jpg|jpeg|png|gif|webp)$/i));
+  const images = files.filter((f) =>
+    f.name.match(/\.(jpg|jpeg|png|gif|webp)$/i)
+  );
   const pdfs = files.filter((f) => f.name.match(/\.pdf$/i));
   const videos = files.filter((f) => f.name.match(/\.(mp4|webm|mov)$/i));
   const others = files.filter(
@@ -162,7 +164,7 @@ export default function AttachmentSection({ complaintId, complaint }) {
                     key={`video-${idx}`}
                     className="border-hairline bg-surface-soft overflow-hidden rounded-lg border"
                   >
-                    <video controls className="w-full max-h-48">
+                    <video controls className="max-h-48 w-full">
                       <source src={vid.url} />
                     </video>
                     <div className="text-caption text-ink truncate p-2 font-medium">
@@ -306,7 +308,9 @@ export default function AttachmentSection({ complaintId, complaint }) {
               <DialogTitle className="text-title-md">
                 {selectedImage.name}
               </DialogTitle>
-              <DialogDescription>Uploaded complaint evidence.</DialogDescription>
+              <DialogDescription>
+                Uploaded complaint evidence.
+              </DialogDescription>
             </DialogHeader>
 
             <div className="border-hairline mt-3 flex max-h-[70vh] items-center justify-center overflow-hidden rounded-lg border bg-black/5">
