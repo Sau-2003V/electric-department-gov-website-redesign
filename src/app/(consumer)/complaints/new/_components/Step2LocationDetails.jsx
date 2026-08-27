@@ -263,7 +263,7 @@ export function Step2LocationDetails({
               <div>
                 <div className="flex items-center gap-2">
                   <h3 className="text-title-sm text-ink font-medium tracking-tight">
-                    Instant GPS auto-detection
+                    Current Location
                   </h3>
                   {gpsTagged && (
                     <Badge variant="success" size="sm" shape="tag">

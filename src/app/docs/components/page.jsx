@@ -13,6 +13,12 @@ import {
   Loader2,
 } from "lucide-react";
 
+export const metadata = {
+  title: "Components · Design System · Vidhyut Portal",
+  description:
+    "Explore the component library, UI building blocks, and design tokens for the Vidhyut electricity portal.",
+};
+
 export default function ComponentsIndexPage() {
   return (
     <div className="space-y-8">

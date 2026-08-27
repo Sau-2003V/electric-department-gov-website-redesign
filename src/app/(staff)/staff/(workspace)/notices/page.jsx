@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Service Communications & Notices · Staff Workspace · Vidhyut Portal",
+  description:
+    "Draft, schedule, and broadcast public notices, planned shutdown schedules, and safety advisories.",
+};
+
 const notices = [
   {
     title: "Planned outage in Sector 7",

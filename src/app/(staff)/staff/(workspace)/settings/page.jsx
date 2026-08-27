@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Operational Settings · Staff Workspace · Vidhyut Portal",
+  description:
+    "Configure escalation thresholds, zone auto-routing dispatch rules, and incident SLA parameters.",
+};
+
 const settings = [
   { name: "Escalation thresholds", value: "High-priority alerts enabled" },
   { name: "Dispatch policy", value: "Auto-route based on zone capacity" },

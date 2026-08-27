@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Operations Dashboard · Staff Workspace · Vidhyut Portal",
+  description:
+    "Live operational metrics, active incident response monitoring, priority queues, and field crew assignments.",
+};
+
 const summaryCards = [
   {
     label: "Open incidents",

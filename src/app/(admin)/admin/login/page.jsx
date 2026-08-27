@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Admin Login · Vidhyut Portal",
+  description:
+    "Administrative access portal for electricity department officials and system administrators.",
+};
+
 export default function AdminLogin() {
   return (
     <div>

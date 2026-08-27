@@ -3,11 +3,24 @@
 import { useState } from "react";
 import { User, Sparkles, Shield, LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useGetUser, useGetUserProfile, useInvalidateUser } from "@/database/query/getUser";
+import {
+  useGetUser,
+  useGetUserProfile,
+  useInvalidateUser,
+} from "@/database/query/getUser";
 import { supabase } from "@/database/supabase/supabase";
 import { Tabs, TabsList, TabItem, TabPanel } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import SettingsHeader from "./_components/SettingsHeader";
 import ProfileCard from "./_components/ProfileCard";
 import PersonalDetailsTab from "./_components/PersonalDetailsTab";
@@ -82,7 +95,10 @@ export default function SettingsPage() {
           <Dialog open={signOutOpen} onOpenChange={setSignOutOpen}>
             <DialogTrigger
               render={
-                <Button variant="ghost" className="text-error hover:bg-error/10 hover:text-error">
+                <Button
+                  variant="ghost"
+                  className="text-error hover:bg-error/10 hover:text-error"
+                >
                   <LogOut size={16} className="mr-2" />
                   Sign out of Vidhyut Portal
                 </Button>
@@ -92,7 +108,8 @@ export default function SettingsPage() {
               <DialogHeader>
                 <DialogTitle>Sign out</DialogTitle>
                 <DialogDescription>
-                  Are you sure you want to sign out? You will need to log back in to access your account.
+                  Are you sure you want to sign out? You will need to log back
+                  in to access your account.
                 </DialogDescription>
               </DialogHeader>
               <DialogFooter>

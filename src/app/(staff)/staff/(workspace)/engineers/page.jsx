@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Engineer Roster · Staff Workspace · Vidhyut Portal",
+  description:
+    "Roster and active duty status of field technicians, line engineers, and maintenance crews by zone.",
+};
+
 const engineers = [
   {
     name: "Ritika Nair",

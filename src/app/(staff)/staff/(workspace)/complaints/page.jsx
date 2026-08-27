@@ -1,3 +1,9 @@
+export const metadata = {
+  title: "Complaint Desk · Staff Workspace · Vidhyut Portal",
+  description:
+    "Manage, assign, escalate, and resolve consumer electricity complaints and field incidents across subdivisions.",
+};
+
 const complaints = [
   {
     id: "SR-1019",

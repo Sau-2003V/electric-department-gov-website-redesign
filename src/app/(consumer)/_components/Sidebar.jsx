@@ -10,7 +10,16 @@ import { useGetUser, useInvalidateUser } from "@/database/query/getUser";
 import { supabase } from "@/database/supabase/supabase";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter, DialogClose, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 
 export default function Sidebar() {
   const pathname = usePathname();
