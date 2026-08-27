@@ -1,37 +1,42 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   User,
-  Mail,
   Phone,
   MapPin,
-  Globe,
-  Lock,
   Save,
-  CheckCircle2,
-  Building,
-  Zap,
+  Hash,
+  Building2,
+  Globe2,
 } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 
-export default function PersonalDetailsTab({ user }) {
-  const appMetadata = user?.app_metadata || user?.raw_app_meta_data || {};
-  const userMetadata = user?.user_metadata || {};
-
+// Fields backed by public.users: phone, address, pincode, district, state, sub_division
+export default function PersonalDetailsTab({ profile }) {
   const [formData, setFormData] = useState({
-    fullName: appMetadata.name || userMetadata.name || "Aditya Sharma",
-    email: user?.email || "aditya.sharma@example.gov.in",
-    phone: appMetadata.phone || userMetadata.phone || "+91 98765 43210",
-    alternatePhone: "+91 98123 45678",
-    address: "House No. 42B, Shanti Nagar, Shivpur Road",
-    city: "Varanasi",
-    pincode: "221002",
-    language: "en",
+    phone: "",
+    address: "",
+    pincode: "",
+    district: "",
+    state: "",
+    sub_division: "",
   });
+
+  // Hydrate form when profile data arrives from the query
+  useEffect(() => {
+    if (!profile) return;
+    setFormData({
+      phone: profile.phone ?? "",
+      address: profile.address ?? "",
+      pincode: profile.pincode ?? "",
+      district: profile.district ?? "",
+      state: profile.state ?? "",
+      sub_division: profile.sub_division ?? "",
+    });
+  }, [profile]);
 
   const [isSaving, setIsSaving] = useState(false);
 
@@ -44,198 +49,102 @@ export default function PersonalDetailsTab({ user }) {
     setIsSaving(true);
     setTimeout(() => {
       setIsSaving(false);
-      toast.success("Profile information updated successfully", {
-        description:
-          "Your contact details and premises address have been synced.",
+      toast.success("Profile updated", {
+        description: "Your contact and address details have been saved.",
       });
     }, 800);
   };
 
   return (
-    <div className="space-y-6">
-      {/* Form Container */}
-      <form
-        onSubmit={handleSave}
-        className="border-hairline bg-canvas shadow-subtle space-y-6 rounded-xl border p-5 sm:p-7"
-      >
-        <div>
-          <h3 className="text-title-md text-ink font-medium">
-            Consumer Profile Information
-          </h3>
-          <p className="text-body-sm text-muted-text mt-0.5">
-            Update your contact preferences, personal particulars, and billing
-            delivery address.
-          </p>
+    <form
+      onSubmit={handleSave}
+      className="border-hairline bg-canvas shadow-subtle space-y-6 rounded-xl border p-5 sm:p-7"
+    >
+      <div>
+        <h3 className="text-title-md text-ink font-medium">
+          Contact & Address
+        </h3>
+        <p className="text-body-sm text-muted-text mt-0.5">
+          Update your registered phone number and service premises address.
+        </p>
+      </div>
+
+      <div className="border-hairline grid grid-cols-1 gap-5 border-t pt-5 sm:grid-cols-2">
+        {/* Phone */}
+        <Input
+          label="Registered Mobile Number"
+          type="tel"
+          value={formData.phone}
+          onChange={(e) => handleChange("phone", e.target.value)}
+          leadingIcon={Phone}
+          placeholder="+91 00000 00000"
+          helperText="Receives OTPs and outage alerts."
+          required
+        />
+
+        {/* Pincode */}
+        <Input
+          label="Postal Pincode"
+          value={formData.pincode}
+          onChange={(e) => handleChange("pincode", e.target.value)}
+          leadingIcon={Hash}
+          placeholder="6-digit PIN code"
+          required
+        />
+
+        {/* Address (full width) */}
+        <div className="sm:col-span-2">
+          <Input
+            label="Service Premises Address"
+            value={formData.address}
+            onChange={(e) => handleChange("address", e.target.value)}
+            leadingIcon={MapPin}
+            placeholder="Plot/Flat no, Street, Landmark"
+            required
+          />
         </div>
 
-        <div className="border-hairline grid grid-cols-1 gap-5 border-t pt-5 sm:grid-cols-2">
-          {/* Full Name */}
+        {/* District */}
+        <Input
+          label="District"
+          value={formData.district}
+          onChange={(e) => handleChange("district", e.target.value)}
+          leadingIcon={Building2}
+          placeholder="District name"
+        />
+
+        {/* State */}
+        <Input
+          label="State"
+          value={formData.state}
+          onChange={(e) => handleChange("state", e.target.value)}
+          leadingIcon={Globe2}
+          placeholder="State name"
+        />
+
+        {/* Sub-division */}
+        <div className="sm:col-span-2">
           <Input
-            label="Full Name (as per electricity records)"
-            value={formData.fullName}
-            onChange={(e) => handleChange("fullName", e.target.value)}
+            label="Sub Division"
+            value={formData.sub_division}
+            onChange={(e) => handleChange("sub_division", e.target.value)}
             leadingIcon={User}
-            placeholder="Enter full name"
-            helperText="Matches identity in government billing ledger."
-            required
+            placeholder="Electrical sub-division"
           />
-
-          {/* Email Address */}
-          <Input
-            label="Email Address"
-            type="email"
-            value={formData.email}
-            onChange={(e) => handleChange("email", e.target.value)}
-            leadingIcon={Mail}
-            placeholder="consumer@domain.com"
-            helperText="Used for monthly e-bills, payment receipts, and advisories."
-            required
-          />
-
-          {/* Primary Phone */}
-          <Input
-            label="Registered Mobile Number"
-            type="tel"
-            value={formData.phone}
-            onChange={(e) => handleChange("phone", e.target.value)}
-            leadingIcon={Phone}
-            placeholder="+91 00000 00000"
-            helperText="Receives OTPs and critical outage alerts via SMS."
-            required
-          />
-
-          {/* Alternate Contact */}
-          <Input
-            label="Alternate Contact Number"
-            type="tel"
-            value={formData.alternatePhone}
-            onChange={(e) => handleChange("alternatePhone", e.target.value)}
-            leadingIcon={Phone}
-            placeholder="+91 00000 00000"
-            helperText="Secondary contact for emergency lineman visits."
-          />
-
-          {/* Street Address */}
-          <div className="sm:col-span-2">
-            <Input
-              label="Service Premises / Connection Address"
-              value={formData.address}
-              onChange={(e) => handleChange("address", e.target.value)}
-              leadingIcon={MapPin}
-              placeholder="Plot/Flat no, Street, Landmark"
-              required
-            />
-          </div>
-
-          {/* City */}
-          <Input
-            label="City / Town"
-            value={formData.city}
-            onChange={(e) => handleChange("city", e.target.value)}
-            leadingIcon={Building}
-            placeholder="City name"
-            required
-          />
-
-          {/* Postal Pincode */}
-          <Input
-            label="Postal Pincode"
-            value={formData.pincode}
-            onChange={(e) => handleChange("pincode", e.target.value)}
-            placeholder="6-digit PIN code"
-            required
-          />
-        </div>
-
-        {/* Save CTA Row */}
-        <div className="border-hairline flex items-center justify-between border-t pt-5">
-          <p className="text-caption text-muted-soft hidden sm:block">
-            Last profile verification: 14 Jan 2026
-          </p>
-          <Button
-            type="submit"
-            variant="primary"
-            loading={isSaving}
-            icon={Save}
-            className="w-full sm:w-auto"
-          >
-            Save profile changes
-          </Button>
-        </div>
-      </form>
-
-      {/* Read-Only Technical Connection Record Card */}
-      <div className="border-hairline bg-surface-card shadow-subtle rounded-xl border p-5 sm:p-6">
-        <div className="mb-4 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
-          <div>
-            <div className="flex items-center gap-2">
-              <h3 className="text-title-sm text-ink font-medium">
-                Sanctioned Grid Specifications
-              </h3>
-              <Badge
-                variant="surface"
-                size="sm"
-                leadingIcon={Lock}
-                text="Official Record"
-              />
-            </div>
-            <p className="text-body-sm text-muted-text mt-0.5">
-              Technical parameters verified by the Department Electrical
-              Inspector.
-            </p>
-          </div>
-          <Button
-            type="button"
-            variant="outline"
-            size="sm"
-            onClick={() =>
-              toast.info(
-                "To request load alteration or meter shift, submit a new Service Request through the portal."
-              )
-            }
-          >
-            Apply for Load Change
-          </Button>
-        </div>
-
-        <div className="border-hairline text-body-sm grid grid-cols-1 gap-4 border-t pt-4 sm:grid-cols-3">
-          <div className="bg-canvas border-hairline rounded-lg border p-3.5">
-            <p className="text-caption text-muted-soft">
-              Sanctioned Load & Phase
-            </p>
-            <p className="text-ink mt-0.5 font-medium">
-              5.00 kW · 1-Phase (230V)
-            </p>
-            <p className="text-muted-text mt-1 text-[11px]">
-              Connected to Feeder F-04 Shivpur
-            </p>
-          </div>
-
-          <div className="bg-canvas border-hairline rounded-lg border p-3.5">
-            <p className="text-caption text-muted-soft">
-              Smart Electronic Meter ID
-            </p>
-            <p className="text-ink mt-0.5 font-mono font-medium">
-              MTR-8829410-GENUS
-            </p>
-            <p className="text-muted-text mt-1 text-[11px]">
-              Installed & Sealed: 10 Nov 2024
-            </p>
-          </div>
-
-          <div className="bg-canvas border-hairline rounded-lg border p-3.5">
-            <p className="text-caption text-muted-soft">
-              Transformer (DTR) Code
-            </p>
-            <p className="text-ink mt-0.5 font-mono font-medium">
-              DTR-250kVA-SHV-09
-            </p>
-            <p className="text-muted-text mt-1 text-[11px]">
-              Pole No: P-14/B Shivpur Main
-            </p>
-          </div>
         </div>
       </div>
-    </div>
+
+      <div className="border-hairline flex items-center justify-end border-t pt-5">
+        <Button
+          type="submit"
+          variant="primary"
+          loading={isSaving}
+          icon={Save}
+          className="w-full sm:w-auto"
+        >
+          Save changes
+        </Button>
+      </div>
+    </form>
   );
 }

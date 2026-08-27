@@ -1,7 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { PhoneCall, UserCheck, Building2, ChevronRight, Clock } from "lucide-react";
+import {
+  PhoneCall,
+  UserCheck,
+  Building2,
+  ChevronRight,
+  Clock,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function ComplaintEscalationMatrix({ complaint }) {
@@ -88,17 +94,21 @@ export function ComplaintEscalationMatrix({ complaint }) {
           <span className="text-caption text-muted-text block text-xs font-medium tracking-wider uppercase">
             Escalation if unresolved
           </span>
-          <ol className="text-body-sm text-muted-text mt-2 list-decimal pl-4 leading-relaxed space-y-1">
+          <ol className="text-body-sm text-muted-text mt-2 list-decimal space-y-1 pl-4 leading-relaxed">
             <li>
               <span className="text-ink font-medium">Sub-division</span>
               {" — "}initial inspection &amp; repair (24–72 hrs)
             </li>
             <li>
-              <span className="text-ink font-medium">Consumer grievance forum</span>
+              <span className="text-ink font-medium">
+                Consumer grievance forum
+              </span>
               {" — "}hearing if unresolved after notice period
             </li>
             <li>
-              <span className="text-ink font-medium">Electricity ombudsman</span>
+              <span className="text-ink font-medium">
+                Electricity ombudsman
+              </span>
               {" — "}statutory appellate authority
             </li>
           </ol>
