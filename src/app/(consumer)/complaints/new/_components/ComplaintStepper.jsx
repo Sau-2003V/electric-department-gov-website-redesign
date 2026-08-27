@@ -50,7 +50,7 @@ export function ComplaintStepper({ step, onStepChange }) {
                   <div className="flex flex-col">
                     <span
                       className={cn(
-                        "text-caption sm:text-body-sm font-medium tracking-tight",
+                        "text-sm font-medium tracking-tight",
                         isCurrent
                           ? "text-ink"
                           : isCompleted
