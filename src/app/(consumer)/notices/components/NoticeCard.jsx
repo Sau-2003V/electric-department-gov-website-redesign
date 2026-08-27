@@ -24,23 +24,7 @@ export default function NoticeCard({ notice, isCopied, onCopyId, onDownload }) {
       <div className="min-w-0 flex-1">
         {/* Notice Reference & Badges */}
         <div className="mb-2 flex flex-wrap items-center gap-2">
-          <div className="border-hairline bg-surface-soft flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs">
-            <span className="text-ink font-mono text-[11px] font-medium">
-              {notice.id}
-            </span>
-            <button
-              type="button"
-              onClick={(e) => onCopyId(e, notice.id)}
-              aria-label={`Copy ${notice.id}`}
-              className="text-muted-text hover:text-ink p-0.5 transition-colors"
-            >
-              {isCopied ? (
-                <Check className="text-success size-3" />
-              ) : (
-                <Copy className="size-3" />
-              )}
-            </button>
-          </div>
+        
 
           {notice.priority && (
             <Badge
@@ -116,19 +100,25 @@ export default function NoticeCard({ notice, isCopied, onCopyId, onDownload }) {
           <span>{notice.status}</span>
         </Badge>
 
-        <Button
-          type="button"
-          variant="secondary"
-          size="compact"
-          shape="md"
-          leftIcon={<Download className="size-3.5" />}
-          onClick={(e) => onDownload(e, notice)}
-          className="transition-transform active:scale-[0.96]"
-        >
-          <span>
-            {notice.fileType} ({notice.fileSize})
-          </span>
-        </Button>
+       {notice.attachmentUrl ? (
+  <Button
+    type="button"
+    variant="secondary"
+    size="compact"
+    shape="md"
+    leftIcon={<Download className="size-3.5" />}
+    onClick={(e) => onDownload(e, notice)}
+    className="transition-transform active:scale-[0.96]"
+  >
+    <span>
+      {notice.fileType}
+    </span>
+  </Button>
+) : (
+  <span className="text-muted-text text-xs">
+    No attachment
+  </span>
+)}
       </div>
     </div>
   );
