@@ -120,26 +120,26 @@ export function ComplaintEscalationMatrix({ complaint }) {
             <PhoneCall className="text-warning size-3.5 shrink-0" />
             <span className="text-caption text-ink text-xs">
               Emergency helpline:{" "}
-              <a
-                href="tel:1912"
+              <Link
+                href="/support"
                 className="text-brand-accent font-mono font-semibold hover:underline"
               >
-                1912
-              </a>{" "}
-              (24×7 toll-free)
+                1800-123-4567
+              </Link>{" "}
+              (24×7 demo hotline)
             </span>
           </div>
 
           <div className="flex items-center gap-2">
-            <a href="tel:1912">
+            <Link href="/support">
               <Button
                 variant="secondary"
                 size="sm"
                 leftIcon={<PhoneCall className="size-3.5" />}
               >
-                <span>Call 1912</span>
+                <span>Call Helpline</span>
               </Button>
-            </a>
+            </Link>
 
             <Link href="/help">
               <Button

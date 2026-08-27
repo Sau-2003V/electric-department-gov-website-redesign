@@ -15,9 +15,10 @@ import Footer from "./_components/Footer";
 export const revalidate = 14400;
 
 export const metadata = {
-  title: "Vidhyut Portal — Electric Department Grievance & Consumer Services",
+  title:
+    "Vidhyut Portal — Electric Department Grievance & Consumer Services (Demo)",
   description:
-    "Official electricity complaint registration, real-time tracking, bill payment, and consumer services for UP DISCOM consumers. Register a complaint online or call 1912.",
+    "Simulated electricity complaint registration, real-time tracking, and consumer services prototype. Register a complaint online or use the demo helpdesk.",
 };
 
 /* ── DB enum → display label maps ──────────────────────────────────────── */

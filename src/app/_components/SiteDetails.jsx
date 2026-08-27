@@ -1,82 +1,100 @@
 import Link from "next/link";
-import { Zap, ExternalLink } from "lucide-react";
+import { Zap, ArrowUpRight } from "lucide-react";
 
 const statutoryColumns = [
   {
-    title: "Important Portals & Links",
+    title: "Demo Portals & Network",
     links: [
-      { label: "UPPCL Official Portal", href: "https://www.upenergy.in" },
-      { label: "Paschimanchal DISCOM (PVVNL)", href: "https://pvvnl.org" },
-      { label: "Dakshinanchal DISCOM (DVVNL)", href: "https://dvvnl.org" },
-      { label: "Madhyanchal DISCOM (MVVNL)", href: "https://mvvnl.in" },
-      { label: "Purvanchal DISCOM (PuVVNL)", href: "https://puvvnl.up.gov.in" },
-      { label: "UPPTCL Transmission", href: "https://upptcl.org" },
+      { label: "State Power Grid (Demo)", href: "/help" },
+      { label: "Zone 1 DISCOM (Northern)", href: "/how-it-works" },
+      { label: "Zone 2 DISCOM (Southern)", href: "/how-it-works" },
+      { label: "Zone 3 DISCOM (Eastern)", href: "/how-it-works" },
+      { label: "Zone 4 DISCOM (Western)", href: "/how-it-works" },
+      { label: "Transmission Utility (Demo)", href: "/notices" },
     ],
   },
   {
     title: "General Information",
     links: [
-      { label: "Citizen's Charter", href: "/charter" },
+      { label: "Citizen's Charter (Demo)", href: "/how-it-works" },
       { label: "Consumer Grievance Cell", href: "/complaints" },
-      { label: "RTI Cell & Officers", href: "/rti" },
-      { label: "Whistle Blower Policy", href: "/policy" },
-      { label: "Tariff Orders & Directives", href: "/tariff" },
-      { label: "Safety SOPs & Guidelines", href: "/safety" },
+      { label: "RTI Information Desk", href: "/help" },
+      { label: "Whistle Blower Policy", href: "/support" },
+      { label: "Tariff Orders & Directives", href: "/notices" },
+      { label: "Safety SOPs & Guidelines", href: "/help" },
     ],
   },
   {
     title: "Consumer Help Desk",
     links: [
-      { label: "1912 24x7 Helpline", href: "/contact" },
-      { label: "Online Chat & Support", href: "/contact" },
-      { label: "Bill & Tariff Calculator", href: "/calculator" },
-      { label: "Energy Conservation Guide", href: "/energy-tips" },
-      { label: "Smart Metering FAQs", href: "/smart-meter" },
-      { label: "Payment Channels (BBPS)", href: "/bill/pay" },
+      { label: "24x7 Demo Helpdesk", href: "/support" },
+      { label: "Online Chat & Support", href: "/support" },
+      { label: "Bill & Tariff Calculator", href: "/help" },
+      { label: "Energy Conservation Guide", href: "/help" },
+      { label: "Smart Metering FAQs", href: "/help" },
+      { label: "Digital Payment Guide", href: "/help" },
     ],
   },
   {
-    title: "Statutory Audit",
+    title: "Statutory & Reports",
     links: [
-      { label: "Annual Financial Statements", href: "/audit" },
-      { label: "Statutory Auditor Reports", href: "/audit" },
-      { label: "Compliance Filings", href: "/compliance" },
-      { label: "CAG Audit Statements", href: "/audit" },
-      { label: "Discom Board Resolutions", href: "/corporate" },
+      { label: "Annual Financial Summary", href: "/notices" },
+      { label: "Statutory Auditor Reports", href: "/notices" },
+      { label: "Compliance Filings (Sample)", href: "/notices" },
+      { label: "Public Disclosures (Demo)", href: "/notices" },
+      { label: "Discom Board Resolutions", href: "/notices" },
       { label: "Regulatory Petitions", href: "/notices" },
     ],
   },
   {
     title: "Corporate Information",
     links: [
-      { label: "Board of Directors", href: "/corporate/board" },
-      { label: "Key Management Personnel", href: "/corporate/management" },
-      { label: "Organization Structure", href: "/corporate/structure" },
-      { label: "Vigilance Administration", href: "/vigilance" },
-      { label: "Jurisdiction & Circles", href: "/corporate/circles" },
-      { label: "Annual Discom Reports", href: "/reports" },
+      { label: "Board of Directors", href: "/team" },
+      { label: "Key Management Personnel", href: "/team" },
+      { label: "Organization Structure", href: "/team" },
+      { label: "Vigilance Administration", href: "/support" },
+      { label: "Jurisdiction & Circles", href: "/team" },
+      { label: "Annual Operational Reports", href: "/notices" },
     ],
   },
   {
     title: "Portal Policies",
     links: [
-      { label: "Hyperlinking Policy", href: "/policy/hyperlinking" },
-      { label: "Copyright Policy", href: "/policy/copyright" },
-      { label: "Privacy Statement", href: "/policy/privacy" },
-      { label: "Terms & Conditions", href: "/policy/terms" },
-      { label: "Accessibility Statement", href: "/policy/accessibility" },
-      { label: "Disclaimer Policy", href: "/policy/disclaimer" },
+      { label: "Hyperlinking Policy", href: "/help" },
+      { label: "Copyright Policy", href: "/help" },
+      { label: "Privacy Statement", href: "/help" },
+      { label: "Terms & Conditions", href: "/help" },
+      { label: "Accessibility Statement", href: "/help" },
+      { label: "Disclaimer Policy", href: "/help" },
     ],
   },
 ];
 
 const quickPills = [
-  { label: "State Load Despatch Centre (SLDC)", href: "#" },
-  { label: "National Portal of India (india.gov.in)", href: "#" },
-  { label: "National Cyber Crime Reporting Portal", href: "#" },
-  { label: "PM Surya Ghar: Muft Bijli Yojana", href: "#" },
-  { label: "Urja Mitra (Outage Management)", href: "#" },
-  { label: "Central Electricity Regulatory Commission", href: "#" },
+  {
+    label: "State Load Despatch Center (Demo)",
+    href: "/notices",
+  },
+  {
+    label: "National Citizen Portal (Demo)",
+    href: "/how-it-works",
+  },
+  {
+    label: "Cyber Security Advisory (Demo)",
+    href: "/help",
+  },
+  {
+    label: "Solar Rooftop Subsidy Program",
+    href: "/help",
+  },
+  {
+    label: "Outage Management System (Demo)",
+    href: "/notices",
+  },
+  {
+    label: "Electricity Regulatory Portal (Demo)",
+    href: "/support",
+  },
 ];
 
 export default function SiteDetails() {
@@ -85,12 +103,17 @@ export default function SiteDetails() {
       <div className="mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-8">
-          <h2 className="text-display-sm sm:text-display-md text-ink">
-            Site Details & Statutory Information
+          <div className="flex items-center gap-2">
+            <span className="bg-surface-card border-hairline text-muted-text rounded-xs border px-2 py-0.5 text-[11px] font-semibold tracking-wider uppercase">
+              Demo Showcase
+            </span>
+          </div>
+          <h2 className="text-display-sm sm:text-display-md text-ink mt-2">
+            Site Directory &amp; Demo Statutory Information
           </h2>
           <p className="text-body-sm text-muted-text mt-1 max-w-3xl">
-            Statutory notifications, directives, regulatory links, grievance
-            cells and state electricity undertakings.
+            Sample statutory notifications, simulated directives, regulatory
+            directory, and consumer assistance modules.
           </p>
         </div>
 
@@ -132,7 +155,7 @@ export default function SiteDetails() {
                 />
                 <span className="truncate">{pill.label}</span>
               </span>
-              <ExternalLink
+              <ArrowUpRight
                 className="text-muted-soft group-hover:text-ink ml-2 h-3.5 w-3.5 shrink-0 transition-colors"
                 strokeWidth={1.5}
               />

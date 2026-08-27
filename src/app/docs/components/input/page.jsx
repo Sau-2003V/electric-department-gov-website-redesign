@@ -28,7 +28,7 @@ export default function InputDocsPage() {
       name: "default",
       label: "Default / Canvas",
       desc: "White canvas with hairline border",
-      placeholder: "e.g. consumer@vidhyut.gov.in",
+      placeholder: "e.g. consumer@demo-vidhyut.local",
     },
     {
       name: "surface",

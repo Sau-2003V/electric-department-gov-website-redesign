@@ -536,7 +536,7 @@ export const ALL_COMPLAINTS = [
     id: 30,
     categoryId: "service-redressal",
     categoryName: "Service & Redressal",
-    title: "Poor response from customer care / helpline (1912)",
+    title: "Poor response from customer care / demo helpline",
     description:
       "Helpline calls unattended, IVR loops, tickets auto-closed without physical visit or resolution.",
     urgency: "Normal",

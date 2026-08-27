@@ -115,11 +115,10 @@ const helpCategories = [
     description:
       "Immediate reporting for live snapping wires, pole accidents, sparking cables, or hazardous clearances.",
     icon: ShieldAlert,
-    actionLabel: "Emergency 1912",
-    actionHref: "tel:1912",
-    isExternal: true,
+    actionLabel: "Emergency Support",
+    actionHref: "/complaints/new",
     quickLinks: [
-      { label: "Sparking Cable Alert", href: "tel:1912" },
+      { label: "Sparking Cable Alert", href: "/complaints/new" },
       { label: "Tilted Pole Hazard", href: "/complaints/new" },
       { label: "Clearance Violation", href: "/complaints/new" },
     ],
@@ -150,7 +149,7 @@ const escalationTiers = [
     timeline: "Resolves within 24 to 48 Hours",
     description:
       "Handles first-line outage restoration, fuse replacement, meter burn reports, and initial billing clarifications.",
-    contact: "Subdivision Helpdesk / Dial 1912",
+    contact: "Subdivision Helpdesk / Demo Support",
     sla: "Standard Service SLA",
   },
   {
@@ -181,7 +180,7 @@ const supportFaqs = [
     question:
       "How do I report a sudden power outage or fuse-off fault in my locality?",
     answer:
-      "You can immediately lodge an outage report online through the 'Register Complaint' button or dial toll-free 1912 (24x7). An automated SMS docket number is issued instantly, notifying the on-duty Junior Engineer and local feeder control room.",
+      "You can immediately lodge an outage report online through the 'Register Complaint' button or call the 24x7 demo helpline 1800-123-4567. An automated SMS docket number is issued instantly, notifying the on-duty Junior Engineer and local feeder control room.",
   },
   {
     category: "outages",
@@ -235,7 +234,7 @@ const supportFaqs = [
     question:
       "How do I report a life-threatening electrical emergency (live wire, sparking transformer)?",
     answer:
-      "Call emergency toll-free 1912 immediately. Emergency lines take top dispatch priority, triggering instant feeder trip and dispatching the emergency rapid-response mobile van to the site.",
+      "Call emergency demo helpline 1800-123-4567 immediately. Emergency lines take top dispatch priority, triggering instant feeder trip and dispatching the emergency rapid-response mobile van to the site.",
   },
   {
     category: "safety",
@@ -244,7 +243,7 @@ const supportFaqs = [
       "Can I report an emergency power breakdown without logging in?" +
       " How do I report a life-threatening electrical emergency (live wire, sparking transformer)?",
     answer:
-      "Yes. Emergency outages, live wire hazards, and transformer sparking can be reported instantly by dialing 24x7 toll-free 1912 or submitting a quick complaint docket on the portal without prior login.",
+      "Yes. Emergency outages, live wire hazards, and transformer sparking can be reported instantly by calling 24x7 demo helpline 1800-123-4567 or submitting a quick complaint docket on the portal without prior login.",
   },
   {
     category: "grievance",
@@ -276,7 +275,7 @@ const searchKeywords = [
   "Bill Discrepancy",
   "Burnt Meter",
   "New Connection",
-  "1912 Hotline",
+  "Demo Helpline",
   "Solar Net-Metering",
   "CGRF Redressal",
 ];
@@ -404,15 +403,15 @@ export default function SupportPage() {
                 <div>
                   <div className="flex items-center gap-2">
                     <h3 className="text-title-md text-ink font-medium">
-                      24x7 Central Emergency Hotline:{" "}
-                      <span className="text-error">1912</span>
+                      24x7 Demo Emergency Hotline:{" "}
+                      <span className="text-error">1800-123-4567</span>
                     </h3>
                     <Badge variant="destructive-subtle" size="sm" shape="pill">
-                      Toll-Free
+                      Demo Support
                     </Badge>
                   </div>
                   <p className="text-body-sm text-muted-text mt-1">
-                    Direct lineman dispatch for power breakdowns, burning
+                    Simulated dispatch for power breakdowns, burning
                     transformers, line sparking, and safety hazards.
                   </p>
                 </div>
@@ -420,14 +419,14 @@ export default function SupportPage() {
 
               <div className="mt-1 flex flex-wrap items-center justify-center gap-3">
                 <div className="mt-1 flex flex-col gap-3 sm:flex-row sm:items-center">
-                  <Link href="tel:1912" className="w-full sm:w-auto">
+                  <Link href="tel:18001234567" className="w-full sm:w-auto">
                     <Button
                       variant="accent"
                       size="md"
                       className="w-full sm:w-auto"
                       leftIcon={<Phone className="size-4" />}
                     >
-                      <span>Dial 1912 Now</span>
+                      <span>Call 1800-123-4567</span>
                     </Button>
                   </Link>
                   <Link href="/staff/dashboard" className="w-full sm:w-auto">
@@ -454,10 +453,7 @@ export default function SupportPage() {
                   </Link>
                 </div>
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
-                  <Link
-                    href="https://wa.me/911912000000"
-                    className="w-full sm:w-auto"
-                  >
+                  <Link href="/help" className="w-full sm:w-auto">
                     <Button
                       variant="secondary"
                       size="md"
@@ -466,7 +462,7 @@ export default function SupportPage() {
                         <MessageSquareText className="size-4 text-emerald-600" />
                       }
                     >
-                      <span>Whatsapp Helpdesk</span>
+                      <span>Demo Helpdesk</span>
                     </Button>
                   </Link>
                 </div>

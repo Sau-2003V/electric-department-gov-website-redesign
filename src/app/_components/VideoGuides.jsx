@@ -60,15 +60,15 @@ const allVideos = [
   {
     id: "v5",
     category: "Complaints",
-    title: "How to Register & Track Complaints on 1912 Helpline",
+    title: "How to Register & Track Complaints on Demo Helpline",
     description:
       "Learn how to lodge complaints regarding supply outage, low voltage, burnt transformer & meter issues.",
     duration: "3:50",
     views: "19.8k views",
     timeAgo: "4 months ago",
     accentColor: "from-purple-900 to-slate-950",
-    hindiTag: "1912 पर शिकायत",
-    subTag: "24x7 टोल फ्री सेवा",
+    hindiTag: "हेल्पलाइन पर शिकायत",
+    subTag: "24x7 डेमो सेवा",
   },
   {
     id: "v6",

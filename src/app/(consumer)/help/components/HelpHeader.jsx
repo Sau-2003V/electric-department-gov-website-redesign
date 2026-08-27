@@ -12,7 +12,7 @@ export default function HelpHeader() {
       </div>
 
       <div className="flex shrink-0 flex-wrap items-center gap-2.5">
-        <a href="tel:1912" className="inline-flex">
+        <Link href="/support" className="inline-flex">
           <Button
             variant="accent"
             size="default"
@@ -20,9 +20,9 @@ export default function HelpHeader() {
             leftIcon={<PhoneCall className="size-4" />}
             className="transition-transform active:scale-[0.96]"
           >
-            <span>Emergency 1912</span>
+            <span>Demo Helpline</span>
           </Button>
-        </a>
+        </Link>
 
         <Link href="/complaints/new" className="inline-flex">
           <Button

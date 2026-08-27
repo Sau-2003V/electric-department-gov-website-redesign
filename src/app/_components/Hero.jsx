@@ -22,7 +22,7 @@ const urgentSlides = [
   {
     tag: "Citizen advisory",
     title: "Burnt meter, wire sparking, or a live safety hazard?",
-    desc: "Report life-threatening electrical faults immediately — portal or 24x7 toll-free 1912.",
+    desc: "Report electrical faults immediately — portal or 24x7 demo helpline 1800-123-4567.",
     cta: "Report hazard now",
     href: "/complaints/new",
   },
@@ -97,11 +97,11 @@ export default function Hero() {
                   Register electricity complaints &amp; grievances
                 </h1>
                 <p className="text-body-md text-muted-text mt-3 max-w-2xl leading-relaxed">
-                  Welcome to the state electricity grievance redressal portal.
-                  File complaints for power outages, low voltage, burnt
-                  transformers, meter defects, or billing issues. Every
-                  complaint is assigned an instant tracking docket and
-                  dispatched directly to local subdivision field engineers.
+                  Welcome to the electricity grievance redressal prototype. File
+                  complaints for power outages, low voltage, burnt transformers,
+                  meter defects, or billing issues. Every complaint is assigned
+                  a simulated tracking docket and dispatched to test subdivision
+                  field engineers.
                 </p>
 
                 {/* Dual Action Buttons */}
@@ -142,15 +142,15 @@ export default function Hero() {
             <div className="border-surface-dark-elevated bg-surface-dark text-on-dark shadow-subtle flex flex-col justify-between rounded-xl border p-6">
               <div>
                 <h3 className="text-title-lg text-on-dark mt-2">
-                  Call toll-free 1912
+                  Demo Helpline 1800-123-4567
                 </h3>
                 <p className="text-body-sm text-on-dark-soft mt-1">
-                  Immediate emergency, sparking line, fuse-off, or transformer
+                  Simulated support for sparking line, fuse-off, or transformer
                   failure.
                 </p>
               </div>
               <div className="mt-6 flex flex-col gap-2.5">
-                <a href="tel:1912" className="inline-flex w-full">
+                <Link href="/support" className="inline-flex w-full">
                   <Button
                     variant="primary"
                     size="default"
@@ -159,18 +159,18 @@ export default function Hero() {
                       <PhoneCall className="h-4 w-4" strokeWidth={1.5} />
                     }
                   >
-                    <span>Call 1912 — toll free</span>
+                    <span>Call Demo Helpline</span>
                   </Button>
-                </a>
-                <a href="tel:18001801912" className="inline-flex w-full">
+                </Link>
+                <Link href="/support" className="inline-flex w-full">
                   <Button
                     variant="secondary"
                     size="default"
                     className="border-surface-dark-elevated bg-surface-dark-elevated text-on-dark hover:bg-surface-dark-elevated/80 w-full justify-center"
                   >
-                    <span>1800-180-1912</span>
+                    <span>1800-123-4567</span>
                   </Button>
-                </a>
+                </Link>
               </div>
             </div>
           </div>

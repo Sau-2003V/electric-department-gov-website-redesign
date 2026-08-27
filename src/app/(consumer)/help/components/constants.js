@@ -1,44 +1,44 @@
 export const CONTACT_CHANNELS = [
   {
-    id: "1912",
-    title: "1912",
-    label: "24×7 Emergency Helpline",
+    id: "helpline",
+    title: "1800-123-4567",
+    label: "24×7 Demo Helpline",
     badge: "24×7 Active",
     badgeVariant: "accent-subtle",
     description:
       "Urgent power outages, high-tension wire snap, transformer sparks, or electric hazards.",
     icon: "PhoneCall",
-    href: "tel:1912",
-    actionLabel: "Call 1912",
-    copyValue: "1912",
+    href: "tel:18001234567",
+    actionLabel: "Call Helpline",
+    copyValue: "1800-123-4567",
     isEmergency: true,
   },
   {
     id: "toll-free",
-    title: "1800-180-0440",
-    label: "Toll-Free Customer Care",
+    title: "1800-000-0000",
+    label: "Demo Customer Support",
     badge: "Toll Free",
     badgeVariant: "secondary",
     description:
       "Billing inquiries, meter verification, new connection tracking, and tariff clarification.",
     icon: "Phone",
-    href: "tel:18001800440",
-    actionLabel: "Call Toll-Free",
-    copyValue: "1800-180-0440",
+    href: "tel:18000000000",
+    actionLabel: "Call Support",
+    copyValue: "1800-000-0000",
     isEmergency: false,
   },
   {
     id: "email",
-    title: "care@vvnl.gov.in",
-    label: "Consumer Grievance Email",
-    badge: "Official Support",
+    title: "support@vidhyut-demo.local",
+    label: "Consumer Support Email",
+    badge: "Demo Support",
     badgeVariant: "surface",
     description:
-      "Written disputes, formal escalations, document submission, and official correspondence.",
+      "Written disputes, formal escalations, document submission, and simulated correspondence.",
     icon: "Mail",
-    href: "mailto:care@vvnl.gov.in",
+    href: "mailto:support@vidhyut-demo.local",
     actionLabel: "Send Email",
-    copyValue: "care@vvnl.gov.in",
+    copyValue: "support@vidhyut-demo.local",
     isEmergency: false,
   },
   {
@@ -74,7 +74,7 @@ export const FAQ_ITEMS = [
     id: "faq-3",
     question: "Can I track a complaint without signing in?",
     answer:
-      "Yes. You can track any registered complaint in real-time by entering its alphanumeric reference ID on the Complaints page search bar or by calling 1912 and quoting your complaint ticket number to the operator.",
+      "Yes. You can track any registered complaint in real-time by entering its alphanumeric reference ID on the Complaints page search bar or by calling the demo helpline and quoting your complaint ticket number to the operator.",
   },
   {
     id: "faq-4",
@@ -92,6 +92,6 @@ export const FAQ_ITEMS = [
     id: "faq-6",
     question: "How do I report an unscheduled power cut?",
     answer:
-      "You can dial 1912 directly or register an outage ticket under the Complaints tab on this portal with your 10-digit consumer account number or meter serial number for automatic sub-station tracking.",
+      "You can call the demo helpline directly or register an outage ticket under the Complaints tab on this portal with your 10-digit consumer account number or meter serial number for automatic sub-station tracking.",
   },
 ];

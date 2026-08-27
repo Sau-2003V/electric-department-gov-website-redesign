@@ -420,19 +420,19 @@ export default function TopHeader() {
                       </div>
                       <div className="truncate">
                         <p className="text-muted-text dark:text-on-dark-soft text-[11px] font-medium tracking-wide uppercase">
-                          24x7 Helpline
+                          24x7 Demo Helpline
                         </p>
                         <p className="text-ink text-caption dark:text-on-dark mt-0.5 font-mono leading-tight font-medium">
-                          1912 / 1800-180-1912
+                          1800-123-4567
                         </p>
                       </div>
                     </div>
-                    <a
-                      href="tel:1912"
+                    <Link
+                      href="/support"
                       className="bg-primary text-on-primary hover:bg-primary-active text-button shadow-subtle ml-2 shrink-0 rounded-md px-3 py-1.5 font-medium transition-transform active:scale-[0.98]"
                     >
                       Call
-                    </a>
+                    </Link>
                   </div>
                 </motion.div>
               </motion.div>

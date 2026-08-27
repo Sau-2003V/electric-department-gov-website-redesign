@@ -1,78 +1,77 @@
 import Link from "next/link";
 import Image from "next/image";
-import { PhoneCall, Mail, MapPin } from "lucide-react";
+import { PhoneCall, Mail, MapPin, ShieldAlert } from "lucide-react";
 
 const footerColumns = [
   {
-    title: "DISCOM ENTITIES",
+    title: "REGIONAL DISCOMS (DEMO)",
     links: [
-      { label: "PVVNL (Meerut DISCOM)", href: "https://pvvnl.org" },
-      { label: "DVVNL (Agra DISCOM)", href: "https://dvvnl.org" },
-      { label: "MVVNL (Lucknow DISCOM)", href: "https://mvvnl.in" },
-      { label: "PuVVNL (Varanasi DISCOM)", href: "https://puvvnl.up.gov.in" },
-      { label: "KESCO (Kanpur Electricity)", href: "https://kesco.co.in" },
+      { label: "Northern Electricity Utility (Demo)", href: "/how-it-works" },
+      { label: "Southern Power Distribution (Demo)", href: "/how-it-works" },
+      { label: "Central Grid Distribution (Demo)", href: "/how-it-works" },
+      { label: "Eastern Electricity Utility (Demo)", href: "/how-it-works" },
+      { label: "Metro Power Supply Corp (Demo)", href: "/how-it-works" },
     ],
   },
   {
-    title: "CONSUMER SUPPORT",
+    title: "CONSUMER SERVICES",
     links: [
-      { label: "1912 Grievance Desk", href: "/complaints" },
+      { label: "Grievance Redressal Desk", href: "/complaints" },
       { label: "Register New Complaint", href: "/complaints/new" },
-      { label: "Track Application Status", href: "/complaints" },
-      { label: "Online Bill Payment (BBPS)", href: "/bill/pay" },
-      { label: "Self Meter Bill Generation", href: "/bill/self" },
-      { label: "OTS Surcharge Waiver 2024", href: "/complaints" },
+      { label: "Track Complaint Status", href: "/complaints" },
+      { label: "Consumer Dashboard", href: "/dashboard" },
+      { label: "Smart Metering Help", href: "/help" },
+      { label: "OTS Surcharge Scheme", href: "/notices" },
     ],
   },
   {
-    title: "TENDERS & CONTRACTS",
+    title: "NOTICES & CIRCULARS",
     links: [
-      { label: "E-Tendering Portal (eTender UP)", href: "/tenders" },
-      { label: "Active NITs & Bidding", href: "/tenders" },
-      { label: "Vendor Empanelment SOP", href: "/tenders" },
-      { label: "Material Specifications", href: "/tenders" },
-      { label: "Corrigendum & Addendums", href: "/tenders" },
+      { label: "Public Outage Notices", href: "/notices" },
+      { label: "Active Tenders & Bidding (Demo)", href: "/notices" },
+      { label: "Material Specifications", href: "/notices" },
+      { label: "Tariff Orders & Circulars", href: "/notices" },
+      { label: "Corrigendum & Addendums", href: "/notices" },
     ],
   },
   {
-    title: "DEPARTMENT",
+    title: "ORGANIZATION",
     links: [
-      {
-        label: "Ministry of Power (Govt of India)",
-        href: "https://powermin.gov.in",
-      },
-      { label: "Energy Department UP", href: "https://upenergy.in" },
-      { label: "UPERC Regulatory Commission", href: "https://uperc.org" },
-      {
-        label: "Central Electricity Authority (CEA)",
-        href: "https://cea.nic.in",
-      },
-      {
-        label: "Bureau of Energy Efficiency (BEE)",
-        href: "https://beeindia.gov.in",
-      },
+      { label: "Department Leadership", href: "/team" },
+      { label: "Staff & Engineers Portal", href: "/staff/login" },
+      { label: "Workflow & Citizen SLAs", href: "/how-it-works" },
+      { label: "Energy Conservation Cell", href: "/help" },
+      { label: "Regulatory Guidelines", href: "/help" },
     ],
   },
   {
-    title: "RIGHT TO INFORMATION",
+    title: "PUBLIC INFORMATION",
     links: [
-      { label: "RTI Act & Rules 2005", href: "/rti" },
-      { label: "Public Information Officers (PIO)", href: "/rti/officers" },
-      { label: "First Appellate Authority", href: "/rti/appellate" },
-      { label: "Suo-Motu Section 4 Disclosure", href: "/rti/disclosure" },
-      { label: "Online RTI Request Portal", href: "/rti/apply" },
+      { label: "RTI Information Manual", href: "/help" },
+      { label: "Public Information Officers", href: "/team" },
+      { label: "First Appellate Authority", href: "/support" },
+      { label: "Proactive Disclosures", href: "/notices" },
+      { label: "Escalation Matrix", href: "/support" },
     ],
   },
 ];
 
+const relatedPortals = [
+  { label: "State Citizen Portal (Demo)", href: "/how-it-works" },
+  { label: "National Energy Hub (Demo)", href: "/help" },
+  { label: "Digital Services Hub", href: "/dashboard" },
+  { label: "Rooftop Solar Program", href: "/help" },
+  { label: "Grid Outage Tracker", href: "/notices" },
+];
+
 const legalLinks = [
-  { label: "Copyright Policy", href: "/policy/copyright" },
-  { label: "Hyperlinking Policy", href: "/policy/hyperlinking" },
-  { label: "Terms & Conditions", href: "/policy/terms" },
-  { label: "Privacy Policy", href: "/policy/privacy" },
-  { label: "Accessibility Statement", href: "/policy/accessibility" },
-  { label: "Disclaimer", href: "/policy/disclaimer" },
-  { label: "Help", href: "/help" },
+  { label: "Copyright Policy", href: "/help" },
+  { label: "Hyperlinking Policy", href: "/help" },
+  { label: "Terms & Conditions", href: "/help" },
+  { label: "Privacy Policy", href: "/help" },
+  { label: "Accessibility Statement", href: "/help" },
+  { label: "Disclaimer", href: "/help" },
+  { label: "Help & FAQs", href: "/help" },
 ];
 
 export default function Footer() {
@@ -92,9 +91,14 @@ export default function Footer() {
                 className="size-10 rounded-md bg-white object-contain p-1"
               />
               <div>
-                <p className="text-on-dark-soft text-caption font-medium tracking-wider uppercase">
-                  Electric Department
-                </p>
+                <div className="flex items-center gap-2">
+                  <p className="text-on-dark-soft text-caption font-medium tracking-wider uppercase">
+                    Electric Department
+                  </p>
+                  <span className="rounded-xs bg-amber-500/20 px-1.5 py-0.5 text-[10px] font-semibold text-amber-400 uppercase">
+                    DEMO
+                  </span>
+                </div>
                 <p className="text-on-dark text-title-md font-medium">
                   Vidhyut Portal
                 </p>
@@ -102,28 +106,43 @@ export default function Footer() {
             </div>
 
             <p className="text-on-dark-soft text-body-sm mb-4 leading-relaxed">
-              Official centralized grievance redressal and electricity consumer
-              services portal.
+              Centralized electricity grievance redressal &amp; consumer
+              services UI redesign demo prototype.
             </p>
 
             <div className="text-on-dark-soft text-body-sm space-y-1.5">
               <p className="flex items-center gap-2">
                 <PhoneCall
-                  className="text-on-dark h-3.5 w-3.5"
+                  className="text-on-dark h-3.5 w-3.5 shrink-0"
                   strokeWidth={1.5}
                 />
-                <span>24x7 Toll Free: 1800-180-1912 / 1912</span>
+                <Link
+                  href="/support"
+                  className="hover:text-on-dark transition-colors"
+                >
+                  24x7 Demo Hotline: 1800-123-4567
+                </Link>
               </p>
               <p className="flex items-center gap-2">
-                <Mail className="text-on-dark h-3.5 w-3.5" strokeWidth={1.5} />
-                <span>Email: grievance@vidhyutportal.gov.in</span>
+                <Mail
+                  className="text-on-dark h-3.5 w-3.5 shrink-0"
+                  strokeWidth={1.5}
+                />
+                <a
+                  href="mailto:support@vidhyut-demo.local"
+                  className="hover:text-on-dark transition-colors"
+                >
+                  Email: support@vidhyut-demo.local
+                </a>
               </p>
               <p className="flex items-center gap-2">
                 <MapPin
-                  className="text-on-dark h-3.5 w-3.5"
+                  className="text-on-dark h-3.5 w-3.5 shrink-0"
                   strokeWidth={1.5}
                 />
-                <span>Reg. Office: Vidyut Bhawan, Lucknow - 226001</span>
+                <span>
+                  Reg. Office: Demo Vidyut Bhawan, Sector 0, Demo City - 000001
+                </span>
               </p>
             </div>
           </div>
@@ -155,39 +174,18 @@ export default function Footer() {
         {/* Related Portals Row */}
         <div className="border-surface-dark-elevated border-b py-6">
           <p className="text-on-dark text-caption mb-2.5 font-medium tracking-wider uppercase">
-            Related Portals:
+            Demo Related Modules:
           </p>
           <div className="text-body-sm flex flex-wrap gap-2">
-            <Link
-              href="https://up.gov.in"
-              className="border-surface-dark-elevated bg-surface-dark-elevated text-on-dark-soft hover:text-on-dark text-button rounded-md border px-3 py-1 font-medium transition-colors active:scale-[0.98]"
-            >
-              Uttar Pradesh State Portal
-            </Link>
-            <Link
-              href="https://india.gov.in"
-              className="border-surface-dark-elevated bg-surface-dark-elevated text-on-dark-soft hover:text-on-dark text-button rounded-md border px-3 py-1 font-medium transition-colors active:scale-[0.98]"
-            >
-              National Portal of India
-            </Link>
-            <Link
-              href="https://digitalindia.gov.in"
-              className="border-surface-dark-elevated bg-surface-dark-elevated text-on-dark-soft hover:text-on-dark text-button rounded-md border px-3 py-1 font-medium transition-colors active:scale-[0.98]"
-            >
-              Digital India
-            </Link>
-            <Link
-              href="https://pmsuryaghar.gov.in"
-              className="border-surface-dark-elevated bg-surface-dark-elevated text-on-dark-soft hover:text-on-dark text-button rounded-md border px-3 py-1 font-medium transition-colors active:scale-[0.98]"
-            >
-              PM Surya Ghar
-            </Link>
-            <Link
-              href="https://urjamitra.in"
-              className="border-surface-dark-elevated bg-surface-dark-elevated text-on-dark-soft hover:text-on-dark text-button rounded-md border px-3 py-1 font-medium transition-colors active:scale-[0.98]"
-            >
-              Urja Mitra
-            </Link>
+            {relatedPortals.map((portal) => (
+              <Link
+                key={portal.label}
+                href={portal.href}
+                className="border-surface-dark-elevated bg-surface-dark-elevated text-on-dark-soft hover:text-on-dark text-button rounded-md border px-3 py-1 font-medium transition-colors active:scale-[0.98]"
+              >
+                {portal.label}
+              </Link>
+            ))}
           </div>
         </div>
 
@@ -207,19 +205,30 @@ export default function Footer() {
 
           <div className="text-on-dark-soft text-caption flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
             <p>
-              © {new Date().getFullYear()} Vidhyut Portal. All rights reserved.
-              Government of Uttar Pradesh.
+              © {new Date().getFullYear()} Vidhyut Portal (Demo Prototype). All
+              rights reserved.
             </p>
-            <p>Designed & Developed for DISCOM Consumer & Grievance Services</p>
+            <p>
+              Designed &amp; Developed for UI/UX Demonstration &amp; Simulation
+            </p>
           </div>
 
-          <p className="text-on-dark-soft/70 text-caption leading-relaxed">
-            Disclaimer: This is the official portal of Vidhyut Portal, an
-            undertaking of the Department of Energy, Government of Uttar
-            Pradesh. Content on this website is published and managed by the
-            DISCOM IT Division. For any technical query regarding this portal,
-            please contact the Web Information Manager.
-          </p>
+          <div className="text-caption rounded-md border border-amber-500/20 bg-amber-500/10 p-3 leading-relaxed text-amber-300/90">
+            <p className="flex items-center gap-1.5 font-medium text-amber-200">
+              <ShieldAlert className="h-4 w-4 shrink-0 text-amber-400" />
+              <span>Demo Project Notice:</span>
+            </p>
+            <p className="text-on-dark-soft/80 mt-1">
+              This website is an independent UI/UX redesign demonstration
+              prototype. It is{" "}
+              <strong>NOT an official government website</strong> and is not
+              affiliated with, authorized by, or associated with any government
+              department, ministry, or electricity distribution company. All
+              data, contact details, circulars, and entities displayed on this
+              portal are mock simulated data created solely for demonstration
+              purposes.
+            </p>
+          </div>
         </div>
       </div>
     </footer>

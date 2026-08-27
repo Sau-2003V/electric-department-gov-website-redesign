@@ -12,19 +12,19 @@ const quickActions = [
     icon: CreditCard,
     title: "Pay Electricity Bill",
     description: "Instant & secure online payment",
-    href: "/bill/pay",
+    href: "/dashboard",
   },
   {
     icon: Zap,
     title: "Apply for New Connection",
     description: "Quick 4-step digital process (Jhatpat)",
-    href: "/connection/apply",
+    href: "/complaints/new",
   },
   {
     icon: Activity,
     title: "Check Power Status",
     description: "Real-time feeder & outage updates",
-    href: "/outages",
+    href: "/notices",
   },
   {
     icon: ShieldAlert,
