@@ -65,10 +65,10 @@ export default function TopHeader() {
               className="h-5 w-auto object-contain dark:brightness-110"
             />
             <span className="text-ink text-caption dark:text-on-dark font-medium tracking-wide">
-              <span className="hidden sm:inline">Government of India / </span>
-              <span className="text-muted-text dark:text-on-dark-soft sm:text-caption text-xs">
+              <span className="hidden sm:inline">Demo application </span>
+              {/* <span className="text-muted-text dark:text-on-dark-soft sm:text-caption text-xs">
                 भारत सरकार
-              </span>
+              </span> */}
             </span>
           </div>
 
