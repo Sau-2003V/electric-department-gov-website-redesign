@@ -6,32 +6,42 @@ import {
   FileText,
   Info,
 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-/* ── Badge colour per notice type ─────────────────────────────────────── */
-const BADGE_STYLE = {
-  Outage: "bg-red-100 text-red-700",
-  Notice: "bg-blue-100 text-blue-700",
-  Tender: "bg-amber-100 text-amber-700",
-  Advisory: "bg-purple-100 text-purple-700",
-  Circular: "bg-slate-100 text-slate-600",
+/* ── Badge config per notice type ─────────────────────────────────────── */
+const BADGE_CONFIG = {
+  Outage: {
+    variant: "destructive-subtle",
+    icon: AlertTriangle,
+  },
+  Notice: {
+    variant: "info",
+    icon: Info,
+  },
+  Tender: {
+    variant: "warning-subtle",
+    icon: FileText,
+  },
+  Advisory: {
+    variant: "badge-violet",
+    icon: Megaphone,
+  },
+  Circular: {
+    variant: "canvas",
+    icon: FileText,
+  },
 };
 
-const BADGE_ICON = {
-  Outage: AlertTriangle,
-  Notice: Info,
-  Tender: FileText,
-  Advisory: Megaphone,
-  Circular: FileText,
-};
-
-/* ── Status pill ─────────────────────────────────────────────────────── */
-const STATUS_STYLE = {
-  draft: "bg-surface-soft text-muted-text",
-  published: "bg-green-100 text-green-700",
-  active: "bg-green-100 text-green-700",
-  archived: "bg-surface-soft text-muted-text",
-  scheduled: "bg-amber-100 text-amber-700",
+/* ── Status config ───────────────────────────────────────────────────── */
+const STATUS_CONFIG = {
+  draft: { variant: "canvas" },
+  published: { variant: "success-subtle" },
+  active: { variant: "success-subtle" },
+  archived: { variant: "canvas" },
+  scheduled: { variant: "warning-subtle" },
 };
 
 /**
@@ -41,7 +51,7 @@ const STATUS_STYLE = {
  *   priority?: string, href: string, count: string|null
  * }> }} props
  */
-export default function LatestUpdates({ notices }) {
+export default function LatestUpdates({ notices = [] }) {
   return (
     <section
       id="notices"
@@ -59,28 +69,43 @@ export default function LatestUpdates({ notices }) {
             </h2>
           </div>
 
-          <Link
-            href="/notices"
-            className="text-body-sm text-ink flex items-center gap-1 font-medium hover:opacity-80 active:scale-[0.98]"
-          >
-            <span>View all notices</span>
-            <ChevronRight className="h-4 w-4" strokeWidth={1.5} />
-          </Link>
+          <Button variant="ghost" size="sm" asChild>
+            <Link
+              href="/notices"
+              className="text-body-sm text-ink group/btn flex items-center gap-1 font-medium"
+            >
+              <span>View all notices</span>
+              <ChevronRight
+                className="h-4 w-4 transition-transform group-hover/btn:translate-x-0.5"
+                strokeWidth={1.5}
+              />
+            </Link>
+          </Button>
         </div>
 
         {/* Notices Stack */}
-        {notices.length === 0 ? (
-          <p className="text-body-sm text-muted-text border-hairline bg-canvas rounded-lg border py-12 text-center">
-            No public notices at this time.
-          </p>
+        {!notices || notices.length === 0 ? (
+          <Card className="border-hairline bg-canvas py-12 text-center shadow-none">
+            <CardContent className="flex flex-col items-center justify-center gap-2 p-0">
+              <FileText
+                className="text-muted-text/60 h-8 w-8"
+                strokeWidth={1.5}
+              />
+              <p className="text-body-sm text-muted-text">
+                No public notices at this time.
+              </p>
+            </CardContent>
+          </Card>
         ) : (
           <div className="flex flex-col gap-3">
             {notices.map((item, idx) => {
-              const BadgeIcon = BADGE_ICON[item.badge] ?? Info;
-              const badgeCls =
-                BADGE_STYLE[item.badge] ?? "bg-slate-100 text-slate-600";
-              const statusCls =
-                STATUS_STYLE[item.status] ?? "bg-surface-soft text-muted-text";
+              const badgeCfg = BADGE_CONFIG[item.badge] ?? {
+                variant: "canvas",
+                icon: Info,
+              };
+              const statusCfg = STATUS_CONFIG[item.status] ?? {
+                variant: "canvas",
+              };
 
               return (
                 <Link
@@ -95,7 +120,7 @@ export default function LatestUpdates({ notices }) {
                       <span className="text-body-sm font-mono leading-none font-normal">
                         {item.day}
                       </span>
-                      <span className="text-[10px] font-medium tracking-wider uppercase">
+                      <span className="text-caption font-medium tracking-wider uppercase">
                         {item.month}
                       </span>
                     </div>
@@ -103,24 +128,23 @@ export default function LatestUpdates({ notices }) {
                     <div className="min-w-0">
                       {/* Type badge + status pill */}
                       <div className="mb-1 flex flex-wrap items-center gap-1.5">
-                        <span
-                          className={cn(
-                            "inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[10px] font-semibold tracking-wide uppercase",
-                            badgeCls
-                          )}
+                        <Badge
+                          variant={badgeCfg.variant}
+                          size="sm"
+                          shape="sm"
+                          className="font-semibold tracking-wide uppercase"
                         >
-                          <BadgeIcon className="h-2.5 w-2.5" strokeWidth={2} />
                           {item.badge}
-                        </span>
+                        </Badge>
                         {item.status && (
-                          <span
-                            className={cn(
-                              "rounded px-1.5 py-0.5 text-[10px] font-medium tracking-wide uppercase",
-                              statusCls
-                            )}
+                          <Badge
+                            variant={statusCfg.variant}
+                            size="sm"
+                            shape="sm"
+                            className="font-medium tracking-wide uppercase"
                           >
                             {item.status}
-                          </span>
+                          </Badge>
                         )}
                       </div>
 
@@ -134,7 +158,7 @@ export default function LatestUpdates({ notices }) {
                   </div>
 
                   {/* Chevron */}
-                  <div className="bg-surface-soft text-muted-soft group-hover:bg-surface-strong group-hover:text-ink flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors">
+                  <div className="text-muted-soft flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors">
                     <ChevronRight
                       className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
                       strokeWidth={1.5}
