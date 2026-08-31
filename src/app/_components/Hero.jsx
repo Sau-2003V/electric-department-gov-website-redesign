@@ -97,11 +97,12 @@ export default function Hero() {
                   Register electricity complaints &amp; grievances
                 </h1>
                 <p className="text-body-md text-muted-text mt-3 max-w-2xl leading-relaxed">
-                  Welcome to the electricity grievance redressal prototype. File
-                  complaints for power outages, low voltage, burnt transformers,
-                  meter defects, or billing issues. Every complaint is assigned
-                  a simulated tracking docket and dispatched to test subdivision
-                  field engineers.
+                  A modern redesign of legacy grievance portals like UPPCL and
+                  MVVNL, built for consumers across all Indian DISCOMs.
+                  Register complaints for power cuts, voltage fluctuations,
+                  defective meters, or billing disputes with end-to-end tracking.
+                  Every complaint follows strict resolution timelines and is made
+                  publicly transparent if left unresolved.
                 </p>
 
                 {/* Dual Action Buttons */}
